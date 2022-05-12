@@ -38,13 +38,31 @@ export const AppSidebarContent = styledComponents.div`
 
 export const AppSidebarHeading = styledComponents.h1`
     font-family: var(--Inter);
-    font-size: var(--size-xl);
+    font-size: calc(var(--size-m) * 3.5);
     font-weight: var(--weight-xlg);
-    line-height: 36px;
+    line-height: 64px;
     text-align: left;
     color: ${({ theme }) => theme.text};
 `;
 
 export const AppSidebarSpan = styledComponents.span`
     display: block;
+`;
+
+export const AppSidebarParagraph = styledComponents.span`
+    padding-top: 30px;
+    color: ${({ theme }) => theme.paragraph};
+    font-family: var(--Inter);
+    font-size: var(--size-s);
+    line-height: 28px;
+    padding-right: calc(2 * var(--span-2xl));
+`;
+
+export const AppSidebarHighlight = styledComponents.span`
+    color: ${({ theme }) => theme.text};
+`;
+
+export const AppSidebarWrapper = styledComponents.div`
+    display: flex;
+    flex-direction: column;
 `;

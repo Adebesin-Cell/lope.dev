@@ -12,6 +12,9 @@ import {
   AppSidebarContent,
   AppSidebarHeading,
   AppSidebarSpan,
+  AppSidebarParagraph,
+  AppSidebarHighlight,
+  AppSidebarWrapper,
 } from "./styles/App.style";
 
 /**
@@ -31,10 +34,27 @@ const App = function () {
         <AppContainer>
           <AppSidebar>
             <AppSidebarContent>
-              <AppSidebarHeading>
-                <AppSidebarSpan>Hello, I'm</AppSidebarSpan>
-                <AppSidebarSpan>Adebesin Tolulope</AppSidebarSpan>
-              </AppSidebarHeading>
+              <AppSidebarWrapper>
+                <AppSidebarHeading>
+                  <AppSidebarSpan>Hello, I'm</AppSidebarSpan>
+                  <AppSidebarSpan>Adebesin Tolulope</AppSidebarSpan>
+                </AppSidebarHeading>
+                <AppSidebarParagraph>
+                  Lorem ipsum dolor sit amet,{" "}
+                  <AppSidebarHighlight>
+                    consectetur adipisicing elit.
+                  </AppSidebarHighlight>
+                  Reiciendis non{" "}
+                  <AppSidebarHighlight>
+                    consectetur adipisicing elit.
+                  </AppSidebarHighlight>{" "}
+                  Exercitationem blanditiis neque similique{" "}
+                  <AppSidebarHighlight>
+                    consectetur adipisicing elit.
+                  </AppSidebarHighlight>{" "}
+                  delectus porro autem.
+                </AppSidebarParagraph>
+              </AppSidebarWrapper>
             </AppSidebarContent>
           </AppSidebar>
           <AppView>
