@@ -5,7 +5,8 @@ export const lightTheme = {
   btn_bg: "#ffffff",
   scrollbar: "#f7f7f7",
   scrollbar_track: "#eeeeee",
-  paragraph: "#151515",
+  paragraph: "#777777",
+  highlight: "#000000",
 };
 
 export const darkTheme = {
@@ -16,4 +17,5 @@ export const darkTheme = {
   scrollbar: "#16161a",
   scrollbar_track: "#101011",
   paragraph: "#949495",
+  highlight: "#ffffff",
 };

@@ -50,16 +50,19 @@ export const AppSidebarSpan = styledComponents.span`
 `;
 
 export const AppSidebarParagraph = styledComponents.span`
-    padding-top: 30px;
+    padding-top: var(--span-s);
     color: ${({ theme }) => theme.paragraph};
     font-family: var(--Inter);
     font-size: var(--size-s);
+    font-weight: var(--weight-sm);
     line-height: 28px;
     padding-right: calc(2 * var(--span-2xl));
 `;
 
 export const AppSidebarHighlight = styledComponents.span`
-    color: ${({ theme }) => theme.text};
+    font-weight: var(--weight-md);
+    color: ${({ theme }) => theme.highlight};
+    // text-decoration: underline;
 `;
 
 export const AppSidebarWrapper = styledComponents.div`

@@ -40,19 +40,17 @@ const App = function () {
                   <AppSidebarSpan>Adebesin Tolulope</AppSidebarSpan>
                 </AppSidebarHeading>
                 <AppSidebarParagraph>
-                  Lorem ipsum dolor sit amet,{" "}
+                  I'm a frontend developer. I create interactive
+                  <AppSidebarHighlight> experiences </AppSidebarHighlight>
+                  with modern
+                  <AppSidebarHighlight> web technologies. </AppSidebarHighlight>
+                  I'm currently learning how to
                   <AppSidebarHighlight>
-                    consectetur adipisicing elit.
-                  </AppSidebarHighlight>
-                  Reiciendis non{" "}
-                  <AppSidebarHighlight>
-                    consectetur adipisicing elit.
+                    {" "}
+                    design products
                   </AppSidebarHighlight>{" "}
-                  Exercitationem blanditiis neque similique{" "}
-                  <AppSidebarHighlight>
-                    consectetur adipisicing elit.
-                  </AppSidebarHighlight>{" "}
-                  delectus porro autem.
+                  and create beautiful web
+                  <AppSidebarHighlight> animations </AppSidebarHighlight>.
                 </AppSidebarParagraph>
               </AppSidebarWrapper>
             </AppSidebarContent>
