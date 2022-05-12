@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import useDarkMode from "./hooks/useDarkMode";
+import { ThemeProvider } from "styled-components";
+import { GlobalStyles } from "./theme/globalStyles";
+import { lightTheme, darkTheme } from "./theme/Theme";
+import Toggler from "./components/Toggler";
+import Home from "./pages/Home";
+import {
+  AppContainer,
+  AppView,
+  AppSidebar,
+  AppSidebarContent,
+  AppSidebarHeading,
+  AppSidebarSpan,
+} from "./styles/App.style";
 
-function App() {
+/**
+ * @description default theme :  dark
+ * @returns
+ */
+const App = function () {
+  const [theme, themeToggler] = useDarkMode();
+
+  const themeMode = theme === "dark" ? darkTheme : lightTheme;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={themeMode}>
+      <>
+        <GlobalStyles></GlobalStyles>
+        <Toggler theme={theme} toggleTheme={themeToggler}></Toggler>
+        <AppContainer>
+          <AppSidebar>
+            <AppSidebarContent>
+              <AppSidebarHeading>
+                <AppSidebarSpan>Hello, I'm</AppSidebarSpan>
+                <AppSidebarSpan>Adebesin Tolulope</AppSidebarSpan>
+              </AppSidebarHeading>
+            </AppSidebarContent>
+          </AppSidebar>
+          <AppView>
+            <Routes>
+              <Route path='/' element={<Home />}></Route>
+            </Routes>
+          </AppView>
+        </AppContainer>
+      </>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
