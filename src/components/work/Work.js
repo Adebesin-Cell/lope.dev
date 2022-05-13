@@ -6,29 +6,148 @@ import {
   WorkList,
 } from "./Work.style";
 import Project from "../Project/Project";
+import uuid from "react-uuid";
 
 const Work = function (props) {
-  const FeaturedProjects = [];
-  const projects = [];
+  const FeaturedProjects = [
+    {
+      id: uuid(),
+      title: "UniAbuja",
+      description: "University Of Abuja website",
+      isPrivate: true,
+      liveLink: "",
+      github: "",
+      stack: "Laravel + Scss + PHP",
+    },
+    {
+      id: uuid(),
+      title: "PIC",
+      description: "Poly International College website",
+      isPrivate: true,
+      liveLink: "",
+      github: "",
+      stack: "Laravel + CSS + Bootstrap + PHP",
+    },
+  ];
+
+  const projects = [
+    {
+      id: uuid(),
+      title: "Zealarax",
+      description: "Zealarax Technologies landing page",
+      isPrivate: true,
+      liveLink: "",
+      github: "",
+      stack: "Laravel + Animate CSS + SCSS + PHP",
+    },
+    {
+      id: uuid(),
+      title: "Chat App",
+      description: "Dummy chat application",
+      isPrivate: true,
+      liveLink: "",
+      github: "",
+      stack: "React + Context API",
+    },
+    {
+      id: uuid(),
+      title: "Recipe App",
+      description: "Recipe application with recommendations and sort by filter",
+      isPrivate: true,
+      liveLink: "",
+      github: "",
+      stack: "React + Redux + Typescript",
+    },
+    {
+      id: uuid(),
+      title: "Lope.dev",
+      description: "My portfolio webpage",
+      isPrivate: true,
+      liveLink: "",
+      github: "",
+      stack: "React + Strapi + GraphQl",
+    },
+    {
+      id: uuid(),
+      title: "Sham",
+      description: "Online music streaming app",
+      isPrivate: true,
+      liveLink: "",
+      github: "",
+      stack: "React + GraphQL + Typescript",
+    },
+  ];
+
+  console.log(projects.length);
+
+  const breakNumber = projects.length / 2;
+  const indexNumber = 0;
 
   return (
     <WorkWrapper>
       <WorkContainer>
         <WorkHeading>Featured</WorkHeading>
-        <Project className='card' title='Falsehoods'></Project>
-        <Project className='card' title='Demon Inject'></Project>
-        <Project className='card' title='Invoice Generator'></Project>
-        <Project className='card' title='Uniabuja'></Project>
+        {FeaturedProjects.map((project) => (
+          <Project
+            className='card'
+            key={project.id}
+            id={project.id}
+            title={project.title}
+            description={project.description}
+            isPrivate={project.isPrivate}
+            github={project.github}
+            live={project.liveLink}
+            stack={project.stack}
+          />
+        ))}
       </WorkContainer>
       <WorkContainerHalf>
         <WorkHeading className='span--2'>other</WorkHeading>
         <WorkList>
-          <Project className='card' title='Falsehoods'></Project>
-          <Project className='card' title='Demon Inject'></Project>
+          {projects.length > breakNumber
+            ? projects
+                .slice(indexNumber, breakNumber)
+                .map((project) => (
+                  <Project
+                    className='card'
+                    key={project.id}
+                    id={project.id}
+                    title={project.title}
+                    description={project.description}
+                    isPrivate={project.isPrivate}
+                    github={project.github}
+                    live={project.liveLink}
+                    stack={project.stack}
+                  />
+                ))
+            : projects.map((project) => (
+                <Project
+                  className='card'
+                  key={project.id}
+                  id={project.id}
+                  title={project.title}
+                  description={project.description}
+                  isPrivate={project.isPrivate}
+                  github={project.github}
+                  live={project.liveLink}
+                  stack={project.stack}
+                />
+              ))}
         </WorkList>
         <WorkList>
-          <Project className='card' title='Invoice Generator'></Project>
-          <Project className='card' title='Uniabuja'></Project>
+          {projects.slice(breakNumber, projects.length).map((project) => (
+            <Project
+              className='card'
+              key={project.id}
+              id={project.id}
+              title={project.title}
+              description={project.description}
+              isPrivate={project.isPrivate}
+              github={project.github}
+              live={project.liveLink}
+              stack={project.stack}
+            />
+          ))}
         </WorkList>
       </WorkContainerHalf>
     </WorkWrapper>

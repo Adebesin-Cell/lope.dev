@@ -10,6 +10,8 @@ export const WorkContainer = styledComponents.div`
     grid-template-columns: 1fr;
     gap: var(--span-xs);
     margin-bottom: var(--span-xl);
+    backface-visibility: hidden;
+
 
     &:hover .card {
         opacity: 0.5;
@@ -24,6 +26,8 @@ export const WorkContainerHalf = styledComponents.div`
     display: grid;
     grid-template-columns: repeat(2,1fr);
     gap: var(--span-xs);
+    backface-visibility: hidden;
+
 
     &:hover .card {
         opacity: 0.5;
@@ -56,6 +60,8 @@ export const WorkList = styledComponents.ul`
     list-style-type: none;
     display: grid;
     gap: var(--span-xs);
+    backface-visibility: hidden;
+
 
     &:nth-child(3) {
         margin-top: var(--span-s);

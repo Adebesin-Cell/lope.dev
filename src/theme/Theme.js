@@ -12,6 +12,7 @@ export const lightTheme = {
   card: "#f7f7f7",
   cardHeader: "#151515",
   workHeading: "#777778",
+  cardStack: "#bebebe",
 };
 
 export const darkTheme = {
@@ -25,7 +26,8 @@ export const darkTheme = {
   highlight: "#ffffff",
   active: "#ffffff",
   inactive: "#949495",
-  card: "#202022",
+  card: "#1b1b1d",
   cardHeader: "#ffffff",
   workHeading: "#777778",
+  cardStack: "#bebebe",
 };

@@ -18,6 +18,10 @@ export const AppView = styledComponents.div`
     padding: 10% 15% 10% 5%;
     overflow-y: scroll;
     height: 100vh;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 `;
 
 export const AppSidebarContent = styledComponents.div`
@@ -164,7 +168,7 @@ export const AppSidebarSocials = styledComponents.div`
         line-height: 21px;
         color: ${({ theme }) => theme.active};
         text-decoration: none;
-        gap:calc(var(--span-xs) / 2 + 3px) ;
+        gap: calc(var(--span-xs) / 2 + 3px);
 
         .icon {
             display: flex;
@@ -193,5 +197,20 @@ export const AppSidebarSocials = styledComponents.div`
                 }
             }
         }
+    }
+`;
+
+export const AppCredit = styledComponents.p`
+    margin-top: var(--span-m);
+    font-family: var(--Inter);
+    font-size: var(--size-xs);
+    font-weight: var(--weight-sm);
+    line-height: 18px;
+    color: ${({ theme }) => theme.inactive};
+
+    span {
+        text-transform: capitalize;
+        color: ${({ theme }) => theme.active};
+        text-decoration: underline;
     }
 `;
