@@ -208,7 +208,7 @@ export const AppCredit = styledComponents.p`
     line-height: 18px;
     color: ${({ theme }) => theme.inactive};
 
-    span {
+    a {
         text-transform: capitalize;
         color: ${({ theme }) => theme.active};
         text-decoration: underline;
