@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 export const AppContainer = styledComponents.div`
     display: grid;
     grid-template-columns: 47% 1fr;
+    overflow: hidden;
+    max-height: 100vh;
 `;
 
 export const AppSidebar = styledComponents.div`
@@ -15,10 +17,7 @@ export const AppSidebar = styledComponents.div`
 export const AppView = styledComponents.div`
     padding: 10% 15% 10% 5%;
     overflow-y: scroll;
-
-    &::-webkit-scrollbar {
-        display: none;
-    }
+    height: 100vh;
 `;
 
 export const AppSidebarContent = styledComponents.div`

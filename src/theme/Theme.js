@@ -9,6 +9,9 @@ export const lightTheme = {
   highlight: "#000000",
   inactive: "#777777",
   active: "#151515",
+  card: "#f7f7f7",
+  cardHeader: "#151515",
+  workHeading: "#777778",
 };
 
 export const darkTheme = {
@@ -22,4 +25,7 @@ export const darkTheme = {
   highlight: "#ffffff",
   active: "#ffffff",
   inactive: "#949495",
+  card: "#202022",
+  cardHeader: "#ffffff",
+  workHeading: "#777778",
 };
