@@ -3,7 +3,7 @@ import { HomeWrapper } from "../styles/Home.style";
 
 const Home = function () {
   return (
-    <HomeWrapper>
+    <HomeWrapper title='Home'>
       <Work />
     </HomeWrapper>
   );

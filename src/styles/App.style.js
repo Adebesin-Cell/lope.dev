@@ -57,6 +57,9 @@ export const AppSidebarSpan = styledComponents.span`
 `;
 
 export const AppSidebarParagraph = styledComponents.p`
+
+
+
     padding-top: var(--span-s);
     color: ${({ theme }) => theme.paragraph};
     font-family: var(--Inter);
@@ -71,8 +74,36 @@ export const AppSidebarParagraph = styledComponents.p`
 `;
 
 export const AppSidebarHighlight = styledComponents.span`
+
+    @keyframes flash {
+        0% {
+            color: #777778;
+        }
+
+        20% {
+            color: #cecece;
+        }
+
+        30% {
+            color: #ffffff;
+        }
+
+        40% {
+            color: #b4b4b4;
+        }
+
+        45% {
+            color: #777778;
+        }
+
+        100% {
+            color: #fff;
+        }
+    }
+
     font-weight: var(--weight-md);
     color: ${({ theme }) => theme.highlight};
+    animation: 5s ease-in-out 0s 1 flash;
 `;
 
 export const AppSidebarWrapper = styledComponents.div`

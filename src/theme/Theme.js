@@ -14,6 +14,7 @@ export const lightTheme = {
   workHeading: "#777778",
   cardStack: "#bebebe",
   cardDescription: "#949495",
+  resumeCard: "#f7f7f7",
 };
 
 export const darkTheme = {
@@ -32,4 +33,5 @@ export const darkTheme = {
   workHeading: "#777778",
   cardStack: "#bebebe",
   cardDescription: "#949495",
+  resumeCard: "#1b1b1d",
 };
