@@ -13,6 +13,7 @@ export const lightTheme = {
   cardHeader: "#151515",
   workHeading: "#777778",
   cardStack: "#bebebe",
+  cardDescription: "#949495",
 };
 
 export const darkTheme = {
@@ -30,4 +31,5 @@ export const darkTheme = {
   cardHeader: "#ffffff",
   workHeading: "#777778",
   cardStack: "#bebebe",
+  cardDescription: "#949495",
 };

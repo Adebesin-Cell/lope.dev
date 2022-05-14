@@ -212,5 +212,6 @@ export const AppCredit = styledComponents.p`
         text-transform: capitalize;
         color: ${({ theme }) => theme.active};
         text-decoration: underline;
+        font-weight: var(--weight-lg);
     }
 `;
