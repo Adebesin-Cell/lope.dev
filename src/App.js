@@ -67,7 +67,7 @@ const App = function () {
       <>
         <GlobalStyles></GlobalStyles>
         <Toggler theme={theme} toggleTheme={themeToggler}></Toggler>
-        <AppContainer>
+        <AppContainer title='App Container'>
           <AppSidebar>
             <AppSidebarContent>
               <AppSidebarWrapper>

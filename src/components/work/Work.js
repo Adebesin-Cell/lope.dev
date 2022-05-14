@@ -13,7 +13,7 @@ const Work = function (props) {
     {
       id: uuid(),
       title: "UniAbuja",
-      description: "University Of Abuja website",
+      description: "University Of Abuja website.",
       isPrivate: true,
       liveLink: "https://www.uniabuja.edu.ng/",
       github: "",
@@ -22,7 +22,7 @@ const Work = function (props) {
     {
       id: uuid(),
       title: "PIC",
-      description: "Poly International College website",
+      description: "Poly International College website.",
       isPrivate: true,
       liveLink: "https://www.polyinternationalcollege.com/",
       github: "",
@@ -34,7 +34,7 @@ const Work = function (props) {
     {
       id: uuid(),
       title: "Zealarax",
-      description: "Zealarax Technologies landing page",
+      description: "Zealarax Technologies landing page.",
       isPrivate: true,
       liveLink: "http://zealarax-web.herokuapp.com/",
       github: "",
@@ -44,7 +44,8 @@ const Work = function (props) {
     {
       id: uuid(),
       title: "Recipe App",
-      description: "Recipe application with recommendations and sort by filter",
+      description:
+        "Recipe application with recommendations and sort by filter.",
       isPrivate: true,
       liveLink: "",
       github: "",
@@ -53,7 +54,7 @@ const Work = function (props) {
     {
       id: uuid(),
       title: "Lope.dev",
-      description: "My portfolio webpage",
+      description: "My portfolio webpage.",
       isPrivate: false,
       liveLink: "https://lope-dev-cell.vercel.app/",
       github: "https://github.com/Adebesin-Cell/lope.dev",
@@ -62,7 +63,7 @@ const Work = function (props) {
     {
       id: uuid(),
       title: "Sham",
-      description: "Online music streaming app",
+      description: "Online music streaming app.",
       isPrivate: false,
       liveLink: "",
       github: "",
@@ -71,7 +72,7 @@ const Work = function (props) {
     {
       id: uuid(),
       title: "Sham",
-      description: "Online music streaming app",
+      description: "Online music streaming app.",
       isPrivate: false,
       liveLink: "",
       github: "",
@@ -81,7 +82,7 @@ const Work = function (props) {
     {
       id: uuid(),
       title: "Sham",
-      description: "Online music streaming app",
+      description: "Online music streaming app.",
       isPrivate: false,
       liveLink: "",
       github: "",
@@ -90,7 +91,7 @@ const Work = function (props) {
     {
       id: uuid(),
       title: "Sham",
-      description: "Online music streaming app",
+      description: "Online music streaming app.",
       isPrivate: false,
       liveLink: "",
       github: "",
@@ -99,25 +100,13 @@ const Work = function (props) {
     {
       id: uuid(),
       title: "Sham",
-      description: "Online music streaming app",
-      isPrivate: false,
-      liveLink: "",
-      github: "",
-      stack: "React + GraphQL + Typescript",
-    },
-    {
-      id: uuid(),
-      title: "Sham",
-      description: "Online music streaming app",
+      description: "Online music streaming app.",
       isPrivate: false,
       liveLink: "",
       github: "",
       stack: "React + GraphQL + Typescript",
     },
   ];
-
-  const breakNumber = projects.length / 2;
-  const indexNumber = 0;
 
   return (
     <WorkWrapper>
@@ -140,42 +129,12 @@ const Work = function (props) {
       <WorkContainerHalf>
         <WorkHeading className='span--2'>other</WorkHeading>
         <WorkList>
-          {projects.length > breakNumber
-            ? projects
-                .slice(indexNumber, breakNumber)
-                .map((project) => (
-                  <Project
-                    className='card'
-                    key={project.id}
-                    id={project.id}
-                    title={project.title}
-                    description={project.description}
-                    isPrivate={project.isPrivate}
-                    github={project.github}
-                    live={project.liveLink}
-                    stack={project.stack}
-                  />
-                ))
-            : projects.map((project) => (
-                <Project
-                  className='card'
-                  key={project.id}
-                  id={project.id}
-                  title={project.title}
-                  description={project.description}
-                  isPrivate={project.isPrivate}
-                  github={project.github}
-                  live={project.liveLink}
-                  stack={project.stack}
-                />
-              ))}
-        </WorkList>
-        <WorkList>
-          {projects.slice(breakNumber, projects.length).map((project) => (
+          {projects.map((project, i) => (
             <Project
               className='card'
               key={project.id}
               id={project.id}
+              index={i}
               title={project.title}
               description={project.description}
               isPrivate={project.isPrivate}

@@ -7,6 +7,10 @@ export const CardWrapper = styledComponents.div`
     cursor: default;
     backface-visibility: hidden;
 
+    &.card--pad {
+        transform: translateY(24px);
+    }
+
     &:hover {
         backface-visibility: hidden;
         transform: scale(1.1);

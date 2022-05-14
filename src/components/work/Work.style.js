@@ -12,6 +12,11 @@ export const WorkContainer = styledComponents.div`
     margin-bottom: var(--span-xl);
     backface-visibility: hidden;
 
+    & p.paragraph {
+        height: auto;
+        min-height: auto;
+    }
+
 
     &:hover .card {
         opacity: 0.5;
@@ -27,6 +32,10 @@ export const WorkContainerHalf = styledComponents.div`
     grid-template-columns: repeat(2,1fr);
     gap: var(--span-xs);
     backface-visibility: hidden;
+
+    & div.footer {
+        margin-top: calc(var(--span-s) + 4px);
+    }
 
 
     &:hover .card {
@@ -59,6 +68,8 @@ export const WorkContainerHeader = styledComponents.div`
 export const WorkList = styledComponents.ul`
     list-style-type: none;
     display: grid;
+    grid-column: span 2;
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--span-xs);
     backface-visibility: hidden;
 

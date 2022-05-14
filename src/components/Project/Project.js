@@ -11,15 +11,21 @@ import {
 } from "./Project.style";
 
 const Project = function (props) {
+  const classes = `${props.className} ${
+    props.index % 2 !== 0 && props.index ? "card--pad" : ""
+  }`;
+
   return (
-    <Card className={props.className}>
+    <Card className={classes}>
       <CardContainer>
         <ProjectDetails>
           <ProjectHeading>{props.title}</ProjectHeading>
           <ProjectStack>{props.stack}</ProjectStack>
-          <ProjectDescription>{props.description}</ProjectDescription>
+          <ProjectDescription className='paragraph'>
+            {props.description}
+          </ProjectDescription>
         </ProjectDetails>
-        <CardFooter>
+        <CardFooter className='footer'>
           <CardLink href={props.live}>
             <span className='icon'>{<Icon.Eye />}</span>
             <span>Live</span>

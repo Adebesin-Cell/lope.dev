@@ -36,13 +36,15 @@ export const ProjectStack = styledComponents.p`
 `;
 
 export const ProjectDescription = styledComponents.p`
-    margin-top: var(--span-s);
-    margin-bottom: var(--span-s);
+    margin-top: calc(var(--span-xs) + 2px);
+    margin-bottom: calc(var(--span-xs) + 2px);
     font-family: var(--Inter);
     font-size: var(--size-s);
     font-weight: var(--weight-sm);
     line-height: 21px;
     color: ${({ theme }) => theme.cardDescription};
+    letter-spacing: .03rem;
+    min-height: ${({ className }) => (className ? "90px" : "auto")};
 `;
 
 export const CardFooter = styledComponents.div`
