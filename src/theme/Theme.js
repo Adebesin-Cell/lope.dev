@@ -15,6 +15,7 @@ export const lightTheme = {
   cardStack: "#bebebe",
   cardDescription: "#949495",
   resumeCard: "#f7f7f7",
+  resumeTitle: "#cfcfcf",
 };
 
 export const darkTheme = {
@@ -34,4 +35,5 @@ export const darkTheme = {
   cardStack: "#bebebe",
   cardDescription: "#949495",
   resumeCard: "#1b1b1d",
+  resumeTitle: "#cfcfcf",
 };
