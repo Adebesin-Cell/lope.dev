@@ -248,6 +248,7 @@ export const AppCredit = styledComponents.p`
 
         &:hover {
             text-decoration: underline;
+            opacity: 1 !important;
         }
     }
 `;

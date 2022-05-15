@@ -1,4 +1,5 @@
 import * as Icon from "react-feather";
+import uuid from "react-uuid";
 import resume from "../../assets/images/avatar.jpg";
 import { Link } from "react-router-dom";
 import {
@@ -16,6 +17,11 @@ import {
   ResumeExperienceContainer,
   ResumeExperience,
   ResumeProjects,
+  ResumeExperienceTitle,
+  ResumeExperienceDate,
+  ResumeExperienceDescription,
+  ResumeExperienceAchievements,
+  ResumeExperienceItem,
 } from "./ResumeTemplate.style";
 
 const resumeObj = {
@@ -42,12 +48,16 @@ const resumeObj = {
 
   experience: [
     {
+      id: uuid(),
       company: "Zealarax Technologies",
       position: "Frontend Developer [Intern]",
       startDate: "January 2021",
       endDate: "January 2022",
-      description: "",
-      achievements: [],
+      description:
+        " I contributed in devloping User Interfaces for quite a number of products during my stay at Zealarax HQ.",
+      achievements: [
+        "I learnt basic and mid-level frontend skills with the Zealarax Team.",
+      ],
     },
   ],
 
@@ -110,7 +120,28 @@ const ResumeTemplate = function () {
         <ResumeDividerLine></ResumeDividerLine>
       </ResumeDivider>
       <ResumeExperienceContainer>
-        <ResumeExperience>&nbsp;</ResumeExperience>
+        {resumeObj.experience.map((experience, index) => (
+          <ResumeExperience key={experience.id} id={experience.id}>
+            <ResumeExperienceTitle>
+              {experience.company} - {experience.position}
+            </ResumeExperienceTitle>
+            <ResumeExperienceDate>
+              {experience.startDate} -{" "}
+              {experience.endDate === null ? "Present" : experience.endDate}
+            </ResumeExperienceDate>
+            <ResumeExperienceDescription>
+              {experience.description}
+            </ResumeExperienceDescription>
+            {experience.achievements.map((achievement) => (
+              <ResumeExperienceAchievements>
+                <ResumeExperienceItem>
+                  <span>■</span>
+                  <span>{achievement}</span>
+                </ResumeExperienceItem>
+              </ResumeExperienceAchievements>
+            ))}
+          </ResumeExperience>
+        ))}
       </ResumeExperienceContainer>
       <ResumeDivider>
         <ResumeDividerTitle>Projects</ResumeDividerTitle>

@@ -103,7 +103,7 @@ export const ResumeSkills = styledComponents.p`
 
 export const ResumeExperienceContainer = styledComponents.div`
     display: grid;
-    gap: var(--span-xs);
+    gap: var(--span-s);
 `;
 
 export const ResumeExperience = styledComponents.ul`
@@ -122,4 +122,54 @@ export const ResumeProjects = styledComponents.p`
         text-decoration: none;
         color: ${({ theme }) => theme.active};
     }
+`;
+
+export const ResumeExperienceTitle = styledComponents.h1`
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-family: var(--Inter);
+    font-size: calc(var(--size-m) );
+    font-weight: var(--weight-xsm);
+    font-style: italic;
+    line-height: 25px;
+    text-align: left;
+    color: ${({ theme }) => theme.active};
+`;
+
+export const ResumeExperienceDate = styledComponents.p`
+    margin-top: var(--span-xs);
+    margin-bottom: calc(var(--span-xs) + 5px);
+    text-transform: uppercase;
+    font-family: var(--Inter);
+    font-size: calc(var(--size-xs) - 1px);
+    font-weight: var(--weight-xsm);
+    line-height: 16px;
+    text-align: left;
+    color: ${({ theme }) => theme.workHeading};
+`;
+
+export const ResumeExperienceDescription = styledComponents.p`
+    font-family: var(--Inter);
+    font-size: calc(var(--size-s));
+    font-weight: var(--weight-sm);
+    line-height: 23px;
+    text-align: left;
+    color: ${({ theme }) => theme.workHeading};
+`;
+
+export const ResumeExperienceAchievements = styledComponents.ul`
+    margin-top: var(--span-xs);
+    list-style-type: none;
+`;
+
+export const ResumeExperienceItem = styledComponents.li`
+    display: flex;
+    gap: var(--span-xs);
+    font-family: var(--Inter);
+    font-size: calc(var(--size-s));
+    font-weight: var(--weight-sm);
+    line-height: 23px;
+    text-align: left;
+    color: ${({ theme }) => theme.workHeading};
+    margin: 4px 0;
 `;
