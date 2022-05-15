@@ -15,8 +15,8 @@ export const lightTheme = {
   cardStack: "#bebebe",
   cardDescription: "#949495",
   resumeCard: "#f7f7f7",
-  resumeTitle: "#cfcfcf",
-  resumeDivider: "#e2e2e2",
+  resumeTitle: "#151515",
+  resumeDivider: "#151515",
   resumeUnderline: "#77777859",
 };
 

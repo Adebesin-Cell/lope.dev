@@ -25,6 +25,24 @@ const resumeObj = {
     "Firebase",
     "Strapi",
   ],
+
+  familiarSkills: [
+    "PHP",
+    "Node JS",
+    "GraphQL",
+    "GSAP",
+    "Figma",
+    "Adobe XD",
+    "Python",
+  ],
+
+  experience: [
+    {
+      company: "Zealarax Technologies",
+    },
+  ],
+
+  onTheJob: ["Version Control", "CI/CD", "Best Practices"],
 };
 
 const ResumeTemplate = function () {
@@ -70,6 +88,16 @@ const ResumeTemplate = function () {
       <ResumeSkills>{resumeObj.coreSkills.join(", ")}.</ResumeSkills>
       <ResumeDivider>
         <ResumeDividerTitle>Familiar With</ResumeDividerTitle>
+        <ResumeDividerLine></ResumeDividerLine>
+      </ResumeDivider>
+      <ResumeSkills>{resumeObj.familiarSkills.join(", ")}.</ResumeSkills>
+      <ResumeDivider>
+        <ResumeDividerTitle>On The Job</ResumeDividerTitle>
+        <ResumeDividerLine></ResumeDividerLine>
+      </ResumeDivider>
+      <ResumeSkills>{resumeObj.onTheJob.join(", ")}.</ResumeSkills>
+      <ResumeDivider>
+        <ResumeDividerTitle>Work Experience</ResumeDividerTitle>
         <ResumeDividerLine></ResumeDividerLine>
       </ResumeDivider>
     </ResumeBody>

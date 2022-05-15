@@ -103,7 +103,11 @@ export const AppSidebarHighlight = styledComponents.span`
 
     font-weight: var(--weight-md);
     color: ${({ theme }) => theme.highlight};
-    animation: 5s ease-in-out 0s 1 flash;
+    
+
+    &.animate {
+        animation: 5s ease-in-out 0s 1 flash;
+    }
 `;
 
 export const AppSidebarWrapper = styledComponents.div`

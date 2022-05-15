@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import useDarkMode from "./hooks/useDarkMode";
 import { ThemeProvider } from "styled-components";
@@ -7,7 +8,6 @@ import uuid from "react-uuid";
 import * as Icon from "react-feather";
 import Toggler from "./components/Toggler";
 import { Home, Resume } from "./pages";
-
 import {
   AppContainer,
   AppView,
@@ -59,8 +59,28 @@ const NavLinks = [
 const App = function () {
   const [theme, themeToggler] = useDarkMode();
   const { pathname } = useLocation();
+  const [isPathname, setPathName] = useState("");
+  const [textIsHiglighted, setTextIsHiglighted] = useState(true);
 
   const themeMode = theme === "dark" ? darkTheme : lightTheme;
+
+  const highlight = textIsHiglighted ? "animate" : "";
+
+  const setPathNameHandler = function (e) {
+    setPathName(e.target.href);
+  };
+
+  useEffect(() => {
+    setTextIsHiglighted(true);
+
+    const timer = setTimeout(() => {
+      setTextIsHiglighted(false);
+    }, 5000);
+
+    return function () {
+      clearTimeout(timer);
+    };
+  }, [isPathname]);
 
   return (
     <ThemeProvider theme={themeMode}>
@@ -68,7 +88,7 @@ const App = function () {
         <GlobalStyles></GlobalStyles>
         <Toggler theme={theme} toggleTheme={themeToggler}></Toggler>
         <AppContainer title='App'>
-          <AppSidebar>
+          <AppSidebar title='Sidebar'>
             <AppSidebarContent>
               <AppSidebarWrapper>
                 <AppSidebarHeading>
@@ -77,16 +97,26 @@ const App = function () {
                 </AppSidebarHeading>
                 <AppSidebarParagraph>
                   I'm a frontend developer. I create interactive
-                  <AppSidebarHighlight> experiences </AppSidebarHighlight>
+                  <AppSidebarHighlight className={highlight}>
+                    {" "}
+                    experiences{" "}
+                  </AppSidebarHighlight>
                   with modern
-                  <AppSidebarHighlight> web technologies. </AppSidebarHighlight>
+                  <AppSidebarHighlight className={highlight}>
+                    {" "}
+                    web technologies.{" "}
+                  </AppSidebarHighlight>
                   I'm currently learning how to
-                  <AppSidebarHighlight>
+                  <AppSidebarHighlight className={highlight}>
                     {" "}
                     design products
                   </AppSidebarHighlight>{" "}
                   and create beautiful web
-                  <AppSidebarHighlight> animations</AppSidebarHighlight>.
+                  <AppSidebarHighlight className={highlight}>
+                    {" "}
+                    animations
+                  </AppSidebarHighlight>
+                  .
                 </AppSidebarParagraph>
                 <AppSidebarNav>
                   <AppSidebarNavList>
@@ -97,6 +127,7 @@ const App = function () {
                             to={nav.link}
                             id={nav.id}
                             active={pathname === nav.link}
+                            onClick={setPathNameHandler}
                           >
                             <span>0{i}</span>
                             <AppLinkUnderline className='underline' />
