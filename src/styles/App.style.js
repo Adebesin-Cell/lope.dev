@@ -57,9 +57,6 @@ export const AppSidebarSpan = styledComponents.span`
 `;
 
 export const AppSidebarParagraph = styledComponents.p`
-
-
-
     padding-top: var(--span-s);
     color: ${({ theme }) => theme.paragraph};
     font-family: var(--Inter);
@@ -74,7 +71,6 @@ export const AppSidebarParagraph = styledComponents.p`
 `;
 
 export const AppSidebarHighlight = styledComponents.span`
-
     @keyframes flash {
         0% {
             color: #777778;
@@ -103,7 +99,6 @@ export const AppSidebarHighlight = styledComponents.span`
 
     font-weight: var(--weight-md);
     color: ${({ theme }) => theme.highlight};
-    
 
     &.animate {
         animation: 5s ease-in-out 0s 1 flash;
