@@ -100,3 +100,26 @@ export const ResumeSkills = styledComponents.p`
     text-align: left;
     color: ${({ theme }) => theme.workHeading};
 `;
+
+export const ResumeExperienceContainer = styledComponents.div`
+    display: grid;
+    gap: var(--span-xs);
+`;
+
+export const ResumeExperience = styledComponents.ul`
+    list-style-type: none;
+`;
+
+export const ResumeProjects = styledComponents.p`
+    font-family: var(--Inter);
+    font-size: var(--size-s);
+    font-weight: var(--weight-sm);
+    line-height: 23px;
+    text-align: left;
+    color: ${({ theme }) => theme.workHeading};
+
+    a {
+        text-decoration: none;
+        color: ${({ theme }) => theme.active};
+    }
+`;

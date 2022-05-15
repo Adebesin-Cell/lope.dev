@@ -1,5 +1,6 @@
 import * as Icon from "react-feather";
 import resume from "../../assets/images/avatar.jpg";
+import { Link } from "react-router-dom";
 import {
   ResumeBody,
   ResumeHeader,
@@ -12,6 +13,9 @@ import {
   ResumeDividerTitle,
   ResumeDividerLine,
   ResumeSkills,
+  ResumeExperienceContainer,
+  ResumeExperience,
+  ResumeProjects,
 } from "./ResumeTemplate.style";
 
 const resumeObj = {
@@ -39,6 +43,11 @@ const resumeObj = {
   experience: [
     {
       company: "Zealarax Technologies",
+      position: "Frontend Developer [Intern]",
+      startDate: "January 2021",
+      endDate: "January 2022",
+      description: "",
+      achievements: [],
     },
   ],
 
@@ -100,6 +109,20 @@ const ResumeTemplate = function () {
         <ResumeDividerTitle>Work Experience</ResumeDividerTitle>
         <ResumeDividerLine></ResumeDividerLine>
       </ResumeDivider>
+      <ResumeExperienceContainer>
+        <ResumeExperience>&nbsp;</ResumeExperience>
+      </ResumeExperienceContainer>
+      <ResumeDivider>
+        <ResumeDividerTitle>Projects</ResumeDividerTitle>
+        <ResumeDividerLine></ResumeDividerLine>
+      </ResumeDivider>
+      <ResumeProjects>
+        <p>
+          Links to my works can be found on{" "}
+          <Link to='/work'>Lope.cell.vercel.app/work</Link> and more details can
+          be provided upon request
+        </p>
+      </ResumeProjects>
     </ResumeBody>
   );
 };
