@@ -16,6 +16,8 @@ export const lightTheme = {
   cardDescription: "#949495",
   resumeCard: "#f7f7f7",
   resumeTitle: "#cfcfcf",
+  resumeDivider: "#e2e2e2",
+  resumeUnderline: "#77777859",
 };
 
 export const darkTheme = {
@@ -36,4 +38,6 @@ export const darkTheme = {
   cardDescription: "#949495",
   resumeCard: "#1b1b1d",
   resumeTitle: "#cfcfcf",
+  resumeDivider: "#e2e2e2",
+  resumeUnderline: "#77777859",
 };

@@ -16,6 +16,7 @@ export const ResumeHeading = styledComponents.h1`
     font-weight: var(--weight-lg);
     line-height: 33px;
     color: ${({ theme }) => theme.text};
+    text-align: left;
 `;
 
 export const ResumeActions = styledComponents.div`
@@ -30,6 +31,7 @@ export const ResumeActionButton = styledComponents.a`
     font-size: calc(var(--size-xs));
     font-weight: var(--weight-sm);
     line-height: 15px;
+    text-align: left;
     color: ${({ theme }) => theme.text};
     text-decoration: none;
     align-self: start;
@@ -50,8 +52,51 @@ export const ResumeActionButton = styledComponents.a`
 export const ResumeTitle = styledComponents.p`
     margin-top: var(--span-xs);
     font-family: var(--Inter);
+    font-size: calc(var(--size-s) + 2px);
+    font-weight: var(--weight-xsm);
+    line-height: 23px;
+    text-align: left;
+    color: ${({ theme }) => theme.resumeTitle};
+`;
+
+export const ResumeSummary = styledComponents.p`
+    padding-top: var(--span-m);
+    padding-bottom: calc(var(--span-xs) + 5px);
+    font-family: var(--Inter);
     font-size: calc(var(--size-s));
     font-weight: var(--weight-sm);
     line-height: 23px;
-    color: ${({ theme }) => theme.resumeTitle};
+    text-align: left;
+    color: ${({ theme }) => theme.workHeading};
+`;
+
+export const ResumeDivider = styledComponents.div`
+    display: flex;
+    margin: calc(var(--span-xs) + 5px) 0;
+    align-items: center;
+    gap: 5px;
+`;
+
+export const ResumeDividerTitle = styledComponents.h3`
+    font-family: var(--Inter);
+    font-size: calc(var(--size-s) + 1px);
+    font-weight: var(--weight-lg);
+    line-height: 23px;
+    text-align: left;
+    color: ${({ theme }) => theme.resumeDivider};
+`;
+
+export const ResumeDividerLine = styledComponents.span`
+    height: 1px;
+    flex-grow: 1;
+    background: ${({ theme }) => theme.resumeUnderline};
+`;
+
+export const ResumeSkills = styledComponents.p`
+    font-family: var(--Inter);
+    font-size: var(--size-s);
+    font-weight: var(--weight-sm);
+    line-height: 23px;
+    text-align: left;
+    color: ${({ theme }) => theme.workHeading};
 `;

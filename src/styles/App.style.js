@@ -238,11 +238,17 @@ export const AppCredit = styledComponents.p`
     font-weight: var(--weight-sm);
     line-height: 18px;
     color: ${({ theme }) => theme.inactive};
+    opacity: 0.75;
 
     a {
         text-transform: capitalize;
         color: ${({ theme }) => theme.active};
-        text-decoration: underline;
-        font-weight: var(--weight-lg);
+        text-decoration: none;
+        font-weight: var(--weight-sm);
+        transition: all 300ms;
+
+        &:hover {
+            text-decoration: underline;
+        }
     }
 `;
