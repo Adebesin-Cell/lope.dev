@@ -135,8 +135,8 @@ const ResumeTemplate = function () {
             <ResumeExperienceDescription>
               {experience.description}
             </ResumeExperienceDescription>
-            {experience.achievements.map((achievement) => (
-              <ResumeExperienceAchievements key={experience.id}>
+            {experience.achievements.map((achievement, index) => (
+              <ResumeExperienceAchievements key={`${experience.id}__${index}`}>
                 <ResumeExperienceItem>
                   <span className='icon'>■</span>
                   <span>{achievement}</span>
@@ -151,11 +151,11 @@ const ResumeTemplate = function () {
         <ResumeDividerLine></ResumeDividerLine>
       </ResumeDivider>
       <ResumeProjects>
-        <p>
+        <span>
           Links to my works can be found on{" "}
           <Link to='/work'>Lope.cell.vercel.app/work</Link> and more details can
           be provided upon request
-        </p>
+        </span>
       </ResumeProjects>
     </ResumeBody>
   );

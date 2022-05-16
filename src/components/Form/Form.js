@@ -1,3 +1,5 @@
+import { useForm, ValidationError } from "@formspree/react";
+import { FormButton } from "../UI/Button";
 import {
   FormContainer,
   FormGroup,
@@ -7,8 +9,14 @@ import {
 } from "./Form.style";
 
 const Form = function () {
+  const [state, handleSubmit] = useForm("mdobywvr");
+
+  if (state.succeeded) {
+    return <p>Success!!!</p>;
+  }
+
   return (
-    <FormContainer method='POST' action=''>
+    <FormContainer method='POST' action='' onSubmit={handleSubmit}>
       <FormGroup>
         <FormLabel htmlFor='name'>Your Name*</FormLabel>
         <FormInput required id='name' name='name' type='text' />
@@ -27,6 +35,9 @@ const Form = function () {
           rows={10}
           minLength='30'
         />
+      </FormGroup>
+      <FormGroup>
+        <FormButton>Submit</FormButton>
       </FormGroup>
     </FormContainer>
   );

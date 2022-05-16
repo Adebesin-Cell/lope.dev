@@ -20,6 +20,8 @@ export const lightTheme = {
   resumeUnderline: "#77777859",
   formInput: "#151515",
   formInputBg: "#f7f7f7",
+  formButtonBg: "#151515",
+  formButtonTxt: "#ffffff",
 };
 
 export const darkTheme = {
@@ -44,4 +46,6 @@ export const darkTheme = {
   resumeUnderline: "#77777859",
   formInput: "#d3d3d3",
   formInputBg: "#16161a",
+  formButtonBg: "#16161a",
+  formButtonTxt: "#ffffff",
 };

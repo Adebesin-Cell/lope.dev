@@ -30,7 +30,7 @@ export const FormInput = styledComponents.input`
     border: 1px solid transparent;
     outline: none;
     background: ${({ theme }) => theme.formInputBg};
-    padding: var(--span-xs) var(--span-m);
+    padding: calc(var(--span-xs) + 5px);
     height: 55px;
     appearance: none;
 
@@ -60,7 +60,7 @@ export const FormArea = styledComponents.textarea`
     border: 1px solid transparent;
     outline: none;
     background: ${({ theme }) => theme.formInputBg};
-    padding: var(--span-xs) var(--span-m);
+    padding: calc(var(--span-xs) + 5px);
     appearance: none;
     resize: none;
 

@@ -75,7 +75,7 @@ const App = function () {
 
     const timer = setTimeout(() => {
       setTextIsHiglighted(false);
-    }, 5000);
+    }, 4000);
 
     return function () {
       clearTimeout(timer);
