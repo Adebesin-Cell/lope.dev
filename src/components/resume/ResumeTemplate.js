@@ -136,7 +136,7 @@ const ResumeTemplate = function () {
               {experience.description}
             </ResumeExperienceDescription>
             {experience.achievements.map((achievement) => (
-              <ResumeExperienceAchievements>
+              <ResumeExperienceAchievements key={experience.id}>
                 <ResumeExperienceItem>
                   <span className='icon'>■</span>
                   <span>{achievement}</span>

@@ -93,7 +93,7 @@ const App = function () {
               <AppSidebarWrapper>
                 <AppSidebarHeading>
                   <AppSidebarSpan isSmall={true}>Hello, I'm</AppSidebarSpan>
-                  <AppSidebarSpan>Adebesin Tolulope</AppSidebarSpan>
+                  <AppSidebarSpan>Adebesin Tolulope.</AppSidebarSpan>
                 </AppSidebarHeading>
                 <AppSidebarParagraph>
                   I'm a frontend developer. I create interactive

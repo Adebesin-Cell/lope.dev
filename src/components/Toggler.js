@@ -4,7 +4,7 @@ import { ThemeButton } from "./UI/Button";
 
 const Toggler = function (props) {
   return (
-    <ThemeButton onClick={props.toggleTheme}>
+    <ThemeButton title='theme switcher' onClick={props.toggleTheme}>
       {props.theme === "dark" ? <Icon.Sun /> : <Icon.Moon />}{" "}
     </ThemeButton>
   );
