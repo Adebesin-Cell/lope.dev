@@ -7,7 +7,7 @@ import { lightTheme, darkTheme } from "./theme/Theme";
 import uuid from "react-uuid";
 import * as Icon from "react-feather";
 import Toggler from "./components/Toggler";
-import { Home, Resume } from "./pages";
+import { Home, Resume, Contact } from "./pages";
 import {
   AppContainer,
   AppView,
@@ -200,6 +200,7 @@ const App = function () {
             <Routes>
               <Route path='/' element={<Home />}></Route>
               <Route path='/resume' element={<Resume />}></Route>
+              <Route path='/contact' element={<Contact />}></Route>
             </Routes>
           </AppView>
         </AppContainer>
