@@ -172,4 +172,9 @@ export const ResumeExperienceItem = styledComponents.li`
     text-align: left;
     color: ${({ theme }) => theme.workHeading};
     margin: 4px 0;
+
+    span.icon {
+        line-height: 18px;
+        vertical-align: middle;
+    }
 `;

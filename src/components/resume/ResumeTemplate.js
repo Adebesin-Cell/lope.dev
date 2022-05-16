@@ -54,9 +54,12 @@ const resumeObj = {
       startDate: "January 2021",
       endDate: "January 2022",
       description:
-        " I contributed in devloping User Interfaces for quite a number of products during my stay at Zealarax HQ.",
+        " I contributed in developing user interfaces for quite a number of products while learning new skills.",
       achievements: [
         "I learnt basic and mid-level frontend skills with the Zealarax Team.",
+        "Collaborated with Laravel and PHP developers to build a software used by over 3000 university students.",
+        "Worked with Laravel developers to build a web application for a high school.",
+        "Built basic web components using SCSS.",
       ],
     },
   ],
@@ -135,7 +138,7 @@ const ResumeTemplate = function () {
             {experience.achievements.map((achievement) => (
               <ResumeExperienceAchievements>
                 <ResumeExperienceItem>
-                  <span>■</span>
+                  <span className='icon'>■</span>
                   <span>{achievement}</span>
                 </ResumeExperienceItem>
               </ResumeExperienceAchievements>
