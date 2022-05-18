@@ -29,7 +29,7 @@ const resumeObj = {
     "HTML/CSS/SCSS",
     "JavaScript[ES6+]",
     "React JS",
-    "Styled Components",
+    "Redux/Context API",
     "Tailwind CSS",
     "Bootstrap",
     "Firebase",
@@ -44,6 +44,8 @@ const resumeObj = {
     "Figma",
     "Adobe XD",
     "Python",
+    "Typescript",
+    "Vue JS",
   ],
 
   experience: [

@@ -126,6 +126,20 @@ export const AppSidebarNavList = styledComponents.ul`
 export const AppSidebarNavItem = styledComponents.li`
     width: fit-content;
     display: flex;
+
+    &:first-child a {
+        color: ${({ path, theme }) =>
+          path === "/" || path === "/work" ? theme.active : theme.inactive};
+
+          .underline {
+                background: ${({ path, theme }) =>
+                  path === "/" || path === "/work"
+                    ? theme.active
+                    : theme.inactive};
+                width: ${({ path }) =>
+                  path === "/" || path === "/work" ? "80px" : "40px"}
+            }
+    }
 `;
 
 export const AppLink = styledComponents(Link)`

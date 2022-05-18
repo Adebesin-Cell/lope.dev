@@ -122,7 +122,11 @@ const App = function () {
                   <AppSidebarNavList>
                     {NavLinks.map((nav, i) => {
                       return (
-                        <AppSidebarNavItem key={nav.id}>
+                        <AppSidebarNavItem
+                          key={nav.id}
+                          path={pathname}
+                          active={pathname === nav.link}
+                        >
                           <AppLink
                             to={nav.link}
                             id={nav.id}

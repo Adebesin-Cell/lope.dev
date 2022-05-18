@@ -1,4 +1,5 @@
 import { useForm, ValidationError } from "@formspree/react";
+import Success from "../success/Success";
 import { FormButton } from "../UI/Button";
 import {
   FormContainer,
@@ -12,7 +13,7 @@ const Form = function () {
   const [state, handleSubmit] = useForm("mdobywvr");
 
   if (state.succeeded) {
-    return <p>Success!!!</p>;
+    return <Success />;
   }
 
   return (
@@ -24,6 +25,7 @@ const Form = function () {
       <FormGroup>
         <FormLabel htmlFor='email'>Your Email*</FormLabel>
         <FormInput required id='email' name='email' type='email' />
+        <ValidationError prefix='Email' field='email' errors={state.errors} />
       </FormGroup>
       <FormGroup>
         <FormLabel htmlFor='message'>Your Message*</FormLabel>
@@ -35,9 +37,16 @@ const Form = function () {
           rows={10}
           minLength='30'
         />
+        <ValidationError
+          prefix='Message'
+          field='message'
+          errors={state.errors}
+        />
       </FormGroup>
       <FormGroup>
-        <FormButton>Submit</FormButton>
+        <FormButton type='submit' disabled={state.submitting}>
+          Submit
+        </FormButton>
       </FormGroup>
     </FormContainer>
   );
