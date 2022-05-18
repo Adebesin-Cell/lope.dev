@@ -1,6 +1,6 @@
 import { func, string } from "prop-types";
 import * as Icon from "react-feather";
-import { ThemeButton } from "./UI/Button";
+import { ThemeButton } from "../UI/Button";
 
 const Toggler = function (props) {
   return (
