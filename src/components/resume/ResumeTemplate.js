@@ -29,24 +29,13 @@ const resumeObj = {
     "HTML/CSS/SCSS",
     "JavaScript[ES6+]",
     "React JS",
-    "Redux/Context API",
     "Tailwind CSS",
     "Bootstrap",
     "Firebase",
     "Strapi",
   ],
 
-  familiarSkills: [
-    "PHP",
-    "Node JS",
-    "GraphQL",
-    "GSAP",
-    "Figma",
-    "Adobe XD",
-    "Python",
-    "Typescript",
-    "Vue JS",
-  ],
+  familiarSkills: ["GraphQL", "Figma", "Adobe XD"],
 
   experience: [
     {

@@ -22,6 +22,10 @@ export const ResumeHeading = styledComponents.h1`
 export const ResumeActions = styledComponents.div`
     display: flex;
     gap: var(--span-s);
+
+    @media only screen and (max-width: 1140px) {
+        gap: var(--span-xs);
+    }
 `;
 
 export const ResumeActionButton = styledComponents.a`
@@ -36,15 +40,36 @@ export const ResumeActionButton = styledComponents.a`
     text-decoration: none;
     align-self: start;
 
+    @media only screen and (max-width: 1140px) {
+        font-size: calc(var(--size-xs) - 2px);
+        line-height: 15px;
+        gap: 2px;
+    }
+
+    span {
+        // @media only screen and (max-width: 1140px) {
+        //     display: none;
+        // }
+    }
+
     span.icon {
         color: ${({ theme }) => theme.inactive};
         display: flex;
         align-items: center;
         justify-content: center;
 
+        @media only screen and (max-width: 1140px) {
+            display: flex;
+        }
+
         svg {
             width: 14px;
             height: 14px;
+
+            @media only screen and (max-width: 1140px) {
+                width: 12px;
+                height: 12px;
+            }
         }
     }
 `;
@@ -174,7 +199,7 @@ export const ResumeExperienceItem = styledComponents.li`
     margin: 4px 0;
 
     span.icon {
-        line-height: 18px;
+        line-height: 24px;
         vertical-align: middle;
     }
 `;

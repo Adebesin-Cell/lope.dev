@@ -7,6 +7,10 @@ export const CardWrapper = styledComponents.div`
     cursor: default;
     backface-visibility: hidden;
 
+    @media only screen and (max-width: 1140px) {
+        padding-left: var(--span-m);
+    }
+
     &.card--pad {
         transform: translateY(24px);
     }

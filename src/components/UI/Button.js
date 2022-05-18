@@ -3,7 +3,7 @@ import styledComponents from "styled-components";
 export const Button = styledComponents.button`
     background: transparent;
     border: none;
-    outlne: none;
+    outline: none;
     cursor: pointer;
 `;
 

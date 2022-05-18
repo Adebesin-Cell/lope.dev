@@ -22,6 +22,12 @@ export const AppView = styledComponents.div`
     &::-webkit-scrollbar {
         display: none;
     }
+
+    @media only screen and (max-width: 1140px) {
+        padding-right: 8%;
+    }
+
+    
 `;
 
 export const AppSidebarContent = styledComponents.div`
@@ -30,6 +36,10 @@ export const AppSidebarContent = styledComponents.div`
     justify-content: space-between;
     flex-grow: 1;
     flex-direction: column;
+
+    @media only screen and (max-width: 1140px) {
+        padding-left: 8%;
+    }
 `;
 
 export const AppSidebarHeading = styledComponents.h1`
@@ -40,6 +50,12 @@ export const AppSidebarHeading = styledComponents.h1`
     line-height: 64px;
     text-align: left;
     color: ${({ theme }) => theme.text};
+
+    @media only screen and (max-width: 1400px) {
+        font-size: ${({ isSmall }) =>
+          isSmall ? `var(--size-m)` : `calc(var(--size-m) * 2.5)`};
+        line-height: 48px;
+    }
 
     @media only screen and (max-width: 1140px) {
         font-size: ${({ isSmall }) =>
@@ -54,6 +70,11 @@ export const AppSidebarSpan = styledComponents.span`
       isSmall ? `calc(var(--size-m) + 4px)` : `inherit`};
     line-height:  ${({ isSmall }) => (isSmall ? `28px` : `inherit`)};
     display: block;
+
+    @media only screen and (max-width: 1400px) {
+        font-size: ${({ isSmall }) => (isSmall ? `var(--size-m)` : `inherit`)};
+        line-height:  ${({ isSmall }) => (isSmall ? `25px` : `inherit`)};
+    }
 `;
 
 export const AppSidebarParagraph = styledComponents.p`
@@ -64,6 +85,10 @@ export const AppSidebarParagraph = styledComponents.p`
     font-weight: var(--weight-sm);
     line-height: 28px;
     padding-right: calc(2 * var(--span-2xl));
+
+    @media only screen and (max-width: 1400px) {
+        padding-right:calc(1.5 * var(--span-2xl));
+    }
 
     @media only screen and (max-width: 1140px) {
         padding-right: 0;

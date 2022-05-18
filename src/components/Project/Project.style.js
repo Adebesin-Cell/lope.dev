@@ -43,7 +43,6 @@ export const ProjectDescription = styledComponents.p`
     font-weight: var(--weight-sm);
     line-height: 21px;
     color: ${({ theme }) => theme.cardDescription};
-    letter-spacing: .03rem;
     min-height: ${({ className }) => (className ? "90px" : "auto")};
 `;
 
