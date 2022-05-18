@@ -28,9 +28,10 @@ import {
   AppSidebarImage,
   AppSidebarSocials,
   AppCredit,
+  AppMobile,
 } from "./styles/App.style";
-
 import avatar from "./assets/images/avatar.jpg";
+import MobileView from "./components/home/MobileHome";
 
 const NavLinks = [
   {
@@ -87,6 +88,9 @@ const App = function () {
       <>
         <GlobalStyles></GlobalStyles>
         <Toggler theme={theme} toggleTheme={themeToggler}></Toggler>
+        <AppMobile>
+          <MobileView />
+        </AppMobile>
         <AppContainer title='App'>
           <AppSidebar title='Sidebar'>
             <AppSidebarContent>

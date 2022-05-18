@@ -6,6 +6,10 @@ export const AppContainer = styledComponents.div`
     grid-template-columns: 47% 1fr;
     overflow: hidden;
     max-height: 100vh;
+
+    @media only screen and (max-width: 990px) {
+        display: none;
+    }
 `;
 
 export const AppSidebar = styledComponents.div`
@@ -289,5 +293,16 @@ export const AppCredit = styledComponents.p`
             text-decoration: underline;
             opacity: 1 !important;
         }
+    }
+`;
+
+export const AppMobile = styledComponents.div`
+    height: 100vh;
+    overflow-y: scroll;
+    padding: var(--span-2xl);
+    display: none;
+
+    @media only screen and (max-width: 990px) {
+        display: block;
     }
 `;
