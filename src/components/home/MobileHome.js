@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { Contact, Work, Base } from "../../pages";
+import { Contact, Work, Base, Resume } from "../../pages";
 
 const MobileView = function () {
   return (
@@ -8,6 +8,7 @@ const MobileView = function () {
       <Routes>
         <Route path='/' element={<Base />}></Route>
         <Route path='/contact' element={<Contact />}></Route>
+        <Route path='/resume' element={<Resume />}></Route>
         <Route path='/work' element={<Work />}></Route>
       </Routes>
     </div>

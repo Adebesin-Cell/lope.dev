@@ -31,7 +31,11 @@ const Project = function (props) {
             <span>Live</span>
           </CardLink>
           {!props.isPrivate && (
-            <CardLink href={props.github}>
+            <CardLink
+              href={props.github}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               <span className='icon'>{<Icon.GitMerge />}</span>
               <span>Code</span>
             </CardLink>
