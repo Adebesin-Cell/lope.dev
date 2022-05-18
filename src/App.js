@@ -199,7 +199,10 @@ const App = function () {
                   </AppSidebarSocials>
                 </AppSidebarFooter>
                 <AppCredit>
-                  Inspired By <a href='/'> {"designer"} </a>
+                  Inspired By{" "}
+                  <a href='/' target='_blank' rel='noopener noreferrer'>
+                    Designer
+                  </a>
                 </AppCredit>
               </AppSidebarWrapper>
             </AppSidebarContent>
