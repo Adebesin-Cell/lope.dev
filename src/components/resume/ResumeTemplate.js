@@ -35,7 +35,7 @@ const resumeObj = {
     "Strapi",
   ],
 
-  familiarSkills: ["GraphQL", "Figma", "Adobe XD"],
+  familiarSkills: ["Figma", "Adobe XD"],
 
   experience: [
     {
