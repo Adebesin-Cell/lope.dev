@@ -4,7 +4,6 @@ export const HeaderWrapper = styledComponents.header`
     display: flex;
     justify-content: space-between;
     margin-bottom: var(--span-m);
-    margin-top: var(--span-xl);
     align-items: center;
 `;
 

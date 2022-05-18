@@ -23,6 +23,11 @@ export const ThemeButton = styledComponents(Button)`
     transition: all 300ms;
     color: ${({ theme }) => theme.text};
 
+    @media only screen and (max-width: 990px) {
+        bottom: 20px;
+        top: initial;
+    }
+
     svg {
         width: 16px;
         height: 16px;
