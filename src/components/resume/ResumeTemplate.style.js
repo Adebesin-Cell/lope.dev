@@ -26,6 +26,10 @@ export const ResumeActions = styledComponents.div`
     @media only screen and (max-width: 1140px) {
         gap: var(--span-xs);
     }
+
+    @media only screen and (max-width: 990px) {
+        gap: var(--span-s);
+    }
 `;
 
 export const ResumeActionButton = styledComponents.a`
@@ -46,10 +50,11 @@ export const ResumeActionButton = styledComponents.a`
         gap: 2px;
     }
 
+
     span {
-        // @media only screen and (max-width: 1140px) {
-        //     display: none;
-        // }
+        @media only screen and (max-width: 990px) {
+            display: none;
+        }
     }
 
     span.icon {
@@ -62,6 +67,10 @@ export const ResumeActionButton = styledComponents.a`
             display: flex;
         }
 
+        @media only screen and (max-width: 990px) {
+            color: ${({ theme }) => theme.active};
+        }
+
         svg {
             width: 14px;
             height: 14px;
@@ -69,6 +78,11 @@ export const ResumeActionButton = styledComponents.a`
             @media only screen and (max-width: 1140px) {
                 width: 12px;
                 height: 12px;
+            }
+
+            @media only screen and (max-width: 990px) {
+                width: 24px;
+                height: 24px;
             }
         }
     }

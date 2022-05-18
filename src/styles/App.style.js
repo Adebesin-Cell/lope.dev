@@ -299,10 +299,18 @@ export const AppCredit = styledComponents.p`
 export const AppMobile = styledComponents.div`
     height: 100vh;
     overflow-y: scroll;
-    padding: var(--span-2xl);
+    padding: var(--span-l);
     display: none;
 
     @media only screen and (max-width: 990px) {
         display: block;
+    }
+
+    @media only screen and (max-width: 768px) {
+        padding: var(--span-m);
+    }
+
+    @media only screen and (max-width: 600px) {
+        padding: var(--span-s);
     }
 `;

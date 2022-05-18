@@ -1,11 +1,7 @@
 import Base from "../components/Base/Base";
 
 const BasePage = function () {
-  return (
-    <div className=''>
-      <Base></Base>
-    </div>
-  );
+  return <Base />;
 };
 
 export default BasePage;

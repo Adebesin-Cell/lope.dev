@@ -1,17 +1,19 @@
-import { Link } from "react-router-dom";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Contact, Work, Base, Resume } from "../../pages";
+import { MobileViewWrapper } from "./MobileHome.style";
+import Header from "../header/Header";
 
 const MobileView = function () {
   return (
-    <div className='base' title='base'>
+    <MobileViewWrapper title='base'>
+      <Header></Header>
       <Routes>
         <Route path='/' element={<Base />}></Route>
         <Route path='/contact' element={<Contact />}></Route>
         <Route path='/resume' element={<Resume />}></Route>
         <Route path='/work' element={<Work />}></Route>
       </Routes>
-    </div>
+    </MobileViewWrapper>
   );
 };
 
