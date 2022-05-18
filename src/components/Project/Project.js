@@ -26,7 +26,7 @@ const Project = function (props) {
           </ProjectDescription>
         </ProjectDetails>
         <CardFooter className='footer'>
-          <CardLink href={props.live}>
+          <CardLink href={props.live} target='_blank' rel='noopener noreferrer'>
             <span className='icon'>{<Icon.Eye />}</span>
             <span>Live</span>
           </CardLink>
