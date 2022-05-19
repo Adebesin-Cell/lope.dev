@@ -12,14 +12,30 @@ export const WorkContainer = styledComponents.div`
     margin-bottom: var(--span-xl);
     backface-visibility: hidden;
 
+    @media only screen and (max-width: 990px) {
+        gap: var(--span-xl);
+    }
+
+    @media only screen and (max-width: 600px) {
+        gap: var(--span-m);
+    }
+
     & p.paragraph {
         height: auto;
         min-height: auto;
+
+        @media only screen and (max-width: 990px) {
+            min-height: 72px ;
+        }
     }
 
 
     &:hover .card {
         opacity: 0.5;
+
+        @media only screen and (max-width: 990px) {
+            opacity: 1;
+        }
     }
 
     .card:hover {
@@ -33,6 +49,16 @@ export const WorkContainerHalf = styledComponents.div`
     gap: var(--span-xs);
     backface-visibility: hidden;
 
+    @media only screen and (max-width: 990px) {
+        grid-template-columns: repeat(1, 1fr);
+        gap: var(--span-xl);
+    }
+
+
+    @media only screen and (max-width: 600px) {
+        gap: var(--span-m);
+    }
+
     & div.footer {
         margin-top: calc(var(--span-s) + 4px);
     }
@@ -40,6 +66,10 @@ export const WorkContainerHalf = styledComponents.div`
 
     &:hover .card {
         opacity: 0.5;
+
+        @media only screen and (max-width: 990px) {
+            opacity: 1;
+        }
     }
 
     .card:hover {
@@ -73,6 +103,10 @@ export const WorkList = styledComponents.ul`
     gap: var(--span-xs);
     backface-visibility: hidden;
 
+    @media only screen and (max-width: 990px) {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 30px;
+    }
 
     &:nth-child(3) {
         margin-top: var(--span-s);

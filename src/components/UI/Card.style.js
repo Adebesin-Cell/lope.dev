@@ -13,10 +13,18 @@ export const CardWrapper = styledComponents.div`
 
     &.card--pad {
         transform: translateY(24px);
+
+        @media only screen and (max-width: 990px) {
+            transform: translateY(0);
+        }
     }
 
     &:hover {
         backface-visibility: hidden;
         transform: scale(1.1);
+
+        @media only screen and (max-width: 990px) {
+            transform: scale(1);
+        }
     }
 `;

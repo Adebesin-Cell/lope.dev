@@ -22,6 +22,11 @@ export const ProjectHeading = styledComponents.h1`
     line-height: 30px;
     color: ${({ theme }) => theme.cardHeader};
     backface-visibility: hidden;
+
+    @media only screen and (max-width: 600px) {
+        font-size: calc(var(--size-m) + 4px);
+        line-height: 24px;
+    }
 `;
 
 export const ProjectStack = styledComponents.p`
@@ -44,11 +49,26 @@ export const ProjectDescription = styledComponents.p`
     line-height: 21px;
     color: ${({ theme }) => theme.cardDescription};
     min-height: ${({ className }) => (className ? "90px" : "auto")};
+
+    @media only screen and (max-width: 990px) {
+        min-height: 72px;
+    }
+
+    @media only screen and (max-width: 600px) {
+        font-size: var(--size-xs);
+        line-height: 18px;
+    }
 `;
 
 export const CardFooter = styledComponents.div`
     display: flex;
     gap: var(--span-s);
+
+    &.footer {
+        @media only screen and (max-width: 990px) {
+            margin-top: 0 !important;
+        }
+    }
 `;
 
 export const CardLink = styledComponents.a`
