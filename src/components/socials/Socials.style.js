@@ -39,6 +39,7 @@ export const SocialsCredit = styledComponents.p`
     line-height: 18px;
     color: ${({ theme }) => theme.inactive};
     opacity: 0.75;
+    padding-bottom: var(--span-l);
 
     a {
         text-transform: capitalize;
