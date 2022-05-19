@@ -71,6 +71,16 @@ export const BaseIntroParagraph = styledComponents.p`
     font-weight: var(--weight-sm);
     line-height: 25px;
     text-align: center;
+
+    @media only screen and (max-width: 990px) {
+        padding-right: calc(var(--span-2xl) + var(--span-s));
+        padding-left: calc(var(--span-2xl) + var(--span-s));
+    }
+
+    @media only screen and (max-width: 600px) {
+        padding-right: 0;
+        padding-left: 0;
+    }
 `;
 
 export const BaseIntroParagraphHighlight = styledComponents.span`
@@ -107,18 +117,36 @@ export const BaseIntroParagraphHighlight = styledComponents.span`
 
 export const BaseIntroLink = styledComponents(Link)`
     margin-top: var(--span-m);
-    display: flex;
-    padding: calc(var(--span-xs) + 5px) var(--span-m);
     text-decoration: none;
-    align-items: center;
-    gap: var(--span-xs);
-    color: ${({ theme }) => theme.active};
-    background: ${({ theme }) => theme.btn_bg};
-    font-family: var(--Inter);
-    font-size: var(--size-m);
-    font-weight: var(--weight-sm);
-    line-height: 21px;
-    filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.1));
+
+    & button {
+        display: flex;
+        padding: calc(var(--span-xs) + 5px) var(--span-m);
+        align-items: center;
+        gap: var(--span-xs);
+        color: ${({ theme }) => theme.active};
+        background: ${({ theme }) => theme.btn_bg};
+        font-family: var(--Inter);
+        font-size: var(--size-m);
+        font-weight: var(--weight-sm);
+        line-height: 21px;
+        filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.1));
+        border: 1px solid transparent;
+        transition: all 300ms;
+        outline: none;
+
+        &:hover, &:focus {
+            border: 1px solid ${({ theme }) => theme.btn_border};
+            background: ${({ theme }) => theme.btn_bg};
+        }
+    }
+
+
+    span.icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
     svg {
         width: 18px;

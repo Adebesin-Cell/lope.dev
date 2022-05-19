@@ -41,7 +41,12 @@ const Base = function () {
           <BaseIntroParagraphHighlight> animations</BaseIntroParagraphHighlight>
           .
         </BaseIntroParagraph>
-        <BaseIntroLink to='/work'>Explore {<Icon.ArrowRight />} </BaseIntroLink>
+        <BaseIntroLink to='/work'>
+          <button>
+            <span>Explore</span>{" "}
+            <span className='icon'>{<Icon.ChevronRight />}</span>
+          </button>
+        </BaseIntroLink>
       </BaseIntro>
     </BaseContainer>
   );

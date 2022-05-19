@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { Contact, Work, Base, Resume } from "../../pages";
 import { MobileViewWrapper } from "./MobileHome.style";
 import Header from "../header/Header";
+import Socials from "../socials/Socials";
 
 const MobileView = function () {
   return (
@@ -13,6 +14,7 @@ const MobileView = function () {
         <Route path='/resume' element={<Resume />}></Route>
         <Route path='/work' element={<Work />}></Route>
       </Routes>
+      <Socials></Socials>
     </MobileViewWrapper>
   );
 };
