@@ -7,11 +7,13 @@ import {
   BaseIntroParagraph,
   BaseIntroParagraphHighlight,
   BaseIntroLink,
+  BaseIntroButton,
 } from "./Base.style";
 import avatar from "../../assets/images/avatar.jpg";
 import * as Icon from "react-feather";
 
-const Base = function () {
+const Base = function (props) {
+  console.log(props.theme);
   return (
     <BaseContainer>
       <BaseIntro>
@@ -42,10 +44,10 @@ const Base = function () {
           .
         </BaseIntroParagraph>
         <BaseIntroLink to='/work'>
-          <button>
+          <BaseIntroButton mytheme={props.theme}>
             <span>Explore</span>{" "}
             <span className='icon'>{<Icon.ChevronRight />}</span>
-          </button>
+          </BaseIntroButton>
         </BaseIntroLink>
       </BaseIntro>
     </BaseContainer>

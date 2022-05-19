@@ -119,6 +119,8 @@ export const BaseIntroLink = styledComponents(Link)`
     margin-top: var(--span-m);
     text-decoration: none;
 
+    
+
     & button {
         display: flex;
         padding: calc(var(--span-xs) + 5px) var(--span-m);
@@ -130,7 +132,6 @@ export const BaseIntroLink = styledComponents(Link)`
         font-size: var(--size-m);
         font-weight: var(--weight-sm);
         line-height: 21px;
-        filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.1));
         border: 1px solid transparent;
         transition: all 300ms;
         outline: none;
@@ -153,3 +154,19 @@ export const BaseIntroLink = styledComponents(Link)`
         height: 18px;
     }
 `;
+
+export const BaseIntroButton = styledComponents.button`
+    filter: ${({ mytheme }) =>
+      mytheme === "dark"
+        ? "none"
+        : "drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.1))"};
+`;
+
+// & svg {
+//     ${(props) => props.current && 'transform: scale(1.1)'};
+//   }
+
+//   & span {
+//     color: ${(props) =>
+//       props.current ? props.theme.text : props.theme.inactive};
+//   }

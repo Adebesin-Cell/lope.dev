@@ -89,7 +89,7 @@ const App = function () {
         <GlobalStyles></GlobalStyles>
         <Toggler theme={theme} toggleTheme={themeToggler}></Toggler>
         <AppMobile>
-          <MobileView />
+          <MobileView theme={theme} />
         </AppMobile>
         <AppContainer title='App'>
           <AppSidebar title='Sidebar'>
