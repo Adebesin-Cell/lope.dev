@@ -10,22 +10,30 @@ import {
   MenuSocialsList,
 } from "./Menu.style";
 
-const Menu = function () {
+const Menu = function (props) {
   return (
     <MenuContainer>
       <MenuNav>
         <MenuNavList>
           <MenuNavItem>
-            <MenuNavLink to='/'>Home</MenuNavLink>
+            <MenuNavLink to='/' onClick={props.close}>
+              Home
+            </MenuNavLink>
           </MenuNavItem>
           <MenuNavItem>
-            <MenuNavLink to='/work'>Work</MenuNavLink>
+            <MenuNavLink to='/work' onClick={props.close}>
+              Work
+            </MenuNavLink>
           </MenuNavItem>
           <MenuNavItem>
-            <MenuNavLink to='/contact'>Contact</MenuNavLink>
+            <MenuNavLink to='/contact' onClick={props.close}>
+              Contact
+            </MenuNavLink>
           </MenuNavItem>
           <MenuNavItem>
-            <MenuNavLink to='/resume'>Résumé</MenuNavLink>
+            <MenuNavLink to='/resume' onClick={props.close}>
+              Résumé
+            </MenuNavLink>
           </MenuNavItem>
         </MenuNavList>
         <MenuSocials>

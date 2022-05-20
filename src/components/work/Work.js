@@ -41,17 +41,6 @@ const Work = function (props) {
       github: "",
       stack: "Laravel + Animate CSS + SCSS + PHP",
     },
-
-    {
-      id: uuid(),
-      title: "Recipe App",
-      description:
-        "Recipe application with recommendations and sort by filter.",
-      isPrivate: true,
-      liveLink: "",
-      github: "",
-      stack: "React + Redux + Typescript",
-    },
     {
       id: uuid(),
       title: "Lope.dev",
@@ -60,52 +49,6 @@ const Work = function (props) {
       liveLink: "https://lope-dev-cell.vercel.app/",
       github: "https://github.com/Adebesin-Cell/lope.dev",
       stack: "React + Strapi + GraphQl",
-    },
-    {
-      id: uuid(),
-      title: "Sham",
-      description: "Online music streaming app.",
-      isPrivate: false,
-      liveLink: "",
-      github: "",
-      stack: "React + GraphQL + Typescript",
-    },
-    {
-      id: uuid(),
-      title: "Sham",
-      description: "Online music streaming app.",
-      isPrivate: false,
-      liveLink: "",
-      github: "",
-      stack: "React + GraphQL + Typescript",
-    },
-
-    {
-      id: uuid(),
-      title: "Sham",
-      description: "Online music streaming app.",
-      isPrivate: false,
-      liveLink: "",
-      github: "",
-      stack: "React + GraphQL + Typescript",
-    },
-    {
-      id: uuid(),
-      title: "Sham",
-      description: "Online music streaming app.",
-      isPrivate: false,
-      liveLink: "",
-      github: "",
-      stack: "React + GraphQL + Typescript",
-    },
-    {
-      id: uuid(),
-      title: "Sham",
-      description: "Online music streaming app.",
-      isPrivate: false,
-      liveLink: "",
-      github: "",
-      stack: "React + GraphQL + Typescript",
     },
   ];
 

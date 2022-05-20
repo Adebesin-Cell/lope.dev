@@ -10,6 +10,10 @@ const Header = function () {
     setIsClosed(!isClosed);
   };
 
+  const setIsClosedHandler = function (e) {
+    setIsClosed(true);
+  };
+
   return (
     <React.Fragment>
       <HeaderWrapper>
@@ -25,7 +29,7 @@ const Header = function () {
           <MenuIconLine className='line line--small'></MenuIconLine>
         </MenuIcon>
       </HeaderWrapper>
-      {!isClosed && <Menu />}
+      {!isClosed && <Menu close={setIsClosedHandler} />}
     </React.Fragment>
   );
 };

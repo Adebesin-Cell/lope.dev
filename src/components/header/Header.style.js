@@ -49,5 +49,4 @@ export const MenuIconLine = styledComponents.span`
     height: 1px;
     width: ${({ isLarge }) => (isLarge ? "40px" : "25px")};
     background: ${({ theme }) => theme.active};
-    transition: all 300ms linear;
 `;
