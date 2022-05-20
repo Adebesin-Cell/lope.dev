@@ -1,7 +1,11 @@
-import { MenuContainer } from "./Menu.style";
+import { MenuContainer, MenuNav } from "./Menu.style";
 
 const Menu = function () {
-  return <MenuContainer>&nbsp;</MenuContainer>;
+  return (
+    <MenuContainer>
+      <MenuNav>&nbsp;</MenuNav>
+    </MenuContainer>
+  );
 };
 
 export default Menu;
