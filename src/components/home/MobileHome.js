@@ -6,7 +6,7 @@ import Socials from "../socials/Socials";
 
 const MobileView = function (props) {
   return (
-    <MobileViewWrapper theme={props.theme} title='base'>
+    <MobileViewWrapper theme={props.theme} title='app'>
       <Header></Header>
       <Routes>
         <Route path='/' element={<Base theme={props.theme} />}></Route>

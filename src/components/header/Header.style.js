@@ -5,6 +5,8 @@ export const HeaderWrapper = styledComponents.header`
     justify-content: space-between;
     margin-bottom: var(--span-s);
     align-items: center;
+    position: relative;
+    z-index: 5;
 `;
 
 export const MenuIcon = styledComponents.button`
