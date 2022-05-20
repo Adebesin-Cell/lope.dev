@@ -52,6 +52,7 @@ export const WorkContainerHalf = styledComponents.div`
     @media only screen and (max-width: 990px) {
         grid-template-columns: repeat(1, 1fr);
         gap: var(--span-xl);
+        margin-bottom: var(--span-m);
     }
 
 

@@ -13,7 +13,6 @@ import avatar from "../../assets/images/avatar.jpg";
 import * as Icon from "react-feather";
 
 const Base = function (props) {
-  console.log(props.theme);
   return (
     <BaseContainer>
       <BaseIntro>

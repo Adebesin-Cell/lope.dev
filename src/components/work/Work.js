@@ -1,3 +1,5 @@
+import uuid from "react-uuid";
+import NavButton from "../navButtons/NavButton";
 import {
   WorkWrapper,
   WorkContainer,
@@ -6,7 +8,6 @@ import {
   WorkList,
 } from "./Work.style";
 import Project from "../Project/Project";
-import uuid from "react-uuid";
 
 const Work = function (props) {
   const FeaturedProjects = [
@@ -145,6 +146,10 @@ const Work = function (props) {
           ))}
         </WorkList>
       </WorkContainerHalf>
+      <NavButton
+        prev={{ url: "/", text: "Home" }}
+        next={{ url: "/resume", text: "Resume" }}
+      />
     </WorkWrapper>
   );
 };

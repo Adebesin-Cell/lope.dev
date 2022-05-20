@@ -1,10 +1,10 @@
 import { WorkBox } from "../styles/Work.style";
 import Work from "../components/work/Work";
 
-const WorkPage = function () {
+const WorkPage = function (props) {
   return (
     <WorkBox title='work'>
-      <Work />
+      <Work theme={props.theme} />
     </WorkBox>
   );
 };

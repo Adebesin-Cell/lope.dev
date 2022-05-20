@@ -17,6 +17,11 @@ export const ResumeHeading = styledComponents.h1`
     line-height: 33px;
     color: ${({ theme }) => theme.text};
     text-align: left;
+
+    @media only screen and (max-width: 600px) {
+        font-size: calc(var(--size-m) + 6px);
+        line-height: 28px;
+    }
 `;
 
 export const ResumeActions = styledComponents.div`
@@ -29,6 +34,10 @@ export const ResumeActions = styledComponents.div`
 
     @media only screen and (max-width: 990px) {
         gap: var(--span-s);
+    }
+
+    @media only screen and (max-width: 600px) {
+        gap: var(--span-xs);
     }
 `;
 
@@ -84,6 +93,11 @@ export const ResumeActionButton = styledComponents.a`
                 width: 24px;
                 height: 24px;
             }
+
+            @media only screen and (max-width: 600px) {
+                width: 18px;
+                height: 18px;
+            }
         }
     }
 `;
@@ -96,6 +110,11 @@ export const ResumeTitle = styledComponents.p`
     line-height: 23px;
     text-align: left;
     color: ${({ theme }) => theme.resumeTitle};
+
+    @media only screen and (max-width: 600px) {
+        font-size: calc(var(--size-s));
+        line-height: 23px;
+    }
 `;
 
 export const ResumeSummary = styledComponents.p`
@@ -107,6 +126,10 @@ export const ResumeSummary = styledComponents.p`
     line-height: 23px;
     text-align: left;
     color: ${({ theme }) => theme.workHeading};
+
+    @media only screen and (max-width: 600px) {
+        padding-top: calc(var(--span-xs) + 5px);
+    }
 `;
 
 export const ResumeDivider = styledComponents.div`

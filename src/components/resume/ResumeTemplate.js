@@ -23,6 +23,7 @@ import {
   ResumeExperienceAchievements,
   ResumeExperienceItem,
 } from "./ResumeTemplate.style";
+import React from "react";
 
 const resumeObj = {
   coreSkills: [
@@ -60,95 +61,99 @@ const resumeObj = {
 
 const ResumeTemplate = function () {
   return (
-    <ResumeBody>
-      <ResumeHeader>
-        <ResumeHeading>Adebesin Tolulope</ResumeHeading>
-        <ResumeActions>
-          <ResumeActionButton
-            href='https://www.linkedin.com/in/adebesin-tolulope-2429b621a/'
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            <span className='icon'>
-              <Icon.Linkedin />
-            </span>
-            <span>Linked In</span>
-          </ResumeActionButton>
-          <ResumeActionButton
-            download={true}
-            href={resume}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            <span className='icon'>
-              <Icon.Download />
-            </span>
-            <span>Download</span>
-          </ResumeActionButton>
-        </ResumeActions>
-      </ResumeHeader>
-      <ResumeTitle>Frontend Developer</ResumeTitle>
-      <ResumeSummary>
-        I'm a frontend web developer, passionate about solving problems with my
-        skills and converting ideas from pixels to products. User experiance is
-        the focus when developing products using the best web tools,
-        technologies and languages.
-      </ResumeSummary>
-      <ResumeDivider>
-        <ResumeDividerTitle>Core Technologies</ResumeDividerTitle>
-        <ResumeDividerLine></ResumeDividerLine>
-      </ResumeDivider>
-      <ResumeSkills>{resumeObj.coreSkills.join(", ")}.</ResumeSkills>
-      <ResumeDivider>
-        <ResumeDividerTitle>Familiar With</ResumeDividerTitle>
-        <ResumeDividerLine></ResumeDividerLine>
-      </ResumeDivider>
-      <ResumeSkills>{resumeObj.familiarSkills.join(", ")}.</ResumeSkills>
-      <ResumeDivider>
-        <ResumeDividerTitle>On The Job</ResumeDividerTitle>
-        <ResumeDividerLine></ResumeDividerLine>
-      </ResumeDivider>
-      <ResumeSkills>{resumeObj.onTheJob.join(", ")}.</ResumeSkills>
-      <ResumeDivider>
-        <ResumeDividerTitle>Work Experience</ResumeDividerTitle>
-        <ResumeDividerLine></ResumeDividerLine>
-      </ResumeDivider>
-      <ResumeExperienceContainer>
-        {resumeObj.experience.map((experience, index) => (
-          <ResumeExperience key={experience.id} id={experience.id}>
-            <ResumeExperienceTitle>
-              {experience.company} - {experience.position}
-            </ResumeExperienceTitle>
-            <ResumeExperienceDate>
-              {experience.startDate} -{" "}
-              {experience.endDate === null ? "Present" : experience.endDate}
-            </ResumeExperienceDate>
-            <ResumeExperienceDescription>
-              {experience.description}
-            </ResumeExperienceDescription>
-            {experience.achievements.map((achievement, index) => (
-              <ResumeExperienceAchievements key={`${experience.id}__${index}`}>
-                <ResumeExperienceItem>
-                  <span className='icon'>■</span>
-                  <span>{achievement}</span>
-                </ResumeExperienceItem>
-              </ResumeExperienceAchievements>
-            ))}
-          </ResumeExperience>
-        ))}
-      </ResumeExperienceContainer>
-      <ResumeDivider>
-        <ResumeDividerTitle>Projects</ResumeDividerTitle>
-        <ResumeDividerLine></ResumeDividerLine>
-      </ResumeDivider>
-      <ResumeProjects>
-        <span>
-          Links to my works can be found on{" "}
-          <Link to='/work'>Lope.cell.vercel.app/work</Link> and more details can
-          be provided upon request
-        </span>
-      </ResumeProjects>
-    </ResumeBody>
+    <React.Fragment>
+      <ResumeBody>
+        <ResumeHeader>
+          <ResumeHeading>Adebesin Tolulope</ResumeHeading>
+          <ResumeActions>
+            <ResumeActionButton
+              href='https://www.linkedin.com/in/adebesin-tolulope-2429b621a/'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <span className='icon'>
+                <Icon.Linkedin />
+              </span>
+              <span>Linked In</span>
+            </ResumeActionButton>
+            <ResumeActionButton
+              download={true}
+              href={resume}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <span className='icon'>
+                <Icon.Download />
+              </span>
+              <span>Download</span>
+            </ResumeActionButton>
+          </ResumeActions>
+        </ResumeHeader>
+        <ResumeTitle>Frontend Developer</ResumeTitle>
+        <ResumeSummary>
+          I'm a frontend web developer, passionate about solving problems with
+          my skills and converting ideas from pixels to products. User
+          experiance is the focus when developing products using the best web
+          tools, technologies and languages.
+        </ResumeSummary>
+        <ResumeDivider>
+          <ResumeDividerTitle>Core Technologies</ResumeDividerTitle>
+          <ResumeDividerLine></ResumeDividerLine>
+        </ResumeDivider>
+        <ResumeSkills>{resumeObj.coreSkills.join(", ")}.</ResumeSkills>
+        <ResumeDivider>
+          <ResumeDividerTitle>Familiar With</ResumeDividerTitle>
+          <ResumeDividerLine></ResumeDividerLine>
+        </ResumeDivider>
+        <ResumeSkills>{resumeObj.familiarSkills.join(", ")}.</ResumeSkills>
+        <ResumeDivider>
+          <ResumeDividerTitle>On The Job</ResumeDividerTitle>
+          <ResumeDividerLine></ResumeDividerLine>
+        </ResumeDivider>
+        <ResumeSkills>{resumeObj.onTheJob.join(", ")}.</ResumeSkills>
+        <ResumeDivider>
+          <ResumeDividerTitle>Work Experience</ResumeDividerTitle>
+          <ResumeDividerLine></ResumeDividerLine>
+        </ResumeDivider>
+        <ResumeExperienceContainer>
+          {resumeObj.experience.map((experience, index) => (
+            <ResumeExperience key={experience.id} id={experience.id}>
+              <ResumeExperienceTitle>
+                {experience.company} - {experience.position}
+              </ResumeExperienceTitle>
+              <ResumeExperienceDate>
+                {experience.startDate} -{" "}
+                {experience.endDate === null ? "Present" : experience.endDate}
+              </ResumeExperienceDate>
+              <ResumeExperienceDescription>
+                {experience.description}
+              </ResumeExperienceDescription>
+              {experience.achievements.map((achievement, index) => (
+                <ResumeExperienceAchievements
+                  key={`${experience.id}__${index}`}
+                >
+                  <ResumeExperienceItem>
+                    <span className='icon'>■</span>
+                    <span>{achievement}</span>
+                  </ResumeExperienceItem>
+                </ResumeExperienceAchievements>
+              ))}
+            </ResumeExperience>
+          ))}
+        </ResumeExperienceContainer>
+        <ResumeDivider>
+          <ResumeDividerTitle>Projects</ResumeDividerTitle>
+          <ResumeDividerLine></ResumeDividerLine>
+        </ResumeDivider>
+        <ResumeProjects>
+          <span>
+            Links to my works can be found on{" "}
+            <Link to='/work'>Lope.cell.vercel.app/work</Link> and more details
+            can be provided upon request
+          </span>
+        </ResumeProjects>
+      </ResumeBody>
+    </React.Fragment>
   );
 };
 

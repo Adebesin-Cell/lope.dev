@@ -161,12 +161,3 @@ export const BaseIntroButton = styledComponents.button`
         ? "none"
         : "drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.1))"};
 `;
-
-// & svg {
-//     ${(props) => props.current && 'transform: scale(1.1)'};
-//   }
-
-//   & span {
-//     color: ${(props) =>
-//       props.current ? props.theme.text : props.theme.inactive};
-//   }

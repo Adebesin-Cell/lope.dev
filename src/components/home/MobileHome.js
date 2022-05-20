@@ -10,9 +10,12 @@ const MobileView = function (props) {
       <Header></Header>
       <Routes>
         <Route path='/' element={<Base theme={props.theme} />}></Route>
-        <Route path='/contact' element={<Contact />}></Route>
-        <Route path='/resume' element={<Resume />}></Route>
-        <Route path='/work' element={<Work />}></Route>
+        <Route
+          path='/contact'
+          element={<Contact theme={props.theme} />}
+        ></Route>
+        <Route path='/resume' element={<Resume theme={props.theme} />}></Route>
+        <Route path='/work' element={<Work theme={props.theme} />}></Route>
       </Routes>
       <Socials></Socials>
     </MobileViewWrapper>
