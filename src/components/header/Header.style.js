@@ -19,10 +19,35 @@ export const MenuIcon = styledComponents.button`
     position: relative;
     gap: var(--span-xs);
     cursor: pointer;
+
+    &.opened {
+        min-height: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &.opened .line {
+        width: 25px !important;
+        transition: all 300ms linear !important;
+    }
+
+    &.opened .line--large {
+        transform: rotate(45deg) translateY(7px) !important;
+        position: relative !important;
+        top: 1px !important;
+        transition: transform 300ms linear !important;
+    }
+
+    &.opened .line--small {
+        transform: rotate(-45deg) translateY(-7px) !important;
+        transition: transform 300ms linear !important;
+    }
 `;
 
-export const MenuIconLine = styledComponents.div`
+export const MenuIconLine = styledComponents.span`
     height: 1px;
     width: ${({ isLarge }) => (isLarge ? "40px" : "25px")};
     background: ${({ theme }) => theme.active};
+    transition: all 300ms linear;
 `;

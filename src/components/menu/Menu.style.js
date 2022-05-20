@@ -10,6 +10,19 @@ export const MenuContainer = styledComponents.div`
     width: 100%;
     height: 100%;
     background: ${({ theme }) => theme.btn_bg};
+    animation: fadeIn 300ms linear 1;
+
+    @keyframes fadeIn {
+        from {
+            transform: translateY(-50px);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
 
     @media only screen and (max-width: 990px) {
         display: flex;
@@ -75,10 +88,42 @@ export const MenuSocials = styledComponents.div`
 export const MenuSocialsHeading = styledComponents.h1`
     margin: var(--span-s) 0;
     font-family: var(--Inter);
-    font-size: calc(var(--size-m));
+    font-size: calc(var(--size-m) + 2px);
     font-weight: var(--weight-lg);
     line-height: 23px;
     text-align: center;
     color: ${({ theme }) => theme.active};
     text-transform: capitalize;
+`;
+
+export const MenuSocialsList = styledComponents.div`
+    display: flex;
+    gap: calc(var(--span-s));
+    margin-top: var(--span-s);
+    margin-left: 7.5px;
+    margin-right: 7.5px;
+
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: ${({ theme }) => theme.active};
+            
+            svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+
+    a span.icon--fill {
+        svg {
+            fill: ${({ theme }) => theme.active};
+        }
+    }
 `;
