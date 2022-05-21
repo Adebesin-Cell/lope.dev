@@ -133,7 +133,6 @@ export const BaseIntroLink = styledComponents(Link)`
         font-weight: var(--weight-sm);
         line-height: 21px;
         border: 1px solid transparent;
-        transition: all 300ms;
         outline: none;
 
         &:hover, &:focus {
