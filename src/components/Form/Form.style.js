@@ -17,6 +17,11 @@ export const FormLabel = styledComponents.label`
     font-weight: var(--weight-sm);
     line-height: 25px;
     color: ${({ theme }) => theme.active};
+
+    @media only screen and (max-width: 600px) {
+        font-size: calc(var(--size-m) - 1px);
+        line-height: 21px;
+    }
 `;
 
 export const FormInput = styledComponents.input`
