@@ -1,6 +1,6 @@
 import * as Icon from "react-feather";
 import uuid from "react-uuid";
-import resume from "../../assets/images/avatar.jpg";
+import resume from "../../assets/Tolulope-Adebesin-resume.pdf";
 import { Link } from "react-router-dom";
 import {
   ResumeBody,
@@ -67,14 +67,14 @@ const ResumeTemplate = function () {
           <ResumeHeading>Adebesin Tolulope</ResumeHeading>
           <ResumeActions>
             <ResumeActionButton
-              href='https://www.linkedin.com/in/adebesin-tolulope-2429b621a/'
+              href='https://www.linkedin.com/in/adebesin-tolulope'
               target='_blank'
               rel='noopener noreferrer'
             >
               <span className='icon'>
                 <Icon.Linkedin />
               </span>
-              <span>Linked In</span>
+              <span>LinkedIn</span>
             </ResumeActionButton>
             <ResumeActionButton
               download={true}

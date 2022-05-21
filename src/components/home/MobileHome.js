@@ -16,6 +16,7 @@ const MobileView = function (props) {
         ></Route>
         <Route path='/resume' element={<Resume theme={props.theme} />}></Route>
         <Route path='/work' element={<Work theme={props.theme} />}></Route>
+        {/* <Route path='*' element={<NotFound />} /> */}
       </Routes>
       <Socials></Socials>
     </MobileViewWrapper>

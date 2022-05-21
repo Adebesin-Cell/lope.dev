@@ -213,6 +213,7 @@ const App = function () {
               <Route path='/resume' element={<Resume />}></Route>
               <Route path='/contact' element={<Contact />}></Route>
               <Route path='/work' element={<Work />}></Route>
+              {/* <Route path='*' element={<NotFound />} /> */}
             </Routes>
           </AppView>
         </AppContainer>

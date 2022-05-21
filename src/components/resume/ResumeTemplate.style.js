@@ -180,6 +180,10 @@ export const ResumeProjects = styledComponents.p`
     text-align: left;
     color: ${({ theme }) => theme.workHeading};
 
+    @media only screen and (max-width: 600px) {
+        padding-bottom: var(--span-s);
+    }
+
     a {
         text-decoration: none;
         color: ${({ theme }) => theme.active};
