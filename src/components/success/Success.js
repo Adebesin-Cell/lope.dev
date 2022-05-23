@@ -1,5 +1,7 @@
+import { SuccessContainer } from "./Success.style";
+
 const Success = function () {
-  return <div className='sucess'></div>;
+  return <SuccessContainer></SuccessContainer>;
 };
 
 export default Success;

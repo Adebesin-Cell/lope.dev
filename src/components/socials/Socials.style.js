@@ -33,6 +33,7 @@ export const SocialIcon = styledComponents.a`
 `;
 
 export const SocialsCredit = styledComponents.p`
+    padding-top: calc(var(--span-xs) + 2px);
     font-family: var(--Inter);
     font-size: var(--size-xs);
     font-weight: var(--weight-sm);

@@ -10,7 +10,7 @@ export const Button = styledComponents.button`
 export const ThemeButton = styledComponents(Button)`
     background: ${({ theme }) => theme.btn_bg};
     filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.1));
-    z-index: 4;
+    z-index: 9;
     position: absolute;
     top: 20px;
     right: 20px;

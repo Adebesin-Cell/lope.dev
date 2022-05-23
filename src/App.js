@@ -32,6 +32,7 @@ import {
 } from "./styles/App.style";
 import avatar from "./assets/images/avatar.jpg";
 import MobileView from "./components/home/MobileHome";
+import Success from "./components/success/Success";
 
 const NavLinks = [
   {
@@ -91,6 +92,7 @@ const App = function () {
         <AppMobile>
           <MobileView theme={theme} />
         </AppMobile>
+        <Success />
         <AppContainer title='App'>
           <AppSidebar title='Sidebar'>
             <AppSidebarContent>
@@ -213,7 +215,7 @@ const App = function () {
               <Route path='/resume' element={<Resume />}></Route>
               <Route path='/contact' element={<Contact />}></Route>
               <Route path='/work' element={<Work />}></Route>
-              {/* <Route path='*' element={<NotFound />} /> */}
+              <Route path='*' element={<Home />} />
             </Routes>
           </AppView>
         </AppContainer>
