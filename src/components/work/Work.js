@@ -48,7 +48,7 @@ const Work = function (props) {
       isPrivate: false,
       liveLink: "https://lope-dev-cell.vercel.app/",
       github: "https://github.com/Adebesin-Cell/lope.dev",
-      stack: "React + Strapi + GraphQl",
+      stack: "React + Strapi",
     },
   ];
 
