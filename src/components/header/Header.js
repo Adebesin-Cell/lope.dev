@@ -17,7 +17,7 @@ const Header = function () {
   return (
     <React.Fragment>
       <HeaderWrapper>
-        <Logo></Logo>
+        <Logo onClick={setIsClosedHandler}></Logo>
         <MenuIcon
           className={isClosed ? "" : "opened"}
           onClick={menuToggleHandler}

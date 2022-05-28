@@ -1,10 +1,12 @@
 import { LogoBox } from "./Logo.style";
 import { Link } from "react-router-dom";
 
-const Logo = function () {
+const Logo = function (props) {
   return (
     <LogoBox>
-      <Link to='/'>Lope.</Link>
+      <Link to='/' onClick={props.onClick}>
+        Lope.
+      </Link>
     </LogoBox>
   );
 };
