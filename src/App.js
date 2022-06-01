@@ -215,9 +215,7 @@ const App = function () {
               <Route path='/resume' element={<Resume />}></Route>
               <Route path='/contact' element={<Contact />}></Route>
               <Route path='/work' element={<Work />}></Route>
-              <Route path='*' element={<Home theme={theme} />} />
-
-              {/* <Route path='*' element={<NotFound theme={theme} />} /> */}
+              <Route path='*' element={<NotFound theme={theme} />} />
             </Routes>
           </AppView>
         </AppContainer>
