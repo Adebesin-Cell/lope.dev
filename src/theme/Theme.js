@@ -23,6 +23,7 @@ export const lightTheme = {
   formButtonBg: "#151515",
   formButtonTxt: "#ffffff",
   btn_border: "#bebebe",
+  success: "#198754",
 };
 
 export const darkTheme = {
@@ -50,4 +51,5 @@ export const darkTheme = {
   formButtonBg: "#16161a",
   formButtonTxt: "#ffffff",
   btn_border: "#a6a6a7",
+  success: "#198754",
 };

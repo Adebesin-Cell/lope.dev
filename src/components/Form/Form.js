@@ -1,6 +1,7 @@
 import { useForm, ValidationError } from "@formspree/react";
 import Success from "../success/Success";
 import { FormButton } from "../UI/Button";
+import { useState } from "react";
 import {
   FormContainer,
   FormGroup,
@@ -11,10 +12,11 @@ import {
 
 const Form = function () {
   const [state, handleSubmit] = useForm("mdobywvr");
+  const [modalIsHidden, setModalIsHidden] = useState(false);
 
-  if (state.succeeded) {
-    return <Success />;
-  }
+  const hideModal = function (e) {
+    setModalIsHidden(true);
+  };
 
   return (
     <FormContainer method='POST' action='' onSubmit={handleSubmit}>
@@ -45,9 +47,17 @@ const Form = function () {
       </FormGroup>
       <FormGroup>
         <FormButton type='submit' disabled={state.submitting}>
-          Submit
+          {!state.submitting && "Submit"}
+          {state.submitting && "Loading..."}
         </FormButton>
       </FormGroup>
+      {state.succeeded && (
+        <Success
+          display='flex'
+          modalIsHidden={modalIsHidden}
+          hideModal={hideModal}
+        />
+      )}
     </FormContainer>
   );
 };

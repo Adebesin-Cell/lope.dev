@@ -38,8 +38,12 @@ const Socials = function () {
       </SocialsIcons>
       <SocialsCredit>
         <span>Inspired By </span>
-        <a href='/' target='_blank' rel='noopener noreferrer'>
-          Designer
+        <a
+          href='https://dribbble.com/NicolasMzrd'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          Nicolas Meuzard
         </a>
       </SocialsCredit>
     </SocialsContainer>

@@ -83,3 +83,12 @@ export const FormArea = styledComponents.textarea`
         outline: none !important;
     }
 `;
+
+export const FormError = styledComponents.p`
+    font-family: var(--Inter);
+    font-size: var(--size-m);
+    font-weight: var(--weight-sm);
+    line-height: 23px;
+    text-align: center;
+    color: red;
+`;

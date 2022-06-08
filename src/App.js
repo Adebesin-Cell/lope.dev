@@ -54,10 +54,6 @@ const NavLinks = [
   },
 ];
 
-/**
- * @description default theme :  dark
- * @returns
- */
 const App = function () {
   const [theme, themeToggler] = useDarkMode();
   const { pathname } = useLocation();
@@ -202,8 +198,12 @@ const App = function () {
                 </AppSidebarFooter>
                 <AppCredit>
                   Inspired By{" "}
-                  <a href='/' target='_blank' rel='noopener noreferrer'>
-                    Designer
+                  <a
+                    href='https://dribbble.com/NicolasMzrd'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    Nicolas Meuzard
                   </a>
                 </AppCredit>
               </AppSidebarWrapper>
