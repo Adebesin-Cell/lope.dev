@@ -9,8 +9,6 @@ import {
 } from "./Work.style";
 import Project from "../Project/Project";
 
-// 1c65d0a73b207b36b0f4b8558bad903287335f35e41a3de81191009281e4c54d2e3223d6c25bff8b2c097b751deb3c3dda5518b929f0669653816e579d861f2d1f8c020886635d306196a68c4864927075e6a305479ec34a8976de176d88d9646bea626325090272280b69f1ddf60d9e1b2e306b7bfdb821e58fe41dd795f9a7
-
 const Work = function (props) {
   const FeaturedProjects = [
     {
