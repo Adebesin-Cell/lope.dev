@@ -33,6 +33,9 @@ import {
 import avatar from "./assets/images/avatar.jpg";
 import MobileView from "./components/home/MobileHome";
 import Success from "./components/success/Success";
+import { initializeApp } from "firebase/app";
+import { getAnalytics, logEvent } from "firebase/analytics";
+import { firebaseConfig } from "./utils/Firebase";
 
 const NavLinks = [
   {
@@ -67,6 +70,11 @@ const App = function () {
   const setPathNameHandler = function (e) {
     setPathName(e.target.href);
   };
+
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+
+  logEvent(analytics, "notification_received");
 
   useEffect(() => {
     setTextIsHiglighted(true);
