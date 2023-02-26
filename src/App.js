@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
-import useDarkMode from "./hooks/useDarkMode";
-import { ThemeProvider } from "styled-components";
-import { GlobalStyles } from "./theme/globalStyles";
-import { lightTheme, darkTheme } from "./theme/Theme";
-import uuid from "react-uuid";
-import * as Icon from "react-feather";
-import Toggler from "./components/toggle/Toggler";
-import { Home, Resume, Contact, Work, NotFound } from "./pages";
+import { useEffect, useState } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import useDarkMode from './hooks/useDarkMode';
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyles } from './theme/globalStyles';
+import { lightTheme, darkTheme } from './theme/Theme';
+import uuid from 'react-uuid';
+import * as Icon from 'react-feather';
+import Toggler from './components/toggle/Toggler';
+import { Home, Resume, Contact, Work, NotFound } from './pages';
 import {
   AppContainer,
   AppView,
@@ -28,44 +28,44 @@ import {
   AppSidebarImage,
   AppSidebarSocials,
   AppCredit,
-  AppMobile,
-} from "./styles/App.style";
-import avatar from "./assets/images/avatar.jpg";
-import MobileView from "./components/home/MobileHome";
-import Success from "./components/success/Success";
-import { initializeApp } from "firebase/app";
-import { getAnalytics, logEvent } from "firebase/analytics";
-import { firebaseConfig } from "./utils/Firebase";
+  AppMobile
+} from './styles/App.style';
+import avatar from './assets/images/funavatar.JPG';
+import MobileView from './components/home/MobileHome';
+import Success from './components/success/Success';
+import { initializeApp } from 'firebase/app';
+import { getAnalytics, logEvent } from 'firebase/analytics';
+import { firebaseConfig } from './utils/Firebase';
 
 const NavLinks = [
   {
     id: uuid(),
-    name: "work",
-    link: "/",
+    name: 'work',
+    link: '/'
   },
 
   {
     id: uuid(),
-    name: "resume",
-    link: "/resume",
+    name: 'resume',
+    link: '/resume'
   },
 
   {
     id: uuid(),
-    name: "contact",
-    link: "/contact",
-  },
+    name: 'contact',
+    link: '/contact'
+  }
 ];
 
 const App = function () {
   const [theme, themeToggler] = useDarkMode();
   const { pathname } = useLocation();
-  const [isPathname, setPathName] = useState("");
+  const [isPathname, setPathName] = useState('');
   const [textIsHiglighted, setTextIsHiglighted] = useState(true);
 
-  const themeMode = theme === "dark" ? darkTheme : lightTheme;
+  const themeMode = theme === 'dark' ? darkTheme : lightTheme;
 
-  const highlight = textIsHiglighted ? "animate" : "";
+  const highlight = textIsHiglighted ? 'animate' : '';
 
   const setPathNameHandler = function (e) {
     setPathName(e.target.href);
@@ -74,7 +74,7 @@ const App = function () {
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
 
-  logEvent(analytics, "notification_received");
+  logEvent(analytics, 'notification_received');
 
   useEffect(() => {
     setTextIsHiglighted(true);
@@ -108,22 +108,22 @@ const App = function () {
                 <AppSidebarParagraph>
                   I'm a frontend developer. I create interactive
                   <AppSidebarHighlight className={highlight}>
-                    {" "}
-                    experiences{" "}
+                    {' '}
+                    experiences{' '}
                   </AppSidebarHighlight>
                   with modern
                   <AppSidebarHighlight className={highlight}>
-                    {" "}
-                    web technologies.{" "}
+                    {' '}
+                    web technologies.{' '}
                   </AppSidebarHighlight>
                   I'm currently learning how to
                   <AppSidebarHighlight className={highlight}>
-                    {" "}
+                    {' '}
                     design products
-                  </AppSidebarHighlight>{" "}
+                  </AppSidebarHighlight>{' '}
                   and create beautiful web
                   <AppSidebarHighlight className={highlight}>
-                    {" "}
+                    {' '}
                     animations
                   </AppSidebarHighlight>
                   .
@@ -205,7 +205,7 @@ const App = function () {
                   </AppSidebarSocials>
                 </AppSidebarFooter>
                 <AppCredit>
-                  Inspired By{" "}
+                  Inspired By{' '}
                   <a
                     href='https://dribbble.com/NicolasMzrd'
                     target='_blank'
