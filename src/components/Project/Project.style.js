@@ -1,4 +1,4 @@
-import styledComponents from "styled-components";
+import styledComponents from 'styled-components';
 
 export const CardContainer = styledComponents.div`
     display: flex;
@@ -48,7 +48,12 @@ export const ProjectDescription = styledComponents.p`
     font-weight: var(--weight-sm);
     line-height: 21px;
     color: ${({ theme }) => theme.cardDescription};
-    min-height: ${({ className }) => (className ? "90px" : "auto")};
+    min-height: ${({ className }) => (className ? '90px' : 'auto')};
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp:2;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     @media only screen and (max-width: 990px) {
         min-height: 72px;

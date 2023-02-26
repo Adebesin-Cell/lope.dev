@@ -1,55 +1,85 @@
-import uuid from "react-uuid";
-import NavButton from "../navButtons/NavButton";
+import uuid from 'react-uuid';
+import NavButton from '../navButtons/NavButton';
 import {
   WorkWrapper,
   WorkContainer,
   WorkHeading,
   WorkContainerHalf,
-  WorkList,
-} from "./Work.style";
-import Project from "../Project/Project";
+  WorkList
+} from './Work.style';
+import Project from '../Project/Project';
 
 const Work = function (props) {
   const FeaturedProjects = [
     {
       id: uuid(),
-      title: "UniAbuja",
-      description: "University Of Abuja website.",
-      isPrivate: true,
-      liveLink: "https://www.uniabuja.edu.ng/",
-      github: "",
-      stack: "Laravel + Scss + PHP",
+      title: 'IQ.WIKI',
+      description:
+        "IQ.wiki is the world's largest blockchain and cryptocurrency encyclopedia with thousands of wikis on all topics and branches of knowledge in the crypto space.",
+      isPrivate: false,
+      liveLink: 'https://iq.wiki',
+      github: 'https://github.com/EveripediaNetwork/ep-ui',
+      stack: 'Next Js + Chakra UI + RTK + Wagmi + IPFS'
     },
     {
       id: uuid(),
-      title: "PIC",
-      description: "Poly International College website.",
+      title: 'UniAbuja',
+      description: 'University Of Abuja website.',
       isPrivate: true,
-      liveLink: "https://www.polyinternationalcollege.com/",
-      github: "",
-      stack: "Laravel + CSS + Bootstrap + PHP",
-    },
+      liveLink: 'https://www.uniabuja.edu.ng/',
+      github: '',
+      stack: 'Laravel + Scss + PHP'
+    }
   ];
 
   const projects = [
     {
       id: uuid(),
-      title: "Zealarax",
-      description: "Zealarax Technologies landing page.",
+      title: 'IQ Oraqles',
+      description:
+        'IQ.wiki OraQles formerly Everipedia OraQles is a service that allows verified first parties to bring real-world information on-chain.',
       isPrivate: true,
-      liveLink: "http://zealarax-web.herokuapp.com/",
-      github: "",
-      stack: "Laravel + Animate CSS + SCSS + PHP",
+      liveLink: 'https://oraqles.com/',
+      github: 'https://github.com/EveripediaNetwork/oraqles-ui/',
+      stack: 'Next Js + Chakra UI + Wagmi'
     },
     {
       id: uuid(),
-      title: "Lope.dev",
-      description: "My portfolio webpage.",
+      title: 'Lope.dev',
+      description: 'My portfolio webpage.',
       isPrivate: false,
-      liveLink: "https://lope-dev-cell.vercel.app/",
-      github: "https://github.com/Adebesin-Cell/lope.dev",
-      stack: "React + Strapi",
+      liveLink: 'https://lope-dev-cell.vercel.app/',
+      github: 'https://github.com/Adebesin-Cell/lope.dev',
+      stack: 'React + Strapi'
     },
+    {
+      id: uuid(),
+      title: 'Whatsapp Web UI',
+      description:
+        'A redesign for WhatsApp Web could involve a variety of changes to improve the user experience and overall aesthetic of the platform',
+      isPrivate: false,
+      liveLink: 'https://whatsapp-web-nu.vercel.app',
+      github: 'https://github.com/Adebesin-Cell/whatsapp-web',
+      stack: 'React + Firebase + SCSS'
+    },
+    {
+      id: uuid(),
+      title: 'Space Tourism',
+      description: 'Space Tour UI from Frontend Mentors',
+      isPrivate: false,
+      liveLink: 'https://space-tour.vercel.app',
+      github: 'https://github.com/Adebesin-Cell/space-tourism',
+      stack: 'React + SCSS'
+    },
+    {
+      id: uuid(),
+      title: 'Photo Concept',
+      description: 'A Photo Concept Landing Page',
+      isPrivate: false,
+      liveLink: 'https://photo-concept.vercel.app/',
+      github: 'https://github.com/Adebesin-Cell/photo-concept',
+      stack: 'React + SCSS'
+    }
   ];
 
   return (
@@ -90,8 +120,8 @@ const Work = function (props) {
         </WorkList>
       </WorkContainerHalf>
       <NavButton
-        prev={{ url: "/", text: "Home" }}
-        next={{ url: "/resume", text: "Resume" }}
+        prev={{ url: '/', text: 'Home' }}
+        next={{ url: '/resume', text: 'Resume' }}
       />
     </WorkWrapper>
   );
