@@ -7,11 +7,11 @@ import {
   BaseIntroParagraph,
   BaseIntroParagraphHighlight,
   BaseIntroLink,
-  BaseIntroButton,
-} from "./Base.style";
-import avatar from "../../assets/images/avatar.jpg";
-import * as Icon from "react-feather";
-import Helmet from "react-helmet";
+  BaseIntroButton
+} from './Base.style';
+import avatar from '../../assets/images/funavatar.JPG';
+import * as Icon from 'react-feather';
+import Helmet from 'react-helmet';
 
 const Base = function (props) {
   return (
@@ -30,29 +30,29 @@ const Base = function (props) {
           <BaseIntroParagraph>
             I'm a frontend developer. I create interactive
             <BaseIntroParagraphHighlight>
-              {" "}
-              experiences{" "}
+              {' '}
+              experiences{' '}
             </BaseIntroParagraphHighlight>
             with modern
             <BaseIntroParagraphHighlight>
-              {" "}
-              web technologies.{" "}
+              {' '}
+              web technologies.{' '}
             </BaseIntroParagraphHighlight>
             I'm currently learning how to
             <BaseIntroParagraphHighlight>
-              {" "}
+              {' '}
               design products
-            </BaseIntroParagraphHighlight>{" "}
+            </BaseIntroParagraphHighlight>{' '}
             and create beautiful web
             <BaseIntroParagraphHighlight>
-              {" "}
+              {' '}
               animations
             </BaseIntroParagraphHighlight>
             .
           </BaseIntroParagraph>
           <BaseIntroLink to='/work'>
             <BaseIntroButton mytheme={props.theme}>
-              <span>Explore</span>{" "}
+              <span>Explore</span>{' '}
               <span className='icon'>{<Icon.ChevronRight />}</span>
             </BaseIntroButton>
           </BaseIntroLink>

@@ -1,7 +1,7 @@
-import * as Icon from "react-feather";
-import uuid from "react-uuid";
-import resume from "../../assets/Tolulope-Adebesin-resume.pdf";
-import { Link } from "react-router-dom";
+import * as Icon from 'react-feather';
+import uuid from 'react-uuid';
+import resume from '../../assets/Tolulope-Adebesin-resume.pdf';
+import { Link } from 'react-router-dom';
 import {
   ResumeBody,
   ResumeHeader,
@@ -21,42 +21,51 @@ import {
   ResumeExperienceDate,
   ResumeExperienceDescription,
   ResumeExperienceAchievements,
-  ResumeExperienceItem,
-} from "./ResumeTemplate.style";
-import React from "react";
+  ResumeExperienceItem
+} from './ResumeTemplate.style';
+import React from 'react';
 
 const resumeObj = {
   coreSkills: [
-    "HTML/CSS/SCSS",
-    "JavaScript[ES6+]",
-    "React JS",
-    "Tailwind CSS",
-    "Bootstrap",
-    "Firebase",
-    "Strapi",
+    'HTML/CSS/SCSS',
+    'JavaScript[ES6+]',
+    'React JS',
+    'Tailwind CSS',
+    'Bootstrap',
+    'Firebase',
+    'Strapi'
   ],
 
-  familiarSkills: ["Figma", "Adobe XD"],
+  familiarSkills: ['Figma', 'Adobe XD'],
 
   experience: [
     {
       id: uuid(),
-      company: "Zealarax Technologies",
-      position: "Frontend Developer [Intern]",
-      startDate: "January 2021",
-      endDate: "January 2022",
+      company: 'Zealarax Technologies',
+      position: 'Frontend Developer [Intern]',
+      startDate: 'January 2021',
+      endDate: 'January 2022',
       description:
-        " I contributed in developing user interfaces for quite a number of products while learning new skills.",
+        ' I contributed in developing user interfaces for quite a number of products while learning new skills.',
       achievements: [
-        "I learnt basic and mid-level frontend skills with the Zealarax Team.",
-        "Collaborated with Laravel and PHP developers to build a software used by over 3000 university students.",
-        "Worked with Laravel developers to build a web application for a high school.",
-        "Built basic web components using SCSS.",
-      ],
+        'I learnt basic and mid-level frontend skills with the Zealarax Team.',
+        'Collaborated with Laravel and PHP developers to build a software used by over 3000 university students.',
+        'Worked with Laravel developers to build a web application for a high school.',
+        'Built basic web components using SCSS.'
+      ]
     },
+    {
+      id: uuid(),
+      company: 'IQ.Wiki - Braindao',
+      position: 'Junior Frontend Developer',
+      startDate: 'October 2022',
+      endDate: '',
+      description: '',
+      achievements: []
+    }
   ],
 
-  onTheJob: ["Version Control", "CI/CD", "Best Practices"],
+  onTheJob: ['Version Control', 'CI/CD', 'Best Practices']
 };
 
 const ResumeTemplate = function () {
@@ -100,17 +109,17 @@ const ResumeTemplate = function () {
           <ResumeDividerTitle>Core Technologies</ResumeDividerTitle>
           <ResumeDividerLine></ResumeDividerLine>
         </ResumeDivider>
-        <ResumeSkills>{resumeObj.coreSkills.join(", ")}.</ResumeSkills>
+        <ResumeSkills>{resumeObj.coreSkills.join(', ')}.</ResumeSkills>
         <ResumeDivider>
           <ResumeDividerTitle>Familiar With</ResumeDividerTitle>
           <ResumeDividerLine></ResumeDividerLine>
         </ResumeDivider>
-        <ResumeSkills>{resumeObj.familiarSkills.join(", ")}.</ResumeSkills>
+        <ResumeSkills>{resumeObj.familiarSkills.join(', ')}.</ResumeSkills>
         <ResumeDivider>
           <ResumeDividerTitle>On The Job</ResumeDividerTitle>
           <ResumeDividerLine></ResumeDividerLine>
         </ResumeDivider>
-        <ResumeSkills>{resumeObj.onTheJob.join(", ")}.</ResumeSkills>
+        <ResumeSkills>{resumeObj.onTheJob.join(', ')}.</ResumeSkills>
         <ResumeDivider>
           <ResumeDividerTitle>Work Experience</ResumeDividerTitle>
           <ResumeDividerLine></ResumeDividerLine>
@@ -122,8 +131,8 @@ const ResumeTemplate = function () {
                 {experience.company} - {experience.position}
               </ResumeExperienceTitle>
               <ResumeExperienceDate>
-                {experience.startDate} -{" "}
-                {experience.endDate === null ? "Present" : experience.endDate}
+                {experience.startDate} -{' '}
+                {!experience.endDate ? 'Present' : experience.endDate}
               </ResumeExperienceDate>
               <ResumeExperienceDescription>
                 {experience.description}
@@ -147,7 +156,7 @@ const ResumeTemplate = function () {
         </ResumeDivider>
         <ResumeProjects>
           <span>
-            Links to my works can be found on{" "}
+            Links to my works can be found on{' '}
             <Link to='/work'>Lope.cell.vercel.app/work</Link> and more details
             can be provided upon request
           </span>
