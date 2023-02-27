@@ -1,10 +1,10 @@
-import * as Icon from "react-feather";
+import * as Icon from 'react-feather';
 import {
   SocialsContainer,
   SocialsIcons,
   SocialIcon,
-  SocialsCredit,
-} from "./Socials.style";
+  SocialsCredit
+} from './Socials.style';
 
 const Socials = function () {
   return (
@@ -20,7 +20,7 @@ const Socials = function () {
           </svg>
         </SocialIcon>
         <SocialIcon
-          href='https://twitter.com/Emmanue21243400'
+          href='https://twitter.com/I_am_Lope'
           target='_blank'
           rel='noopener noreferrer'
         >

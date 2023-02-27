@@ -1,4 +1,4 @@
-import * as Icon from "react-feather";
+import * as Icon from 'react-feather';
 import {
   MenuContainer,
   MenuNav,
@@ -7,8 +7,8 @@ import {
   MenuNavLink,
   MenuSocials,
   MenuSocialsHeading,
-  MenuSocialsList,
-} from "./Menu.style";
+  MenuSocialsList
+} from './Menu.style';
 
 const Menu = function (props) {
   return (
@@ -52,7 +52,7 @@ const Menu = function (props) {
               </span>
             </a>
             <a
-              href='https://twitter.com/Emmanue21243400'
+              href='https://twitter.com/I_am_Lope'
               className='socials__link'
               target='_blank'
               rel='noopener noreferrer'

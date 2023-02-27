@@ -161,7 +161,7 @@ const App = function () {
                   ></AppSidebarImage>
                   <AppSidebarSocials>
                     <a
-                      href='https://twitter.com/Emmanue21243400'
+                      href='https://twitter.com/I_am_Lope'
                       className='socials__link'
                       target='_blank'
                       rel='noopener noreferrer'
