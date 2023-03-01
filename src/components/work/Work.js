@@ -23,18 +23,6 @@ const Work = function (props) {
     },
     {
       id: uuid(),
-      title: 'UniAbuja',
-      description: 'University Of Abuja website.',
-      isPrivate: true,
-      liveLink: 'https://www.uniabuja.edu.ng/',
-      github: '',
-      stack: 'Laravel + Scss + PHP'
-    }
-  ];
-
-  const projects = [
-    {
-      id: uuid(),
       title: 'IQ Oraqles',
       description:
         'IQ.wiki OraQles formerly Everipedia OraQles is a service that allows verified first parties to bring real-world information on-chain.',
@@ -42,6 +30,18 @@ const Work = function (props) {
       liveLink: 'https://oraqles.com/',
       github: 'https://github.com/EveripediaNetwork/oraqles-ui/',
       stack: 'Next Js + Chakra UI + Wagmi'
+    }
+  ];
+
+  const projects = [
+    {
+      id: uuid(),
+      title: 'UniAbuja',
+      description: 'University Of Abuja website.',
+      isPrivate: true,
+      liveLink: 'https://www.uniabuja.edu.ng/',
+      github: '',
+      stack: 'Laravel + Scss + PHP'
     },
     {
       id: uuid(),
