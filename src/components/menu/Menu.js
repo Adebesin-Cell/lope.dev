@@ -1,4 +1,5 @@
 import * as Icon from 'react-feather';
+import IQWikiLogo from '../../assets/IQWikiLogo';
 import {
   MenuContainer,
   MenuNav,
@@ -75,6 +76,16 @@ const Menu = function (props) {
               rel='noopener noreferrer'
             >
               <span className='icon'>{<Icon.AtSign />}</span>
+            </a>
+            <a
+              href='https://iq.wiki/account/0x7ecCabb7c748BCfa8556C8B31e85a11827D0450e'
+              className='socials__link'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <span className='icon icon--lg icon--no-fill'>
+                <IQWikiLogo />
+              </span>
             </a>
           </MenuSocialsList>
         </MenuSocials>

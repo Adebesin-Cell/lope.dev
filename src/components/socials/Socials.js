@@ -1,4 +1,5 @@
 import * as Icon from 'react-feather';
+import IQWikiLogo from '../../assets/IQWikiLogo';
 import {
   SocialsContainer,
   SocialsIcons,
@@ -33,6 +34,16 @@ const Socials = function () {
         >
           <span>
             <Icon.AtSign />
+          </span>
+        </SocialIcon>
+        <SocialIcon
+          href='https://iq.wiki/account/0x7ecCabb7c748BCfa8556C8B31e85a11827D0450e'
+          className='socials__link'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          <span className='icon icon--lg icon--no-fill'>
+            <IQWikiLogo />
           </span>
         </SocialIcon>
       </SocialsIcons>

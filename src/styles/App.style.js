@@ -1,5 +1,5 @@
-import styledComponents from "styled-components";
-import { Link } from "react-router-dom";
+import styledComponents from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const AppContainer = styledComponents.div`
     display: grid;
@@ -158,15 +158,15 @@ export const AppSidebarNavItem = styledComponents.li`
 
     &:first-child a {
         color: ${({ path, theme }) =>
-          path === "/" || path === "/work" ? theme.active : theme.inactive};
+          path === '/' || path === '/work' ? theme.active : theme.inactive};
 
           .underline {
                 background: ${({ path, theme }) =>
-                  path === "/" || path === "/work"
+                  path === '/' || path === '/work'
                     ? theme.active
                     : theme.inactive};
                 width: ${({ path }) =>
-                  path === "/" || path === "/work" ? "80px" : "40px"}
+                  path === '/' || path === '/work' ? '80px' : '40px'}
             }
     }
 `;
@@ -188,7 +188,7 @@ export const AppLink = styledComponents(Link)`
     .underline {
         background: ${({ active, theme }) =>
           active ? theme.active : theme.inactive};
-        width: ${({ active }) => (active ? "80px" : "40px")}
+        width: ${({ active }) => (active ? '80px' : '40px')}
     }
 
     &:hover {
@@ -230,7 +230,7 @@ export const AppSidebarImage = styledComponents.img`
 export const AppSidebarSocials = styledComponents.div`
     align-self: center;
     display: flex;
-    gap: calc(var(--span-s) + 5px);
+    gap: calc(var(--span-xs) + 5px);
 
     .socials__link {
         display: flex;

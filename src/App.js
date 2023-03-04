@@ -36,6 +36,7 @@ import Success from './components/success/Success';
 import { initializeApp } from 'firebase/app';
 import { getAnalytics, logEvent } from 'firebase/analytics';
 import { firebaseConfig } from './utils/Firebase';
+import IQWikiLogo from './assets/IQWikiLogo';
 
 const NavLinks = [
   {
@@ -198,6 +199,20 @@ const App = function () {
                         {<Icon.AtSign />}
                       </span>
                       <span className='text'>Email</span>
+                      <span className='icon icon--sm'>
+                        {<Icon.ExternalLink></Icon.ExternalLink>}
+                      </span>
+                    </a>
+                    <a
+                      href='https://iq.wiki/account/0x7ecCabb7c748BCfa8556C8B31e85a11827D0450e'
+                      className='socials__link'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >
+                      <span className='icon icon--lg icon--no-fill'>
+                        <IQWikiLogo />
+                      </span>
+                      <span className='text'>IQ.Wiki</span>
                       <span className='icon icon--sm'>
                         {<Icon.ExternalLink></Icon.ExternalLink>}
                       </span>
