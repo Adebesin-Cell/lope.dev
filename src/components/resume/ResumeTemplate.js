@@ -27,16 +27,26 @@ import React from 'react';
 
 const resumeObj = {
   coreSkills: [
-    'HTML/CSS/SCSS',
-    'JavaScript[ES6+]',
-    'React JS',
+    'Next.js',
+    'TRPC',
+    'React.js',
     'Tailwind CSS',
-    'Bootstrap',
+    'Chakra UI',
     'Firebase',
-    'Strapi'
+    'Github',
+    'Javascript',
+    'CSS/SCSS',
+    'HTML'
   ],
 
-  familiarSkills: ['Figma', 'Adobe XD'],
+  familiarSkills: [
+    'RTK',
+    'React Query',
+    'Rainbow Toolkit',
+    'Figma',
+    'Adobe XD',
+    'NPM'
+  ],
 
   experience: [
     {
@@ -56,8 +66,8 @@ const resumeObj = {
     },
     {
       id: uuid(),
-      company: 'IQ.Wiki - Braindao',
-      position: 'Junior Frontend Developer',
+      company: 'IQ.Wiki - Braindao - Everipedia',
+      position: 'Junior Frontend Engineer',
       startDate: 'October 2022',
       endDate: '',
       description: '',
@@ -65,7 +75,7 @@ const resumeObj = {
     }
   ],
 
-  onTheJob: ['Version Control', 'CI/CD', 'Best Practices']
+  onTheJob: ['Version Control', 'CI/CD', 'Best Practices', 'SEO']
 };
 
 const ResumeTemplate = function () {
@@ -107,22 +117,22 @@ const ResumeTemplate = function () {
         </ResumeSummary>
         <ResumeDivider>
           <ResumeDividerTitle>Core Technologies</ResumeDividerTitle>
-          <ResumeDividerLine></ResumeDividerLine>
+          <ResumeDividerLine />
         </ResumeDivider>
         <ResumeSkills>{resumeObj.coreSkills.join(', ')}.</ResumeSkills>
         <ResumeDivider>
           <ResumeDividerTitle>Familiar With</ResumeDividerTitle>
-          <ResumeDividerLine></ResumeDividerLine>
+          <ResumeDividerLine />
         </ResumeDivider>
         <ResumeSkills>{resumeObj.familiarSkills.join(', ')}.</ResumeSkills>
         <ResumeDivider>
           <ResumeDividerTitle>On The Job</ResumeDividerTitle>
-          <ResumeDividerLine></ResumeDividerLine>
+          <ResumeDividerLine />
         </ResumeDivider>
         <ResumeSkills>{resumeObj.onTheJob.join(', ')}.</ResumeSkills>
         <ResumeDivider>
           <ResumeDividerTitle>Work Experience</ResumeDividerTitle>
-          <ResumeDividerLine></ResumeDividerLine>
+          <ResumeDividerLine />
         </ResumeDivider>
         <ResumeExperienceContainer>
           {resumeObj.experience.map((experience, index) => (
@@ -152,7 +162,7 @@ const ResumeTemplate = function () {
         </ResumeExperienceContainer>
         <ResumeDivider>
           <ResumeDividerTitle>Projects</ResumeDividerTitle>
-          <ResumeDividerLine></ResumeDividerLine>
+          <ResumeDividerLine />
         </ResumeDivider>
         <ResumeProjects>
           <span>

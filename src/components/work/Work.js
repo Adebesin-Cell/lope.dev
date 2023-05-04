@@ -19,53 +19,58 @@ const Work = function (props) {
       isPrivate: false,
       liveLink: 'https://iq.wiki',
       github: 'https://github.com/EveripediaNetwork/ep-ui',
-      stack: 'Next Js + Chakra UI + RTK + Wagmi + IPFS'
+      stack: 'Next.js + Chakra UI + RTK + Wagmi + IPFS'
     },
     {
       id: uuid(),
       title: 'IQ Oraqles',
       description:
-        'IQ.wiki OraQles formerly Everipedia OraQles is a service that allows verified first parties to bring real-world information on-chain.',
-      isPrivate: true,
+        'IQ OraQles formerly Everipedia OraQles is a service that allows verified first parties to bring real-world information on-chain.',
+      isPrivate: false,
       liveLink: 'https://oraqles.com/',
       github: 'https://github.com/EveripediaNetwork/oraqles-ui/',
-      stack: 'Next Js + Chakra UI + Wagmi'
+      stack: 'Next.js + Chakra UI + Wagmi'
+    },
+    {
+      id: uuid(),
+      title: 'IQ Search',
+      description:
+        'IQ GPT is an AI-powered search engine that retrieves the latest crypto and blockchain insights from IQ Wiki, AP News & Flywheel',
+      isPrivate: false,
+      liveLink: 'https://search.iq.wiki',
+      github: 'https://github.com/EveripediaNetwork/iq-search',
+      stack: 'Next.js + Zod + Chakra UI + OpenAI'
     }
   ];
 
   const projects = [
     {
       id: uuid(),
+      title: 'Crypto Pulse',
+      description:
+        'AI-generated news on tokens for the latest updates and health of the crypto world.',
+      isPrivate: false,
+      liveLink: 'https://cryptopulse.vercel.app/',
+      github: 'https://github.com/Royal-lobster/Crypto-Pulse',
+      stack:
+        'ZOD + T3 Stack - (Next.js,Tailwind CSS, trpc, prisma), React Query + Banana'
+    },
+    {
+      id: uuid(),
       title: 'UniAbuja',
-      description: 'University Of Abuja website.',
+      description:
+        'Discover the University of Abuja: Nigerian excellence in education, research, and innovation, at your fingertips.',
       isPrivate: true,
       liveLink: 'https://www.uniabuja.edu.ng/',
       github: '',
       stack: 'Laravel + Scss + PHP'
     },
-    {
-      id: uuid(),
-      title: 'Lope.dev',
-      description: 'My portfolio webpage.',
-      isPrivate: false,
-      liveLink: 'https://lope-dev-cell.vercel.app/',
-      github: 'https://github.com/Adebesin-Cell/lope.dev',
-      stack: 'React + Strapi'
-    },
-    {
-      id: uuid(),
-      title: 'Whatsapp Web UI',
-      description:
-        'A redesign for WhatsApp Web could involve a variety of changes to improve the user experience and overall aesthetic of the platform',
-      isPrivate: false,
-      liveLink: 'https://whatsapp-web-nu.vercel.app',
-      github: 'https://github.com/Adebesin-Cell/whatsapp-web',
-      stack: 'React + Firebase + SCSS'
-    },
+
     {
       id: uuid(),
       title: 'Space Tourism',
-      description: 'Space Tour UI from Frontend Mentors',
+      description:
+        'A futuristic and immersive interface for space tourism, featuring stunning graphics, virtual tours, and interactive guides.',
       isPrivate: false,
       liveLink: 'https://space-tour.vercel.app',
       github: 'https://github.com/Adebesin-Cell/space-tourism',
@@ -73,12 +78,23 @@ const Work = function (props) {
     },
     {
       id: uuid(),
-      title: 'Photo Concept',
-      description: 'A Photo Concept Landing Page',
+      title: 'Whatsapp Web UI',
+      description:
+        'A fresh and modern user interface for seamless messaging and communication, now with enhanced functionality.',
       isPrivate: false,
-      liveLink: 'https://photo-concept.vercel.app/',
-      github: 'https://github.com/Adebesin-Cell/photo-concept',
-      stack: 'React + SCSS'
+      liveLink: 'https://whatsapp-web-nu.vercel.app',
+      github: 'https://github.com/Adebesin-Cell/whatsapp-web',
+      stack: 'React + Firebase + SCSS'
+    },
+    {
+      id: uuid(),
+      title: 'Lope.dev',
+      description:
+        'Explore the digital world through the lens of a passionate software developer. Discover my projects, skills, and experiences',
+      isPrivate: false,
+      liveLink: 'https://lope-dev-cell.vercel.app/',
+      github: 'https://github.com/Adebesin-Cell/lope.dev',
+      stack: 'React + Helmet + Styled Components'
     }
   ];
 
@@ -97,6 +113,7 @@ const Work = function (props) {
             github={project.github}
             live={project.liveLink}
             stack={project.stack}
+            theme={props.theme}
           />
         ))}
       </WorkContainer>
@@ -115,6 +132,7 @@ const Work = function (props) {
               github={project.github}
               live={project.liveLink}
               stack={project.stack}
+              theme={props.theme}
             />
           ))}
         </WorkList>

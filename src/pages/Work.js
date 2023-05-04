@@ -1,6 +1,6 @@
-import { WorkBox } from "../styles/Work.style";
-import Work from "../components/work/Work";
-import Helmet from "react-helmet";
+import { WorkBox } from '../styles/Work.style';
+import Work from '../components/work/Work';
+import Helmet from 'react-helmet';
 
 const WorkPage = function (props) {
   return (

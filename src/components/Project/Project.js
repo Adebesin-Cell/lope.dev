@@ -1,5 +1,5 @@
-import * as Icon from "react-feather";
-import Card from "../UI/Card";
+import * as Icon from 'react-feather';
+import Card from '../UI/Card';
 import {
   ProjectHeading,
   CardContainer,
@@ -7,16 +7,16 @@ import {
   ProjectStack,
   ProjectDescription,
   CardFooter,
-  CardLink,
-} from "./Project.style";
+  CardLink
+} from './Project.style';
 
 const Project = function (props) {
   const classes = `${props.className} ${
-    props.index % 2 !== 0 && props.index ? "card--pad" : ""
+    props.index % 2 !== 0 && props.index ? 'card--pad' : ''
   }`;
 
   return (
-    <Card className={classes}>
+    <Card className={classes} cardTheme={props.theme}>
       <CardContainer>
         <ProjectDetails>
           <ProjectHeading>{props.title}</ProjectHeading>
