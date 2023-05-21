@@ -68,7 +68,7 @@ const resumeObj = {
       id: uuid(),
       company: 'IQ.Wiki - Braindao - Everipedia',
       position: 'Junior Frontend Engineer',
-      startDate: 'October 2022',
+      startDate: 'September 2022',
       endDate: '',
       description: '',
       achievements: []
