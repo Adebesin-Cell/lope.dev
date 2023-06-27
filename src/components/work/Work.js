@@ -27,7 +27,7 @@ const Work = function (props) {
       description:
         'IQ GPT is an AI-powered search engine that retrieves the latest crypto and blockchain insights from IQ Wiki, AP News, Flywheel, Coingecko, Blockchair and Coinness.',
       isPrivate: false,
-      liveLink: 'https://search.iq.wiki',
+      liveLink: 'https://iqgpt.com/',
       github: 'https://github.com/EveripediaNetwork/iq-search',
       stack: 'Next.js + Zod + Chakra UI + OpenAI'
     },
