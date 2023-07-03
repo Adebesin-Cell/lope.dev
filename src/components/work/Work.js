@@ -21,16 +21,6 @@ const Work = function (props) {
       github: 'https://github.com/EveripediaNetwork/ep-ui',
       stack: 'Next.js + Chakra UI + RTK + Wagmi + IPFS'
     },
-   {
-      id: uuid(),
-      title: 'IQ GPT',
-      description:
-        'IQ GPT is an AI-powered search engine that retrieves the latest crypto and blockchain insights from IQ Wiki, AP News, Flywheel, Coingecko, Blockchair and Coinness.',
-      isPrivate: false,
-      liveLink: 'https://iqgpt.com/',
-      github: 'https://github.com/EveripediaNetwork/iq-search',
-      stack: 'Next.js + Zod + Chakra UI + OpenAI'
-    },
     {
       id: uuid(),
       title: 'IQ Oraqles',
