@@ -95,17 +95,17 @@ const ResumeTemplate = function () {
               </span>
               <span>LinkedIn</span>
             </ResumeActionButton>
-            <ResumeActionButton
-              download={true}
-              href={resume}
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              <span className='icon'>
-                <Icon.Download />
-              </span>
-              <span>Download</span>
-            </ResumeActionButton>
+            // <ResumeActionButton
+            //   download={true}
+            //   href={resume}
+            //   target='_blank'
+            //   rel='noopener noreferrer'
+            // >
+            //   <span className='icon'>
+            //     <Icon.Download />
+            //   </span>
+            //   <span>Download</span>
+            // </ResumeActionButton>
           </ResumeActions>
         </ResumeHeader>
         <ResumeTitle>Frontend Developer</ResumeTitle>
