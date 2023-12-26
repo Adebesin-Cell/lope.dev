@@ -1,6 +1,6 @@
 import * as Icon from 'react-feather';
 import uuid from 'react-uuid';
-import resume from '../../assets/Tolulope-Adebesin-resume.pdf';
+import resume from '../../assets/Tolulope-Adebesin-Resume.pdf';
 import { Link } from 'react-router-dom';
 import {
   ResumeBody,
@@ -72,7 +72,7 @@ const resumeObj = {
       endDate: '',
       description: '',
       achievements: []
-    }
+    },
   ],
 
   onTheJob: ['Version Control', 'CI/CD', 'Best Practices', 'SEO']
@@ -80,7 +80,6 @@ const resumeObj = {
 
 const ResumeTemplate = function () {
   return (
-    <React.Fragment>
       <ResumeBody>
         <ResumeHeader>
           <ResumeHeading>Adebesin Tolulope</ResumeHeading>
@@ -95,17 +94,17 @@ const ResumeTemplate = function () {
               </span>
               <span>LinkedIn</span>
             </ResumeActionButton>
-            // <ResumeActionButton
-            //   download={true}
-            //   href={resume}
-            //   target='_blank'
-            //   rel='noopener noreferrer'
-            // >
-            //   <span className='icon'>
-            //     <Icon.Download />
-            //   </span>
-            //   <span>Download</span>
-            // </ResumeActionButton>
+            <ResumeActionButton
+              download={true}
+              href={resume}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <span className='icon'>
+                <Icon.Download />
+              </span>
+              <span>Download</span>
+            </ResumeActionButton>
           </ResumeActions>
         </ResumeHeader>
         <ResumeTitle>Frontend Developer</ResumeTitle>
@@ -149,7 +148,7 @@ const ResumeTemplate = function () {
               </ResumeExperienceDescription>
               {experience.achievements.map((achievement, index) => (
                 <ResumeExperienceAchievements
-                  key={`${experience.id}__${index}`}
+                  key={`${experience.id}__`}
                 >
                   <ResumeExperienceItem>
                     <span className='icon'>■</span>
@@ -172,7 +171,6 @@ const ResumeTemplate = function () {
           </span>
         </ResumeProjects>
       </ResumeBody>
-    </React.Fragment>
   );
 };
 
