@@ -1,6 +1,6 @@
 import * as Icon from 'react-feather';
 import uuid from 'react-uuid';
-import resume from '../../assets/Tolulope-Adebesin-Resume.pdf';
+import resume from '../../assets/resume.pdf';
 import { Link } from 'react-router-dom';
 import {
   ResumeBody,
