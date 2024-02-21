@@ -1,5 +1,5 @@
-import styledComponents from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import styledComponents from "styled-components";
 
 export const AppContainer = styledComponents.div`
     display: grid;
@@ -49,7 +49,7 @@ export const AppSidebarContent = styledComponents.div`
 export const AppSidebarHeading = styledComponents.h1`
     font-family: var(--Inter);
     font-size: ${({ isSmall }) =>
-      isSmall ? `var(--size-m)` : `calc(var(--size-m) * 3.5)`};
+			isSmall ? "var(--size-m)" : "calc(var(--size-m) * 3.5)"};
     font-weight: var(--weight-xlg);
     line-height: 64px;
     text-align: left;
@@ -57,13 +57,13 @@ export const AppSidebarHeading = styledComponents.h1`
 
     @media only screen and (max-width: 1400px) {
         font-size: ${({ isSmall }) =>
-          isSmall ? `var(--size-m)` : `calc(var(--size-m) * 2.5)`};
+					isSmall ? "var(--size-m)" : "calc(var(--size-m) * 2.5)"};
         line-height: 48px;
     }
 
     @media only screen and (max-width: 1140px) {
         font-size: ${({ isSmall }) =>
-          isSmall ? `var(--size-m)` : `calc(var(--size-m) * 2.5)`};
+					isSmall ? "var(--size-m)" : "calc(var(--size-m) * 2.5)"};
         line-height: 48px;
     }
     
@@ -71,13 +71,13 @@ export const AppSidebarHeading = styledComponents.h1`
 
 export const AppSidebarSpan = styledComponents.span`
     font-size: ${({ isSmall }) =>
-      isSmall ? `calc(var(--size-m) + 4px)` : `inherit`};
-    line-height:  ${({ isSmall }) => (isSmall ? `28px` : `inherit`)};
+			isSmall ? "calc(var(--size-m) + 4px)" : "inherit"};
+    line-height:  ${({ isSmall }) => (isSmall ? "28px" : "inherit")};
     display: block;
 
     @media only screen and (max-width: 1400px) {
-        font-size: ${({ isSmall }) => (isSmall ? `var(--size-m)` : `inherit`)};
-        line-height:  ${({ isSmall }) => (isSmall ? `25px` : `inherit`)};
+        font-size: ${({ isSmall }) => (isSmall ? "var(--size-m)" : "inherit")};
+        line-height:  ${({ isSmall }) => (isSmall ? "25px" : "inherit")};
     }
 `;
 
@@ -158,15 +158,15 @@ export const AppSidebarNavItem = styledComponents.li`
 
     &:first-child a {
         color: ${({ path, theme }) =>
-          path === '/' || path === '/work' ? theme.active : theme.inactive};
+					path === "/" || path === "/work" ? theme.active : theme.inactive};
 
           .underline {
                 background: ${({ path, theme }) =>
-                  path === '/' || path === '/work'
-                    ? theme.active
-                    : theme.inactive};
+									path === "/" || path === "/work"
+										? theme.active
+										: theme.inactive};
                 width: ${({ path }) =>
-                  path === '/' || path === '/work' ? '80px' : '40px'}
+									path === "/" || path === "/work" ? "80px" : "40px"}
             }
     }
 `;
@@ -187,8 +187,8 @@ export const AppLink = styledComponents(Link)`
 
     .underline {
         background: ${({ active, theme }) =>
-          active ? theme.active : theme.inactive};
-        width: ${({ active }) => (active ? '80px' : '40px')}
+					active ? theme.active : theme.inactive};
+        width: ${({ active }) => (active ? "80px" : "40px")}
     }
 
     &:hover {
