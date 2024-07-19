@@ -204,7 +204,7 @@ const App = () => {
 											</span>
 										</a>
 										<a
-											href="https://iq.wiki/account/0x7ecCabb7c748BCfa8556C8B31e85a11827D0450e"
+											href="https://iq.wiki/wiki/adebesin-tolulope/"
 											className="socials__link"
 											target="_blank"
 											rel="noopener noreferrer"
