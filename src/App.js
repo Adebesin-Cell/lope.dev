@@ -59,13 +59,14 @@ const NavLinks = [
 ];
 
 const App = () => {
+	const HIGHLIGHT_DURATION_MS = 4000;
+	const HIGHLIGHT_INTERVAL_MS = 8000;
 	const [theme, themeToggler] = useDarkMode();
 	const { pathname } = useLocation();
-	const [_, setPathName] = useState("");
+	const [, setPathName] = useState("");
 	const [textIsHiglighted, setTextIsHiglighted] = useState(true);
 
 	const themeMode = theme === "dark" ? darkTheme : lightTheme;
-
 	const highlight = textIsHiglighted ? "animate" : "";
 
 	const setPathNameHandler = (e) => {
@@ -78,14 +79,15 @@ const App = () => {
 	logEvent(analytics, "notification_received");
 
 	useEffect(() => {
-		setTextIsHiglighted(true);
-
-		const timer = setTimeout(() => {
-			setTextIsHiglighted(false);
-		}, 4000);
+		const interval = setInterval(() => {
+			setTextIsHiglighted(true);
+			setTimeout(() => {
+				setTextIsHiglighted(false);
+			}, HIGHLIGHT_DURATION_MS);
+		}, HIGHLIGHT_INTERVAL_MS);
 
 		return () => {
-			clearTimeout(timer);
+			clearInterval(interval);
 		};
 	}, []);
 
