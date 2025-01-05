@@ -52,11 +52,11 @@ const resumeObj = {
 		{
 			id: uuid(),
 			company: "Zealarax Technologies",
-			position: "Frontend Developer [Intern]",
+			position: ["Frontend Developer [Intern]"],
 			startDate: "January 2021",
 			endDate: "January 2022",
 			description:
-				" I contributed in developing user interfaces for quite a number of products while learning new skills.",
+				"I contributed in developing user interfaces for quite a number of products while learning new skills.",
 			achievements: [
 				"Gained foundational and intermediate frontend development skills while working with the Zealarax Team.",
 				"Collaborated with Laravel and PHP developers to revamp a website that is being utilized by over 3000 university students. (University of Abuja)",
@@ -68,10 +68,15 @@ const resumeObj = {
 		{
 			id: uuid(),
 			company: "IQ.Wiki - Braindao - Everipedia",
-			position: "Junior Frontend Engineer",
+			position: [
+				"Frontend Engineer",
+				"Backend Engineer",
+				"LLM Integration Engineer",
+			],
 			startDate: "September 2022",
 			endDate: "",
-			description: "",
+			description:
+				"Engaged in front-end, backend, AI, and integration projects at IQ.Wiki - Braindao - Everipedia. For detailed descriptions of specific projects and achievements, please refer to my full resume.",
 			achievements: [],
 		},
 	],
@@ -107,9 +112,9 @@ const ResumeTemplate = () => (
 				</ResumeActionButton>
 			</ResumeActions>
 		</ResumeHeader>
-		<ResumeTitle>Frontend Developer</ResumeTitle>
+		<ResumeTitle>Fullstack Developer</ResumeTitle>
 		<ResumeSummary>
-			I'm a frontend web developer, passionate about solving problems with my
+			I'm a fullstack developer, passionate about solving problems with my
 			skills and converting ideas from pixels to products. User experiance is
 			the focus when developing products using the best web tools, technologies
 			and languages.
@@ -134,10 +139,10 @@ const ResumeTemplate = () => (
 			<ResumeDividerLine />
 		</ResumeDivider>
 		<ResumeExperienceContainer>
-			{resumeObj.experience.map((experience, index) => (
+			{resumeObj.experience.map((experience) => (
 				<ResumeExperience key={experience.id} id={experience.id}>
 					<ResumeExperienceTitle>
-						{experience.company} - {experience.position}
+						{experience.company} - {experience.position.join(" | ")}
 					</ResumeExperienceTitle>
 					<ResumeExperienceDate>
 						{experience.startDate} -{" "}
@@ -146,7 +151,7 @@ const ResumeTemplate = () => (
 					<ResumeExperienceDescription>
 						{experience.description}
 					</ResumeExperienceDescription>
-					{experience.achievements.map((achievement, index) => (
+					{experience.achievements.map((achievement) => (
 						<ResumeExperienceAchievements key={`${experience.id}__`}>
 							<ResumeExperienceItem>
 								<span className="icon">■</span>

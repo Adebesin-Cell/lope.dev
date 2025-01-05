@@ -1,4 +1,5 @@
 import uuid from "react-uuid";
+import OpenSourceCard from "../Project/OpenSourceCard";
 import Project from "../Project/Project";
 import NavButton from "../navButtons/NavButton";
 import {
@@ -16,7 +17,7 @@ const Work = (props) => {
 			title: "IQ.WIKI",
 			description:
 				"IQ.wiki is the world's largest blockchain and cryptocurrency encyclopedia with thousands of wikis on all topics and branches of knowledge in the crypto space.",
-			isPrivate: false,
+			isPrivate: true,
 			liveLink: "https://iq.wiki",
 			github: "https://github.com/EveripediaNetwork/ep-ui",
 			stack: "Next.js + Chakra UI + RTK + Wagmi + IPFS",
@@ -31,29 +32,9 @@ const Work = (props) => {
 			github: "https://github.com/EveripediaNetwork/iq-search/",
 			stack: "Next.js + TailwindCSS + Typescript + Langchain",
 		},
-		{
-			id: uuid(),
-			title: "IQ.Social",
-			description:
-				"IQ.social is a digital platform specializing in cryptocurrency news and market insights, leveraging AI technology to provide up-to-date, comprehensiveanalysis and trends in the crypto world.",
-			isPrivate: false,
-			liveLink: "https://iq.social",
-			github: "https://github.com/EveripediaNetwork/aiq-ui",
-			stack: "Next.js + Typescript + Wagmi + TailwindCSS",
-		},
 	];
 
 	const projects = [
-		{
-			id: uuid(),
-			title: "IQ Oraqles",
-			description:
-				"IQ OraQles formerly Everipedia OraQles is a service that allows verified first parties to bring real-world information on-chain.",
-			isPrivate: false,
-			liveLink: "https://oraqles.com/",
-			github: "https://github.com/EveripediaNetwork/oraqles-ui/",
-			stack: "Next.js + Chakra UI + Wagmi",
-		},
 		{
 			id: uuid(),
 			title: "Syncia",
@@ -67,6 +48,16 @@ const Work = (props) => {
 		},
 		{
 			id: uuid(),
+			title: "IQ.Social",
+			description:
+				"IQ.social is a digital platform specializing in cryptocurrency news and market insights, leveraging AI technology to provide up-to-date, comprehensiveanalysis and trends in the crypto world.",
+			isPrivate: true,
+			liveLink: "https://iq.social",
+			github: "https://github.com/EveripediaNetwork/aiq-ui",
+			stack: "Next.js + Typescript + Wagmi + TailwindCSS",
+		},
+		{
+			id: uuid(),
 			title: "UniAbuja",
 			description:
 				"Discover the University of Abuja: Nigerian excellence in education, research, and innovation, at your fingertips.",
@@ -77,23 +68,13 @@ const Work = (props) => {
 		},
 		{
 			id: uuid(),
-			title: "Space Tourism",
+			title: "EchoTrap",
+			liveLink: "https://echo-trap.vercel.app/",
+			github: "https://github.com/Adebesin-Cell/EchoTrap",
 			description:
-				"A futuristic and immersive interface for space tourism, featuring stunning graphics, virtual tours, and interactive guides.",
+				"A web app that enhances audio quality in real-time communications by implementing echo cancellation technology using the Web Audio API.",
+			stack: "Next.js + Shadcn + Tailwind + Typescript + Web Audio API",
 			isPrivate: false,
-			liveLink: "https://space-tour.vercel.app",
-			github: "https://github.com/Adebesin-Cell/space-tourism",
-			stack: "React + SCSS",
-		},
-		{
-			id: uuid(),
-			title: "Whatsapp Web UI",
-			description:
-				"A fresh and modern user interface for seamless messaging and communication, now with enhanced functionality.",
-			isPrivate: false,
-			liveLink: "https://whatsapp-web-nu.vercel.app",
-			github: "https://github.com/Adebesin-Cell/whatsapp-web",
-			stack: "React + Firebase + SCSS",
 		},
 		{
 			id: uuid(),
@@ -146,6 +127,7 @@ const Work = (props) => {
 					))}
 				</WorkList>
 			</WorkContainerHalf>
+			<OpenSourceCard theme={props.theme} />
 			<NavButton
 				prev={{ url: "/", text: "Home" }}
 				next={{ url: "/resume", text: "Resume" }}

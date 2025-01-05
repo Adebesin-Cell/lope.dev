@@ -11,7 +11,7 @@ import MobileView from "./components/home/MobileHome";
 import Success from "./components/success/Success";
 import Toggler from "./components/toggle/Toggler";
 import useDarkMode from "./hooks/useDarkMode";
-import { Contact, Home, NotFound, Resume, Wishlist, Work } from "./pages";
+import { Contact, Home, NotFound, Resume, Work } from "./pages";
 import {
 	AppContainer,
 	AppCredit,
@@ -56,17 +56,12 @@ const NavLinks = [
 		name: "contact",
 		link: "/contact",
 	},
-	{
-		id: uuid(),
-		name: "wishlist",
-		link: "/wishlist",
-	},
 ];
 
 const App = () => {
 	const [theme, themeToggler] = useDarkMode();
 	const { pathname } = useLocation();
-	const [pathName, setPathName] = useState("");
+	const [_, setPathName] = useState("");
 	const [textIsHiglighted, setTextIsHiglighted] = useState(true);
 
 	const themeMode = theme === "dark" ? darkTheme : lightTheme;
@@ -108,32 +103,27 @@ const App = () => {
 						<AppSidebarContent>
 							<AppSidebarWrapper>
 								<AppSidebarHeading>
-									<AppSidebarSpan isSmall={true}>Hello, I'm</AppSidebarSpan>
-									<AppSidebarSpan>Adebesin Tolulope.</AppSidebarSpan>
+									<AppSidebarSpan isSmall={true}>Hi 👋 I'm</AppSidebarSpan>
+									<AppSidebarSpan>Tolulope Adebesin.</AppSidebarSpan>
 								</AppSidebarHeading>
 								<AppSidebarParagraph>
-									I'm a frontend developer. I create interactive
+									I'm a fullstack Engineer with 3+ years of experience in web
+									development. I specialize in building
 									<AppSidebarHighlight className={highlight}>
 										{" "}
-										experiences{" "}
+										user-friendly web solutions{" "}
 									</AppSidebarHighlight>
-									with modern
+									that drive results. Currently working with
 									<AppSidebarHighlight className={highlight}>
 										{" "}
-										web technologies.{" "}
+										backend development, LLMs and blockchain technologies{" "}
 									</AppSidebarHighlight>
-									I'm currently learning how to
+									, including
 									<AppSidebarHighlight className={highlight}>
 										{" "}
-										design products
-									</AppSidebarHighlight>{" "}
-									and create beautiful web
-									<AppSidebarHighlight className={highlight}>
-										{" "}
-										animations
+										AI-powered applications.
 									</AppSidebarHighlight>
-									.
-								</AppSidebarParagraph>
+								</AppSidebarParagraph>{" "}
 								<AppSidebarNav>
 									<AppSidebarNavList>
 										{NavLinks.map((nav, i) => {
@@ -195,15 +185,15 @@ const App = () => {
 											</span>
 										</a>
 										<a
-											href="mailto:adebesintolulope80@gmail.com"
+											href="https://iamlope.medium.com/"
 											className="socials__link"
 											target="_blank"
 											rel="noopener noreferrer"
 										>
 											<span className="icon icon--lg icon--no-fill">
-												{<Icon.AtSign />}
+												{<Icon.Book />}
 											</span>
-											<span className="text">Email</span>
+											<span className="text">Medium</span>
 											<span className="icon icon--sm">
 												{<Icon.ExternalLink />}
 											</span>
@@ -242,7 +232,6 @@ const App = () => {
 							<Route path="/" element={<Home theme={theme} />} />
 							<Route path="/contact" element={<Contact />} />
 							<Route path="/resume" element={<Resume />} />
-							<Route path="/wishlist" element={<Wishlist />} />
 							<Route path="/work" element={<Work theme={theme} />} />
 							<Route path="*" element={<NotFound theme={theme} />} />
 						</Routes>
