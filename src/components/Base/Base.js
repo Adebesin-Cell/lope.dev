@@ -1,65 +1,60 @@
+import * as Icon from "react-feather";
+import Helmet from "react-helmet";
+import avatar from "../../assets/images/funavatar.JPG";
 import {
-  BaseContainer,
-  BaseIntro,
-  BaseIntroImageContainer,
-  BaseIntroImage,
-  BaseIntroHeading,
-  BaseIntroParagraph,
-  BaseIntroParagraphHighlight,
-  BaseIntroLink,
-  BaseIntroButton
-} from './Base.style';
-import avatar from '../../assets/images/funavatar.JPG';
-import * as Icon from 'react-feather';
-import Helmet from 'react-helmet';
+	BaseContainer,
+	BaseIntro,
+	BaseIntroButton,
+	BaseIntroHeading,
+	BaseIntroImage,
+	BaseIntroImageContainer,
+	BaseIntroLink,
+	BaseIntroParagraph,
+	BaseIntroParagraphHighlight,
+} from "./Base.style";
 
-const Base = function (props) {
-  return (
-    <>
-      <Helmet>
-        <title> Lope - Adebesin Tolulope </title>
-      </Helmet>
-      <BaseContainer>
-        <BaseIntro>
-          <BaseIntroImageContainer>
-            <BaseIntroImage src={avatar}></BaseIntroImage>
-          </BaseIntroImageContainer>
-          <BaseIntroHeading>
-            <span>Hello, I'm</span> Adebesin Tolulope
-          </BaseIntroHeading>
-          <BaseIntroParagraph>
-            I'm a frontend developer. I create interactive
-            <BaseIntroParagraphHighlight>
-              {' '}
-              experiences{' '}
-            </BaseIntroParagraphHighlight>
-            with modern
-            <BaseIntroParagraphHighlight>
-              {' '}
-              web technologies.{' '}
-            </BaseIntroParagraphHighlight>
-            I'm currently learning how to
-            <BaseIntroParagraphHighlight>
-              {' '}
-              design products
-            </BaseIntroParagraphHighlight>{' '}
-            and create beautiful web
-            <BaseIntroParagraphHighlight>
-              {' '}
-              animations
-            </BaseIntroParagraphHighlight>
-            .
-          </BaseIntroParagraph>
-          <BaseIntroLink to='/work'>
-            <BaseIntroButton mytheme={props.theme}>
-              <span>Explore</span>{' '}
-              <span className='icon'>{<Icon.ChevronRight />}</span>
-            </BaseIntroButton>
-          </BaseIntroLink>
-        </BaseIntro>
-      </BaseContainer>
-    </>
-  );
+const Base = (props) => {
+	return (
+		<>
+			<Helmet>
+				<title> Lope - Adebesin Tolulope </title>
+			</Helmet>
+			<BaseContainer>
+				<BaseIntro>
+					<BaseIntroImageContainer>
+						<BaseIntroImage src={avatar} />
+					</BaseIntroImageContainer>
+					<BaseIntroHeading>
+						<span>Hi 👋 I'm</span> Tolulope Adebesin
+					</BaseIntroHeading>
+					<BaseIntroParagraph>
+						I'm a fullstack Engineer with 3+ years of experience in web
+						development. I specialize in building
+						<BaseIntroParagraphHighlight>
+							{" "}
+							user-friendly web solutions{" "}
+						</BaseIntroParagraphHighlight>
+						that drive results. Currently working with
+						<BaseIntroParagraphHighlight>
+							{" "}
+							backend development, LLMs and blockchain technologies{" "}
+						</BaseIntroParagraphHighlight>
+						, including
+						<BaseIntroParagraphHighlight>
+							{" "}
+							AI-powered applications
+						</BaseIntroParagraphHighlight>
+						.
+					</BaseIntroParagraph>
+					<BaseIntroLink to="/work">
+						<BaseIntroButton mytheme={props.theme}>
+							<span>Explore</span>{" "}
+							<span className="icon">{<Icon.ChevronRight />}</span>
+						</BaseIntroButton>
+					</BaseIntroLink>
+				</BaseIntro>
+			</BaseContainer>
+		</>
+	);
 };
-
 export default Base;
