@@ -52,6 +52,7 @@ export const OSCardDescription = styled.p`
     @media only screen and (max-width: 600px) {
         font-size: var(--size-xs);
         line-height: 18px;
+        min-height: 40px;
     }
 `;
 
@@ -104,13 +105,4 @@ export const OSContributionDescription = styled.p`
   font-size: 0.875rem;
   color: ${({ theme }) => theme.cardDescription};
   font-family: var(--Inter);
-`;
-
-export const ToggleButton = styled.button`
-  color: ${({ theme }) => theme.textSecondary};
-  transition: color 0.2s;
-
-  &:hover {
-    color: ${({ theme }) => theme.textPrimary};
-  }
 `;
