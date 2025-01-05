@@ -1,15 +1,13 @@
-import ErrorPage from "../components/error/Error";
 import Helmet from "react-helmet";
+import ErrorPage from "../components/error/Error";
 
-const NotFoundPage = function (props) {
-  return (
-    <>
-      <Helmet>
-        <title> 404 | Lope - Adebesin Tolulope</title>
-      </Helmet>
-      <ErrorPage theme={props.theme} />
-    </>
-  );
-};
+const NotFoundPage = (props) => (
+	<>
+		<Helmet>
+			<title> 404 | Lope - Adebesin Tolulope</title>
+		</Helmet>
+		<ErrorPage theme={props.theme} />
+	</>
+);
 
 export default NotFoundPage;

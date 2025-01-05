@@ -11,7 +11,7 @@ import MobileView from "./components/home/MobileHome";
 import Success from "./components/success/Success";
 import Toggler from "./components/toggle/Toggler";
 import useDarkMode from "./hooks/useDarkMode";
-import { Contact, Home, NotFound, Resume, Work } from "./pages";
+import { Contact, Home, NotFound, Resume, Wishlist, Work } from "./pages";
 import {
 	AppContainer,
 	AppCredit,
@@ -55,6 +55,11 @@ const NavLinks = [
 		id: uuid(),
 		name: "contact",
 		link: "/contact",
+	},
+	{
+		id: uuid(),
+		name: "wishlist",
+		link: "/wishlist",
 	},
 ];
 
@@ -162,13 +167,13 @@ const App = () => {
 									/>
 									<AppSidebarSocials>
 										<a
-											href="https://twitter.com/I_am_Lope"
+											href="https://www.linkedin.com/in/adebesin-tolulope/"
 											className="socials__link"
 											target="_blank"
 											rel="noopener noreferrer"
 										>
-											<span className="icon icon--lg">{<Icon.Twitter />}</span>
-											<span className="text">Twitter</span>
+											<span className="icon icon--lg">{<Icon.Linkedin />}</span>
+											<span className="text">LinkedIn</span>
 											<span className="icon icon--sm">
 												{<Icon.ExternalLink />}
 											</span>
@@ -235,8 +240,9 @@ const App = () => {
 					<AppView>
 						<Routes>
 							<Route path="/" element={<Home theme={theme} />} />
-							<Route path="/resume" element={<Resume />} />
 							<Route path="/contact" element={<Contact />} />
+							<Route path="/resume" element={<Resume />} />
+							<Route path="/wishlist" element={<Wishlist />} />
 							<Route path="/work" element={<Work theme={theme} />} />
 							<Route path="*" element={<NotFound theme={theme} />} />
 						</Routes>
