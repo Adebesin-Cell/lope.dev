@@ -37,6 +37,11 @@ const OpenSourceCard = ({ theme }) => {
 			title: "Syncia Issue #98",
 			description: "Visit link to see more",
 		},
+		{
+			url: "https://github.com/chakra-ui/zag/pull/2108",
+			title: "Zag PR #2108",
+			description: "Visit link to see more",
+		},
 	];
 
 	return (
