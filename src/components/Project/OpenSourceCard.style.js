@@ -106,3 +106,13 @@ export const OSContributionDescription = styled.p`
   color: ${({ theme }) => theme.cardDescription};
   font-family: var(--Inter);
 `;
+
+export const ShowMoreButton = styled.button`
+	background: none;
+	border: none;
+	color: ${({ theme }) => theme.cardHeader};
+	cursor: pointer;
+	padding: 10px;
+	width: 100%;
+	text-align: center;
+`;

@@ -12,10 +12,13 @@ import {
 	OSContributionItem,
 	OSContributionList,
 	OSContributionTitle,
+	ShowMoreButton,
 } from "./OpenSourceCard.style";
 import { OSCardWrapper } from "./OpenSourceCard.style";
 
 const OpenSourceCard = ({ theme }) => {
+	const DEFAULT_VISIBLE_ITEMS = 10;
+
 	const contributions = [
 		{
 			url: "https://github.com/PorePranav/CampusUnify/pull/40",
@@ -44,6 +47,11 @@ const OpenSourceCard = ({ theme }) => {
 		},
 	];
 
+	const [showAll, setShowAll] = React.useState(false);
+	const displayedContributions = showAll
+		? contributions
+		: contributions.slice(0, DEFAULT_VISIBLE_ITEMS);
+
 	return (
 		<OSCardWrapper>
 			<Card cardTheme={theme}>
@@ -58,7 +66,7 @@ const OpenSourceCard = ({ theme }) => {
 				</OSCardHeader>
 
 				<OSContributionList>
-					{contributions.map((contribution) => (
+					{displayedContributions.map((contribution) => (
 						<OSContributionItem
 							key={contribution.url}
 							href={contribution.url}
@@ -77,9 +85,15 @@ const OpenSourceCard = ({ theme }) => {
 						</OSContributionItem>
 					))}
 				</OSContributionList>
+				{contributions.length > DEFAULT_VISIBLE_ITEMS && (
+					<ShowMoreButton onClick={() => setShowAll(!showAll)}>
+						{showAll
+							? "Show Less"
+							: `Show ${contributions.length - DEFAULT_VISIBLE_ITEMS} More`}
+					</ShowMoreButton>
+				)}
 			</Card>
 		</OSCardWrapper>
 	);
 };
-
 export default OpenSourceCard;
