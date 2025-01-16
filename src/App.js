@@ -109,23 +109,21 @@ const App = () => {
 									<AppSidebarSpan>Tolulope Adebesin.</AppSidebarSpan>
 								</AppSidebarHeading>
 								<AppSidebarParagraph>
-									I'm a fullstack Engineer with 3+ years of experience in web
-									development. I specialize in building
+									I’m a full-stack engineer with 3+ years in web development,
+									always exploring new technologies and innovative approaches.
+									I’ve worked on a range of production-level projects spanning
 									<AppSidebarHighlight className={highlight}>
 										{" "}
-										user-friendly web solutions{" "}
+										frontend, backend, DevOps, blockchain, and LLMs
 									</AppSidebarHighlight>
-									that drive results. Currently working with
+									. In my free time, I read and write articles, study my school
+									books, watch animes, play basketball, and enjoy reading
+									novels—
 									<AppSidebarHighlight className={highlight}>
-										{" "}
-										backend development, LLMs and blockchain technologies{" "}
-									</AppSidebarHighlight>
-									, including
-									<AppSidebarHighlight className={highlight}>
-										{" "}
-										AI-powered applications.
-									</AppSidebarHighlight>
-								</AppSidebarParagraph>{" "}
+										Not a Penny More, Not a Penny Less
+									</AppSidebarHighlight>{" "}
+									is still one of my favorites.
+								</AppSidebarParagraph>
 								<AppSidebarNav>
 									<AppSidebarNavList>
 										{NavLinks.map((nav, i) => {

@@ -28,24 +28,21 @@ const Base = (props) => {
 						<span>Hi 👋 I'm</span> Tolulope Adebesin
 					</BaseIntroHeading>
 					<BaseIntroParagraph>
-						I'm a fullstack Engineer with 3+ years of experience in web
-						development. I specialize in building
+						I'm a full-stack engineer with 3+ years in web development, always
+						exploring new technologies and innovative approaches. I've worked on
+						a range of production-level projects spanning
 						<BaseIntroParagraphHighlight>
 							{" "}
-							user-friendly web solutions{" "}
+							frontend, backend, DevOps, blockchain, and LLMs
 						</BaseIntroParagraphHighlight>
-						that drive results. Currently working with
+						. In my free time, I read and write articles, study my school books,
+						watch animes, play basketball, and enjoy reading novels—
 						<BaseIntroParagraphHighlight>
 							{" "}
-							backend development, LLMs and blockchain technologies{" "}
-						</BaseIntroParagraphHighlight>
-						, including
-						<BaseIntroParagraphHighlight>
-							{" "}
-							AI-powered applications
-						</BaseIntroParagraphHighlight>
-						.
-					</BaseIntroParagraph>
+							Not a Penny More, Not a Penny Less
+						</BaseIntroParagraphHighlight>{" "}
+						is still one of my favorites.
+					</BaseIntroParagraph>{" "}
 					<BaseIntroLink to="/work">
 						<BaseIntroButton mytheme={props.theme}>
 							<span>Explore</span>{" "}
