@@ -53,7 +53,7 @@ const roleRows = [
 
     <ark.div class="space-y-3 text-sm">
       <ark.div v-for="row in roleRows" :key="row.label" class="flex flex-wrap items-center gap-2">
-        <ark.span class="text-ink-muted w-44 shrink-0">{{ row.label }}</ark.span>
+        <ark.span class="text-ink-muted w-full md:w-44 shrink-0">{{ row.label }}</ark.span>
         <Chip v-for="c in row.chips" :key="c.label" v-bind="c" />
       </ark.div>
     </ark.div>

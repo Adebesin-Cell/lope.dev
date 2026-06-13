@@ -10,5 +10,6 @@ import { ark } from '@ark-ui/vue/factory'
       <slot />
     </ark.main>
     <AppFooter />
+    <ScrollToTop />
   </ark.div>
 </template>

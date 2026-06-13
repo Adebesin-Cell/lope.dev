@@ -4,6 +4,7 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     '@nuxtjs/color-mode',
     '@vueuse/nuxt',
+    'tegaki/nuxt',
   ],
   devtools: { enabled: true },
   compatibilityDate: '2024-04-03',
@@ -23,6 +24,8 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
       ],
     },
   },
@@ -30,7 +33,16 @@ export default defineNuxtConfig({
     githubToken: process.env.GITHUB_TOKEN || '',
     public: {
       githubUser: 'Adebesin-Cell',
-      siteUrl: 'https://lope.adebesin.com',
+      siteUrl:
+        process.env.NUXT_PUBLIC_SITE_URL
+        || (process.env.VERCEL_PROJECT_PRODUCTION_URL && `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`)
+        || 'https://lope.adebesin.com',
+    },
+  },
+  vite: {
+    // Pre-bundle these so the dev server stops reloading to discover them.
+    optimizeDeps: {
+      include: ['@ark-ui/vue/factory', '@vue/devtools-core', '@vue/devtools-kit'],
     },
   },
   nitro: {

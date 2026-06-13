@@ -50,9 +50,9 @@ function fmt(d: string) {
       No posts yet — drafts in flight.
     </ark.div>
 
-    <ark.section v-for="[year, posts] in grouped" :key="year" class="relative mb-10">
+    <ark.section v-for="[year, posts] in grouped" :key="year" class="relative mb-10 overflow-hidden md:overflow-visible">
       <ark.div
-        class="absolute -top-6 -left-6 md:-left-14 text-7xl md:text-8xl font-700 op-5 select-none pointer-events-none tracking-tight"
+        class="absolute -top-6 -left-2 md:-left-14 text-6xl sm:text-7xl md:text-8xl font-700 op-5 select-none pointer-events-none tracking-tight"
       >
         {{ year }}
       </ark.div>

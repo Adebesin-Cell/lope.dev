@@ -74,6 +74,7 @@ export default defineConfig({
     'i-lucide-moon',
     'i-lucide-sun',
     'i-lucide-menu',
+    'i-lucide-x',
     'i-lucide-arrow-up',
     'i-simple-icons-github',
     'i-simple-icons-bluesky',

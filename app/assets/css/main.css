@@ -8,6 +8,8 @@ html {
   /* Smooth in-page anchor jumps; offset so targets clear the fixed header. */
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
+  /* Belt-and-braces guard against horizontal scroll on small screens. */
+  overflow-x: hidden;
 }
 
 html.light {
