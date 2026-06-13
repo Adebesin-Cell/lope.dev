@@ -6,9 +6,9 @@ defineProps<{ group: ProjectGroup }>()
 </script>
 
 <template>
-  <ark.section class="relative py-12">
+  <ark.section class="relative py-12 overflow-hidden md:overflow-visible">
     <ark.h2
-      class="watermark-heading absolute -top-4 -left-4 md:-left-12 text-5xl md:text-6xl font-700 op-5 select-none pointer-events-none uppercase tracking-tight"
+      class="watermark-heading absolute -top-4 -left-2 md:-left-12 max-w-full text-4xl sm:text-5xl md:text-6xl font-700 op-5 select-none pointer-events-none uppercase tracking-tight truncate"
     >
       {{ group.title }}
     </ark.h2>

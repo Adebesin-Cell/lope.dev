@@ -125,7 +125,7 @@ function cleanTitle(title: string, type: string) {
 
     <ark.nav
       v-if="totalPages > 1"
-      class="mt-10 flex items-center justify-center gap-1.5 text-sm"
+      class="mt-10 flex flex-wrap items-center justify-center gap-1.5 text-sm"
       aria-label="Pagination"
     >
       <ark.button
