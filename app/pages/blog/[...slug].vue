@@ -2,6 +2,7 @@
 import { ark } from '@ark-ui/vue/factory'
 
 const route = useRoute()
+const { siteUrl } = useRuntimeConfig().public
 
 const { data: post } = await useAsyncData(`blog-${route.path}`, () =>
   queryCollection('blog').path(route.path).first(),
@@ -10,9 +11,20 @@ const { data: post } = await useAsyncData(`blog-${route.path}`, () =>
 if (!post.value)
   throw createError({ statusCode: 404, statusMessage: 'Post not found', fatal: true })
 
+// Per-post OG image generated from the title (public/og/<slug>.png).
+const slug = route.path.split('/').filter(Boolean).pop()
+const ogImage = `${siteUrl}/og/${slug}.png`
+
 useHead(() => ({
   title: post.value?.title ? `${post.value.title} — Lope` : 'Blog — Lope',
-  meta: [{ name: 'description', content: post.value?.description ?? '' }],
+  meta: [
+    { name: 'description', content: post.value?.description ?? '' },
+    { property: 'og:type', content: 'article' },
+    { property: 'og:title', content: post.value?.title ?? '' },
+    { property: 'og:description', content: post.value?.description ?? '' },
+    { key: 'og:image', property: 'og:image', content: ogImage },
+    { key: 'twitter:image', name: 'twitter:image', content: ogImage },
+  ],
   // Canonical → original source (Medium) so the self-hosted copy isn't
   // treated as duplicate content.
   link: post.value?.canonical

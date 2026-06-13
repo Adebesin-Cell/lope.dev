@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ark } from '@ark-ui/vue/factory'
-// "at" cursive monogram — plain HTML in Caveat (loaded via UnoCSS preset-web-fonts).
-// Swap for an SVG signature when one is traced from real handwriting.
+// Animated handwriting logo via tegaki (Caveat). Renders client-side; the
+// static Caveat fallback keeps the mark visible during SSR / before hydration.
+import caveat from 'tegaki/fonts/caveat'
 </script>
 
 <template>
@@ -10,7 +10,12 @@ import { ark } from '@ark-ui/vue/factory'
     aria-label="Home — Adebesin Tolulope"
     class="logo block select-none outline-none"
   >
-    <ark.span class="logo-text">at</ark.span>
+    <ClientOnly>
+      <TegakiRenderer :font="caveat" text="at" class="logo-text" />
+      <template #fallback>
+        <span class="logo-text">at</span>
+      </template>
+    </ClientOnly>
   </NuxtLink>
 </template>
 
@@ -21,15 +26,10 @@ import { ark } from '@ark-ui/vue/factory'
   font-size: 2.6rem;
   line-height: 1;
   letter-spacing: -0.04em;
+  color: inherit;
 }
 
 .logo-text {
   display: inline-block;
-  animation: settle 1s ease-out backwards;
-}
-
-@keyframes settle {
-  from { opacity: 0; transform: translateY(4px); }
-  to   { opacity: 1; transform: translateY(0); }
 }
 </style>

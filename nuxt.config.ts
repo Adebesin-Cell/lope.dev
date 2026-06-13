@@ -4,6 +4,7 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     '@nuxtjs/color-mode',
     '@vueuse/nuxt',
+    'tegaki/nuxt',
   ],
   devtools: { enabled: true },
   compatibilityDate: '2024-04-03',
@@ -30,7 +31,16 @@ export default defineNuxtConfig({
     githubToken: process.env.GITHUB_TOKEN || '',
     public: {
       githubUser: 'Adebesin-Cell',
-      siteUrl: 'https://lope.adebesin.com',
+      siteUrl:
+        process.env.NUXT_PUBLIC_SITE_URL
+        || (process.env.VERCEL_PROJECT_PRODUCTION_URL && `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`)
+        || 'https://lope.adebesin.com',
+    },
+  },
+  vite: {
+    // Pre-bundle these so the dev server stops reloading to discover them.
+    optimizeDeps: {
+      include: ['@ark-ui/vue/factory', '@vue/devtools-core', '@vue/devtools-kit'],
     },
   },
   nitro: {
@@ -45,5 +55,19 @@ export default defineNuxtConfig({
     // Prerendered, with a 1h stale-while-revalidate net for any runtime hit.
     '/releases': { prerender: true },
     '/api/releases': { swr: 60 * 60 },
+  },
+  hooks: {
+    // Regenerate OG images from content at build. Resilient: if Takumi can't
+    // run, the committed images under public/og/ still serve.
+    async 'build:before'() {
+      try {
+        const { generateOgImages } = await import('./scripts/og')
+        const r = await generateOgImages()
+        console.warn(`[og] generated site card + ${r.posts} post cards (avatar: ${r.avatar})`)
+      }
+      catch (err) {
+        console.warn('[og] generation skipped:', (err as Error)?.message)
+      }
+    },
   },
 })
