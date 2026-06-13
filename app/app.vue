@@ -1,21 +1,19 @@
 <script setup lang="ts">
-// Site-wide social/OG defaults. Pages (e.g. blog posts) override og:image /
-// og:title via matching `key`s. siteUrl auto-resolves to the live host.
-const { siteUrl } = useRuntimeConfig().public
-const ogImage = `${siteUrl}/og.png`
+// Host comes from the `site.url` config (env-driven), so the OG card shows the
+// real deploy host — Vercel's URL now, adebesin.com once pointed.
+const { url } = useSiteConfig()
+const host = url.replace(/^https?:\/\//, '').replace(/\/$/, '')
 
 useHead({
   meta: [
     { property: 'og:type', content: 'website' },
     { property: 'og:site_name', content: 'Adebesin Tolulope (Lope)' },
-    { key: 'og:image', property: 'og:image', content: ogImage },
-    { property: 'og:image:width', content: '1200' },
-    { property: 'og:image:height', content: '630' },
-    { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:site', content: '@I_am_Lope' },
-    { key: 'twitter:image', name: 'twitter:image', content: ogImage },
   ],
 })
+
+// Site-wide default OG image (nuxt-og-image). Pages override it (e.g. blog posts).
+defineOgImage('Default.takumi', { host })
 </script>
 
 <template>
