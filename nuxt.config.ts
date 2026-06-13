@@ -37,7 +37,7 @@ export default defineNuxtConfig({
       siteUrl:
         process.env.NUXT_PUBLIC_SITE_URL
         || (process.env.VERCEL_PROJECT_PRODUCTION_URL && `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`)
-        || 'https://lope.adebesin.com',
+        || 'https://lope.cell.vercel.app',
       posthogPublicKey: process.env.NUXT_PUBLIC_POSTHOG_PUBLIC_KEY || '',
       posthogHost: process.env.NUXT_PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com',
     },
@@ -53,7 +53,7 @@ export default defineNuxtConfig({
     url:
       process.env.NUXT_PUBLIC_SITE_URL
       || (process.env.VERCEL_PROJECT_PRODUCTION_URL && `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`)
-      || 'https://lope.adebesin.com',
+      || 'https://lope.cell.vercel.app',
     name: 'Adebesin Tolulope (Lope)',
   },
   ogImage: {
