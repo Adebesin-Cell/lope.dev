@@ -45,7 +45,7 @@ export default defineNuxtConfig({
   vite: {
     // Pre-bundle these so the dev server stops reloading to discover them.
     optimizeDeps: {
-      include: ['@ark-ui/vue/factory', '@vue/devtools-core', '@vue/devtools-kit'],
+      include: ['@ark-ui/vue/factory', '@vue/devtools-core', '@vue/devtools-kit', 'posthog-js'],
     },
   },
   // Base URL for OG/canonical (auto-resolves to the live host; adebesin.com once pointed).
