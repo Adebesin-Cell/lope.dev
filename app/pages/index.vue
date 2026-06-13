@@ -1,0 +1,74 @@
+<script setup lang="ts">
+import { ark } from '@ark-ui/vue/factory'
+
+useHead({ title: 'Adebesin Tolulope (Lope)' })
+
+const roleRows = [
+  {
+    label: 'Working with',
+    chips: [
+      { logo: '/brands/iq.svg', label: 'IQ.AI', href: 'https://iqai.com/' },
+      { logo: '/brands/iq.svg', label: 'IQ.wiki', href: 'https://iq.wiki/' },
+    ],
+  },
+  {
+    label: 'Maintainer at',
+    chips: [
+      { icon: 'i-simple-icons-chakraui', label: 'Chakra UI', href: 'https://github.com/chakra-ui/chakra-ui' },
+      { icon: 'i-lucide-panda', label: 'Panda', href: 'https://github.com/chakra-ui/panda' },
+    ],
+  },
+  {
+    label: 'Contributing to',
+    chips: [
+      { icon: 'i-lucide-zap', label: 'Zag', href: 'https://github.com/chakra-ui/zag' },
+      { icon: 'i-lucide-anchor', label: 'Ark UI', href: 'https://github.com/chakra-ui/ark' },
+      { logo: '/brands/npmx.svg', logoLight: '/brands/npmx-light.svg', label: 'npmx.dev', href: 'https://npmx.dev' },
+    ],
+  },
+  {
+    label: 'Author of',
+    chips: [
+      { icon: 'i-lucide-feather', label: 'Ekphrasis', href: 'https://github.com/Adebesin-Cell/ekphrasis' },
+    ],
+  },
+  {
+    label: 'Currently building',
+    chips: [{ logo: '/brands/bethelflow.svg', label: 'BethelFlow', href: 'https://www.bethelflow.com/' }],
+  },
+]
+</script>
+
+<template>
+  <ark.article class="space-y-8">
+    <ark.h1 class="text-4xl md:text-5xl font-700 tracking-tight">
+      Adebesin Tolulope <ark.span class="text-ink-muted">(Lope)</ark.span>
+    </ark.h1>
+
+    <ark.p class="text-lg text-ink-muted leading-relaxed">
+      Hey! I'm Lope, a software engineer and open-source contributor. Founding engineer at
+      <ark.a href="https://www.bethelflow.com/" class="underline-offset-3 underline op-90 hover:op-100">BethelFlow</ark.a>,
+      working across the Chakra and IQ ecosystems.
+    </ark.p>
+
+    <ark.div class="space-y-3 text-sm">
+      <ark.div v-for="row in roleRows" :key="row.label" class="flex flex-wrap items-center gap-2">
+        <ark.span class="text-ink-muted w-44 shrink-0">{{ row.label }}</ark.span>
+        <Chip v-for="c in row.chips" :key="c.label" v-bind="c" />
+      </ark.div>
+    </ark.div>
+
+    <ark.p class="text-base text-ink-muted leading-relaxed pt-4">
+      I care about open-source sustainability, community growth, and how LLMs are reshaping
+      engineering practice. I write <NuxtLink to="/blog" class="underline">blog posts</NuxtLink> about these,
+      ship side-projects on the side, and maintain a few small tools I rely on every day.
+    </ark.p>
+
+    <ark.p class="text-base text-ink-muted leading-relaxed">
+      You can find my work on
+      <ark.a href="https://github.com/Adebesin-Cell" class="underline">GitHub</ark.a>,
+      reach me at <ark.span class="font-mono text-ink">lope@braindao.org</ark.span>,
+      or browse my <NuxtLink to="/projects" class="underline">projects</NuxtLink>.
+    </ark.p>
+  </ark.article>
+</template>
