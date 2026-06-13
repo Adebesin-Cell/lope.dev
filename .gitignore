@@ -26,3 +26,4 @@ logs
 pnpm-lock.yaml
 # transient: medium import sources
 .medium-src/
+.vercel
