@@ -57,21 +57,32 @@ export default defineNuxtConfig({
     name: 'Adebesin Tolulope (Lope)',
   },
   ogImage: {
-    // OG images are rendered from app/components/OgImage/*.takumi.vue at build
-    // (prerendered routes) or on demand — no committed assets, no scripts.
+    // OG images are rendered from app/components/OgImage/*.takumi.vue.
     defaults: { cacheMaxAgeSeconds: 60 * 60 * 24 },
+    // Sign OG image URLs (secret from Vercel env). Rejects crafted/unsigned
+    // requests so bots can't trigger arbitrary on-demand image generation.
+    security: {
+      secret: process.env.NUXT_OG_IMAGE_SECRET,
+      strict: !!process.env.NUXT_OG_IMAGE_SECRET,
+    },
   },
   nitro: {
-    // Prerender content pages at build time so the GitHub releases fetch runs
-    // once (during build, with GITHUB_TOKEN) and bakes into the static payload.
+    // Content pages rarely change → prerender them (served static from the CDN).
+    // /releases is excluded so it can refresh via ISR instead of baking forever.
     prerender: {
       crawlLinks: true,
-      routes: ['/', '/projects', '/talks', '/blog', '/releases'],
+      routes: ['/', '/projects', '/talks', '/blog'],
+      ignore: ['/releases'],
     },
   },
   routeRules: {
-    // Prerendered, with a 1h stale-while-revalidate net for any runtime hit.
-    '/releases': { prerender: true },
+    // Pages: prerendered + long-lived at the edge (content changes are rare).
+    '/': { prerender: true },
+    '/projects': { prerender: true },
+    '/talks': { prerender: true },
+    '/blog/**': { prerender: true },
+    // Releases ship often (external GitHub data) → regenerate hourly via ISR.
+    '/releases': { isr: 60 * 60 },
     '/api/releases': { swr: 60 * 60 },
   },
 })

@@ -1,0 +1,8 @@
+# https://lope.cell.vercel.app
+# Search engines and social-card scrapers welcome.
+User-agent: *
+Allow: /
+
+# Keep crawlers off internal/function-backed paths (no SEO value).
+Disallow: /_og/
+Disallow: /api/
