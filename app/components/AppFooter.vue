@@ -7,7 +7,15 @@ const year = new Date().getFullYear()
 <template>
   <ark.footer class="relative mx-auto max-w-3xl px-6 pb-12 text-xs text-ink-faint">
     <ark.div>
-      CC BY-NC-SA 4.0 2026-PRESENT © Adebesin Tolulope (Lope)
+      <ark.a
+        href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+        target="_blank"
+        rel="noopener"
+        class="underline hover:text-ink-muted transition-colors"
+      >
+        CC BY-NC-SA 4.0
+      </ark.a>
+      2026-PRESENT © Adebesin Tolulope (Lope)
       <ark.span class="op-50">· {{ year }}</ark.span>
     </ark.div>
     <ark.div class="mt-1">
