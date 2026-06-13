@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@vueuse/nuxt',
     'tegaki/nuxt',
+    'nuxt-og-image',
   ],
   devtools: { enabled: true },
   compatibilityDate: '2024-04-03',
@@ -44,6 +45,19 @@ export default defineNuxtConfig({
     optimizeDeps: {
       include: ['@ark-ui/vue/factory', '@vue/devtools-core', '@vue/devtools-kit'],
     },
+  },
+  // Base URL for OG/canonical (auto-resolves to the live host; adebesin.com once pointed).
+  site: {
+    url:
+      process.env.NUXT_PUBLIC_SITE_URL
+      || (process.env.VERCEL_PROJECT_PRODUCTION_URL && `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`)
+      || 'https://lope.adebesin.com',
+    name: 'Adebesin Tolulope (Lope)',
+  },
+  ogImage: {
+    // OG images are rendered from app/components/OgImage/*.takumi.vue at build
+    // (prerendered routes) or on demand — no committed assets, no scripts.
+    defaults: { cacheMaxAgeSeconds: 60 * 60 * 24 },
   },
   nitro: {
     // Prerender content pages at build time so the GitHub releases fetch runs

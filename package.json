@@ -15,6 +15,7 @@
     "@iconify-json/simple-icons": "^1.2.81",
     "@nuxt/content": "^3.13.0",
     "@nuxtjs/color-mode": "^4.0.0",
+    "@takumi-rs/wasm": "^1.8.5",
     "@unocss/nuxt": "^66.6.8",
     "@unocss/preset-attributify": "^66.6.8",
     "@unocss/preset-icons": "^66.6.8",
@@ -25,6 +26,7 @@
     "@vueuse/nuxt": "^14.3.0",
     "better-sqlite3": "^12.9.0",
     "nuxt": "^4.4.4",
+    "nuxt-og-image": "^6.6.0",
     "tegaki": "^0.18.0",
     "unocss": "^66.6.8"
   },
