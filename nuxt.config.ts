@@ -24,6 +24,8 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
       ],
     },
   },
@@ -55,19 +57,5 @@ export default defineNuxtConfig({
     // Prerendered, with a 1h stale-while-revalidate net for any runtime hit.
     '/releases': { prerender: true },
     '/api/releases': { swr: 60 * 60 },
-  },
-  hooks: {
-    // Regenerate OG images from content at build. Resilient: if Takumi can't
-    // run, the committed images under public/og/ still serve.
-    async 'build:before'() {
-      try {
-        const { generateOgImages } = await import('./scripts/og')
-        const r = await generateOgImages()
-        console.warn(`[og] generated site card + ${r.posts} post cards (avatar: ${r.avatar})`)
-      }
-      catch (err) {
-        console.warn('[og] generation skipped:', (err as Error)?.message)
-      }
-    },
   },
 })
