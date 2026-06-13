@@ -38,6 +38,8 @@ export default defineNuxtConfig({
         process.env.NUXT_PUBLIC_SITE_URL
         || (process.env.VERCEL_PROJECT_PRODUCTION_URL && `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`)
         || 'https://lope.adebesin.com',
+      posthogPublicKey: process.env.NUXT_PUBLIC_POSTHOG_PUBLIC_KEY || '',
+      posthogHost: process.env.NUXT_PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com',
     },
   },
   vite: {
