@@ -1,58 +1,30 @@
 {
-  "name": "portfolio",
-  "version": "0.1.0",
+  "name": "lope",
   "private": true,
-  "dependencies": {
-    "@formspree/react": "^2.2.5",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^13.0.0",
-    "@testing-library/user-event": "^13.2.1",
-    "feather-icons": "^4.29.0",
-    "firebase": "^9.8.4",
-    "party-js": "^2.1.2",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0",
-    "react-feather": "^2.0.9",
-    "react-ga": "^3.3.1",
-    "react-helmet": "^6.1.0",
-    "react-router-dom": "6",
-    "react-scripts": "5.0.1",
-    "react-tsparticles": "^2.0.6",
-    "react-uuid": "^1.0.2",
-    "sass": "^1.51.0",
-    "styled-components": "^5.3.5",
-    "web-vitals": "^2.1.0"
-  },
-  "resolutions": {
-    "styled-components": "^5"
-  },
+  "type": "module",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "engines": {
-    "node": ">=18",
-    "yarn": ">=1.22.0",
-    "npm": "please-use-yarn"
+  "dependencies": {
+    "@ark-ui/vue": "^5.36.2",
+    "@iconify-json/logos": "^1.2.11",
+    "@iconify-json/lucide": "^1.2.106",
+    "@iconify-json/simple-icons": "^1.2.81",
+    "@nuxt/content": "^3.13.0",
+    "@nuxtjs/color-mode": "^4.0.0",
+    "@unocss/nuxt": "^66.6.8",
+    "@unocss/preset-attributify": "^66.6.8",
+    "@unocss/preset-icons": "^66.6.8",
+    "@unocss/preset-typography": "^66.6.8",
+    "@unocss/preset-uno": "^66.6.8",
+    "@unocss/preset-web-fonts": "^66.6.8",
+    "@vueuse/core": "^14.3.0",
+    "@vueuse/nuxt": "^14.3.0",
+    "better-sqlite3": "^12.9.0",
+    "nuxt": "^4.4.4",
+    "unocss": "^66.6.8"
   }
 }

@@ -1,0 +1,36 @@
+:root {
+  color-scheme: dark;
+}
+
+html {
+  background: #0a0a0a;
+  color: #fafafa;
+  /* Smooth in-page anchor jumps; offset so targets clear the fixed header. */
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+html.light {
+  background: #fafafa;
+  color: #0a0a0a;
+}
+
+body {
+  background: transparent;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(250, 250, 250, 0.15);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.prose {
+  max-width: 65ch;
+}

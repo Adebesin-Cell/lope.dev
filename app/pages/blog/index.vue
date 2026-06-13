@@ -1,0 +1,81 @@
+<script setup lang="ts">
+import { ark } from '@ark-ui/vue/factory'
+
+useHead({ title: 'Blog — Adebesin Tolulope' })
+
+interface BlogPost {
+  path: string
+  title: string
+  description?: string
+  date: string
+  readingTime?: string
+  lang?: string
+  draft?: boolean
+}
+
+// Fetch all, then drop drafts in JS — a SQL `where('draft','<>',true)` would
+// also exclude posts with no `draft` field (NULL), hiding published posts.
+const { data } = await useAsyncData('blog-list', () =>
+  queryCollection('blog')
+    .order('date', 'DESC')
+    .all() as Promise<BlogPost[]>,
+)
+
+const grouped = computed(() => {
+  const byYear = new Map<string, BlogPost[]>()
+  for (const post of (data.value ?? []).filter(p => !p.draft)) {
+    const year = new Date(post.date).getFullYear().toString()
+    if (!byYear.has(year))
+      byYear.set(year, [])
+    byYear.get(year)!.push(post)
+  }
+  return Array.from(byYear.entries()).sort((a, b) => Number(b[0]) - Number(a[0]))
+})
+
+function fmt(d: string) {
+  return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+}
+</script>
+
+<template>
+  <ark.article>
+    <ark.h1 class="text-4xl font-700 tracking-tight mb-2">
+      Blog
+    </ark.h1>
+    <ark.p class="text-ink-muted mb-12">
+      Notes on open source, engineering with LLMs, and projects I'm building.
+    </ark.p>
+
+    <ark.div v-if="!data?.length" class="text-ink-muted text-sm italic">
+      No posts yet — drafts in flight.
+    </ark.div>
+
+    <ark.section v-for="[year, posts] in grouped" :key="year" class="relative mb-10">
+      <ark.div
+        class="absolute -top-6 -left-6 md:-left-14 text-7xl md:text-8xl font-700 op-5 select-none pointer-events-none tracking-tight"
+      >
+        {{ year }}
+      </ark.div>
+      <ark.ul class="relative space-y-1">
+        <ark.li v-for="post in posts" :key="post.path">
+          <NuxtLink
+            :to="post.path"
+            class="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-3 py-2 hover:op-100 op-90 transition-opacity"
+          >
+            <ark.span
+              v-if="post.lang"
+              class="text-xs bg-white/10 rounded px-1.5 py-0.5 text-ink-muted self-start"
+            >
+              {{ post.lang }}
+            </ark.span>
+            <ark.span class="text-base">{{ post.title }}</ark.span>
+            <ark.span class="text-sm text-ink-muted">{{ fmt(post.date) }}</ark.span>
+            <ark.span v-if="post.readingTime" class="text-sm text-ink-faint">
+              · {{ post.readingTime }}
+            </ark.span>
+          </NuxtLink>
+        </ark.li>
+      </ark.ul>
+    </ark.section>
+  </ark.article>
+</template>
