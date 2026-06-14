@@ -43,12 +43,10 @@ export default defineNuxtConfig({
     },
   },
   vite: {
-    // Pre-bundle these so the dev server stops reloading to discover them.
     optimizeDeps: {
       include: ['@ark-ui/vue/factory', '@vue/devtools-core', '@vue/devtools-kit', 'posthog-js'],
     },
   },
-  // Base URL for OG/canonical (auto-resolves to the live host; adebesin.com once pointed).
   site: {
     url:
       process.env.NUXT_PUBLIC_SITE_URL
@@ -57,18 +55,13 @@ export default defineNuxtConfig({
     name: 'Adebesin Tolulope (Lope)',
   },
   ogImage: {
-    // OG images are rendered from app/components/OgImage/*.takumi.vue.
     defaults: { cacheMaxAgeSeconds: 60 * 60 * 24 },
-    // Sign OG image URLs (secret from Vercel env). Rejects crafted/unsigned
-    // requests so bots can't trigger arbitrary on-demand image generation.
     security: {
       secret: process.env.NUXT_OG_IMAGE_SECRET,
       strict: !!process.env.NUXT_OG_IMAGE_SECRET,
     },
   },
   nitro: {
-    // Content pages rarely change → prerender them (served static from the CDN).
-    // /releases is excluded so it can refresh via ISR instead of baking forever.
     prerender: {
       crawlLinks: true,
       routes: ['/', '/projects', '/talks', '/blog'],
@@ -76,12 +69,10 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
-    // Pages: prerendered + long-lived at the edge (content changes are rare).
     '/': { prerender: true },
     '/projects': { prerender: true },
     '/talks': { prerender: true },
     '/blog/**': { prerender: true },
-    // Releases ship often (external GitHub data) → regenerate hourly via ISR.
     '/releases': { isr: 60 * 60 },
     '/api/releases': { swr: 60 * 60 },
   },
