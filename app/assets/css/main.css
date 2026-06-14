@@ -3,8 +3,15 @@
 }
 
 html {
-  background: #0a0a0a;
-  color: #fafafa;
+  /* Space-separated RGB channels so UnoCSS can apply `/opacity` via %alpha%. */
+  --ink: 250 250 250;
+  --ink-muted: 161 161 170;
+  --ink-faint: 128 128 138;
+  --bg: 10 10 10;
+  --bg-soft: 17 17 17;
+  --dot-color: rgba(255, 255, 255, 0.08);
+  background: rgb(var(--bg));
+  color: rgb(var(--ink));
   /* Smooth in-page anchor jumps; offset so targets clear the fixed header. */
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
@@ -12,9 +19,20 @@ html {
   overflow-x: hidden;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 html.light {
-  background: #fafafa;
-  color: #0a0a0a;
+  color-scheme: light;
+  --ink: 10 10 10;
+  --ink-muted: 82 82 91;
+  --ink-faint: 107 107 117;
+  --bg: 250 250 250;
+  --bg-soft: 240 240 240;
+  --dot-color: rgba(0, 0, 0, 0.09);
 }
 
 body {
@@ -25,14 +43,137 @@ body {
 }
 
 ::selection {
-  background: rgba(250, 250, 250, 0.15);
+  background: rgb(var(--ink) / 0.15);
 }
 
 a {
   color: inherit;
   text-decoration: none;
+  /* Consistent, roomier underline distance for every link site-wide. */
+  text-underline-offset: 4px;
+}
+
+/* Consistent, theme-neutral keyboard focus ring (mouse clicks unaffected). */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid rgb(var(--ink) / 0.6);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 .prose {
   max-width: 65ch;
+}
+
+/* Buttons — layout via the `btn` UnoCSS shortcut; colours here so they invert
+   cleanly between themes. */
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-solid {
+  background: rgb(var(--ink));
+  color: rgb(var(--bg));
+}
+
+.btn-solid:hover {
+  opacity: 0.9;
+}
+
+.btn-ghost {
+  border: 1px solid rgb(var(--ink) / 0.22);
+  color: rgb(var(--ink-muted));
+}
+
+.btn-ghost:hover {
+  background: rgb(var(--ink) / 0.08);
+  border-color: rgb(var(--ink) / 0.45);
+  color: rgb(var(--ink));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn:hover,
+  .btn:active {
+    transform: none;
+  }
+}
+
+/* Staggered entrance (ported from antfu.me) — direct children of
+   .slide-enter-content slide up in sequence; .slide-enter for single nodes. */
+@keyframes slide-enter {
+  0% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .slide-enter,
+  .slide-enter-content > * {
+    --enter-stage: 0;
+    --enter-step: 90ms;
+    --enter-initial: 0ms;
+    animation: slide-enter 1s both 1;
+    animation-delay: calc(var(--enter-initial) + var(--enter-stage) * var(--enter-step));
+  }
+  .slide-enter-content > *:nth-child(1) { --enter-stage: 1; }
+  .slide-enter-content > *:nth-child(2) { --enter-stage: 2; }
+  .slide-enter-content > *:nth-child(3) { --enter-stage: 3; }
+  .slide-enter-content > *:nth-child(4) { --enter-stage: 4; }
+  .slide-enter-content > *:nth-child(5) { --enter-stage: 5; }
+  .slide-enter-content > *:nth-child(6) { --enter-stage: 6; }
+  .slide-enter-content > *:nth-child(7) { --enter-stage: 7; }
+  .slide-enter-content > *:nth-child(8) { --enter-stage: 8; }
+  .slide-enter-content > *:nth-child(9) { --enter-stage: 9; }
+  .slide-enter-content > *:nth-child(10) { --enter-stage: 10; }
+  .slide-enter-content > *:nth-child(11) { --enter-stage: 11; }
+  .slide-enter-content > *:nth-child(12) { --enter-stage: 12; }
+  .slide-enter-content > *:nth-child(13) { --enter-stage: 13; }
+  .slide-enter-content > *:nth-child(14) { --enter-stage: 14; }
+  .slide-enter-content > *:nth-child(15) { --enter-stage: 15; }
+  .slide-enter-content > *:nth-child(16) { --enter-stage: 16; }
+  .slide-enter-content > *:nth-child(17) { --enter-stage: 17; }
+  .slide-enter-content > *:nth-child(18) { --enter-stage: 18; }
+  .slide-enter-content > *:nth-child(19) { --enter-stage: 19; }
+  .slide-enter-content > *:nth-child(20) { --enter-stage: 20; }
+}
+
+/* Circular theme reveal (ported from antfu.me) — the clip-path circle is driven
+   from JS via element.animate, so disable the default cross-fade here. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 9999;
+}
+
+::view-transition-new(root) {
+  z-index: 1;
+}
+
+html.light::view-transition-old(root) {
+  z-index: 1;
+}
+
+html.light::view-transition-new(root) {
+  z-index: 9999;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
 }

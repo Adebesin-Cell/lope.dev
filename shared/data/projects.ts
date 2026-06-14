@@ -3,6 +3,8 @@ export interface Project {
   description: string
   href: string
   icon?: string
+  // Brand tint for a monochrome `icon` (full-colour logos ignore it).
+  color?: string
   // Full-colour brand mark (path under /public). Takes precedence over `icon`.
   logo?: string
   // Optional light-mode variant of `logo`.
@@ -22,7 +24,7 @@ export const projects: ProjectGroup[] = [
         name: 'e18e Ecosystem Issues',
         description: 'Improving the perf, size, and dep health of the JS ecosystem.',
         href: 'https://github.com/e18e/ecosystem-issues',
-        icon: 'i-lucide-leaf',
+        logo: '/brands/e18e.svg',
       },
       {
         name: 'npmx.dev',
@@ -36,6 +38,7 @@ export const projects: ProjectGroup[] = [
         description: 'Maintainer at Chakra UI & Panda · contributor to Zag & Ark UI.',
         href: 'https://github.com/chakra-ui',
         icon: 'i-simple-icons-chakraui',
+        color: '#4FD1C5',
       },
     ],
   },
@@ -58,6 +61,7 @@ export const projects: ProjectGroup[] = [
         description: 'Codemods for migrating and transforming Chakra UI codebases across versions.',
         href: 'https://npmx.dev/package/@chakra-ui/codemod',
         icon: 'i-simple-icons-chakraui',
+        color: '#4FD1C5',
       },
     ],
   },
@@ -69,24 +73,28 @@ export const projects: ProjectGroup[] = [
         description: 'A project that keeps pulling me back. The motivation behind it is on the blog.',
         href: 'https://github.com/Adebesin-Cell/ekphrasis',
         icon: 'i-lucide-feather',
+        color: '#34D399',
       },
       {
         name: 'claude-roast',
         description: 'Roasts how badly you use Claude Code, based on your ~/.claude history.',
         href: 'https://github.com/Adebesin-Cell/claude-roast',
         icon: 'i-lucide-flame',
+        color: '#FB923C',
       },
       {
         name: 'EchoTrap',
         description: 'A React-based echo cancellation experiment using the Web Audio API.',
         href: 'https://github.com/Adebesin-Cell/EchoTrap',
         icon: 'i-lucide-radio',
+        color: '#38BDF8',
       },
       {
         name: 'Rumate (TRUmate)',
         description: 'Roommate-finding app for university students.',
         href: 'https://www.rumate.app/',
         icon: 'i-lucide-users',
+        color: '#A78BFA',
       },
     ],
   },
@@ -97,13 +105,15 @@ export const projects: ProjectGroup[] = [
         name: 'Syncia',
         description: 'A browser extension that brings ChatGPT-like AI assistants to any site.',
         href: 'https://github.com/Royal-lobster/Syncia',
-        icon: 'i-lucide-robot',
+        icon: 'i-lucide-bot',
+        color: '#22D3EE',
       },
       {
         name: 'node-archiver',
         description: 'Streaming archiver for Node.js — zip, tar.',
         href: 'https://github.com/node-archiver',
-        icon: 'i-lucide-folder-zip',
+        icon: 'i-lucide-folder-archive',
+        color: '#FBBF24',
       },
     ],
   },
@@ -171,7 +181,8 @@ export const projects: ProjectGroup[] = [
         name: 'EMF-modelling',
         description: 'CPE 415 — statistical distribution modelling of EMF exposure around a FUTA cellular base station.',
         href: 'https://github.com/Adebesin-Cell/futa-cpe415-emf-modelling',
-        icon: 'i-lucide-flame',
+        icon: 'i-lucide-radio-tower',
+        color: '#F87171',
       },
     ],
   },

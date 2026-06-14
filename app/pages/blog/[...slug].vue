@@ -30,6 +30,15 @@ useHead(() => ({
 // Per-post OG image (nuxt-og-image, Takumi) — dynamic from the title.
 defineOgImage('BlogPost.takumi', { title: post.value?.title, host })
 
+const postUrl = computed(() => `https://${host}${route.path}`)
+const shareTitle = computed(() => post.value?.title ?? '')
+const shareXUrl = computed(() =>
+  `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareTitle.value)}&url=${encodeURIComponent(postUrl.value)}`,
+)
+const shareBlueskyUrl = computed(() =>
+  `https://bsky.app/intent/compose?text=${encodeURIComponent(`${shareTitle.value} ${postUrl.value}`)}`,
+)
+
 function fmt(d?: string) {
   if (!d)
     return ''
@@ -38,7 +47,7 @@ function fmt(d?: string) {
 </script>
 
 <template>
-  <ark.article v-if="post" class="prose-article">
+  <ark.article v-if="post" class="prose-article slide-enter-content">
     <NuxtLink
       to="/blog"
       class="inline-flex items-center gap-1.5 text-sm text-ink-muted hover:text-ink transition-colors mb-8"
@@ -53,13 +62,27 @@ function fmt(d?: string) {
       </ark.h1>
       <ark.p class="text-sm text-ink-muted">
         {{ fmt(post.date) }}
-        <ark.span v-if="post.readingTime"> · {{ post.readingTime }}</ark.span>
+        <ark.span v-if="post.duration"> · {{ post.duration }}</ark.span>
+        <ark.span v-else-if="post.readingTime"> · {{ post.readingTime }}</ark.span>
+        <template v-if="post.place">
+          <ark.span class="text-ink-faint"> · at </ark.span>
+          <ark.a
+            v-if="post.placeLink"
+            :href="post.placeLink"
+            target="_blank"
+            rel="noopener"
+            class="underline hover:text-ink"
+          >
+            {{ post.place }}
+          </ark.a>
+          <ark.span v-else>{{ post.place }}</ark.span>
+        </template>
         <ark.a
           v-if="post.canonical"
           :href="post.canonical"
           target="_blank"
           rel="noopener"
-          class="text-ink-faint underline underline-offset-3 hover:text-ink-muted"
+          class="text-ink-faint underline hover:text-ink-muted"
         >
           · originally on Medium
         </ark.a>
@@ -68,16 +91,38 @@ function fmt(d?: string) {
 
     <ContentRenderer :value="post" class="prose-content" />
 
+    <ark.div class="mt-14 pt-6 border-t border-ink/10 flex items-center gap-4 text-sm text-ink-muted">
+      <ark.span>Share</ark.span>
+      <ark.a
+        :href="shareXUrl"
+        target="_blank"
+        rel="noopener"
+        aria-label="Share on X"
+        class="inline-flex items-center hover:text-ink transition-colors"
+      >
+        <ark.span class="i-simple-icons-x" aria-hidden="true" />
+      </ark.a>
+      <ark.a
+        :href="shareBlueskyUrl"
+        target="_blank"
+        rel="noopener"
+        aria-label="Share on Bluesky"
+        class="inline-flex items-center hover:text-ink transition-colors"
+      >
+        <ark.span class="i-simple-icons-bluesky" aria-hidden="true" />
+      </ark.a>
+    </ark.div>
+
     <ark.footer
       v-if="post.canonical"
-      class="mt-14 pt-6 border-t border-white/10 text-sm text-ink-muted"
+      class="mt-8 text-sm text-ink-muted"
     >
       Have thoughts on this piece?
       <ark.a
         :href="post.canonical"
         target="_blank"
         rel="noopener"
-        class="text-ink underline underline-offset-3 hover:text-ink-muted"
+        class="text-ink underline hover:text-ink-muted"
       >
         Join the conversation on Medium →
       </ark.a>
@@ -101,17 +146,17 @@ function fmt(d?: string) {
 .prose-content :deep(p) {
   margin-block: 1rem;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgb(var(--ink) / 0.78);
 }
 .prose-content :deep(blockquote) {
-  border-left: 2px solid rgba(255, 255, 255, 0.15);
-  padding-left: 1rem;
+  border-inline-start: 2px solid rgb(var(--ink) / 0.18);
+  padding-inline-start: 1rem;
   font-style: italic;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgb(var(--ink) / 0.55);
 }
 .prose-content :deep(a) {
   text-decoration: underline;
-  text-underline-offset: 3px;
+  text-underline-offset: 4px;
 }
 /* Nuxt Content wraps heading text in a self-anchor — don't underline those. */
 .prose-content :deep(h1 a),
@@ -124,7 +169,7 @@ function fmt(d?: string) {
 .prose-content :deep(code) {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.9em;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgb(var(--ink) / 0.08);
   padding: 0.1em 0.35em;
   border-radius: 4px;
 }
@@ -132,8 +177,8 @@ function fmt(d?: string) {
   margin-block: 1.25rem;
   padding: 1rem 1.1rem;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgb(var(--ink) / 0.05);
+  border: 1px solid rgb(var(--ink) / 0.10);
   overflow-x: auto;
   font-size: 0.85rem;
   line-height: 1.6;
@@ -146,9 +191,9 @@ function fmt(d?: string) {
 .prose-content :deep(ul),
 .prose-content :deep(ol) {
   margin-block: 1rem;
-  padding-left: 1.4rem;
+  padding-inline-start: 1.4rem;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgb(var(--ink) / 0.78);
 }
 .prose-content :deep(ul) { list-style: disc; }
 .prose-content :deep(ol) { list-style: decimal; }

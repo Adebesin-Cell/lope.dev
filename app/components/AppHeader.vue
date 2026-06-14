@@ -35,7 +35,7 @@ const open = ref(false)
         >
           {{ l.label }}
         </NuxtLink>
-        <ark.span class="w-px h-4 bg-white/10" />
+        <ark.span class="w-px h-4 bg-ink/10" />
         <ark.a
           v-for="i in icons"
           :key="i.href"
@@ -45,7 +45,7 @@ const open = ref(false)
           rel="noopener"
           class="nav-link"
         >
-          <ark.span :class="i.icon" />
+          <ark.span :class="i.icon" aria-hidden="true" />
         </ark.a>
         <ThemeToggle />
       </ark.nav>
@@ -61,7 +61,7 @@ const open = ref(false)
           aria-label="Open menu"
           @click="open = true"
         >
-          <ark.span class="i-lucide-menu" />
+          <ark.span class="i-lucide-menu" aria-hidden="true" />
         </ark.button>
       </ark.div>
     </ark.div>

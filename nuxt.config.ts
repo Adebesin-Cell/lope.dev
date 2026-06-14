@@ -18,6 +18,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
+      htmlAttrs: { lang: 'en' },
       title: 'Adebesin Tolulope (Lope)',
       meta: [
         { charset: 'utf-8' },

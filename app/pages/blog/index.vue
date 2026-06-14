@@ -36,8 +36,8 @@ function fmt(d: string) {
 </script>
 
 <template>
-  <ark.article>
-    <ark.h1 class="text-4xl font-700 tracking-tight mb-2">
+  <ark.article class="slide-enter-content">
+    <ark.h1 class="text-4xl font-700 tracking-tight mb-3">
       Blog
     </ark.h1>
     <ark.p class="text-ink-muted mb-12">
@@ -48,21 +48,21 @@ function fmt(d: string) {
       No posts yet — drafts in flight.
     </ark.div>
 
-    <ark.section v-for="[year, posts] in grouped" :key="year" class="relative mb-10 overflow-hidden md:overflow-visible">
+    <ark.section v-for="[year, posts] in grouped" :key="year" :id="`y${year}`" :data-toc="year" class="relative scroll-mt-24 mb-10 overflow-hidden md:overflow-visible">
       <ark.div
-        class="absolute -top-6 -left-2 md:-left-14 text-6xl sm:text-7xl md:text-8xl font-700 op-5 select-none pointer-events-none tracking-tight"
+        class="absolute top-0 md:-top-6 -start-2 md:-start-14 text-5xl sm:text-7xl md:text-8xl font-700 op-5 select-none pointer-events-none tracking-tight"
       >
         {{ year }}
       </ark.div>
-      <ark.ul class="relative space-y-1">
+      <ark.ul class="slide-enter-content relative space-y-3 md:space-y-1 pt-10 md:pt-0">
         <ark.li v-for="post in posts" :key="post.path">
           <NuxtLink
             :to="post.path"
-            class="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-3 py-2 hover:op-100 op-90 transition-opacity"
+            class="flex flex-col md:flex-row md:items-baseline gap-0.5 md:gap-3 py-1 md:py-2 hover:op-100 op-90 transition-opacity"
           >
             <ark.span
               v-if="post.lang"
-              class="text-xs bg-white/10 rounded px-1.5 py-0.5 text-ink-muted self-start"
+              class="text-xs bg-ink/10 rounded px-1.5 py-0.5 text-ink-muted self-start"
             >
               {{ post.lang }}
             </ark.span>

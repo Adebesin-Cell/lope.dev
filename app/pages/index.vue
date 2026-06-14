@@ -14,22 +14,22 @@ const roleRows = [
   {
     label: 'Maintainer at',
     chips: [
-      { icon: 'i-simple-icons-chakraui', label: 'Chakra UI', href: 'https://github.com/chakra-ui/chakra-ui' },
-      { icon: 'i-lucide-panda', label: 'Panda', href: 'https://github.com/chakra-ui/panda' },
+      { icon: 'i-simple-icons-chakraui', color: '#4FD1C5', label: 'Chakra UI', href: 'https://github.com/chakra-ui/chakra-ui' },
+      { icon: 'i-logos-pandacss-icon', label: 'Panda', href: 'https://github.com/chakra-ui/panda' },
     ],
   },
   {
     label: 'Contributing to',
     chips: [
-      { icon: 'i-lucide-zap', label: 'Zag', href: 'https://github.com/chakra-ui/zag' },
-      { icon: 'i-lucide-anchor', label: 'Ark UI', href: 'https://github.com/chakra-ui/ark' },
+      { logo: '/brands/zag.png', label: 'Zag', href: 'https://github.com/chakra-ui/zag' },
+      { logo: '/brands/ark.png', label: 'Ark UI', href: 'https://github.com/chakra-ui/ark' },
       { logo: '/brands/npmx.svg', logoLight: '/brands/npmx-light.svg', label: 'npmx.dev', href: 'https://npmx.dev' },
     ],
   },
   {
     label: 'Author of',
     chips: [
-      { icon: 'i-lucide-feather', label: 'Ekphrasis', href: 'https://github.com/Adebesin-Cell/ekphrasis' },
+      { icon: 'i-lucide-feather', color: '#34D399', label: 'Ekphrasis', href: 'https://github.com/Adebesin-Cell/ekphrasis' },
     ],
   },
   {
@@ -40,14 +40,14 @@ const roleRows = [
 </script>
 
 <template>
-  <ark.article class="space-y-8">
-    <ark.h1 class="text-4xl md:text-5xl font-700 tracking-tight">
+  <ark.article class="slide-enter-content space-y-10">
+    <ark.h1 class="text-4xl md:text-5xl font-700 tracking-tight leading-tight">
       Adebesin Tolulope <ark.span class="text-ink-muted">(Lope)</ark.span>
     </ark.h1>
 
-    <ark.p class="text-lg text-ink-muted leading-relaxed">
+    <ark.p class="text-base text-ink-muted leading-relaxed">
       Hey! I'm Lope, a software engineer and open-source contributor. Founding engineer at
-      <ark.a href="https://www.bethelflow.com/" class="underline-offset-3 underline op-90 hover:op-100">BethelFlow</ark.a>,
+      <ark.a href="https://www.bethelflow.com/" class="underline op-90 hover:op-100">BethelFlow</ark.a>,
       working across the Chakra and IQ ecosystems.
     </ark.p>
 
@@ -58,7 +58,7 @@ const roleRows = [
       </ark.div>
     </ark.div>
 
-    <ark.p class="text-base text-ink-muted leading-relaxed pt-4">
+    <ark.p class="text-base text-ink-muted leading-relaxed">
       I care about open-source sustainability, community growth, and how LLMs are reshaping
       engineering practice. I write <NuxtLink to="/blog" class="underline">blog posts</NuxtLink> about these,
       ship side-projects on the side, and maintain a few small tools I rely on every day.

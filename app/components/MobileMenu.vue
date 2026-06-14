@@ -81,10 +81,10 @@ onBeforeUnmount(() => {
         role="dialog"
         aria-modal="true"
         aria-label="Menu"
-        class="fixed inset-y-0 right-0 z-100 w-80 max-w-[85vw] overflow-y-auto border-l border-white/10 bg-[#0a0a0a] md:hidden"
+        class="fixed inset-y-0 end-0 z-100 w-80 max-w-[85vw] overflow-y-auto border-s border-ink/10 bg-bg md:hidden"
       >
         <!-- Drawer header -->
-        <ark.div class="flex items-center justify-between border-b border-white/10 px-5 py-4">
+        <ark.div class="flex items-center justify-between border-b border-ink/10 px-5 py-4">
           <ark.span class="text-sm font-500 text-ink">Menu</ark.span>
           <ark.button
             type="button"
@@ -92,7 +92,7 @@ onBeforeUnmount(() => {
             aria-label="Close menu"
             @click="emit('close')"
           >
-            <ark.span class="i-lucide-x" />
+            <ark.span class="i-lucide-x" aria-hidden="true" />
           </ark.button>
         </ark.div>
 
@@ -104,18 +104,18 @@ onBeforeUnmount(() => {
               v-for="l in links"
               :key="l.to"
               :to="l.to"
-              class="flex items-center gap-3 rounded-md px-2 py-2.5 text-sm op-70 transition hover:bg-white/5 hover:op-100"
-              active-class="op-100 font-500 bg-white/5"
+              class="flex items-center gap-3 rounded-md px-2 py-2.5 text-sm op-70 transition hover:bg-ink/5 hover:op-100"
+              active-class="op-100 font-500 bg-ink/5"
               @click="emit('close')"
             >
-              <ark.span :class="l.icon" class="text-base text-ink-muted" />
+              <ark.span :class="l.icon" class="text-base text-ink-muted" aria-hidden="true" />
               <ark.span>{{ l.label }}</ark.span>
             </NuxtLink>
           </ark.nav>
         </ark.div>
 
         <!-- Divider -->
-        <ark.div class="mx-4 h-px bg-white/10" />
+        <ark.div class="mx-4 h-px bg-ink/10" />
 
         <!-- Elsewhere section -->
         <ark.div class="px-4 py-5">
@@ -128,11 +128,11 @@ onBeforeUnmount(() => {
               :aria-label="i.label"
               target="_blank"
               rel="noopener"
-              class="flex items-center gap-3 rounded-md px-2 py-2.5 text-sm op-70 transition hover:bg-white/5 hover:op-100"
+              class="flex items-center gap-3 rounded-md px-2 py-2.5 text-sm op-70 transition hover:bg-ink/5 hover:op-100"
             >
-              <ark.span :class="i.icon" class="text-base text-ink-muted" />
+              <ark.span :class="i.icon" class="text-base text-ink-muted" aria-hidden="true" />
               <ark.span>{{ i.label }}</ark.span>
-              <ark.span class="i-lucide-arrow-up-right ml-auto text-ink-faint" />
+              <ark.span class="i-lucide-arrow-up-right ms-auto text-ink-faint" aria-hidden="true" />
             </ark.a>
           </ark.div>
         </ark.div>

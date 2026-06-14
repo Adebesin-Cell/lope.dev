@@ -23,13 +23,23 @@ interface ReleasesResponse {
 const { data } = await useFetch<ReleasesResponse>('/api/releases')
 
 const PER_PAGE = 20
-const page = ref(1)
+const route = useRoute()
+const router = useRouter()
 const allPrs = computed(() => data.value?.prs ?? [])
 const totalPages = computed(() => Math.max(1, Math.ceil(allPrs.value.length / PER_PAGE)))
+
+// Page lives in the URL (?page=) so it's shareable and back/forward navigable.
+const page = computed(() => {
+  const n = Number.parseInt(String(route.query.page ?? '1'), 10)
+  if (!Number.isFinite(n) || n < 1)
+    return 1
+  return Math.min(n, totalPages.value)
+})
 const pagedPrs = computed(() => allPrs.value.slice((page.value - 1) * PER_PAGE, page.value * PER_PAGE))
 
 function go(to: number) {
-  page.value = Math.min(Math.max(1, to), totalPages.value)
+  const next = Math.min(Math.max(1, to), totalPages.value)
+  router.push({ query: { ...route.query, page: next === 1 ? undefined : next } })
   if (import.meta.client)
     window.scrollTo({ top: 0, behavior: 'smooth' })
 }
@@ -76,20 +86,19 @@ function formatStars(n: number) {
 </script>
 
 <template>
-  <ark.article>
+  <ark.article class="slide-enter-content">
     <ark.header class="text-center mb-12">
       <ark.img
         src="https://github.com/Adebesin-Cell.png"
         alt="Adebesin Tolulope (Lope)"
         width="80"
         height="80"
-        class="w-20 h-20 rounded-full mx-auto mb-5 bg-white/5 ring-1 ring-white/10"
+        class="w-20 h-20 rounded-full mx-auto mb-5 bg-ink/5 ring-1 ring-ink/10"
       />
-      <ark.h1 class="text-4xl font-700 tracking-tight mb-2">
-        <ark.span class="font-500 text-ink-muted">Lope is</ark.span>
-        Shipping…
+      <ark.h1 class="text-4xl font-700 tracking-tight mb-3">
+        Lope is <ark.span class="shipping text-ink-muted">Shipping…</ark.span>
       </ark.h1>
-      <ark.p class="text-ink-muted text-sm">
+      <ark.p class="text-ink-muted">
         Recent open-source pull requests I've merged, across the projects I work on.
       </ark.p>
     </ark.header>
@@ -104,7 +113,7 @@ function formatStars(n: number) {
           :href="pr.url"
           target="_blank"
           rel="noopener"
-          class="pr-row group flex items-center gap-4 py-3 px-2 -mx-2 rounded-md hover:bg-white/3 transition-colors"
+          class="pr-row group flex items-center gap-4 py-3 px-3 -mx-3 rounded-lg hover:bg-ink/3 transition-colors"
         >
           <ark.img
             :src="pr.orgAvatar"
@@ -112,23 +121,23 @@ function formatStars(n: number) {
             width="40"
             height="40"
             loading="lazy"
-            class="w-10 h-10 rounded-lg bg-white/5 shrink-0"
+            class="w-10 h-10 rounded-lg bg-ink/5 object-cover shrink-0"
           />
           <ark.div class="flex-1 min-w-0">
             <ark.div class="text-xs text-ink-muted flex items-center gap-1.5">
               <ark.span>{{ pr.org }}/<ark.span class="font-500">{{ pr.repo }}</ark.span></ark.span>
               <ark.span class="text-ink-faint font-mono">#{{ pr.number }}</ark.span>
               <ark.span v-if="pr.stars" class="text-ink-faint inline-flex items-center gap-0.5">
-                <ark.span class="i-lucide-star" />{{ formatStars(pr.stars) }}
+                <ark.span class="i-lucide-star" aria-hidden="true" />{{ formatStars(pr.stars) }}
               </ark.span>
             </ark.div>
             <ark.div class="text-sm font-500 text-ink truncate">
-              <ark.span v-if="pr.type" :class="typeColor(pr.type)" class="font-mono text-xs mr-1">{{ pr.type }}</ark.span>
+              <ark.span v-if="pr.type" :class="typeColor(pr.type)" class="font-mono text-xs me-1">{{ pr.type }}</ark.span>
               {{ cleanTitle(pr.title, pr.type) }}
             </ark.div>
           </ark.div>
-          <ark.div class="text-right shrink-0 flex items-center gap-2 text-ink-faint">
-            <ark.span class="i-lucide-git-merge text-emerald-400/70" />
+          <ark.div class="text-end shrink-0 flex items-center gap-2 text-ink-faint">
+            <ark.span class="i-lucide-git-merge text-emerald-400/70" aria-label="merged" role="img" />
             <ark.span class="text-xs">{{ relTime(pr.mergedAt) }}</ark.span>
           </ark.div>
         </ark.a>
@@ -147,7 +156,7 @@ function formatStars(n: number) {
         aria-label="Previous page"
         @click="go(page - 1)"
       >
-        <ark.span class="i-lucide-chevron-left" />
+        <ark.span class="i-lucide-chevron-left" aria-hidden="true" />
       </ark.button>
 
       <ark.button
@@ -155,7 +164,9 @@ function formatStars(n: number) {
         :key="p"
         type="button"
         class="chip min-w-8 justify-center"
-        :class="p === page ? 'bg-white/15 text-ink font-600' : 'text-ink-muted'"
+        :class="p === page ? 'bg-ink/15 text-ink font-600' : 'text-ink-muted'"
+        :aria-current="p === page ? 'page' : undefined"
+        :aria-label="`Page ${p}`"
         @click="go(p)"
       >
         {{ p }}
@@ -168,8 +179,30 @@ function formatStars(n: number) {
         aria-label="Next page"
         @click="go(page + 1)"
       >
-        <ark.span class="i-lucide-chevron-right" />
+        <ark.span class="i-lucide-chevron-right" aria-hidden="true" />
       </ark.button>
     </ark.nav>
   </ark.article>
 </template>
+
+<style scoped>
+/* "Shipping…" breathes from ghost to full to suggest live activity. */
+.shipping {
+  animation: ship-pulse 2.4s ease-in-out infinite;
+}
+@keyframes ship-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shipping {
+    animation: none;
+    opacity: 1;
+  }
+}
+</style>

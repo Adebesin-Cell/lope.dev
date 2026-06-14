@@ -35,14 +35,37 @@ function commitType(title: string) {
   return KNOWN_TYPES.has(t) ? t : ''
 }
 
-async function fetchStars(repos: string[], headers: Record<string, string>) {
-  const entries = await Promise.all(
-    repos.map(async (full) => {
-      const data = await $fetch<{ stargazers_count?: number }>(`https://api.github.com/repos/${full}`, { headers, retry: 0 }).catch(() => null)
-      return [full, data?.stargazers_count ?? 0] as const
-    }),
-  )
-  return new Map(entries)
+// Batch every repo's star count into ONE GraphQL request instead of a REST
+// call per repo. GraphQL requires auth, so without a token we skip stars
+// (the UI hides the star when count is 0) — keeping the endpoint to a single
+// search call rather than hammering the API unauthenticated.
+async function fetchStars(repos: string[], token: string) {
+  if (!token || !repos.length)
+    return new Map<string, number>()
+
+  const fields = repos
+    .map((full, i) => {
+      const [owner, name] = full.split('/')
+      return `r${i}: repository(owner: ${JSON.stringify(owner)}, name: ${JSON.stringify(name)}) { stargazerCount }`
+    })
+    .join('\n')
+
+  const res = await $fetch<{ data?: Record<string, { stargazerCount?: number } | null> }>(
+    'https://api.github.com/graphql',
+    {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'User-Agent': 'lope.adebesin.com',
+      },
+      body: { query: `query {\n${fields}\n}` },
+      retry: 0,
+    },
+  ).catch(() => null)
+
+  const out = new Map<string, number>()
+  repos.forEach((full, i) => out.set(full, res?.data?.[`r${i}`]?.stargazerCount ?? 0))
+  return out
 }
 
 export default defineCachedEventHandler(async (event) => {
@@ -82,7 +105,7 @@ export default defineCachedEventHandler(async (event) => {
     })
     .filter(p => p.repo)
 
-  const stars = await fetchStars([...new Set(base.map(p => `${p.org}/${p.repo}`))], headers)
+  const stars = await fetchStars([...new Set(base.map(p => `${p.org}/${p.repo}`))], config.githubToken)
   const prs = base.map(p => ({ ...p, stars: stars.get(`${p.org}/${p.repo}`) ?? 0 }))
 
   return { prs, total: search.total_count ?? prs.length, fetchedAt: new Date().toISOString() }

@@ -5,15 +5,15 @@ useHead({ title: 'Talks — Adebesin Tolulope' })
 </script>
 
 <template>
-  <ark.article>
+  <ark.article class="slide-enter-content">
     <ark.h1 class="text-4xl font-700 tracking-tight mb-3">
       Talks
     </ark.h1>
-    <ark.p class="text-ink-muted italic mb-10">
+    <ark.p class="text-ink-muted mb-10">
       Nothing on stage yet — but that's the plan.
     </ark.p>
 
-    <ark.div class="rounded-lg border border-white/10 p-6 bg-white/2">
+    <ark.div class="rounded-lg border border-ink/10 p-6 bg-ink/2">
       <ark.h2 class="text-lg font-600 mb-2">
         The wish
       </ark.h2>

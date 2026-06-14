@@ -5,7 +5,7 @@ const year = new Date().getFullYear()
 </script>
 
 <template>
-  <ark.footer class="relative mx-auto max-w-3xl px-6 pb-12 text-xs text-ink-faint">
+  <ark.footer class="relative mx-auto max-w-3xl px-6 pb-12 text-xs text-ink-faint leading-relaxed">
     <ark.div>
       <ark.a
         href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
