@@ -12,6 +12,7 @@ interface MergedPR {
   mergedAt: string
   orgAvatar: string
   type: string
+  stars: number
 }
 
 interface ReleasesResponse {
@@ -33,19 +34,22 @@ function go(to: number) {
     window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
+const MS_PER_DAY = 86_400_000
+const DAYS_PER_MONTH = 30
+const MONTHS_PER_YEAR = 12
+
 function relTime(iso: string) {
   if (!iso)
     return ''
-  const ms = Date.now() - new Date(iso).getTime()
-  const days = Math.floor(ms / 86_400_000)
+  const days = Math.floor((Date.now() - new Date(iso).getTime()) / MS_PER_DAY)
   if (days < 1)
     return 'today'
-  if (days < 30)
+  if (days < DAYS_PER_MONTH)
     return `${days}d ago`
-  const months = Math.floor(days / 30)
-  if (months < 12)
+  const months = Math.floor(days / DAYS_PER_MONTH)
+  if (months < MONTHS_PER_YEAR)
     return `${months}mo ago`
-  return `${Math.floor(months / 12)}y ago`
+  return `${Math.floor(months / MONTHS_PER_YEAR)}y ago`
 }
 
 
@@ -63,6 +67,11 @@ function typeColor(type: string) {
 
 function cleanTitle(title: string, type: string) {
   return type ? title.replace(/^\w+(?:\([^)]*\))?!?:\s*/, '') : title
+}
+
+const starFormatter = new Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 1 })
+function formatStars(n: number) {
+  return starFormatter.format(n)
 }
 </script>
 
@@ -106,9 +115,12 @@ function cleanTitle(title: string, type: string) {
             class="w-10 h-10 rounded-lg bg-white/5 shrink-0"
           />
           <ark.div class="flex-1 min-w-0">
-            <ark.div class="text-xs text-ink-muted">
-              {{ pr.org }}/<ark.span class="text-ink-muted font-500">{{ pr.repo }}</ark.span>
+            <ark.div class="text-xs text-ink-muted flex items-center gap-1.5">
+              <ark.span>{{ pr.org }}/<ark.span class="font-500">{{ pr.repo }}</ark.span></ark.span>
               <ark.span class="text-ink-faint font-mono">#{{ pr.number }}</ark.span>
+              <ark.span v-if="pr.stars" class="text-ink-faint inline-flex items-center gap-0.5">
+                <ark.span class="i-lucide-star" />{{ formatStars(pr.stars) }}
+              </ark.span>
             </ark.div>
             <ark.div class="text-sm font-500 text-ink truncate">
               <ark.span v-if="pr.type" :class="typeColor(pr.type)" class="font-mono text-xs mr-1">{{ pr.type }}</ark.span>

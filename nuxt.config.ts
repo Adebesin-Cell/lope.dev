@@ -27,6 +27,7 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+        { rel: 'alternate', type: 'application/rss+xml', title: 'Adebesin Tolulope (Lope) — Blog', href: '/feed.xml' },
       ],
     },
   },
@@ -64,7 +65,7 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: true,
-      routes: ['/', '/projects', '/talks', '/blog'],
+      routes: ['/', '/projects', '/talks', '/blog', '/feed.xml'],
       ignore: ['/releases'],
     },
   },
@@ -73,6 +74,7 @@ export default defineNuxtConfig({
     '/projects': { prerender: true },
     '/talks': { prerender: true },
     '/blog/**': { prerender: true },
+    '/feed.xml': { prerender: true },
     '/releases': { isr: 60 * 60 },
     '/api/releases': { swr: 60 * 60 },
   },

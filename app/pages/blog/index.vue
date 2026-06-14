@@ -13,8 +13,6 @@ interface BlogPost {
   draft?: boolean
 }
 
-// Fetch all, then drop drafts in JS — a SQL `where('draft','<>',true)` would
-// also exclude posts with no `draft` field (NULL), hiding published posts.
 const { data } = await useAsyncData('blog-list', () =>
   queryCollection('blog')
     .order('date', 'DESC')

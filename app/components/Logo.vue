@@ -1,6 +1,4 @@
 <script setup lang="ts">
-// Animated handwriting logo via tegaki (Caveat). Renders client-side; the
-// static Caveat fallback keeps the mark visible during SSR / before hydration.
 import caveat from 'tegaki/fonts/caveat'
 </script>
 
@@ -11,7 +9,12 @@ import caveat from 'tegaki/fonts/caveat'
     class="logo block select-none outline-none"
   >
     <ClientOnly>
-      <TegakiRenderer :font="caveat" text="at" class="logo-text" />
+      <TegakiRenderer
+        :font="caveat"
+        text="at"
+        :time="{ mode: 'uncontrolled', loop: true, speed: 0.7 }"
+        class="logo-text"
+      />
       <template #fallback>
         <span class="logo-text">at</span>
       </template>
