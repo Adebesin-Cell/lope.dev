@@ -81,7 +81,7 @@ onBeforeUnmount(() => {
         role="dialog"
         aria-modal="true"
         aria-label="Menu"
-        class="fixed inset-y-0 end-0 z-100 w-80 max-w-[85vw] overflow-y-auto border-s border-ink/10 bg-bg md:hidden"
+        class="fixed inset-y-0 end-0 z-100 w-80 max-w-[85vw] overflow-y-auto border-s border-ink/10 bg-bg/100 md:hidden"
       >
         <!-- Drawer header -->
         <ark.div class="flex items-center justify-between border-b border-ink/10 px-5 py-4">

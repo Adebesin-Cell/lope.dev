@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ark } from '@ark-ui/vue/factory'
 
-useHead({ title: 'Talks — Adebesin Tolulope' })
+usePageSeo({
+  title: 'Talks — Adebesin Tolulope',
+  description: 'Where Lope wants to be on stage — speaking plans, starting with meetups.',
+})
 </script>
 
 <template>

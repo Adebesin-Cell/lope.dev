@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ark } from '@ark-ui/vue/factory'
 
-useHead({ title: 'Releases — Adebesin Tolulope' })
+usePageSeo({
+  title: 'Releases — Adebesin Tolulope',
+  description: 'Recent open-source pull requests Lope has merged across the projects he works on.',
+})
 
 interface MergedPR {
   org: string
@@ -186,7 +189,6 @@ function formatStars(n: number) {
 </template>
 
 <style scoped>
-/* "Shipping…" breathes from ghost to full to suggest live activity. */
 .shipping {
   animation: ship-pulse 2.4s ease-in-out infinite;
 }

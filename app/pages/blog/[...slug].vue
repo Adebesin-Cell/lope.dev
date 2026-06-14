@@ -12,32 +12,60 @@ const { data: post } = await useAsyncData(`blog-${route.path}`, () =>
 if (!post.value)
   throw createError({ statusCode: 404, statusMessage: 'Post not found', fatal: true })
 
-useHead(() => ({
-  title: post.value?.title ? `${post.value.title} — Lope` : 'Blog — Lope',
-  meta: [
-    { name: 'description', content: post.value?.description ?? '' },
-    { property: 'og:type', content: 'article' },
-    { property: 'og:title', content: post.value?.title ?? '' },
-    { property: 'og:description', content: post.value?.description ?? '' },
-  ],
-  // Canonical → original source (Medium) so the self-hosted copy isn't
-  // treated as duplicate content.
-  link: post.value?.canonical
-    ? [{ rel: 'canonical', href: post.value.canonical }]
-    : [],
-}))
-
-// Per-post OG image (nuxt-og-image, Takumi) — dynamic from the title.
-defineOgImage('BlogPost.takumi', { title: post.value?.title, host })
-
 const postUrl = computed(() => `https://${host}${route.path}`)
 const shareTitle = computed(() => post.value?.title ?? '')
+const canonicalUrl = computed(() => post.value?.canonical || postUrl.value)
+
+useSeoMeta({
+  title: () => (post.value?.title ? `${post.value.title} — Lope` : 'Blog — Lope'),
+  description: () => post.value?.description ?? '',
+  ogType: 'article',
+  ogTitle: () => post.value?.title ?? '',
+  ogDescription: () => post.value?.description ?? '',
+  ogUrl: () => postUrl.value,
+  articlePublishedTime: () => post.value?.date ?? '',
+  articleAuthor: ['Adebesin Tolulope'],
+  twitterCard: 'summary_large_image',
+  twitterTitle: () => post.value?.title ?? '',
+  twitterDescription: () => post.value?.description ?? '',
+  twitterCreator: '@I_am_Lope',
+})
+
+useHead(() => ({
+  link: [{ rel: 'canonical', href: canonicalUrl.value }],
+  script: [{
+    type: 'application/ld+json',
+    innerHTML: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      'headline': post.value?.title,
+      'description': post.value?.description,
+      'datePublished': post.value?.date,
+      'author': { '@type': 'Person', 'name': 'Adebesin Tolulope', 'url': `https://${host}` },
+      'mainEntityOfPage': postUrl.value,
+    }),
+  }],
+}))
+
+defineOgImage('BlogPost.takumi', { title: post.value?.title, host })
+
 const shareXUrl = computed(() =>
   `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareTitle.value)}&url=${encodeURIComponent(postUrl.value)}`,
 )
 const shareBlueskyUrl = computed(() =>
   `https://bsky.app/intent/compose?text=${encodeURIComponent(`${shareTitle.value} ${postUrl.value}`)}`,
 )
+const shareLinkedInUrl = computed(() =>
+  `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl.value)}`,
+)
+const copied = ref(false)
+async function copyLink() {
+  if (!import.meta.client)
+    return
+  await navigator.clipboard.writeText(postUrl.value)
+  copied.value = true
+  setTimeout(() => { copied.value = false }, 1500)
+}
 
 function fmt(d?: string) {
   if (!d)
@@ -111,6 +139,23 @@ function fmt(d?: string) {
       >
         <ark.span class="i-simple-icons-bluesky" aria-hidden="true" />
       </ark.a>
+      <ark.a
+        :href="shareLinkedInUrl"
+        target="_blank"
+        rel="noopener"
+        aria-label="Share on LinkedIn"
+        class="inline-flex items-center hover:text-ink transition-colors"
+      >
+        <ark.span class="i-simple-icons-linkedin" aria-hidden="true" />
+      </ark.a>
+      <ark.button
+        type="button"
+        :aria-label="copied ? 'Link copied' : 'Copy link'"
+        class="inline-flex items-center hover:text-ink transition-colors"
+        @click="copyLink"
+      >
+        <ark.span :class="copied ? 'i-lucide-check' : 'i-lucide-link'" aria-hidden="true" />
+      </ark.button>
     </ark.div>
 
     <ark.footer

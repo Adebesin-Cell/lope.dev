@@ -10,6 +10,9 @@ export default defineSitemapEventHandler(async (event) => {
     { loc: '/talks' },
     { loc: '/blog' },
     { loc: '/releases' },
-    ...original.map(p => ({ loc: p.path })),
+    ...original.map((p) => {
+      const lastmod = p.date
+      return lastmod ? { loc: p.path, lastmod } : { loc: p.path }
+    }),
   ]
 })

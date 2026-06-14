@@ -2,7 +2,10 @@
 import { ark } from '@ark-ui/vue/factory'
 import { projects } from '~~/shared/data/projects'
 
-useHead({ title: 'Projects — Adebesin Tolulope' })
+usePageSeo({
+  title: 'Projects — Adebesin Tolulope',
+  description: 'Open-source projects Lope has built, maintains, or contributes to — across the Chakra and IQ ecosystems.',
+})
 </script>
 
 <template>

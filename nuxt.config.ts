@@ -24,6 +24,11 @@ export default defineNuxtConfig({
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'description', content: 'Software engineer and open-source contributor, working across the Chakra and IQ ecosystems.' },
+        { name: 'author', content: 'Adebesin Tolulope (Lope)' },
+        { name: 'theme-color', content: '#0a0a0a' },
+        { property: 'og:site_name', content: 'Adebesin Tolulope (Lope)' },
+        { property: 'og:locale', content: 'en_US' },
+        { name: 'twitter:site', content: '@I_am_Lope' },
       ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },

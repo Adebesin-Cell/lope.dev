@@ -6,7 +6,7 @@ import { ark } from '@ark-ui/vue/factory'
   <ark.div class="relative min-h-screen">
     <ark.a
       href="#main"
-      class="sr-only focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-bg-soft focus:px-4 focus:py-2 focus:text-sm focus:ring-2 focus:ring-ink/40"
+      class="sr-only focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-bg-soft/100 focus:px-4 focus:py-2 focus:text-sm focus:ring-2 focus:ring-ink/40"
     >
       Skip to content
     </ark.a>

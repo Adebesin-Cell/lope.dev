@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ark } from '@ark-ui/vue/factory'
 
-useHead({ title: 'Blog — Adebesin Tolulope' })
+usePageSeo({
+  title: 'Blog — Adebesin Tolulope',
+  description: 'Notes on open source, engineering with LLMs, and the projects Lope is building.',
+})
 
 interface BlogPost {
   path: string

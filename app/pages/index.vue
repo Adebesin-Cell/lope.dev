@@ -1,7 +1,42 @@
 <script setup lang="ts">
 import { ark } from '@ark-ui/vue/factory'
 
-useHead({ title: 'Adebesin Tolulope (Lope)' })
+usePageSeo({
+  title: 'Adebesin Tolulope (Lope)',
+  description: 'Software engineer and open-source contributor — founding engineer at BethelFlow, working across the Chakra and IQ ecosystems.',
+})
+
+const siteUrl = useSiteConfig().url.replace(/\/$/, '')
+
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        'name': 'Adebesin Tolulope',
+        'alternateName': 'Lope',
+        'url': siteUrl,
+        'jobTitle': 'Software Engineer',
+        'sameAs': [
+          'https://github.com/Adebesin-Cell',
+          'https://x.com/I_am_Lope',
+          'https://bsky.app/profile/lopeadebesin.bsky.social',
+        ],
+      }),
+    },
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        'name': 'Adebesin Tolulope (Lope)',
+        'url': siteUrl,
+      }),
+    },
+  ],
+})
 
 const roleRows = [
   {
