@@ -10,6 +10,15 @@ interface MergedPR {
   stars: number
 }
 
+interface GhSearchItem {
+  number: number
+  title?: string
+  html_url?: string
+  repository_url?: string
+  closed_at?: string
+  pull_request?: { merged_at?: string }
+}
+
 const BATCH = 100
 
 const REPO_AVATAR: Record<string, string> = {
@@ -50,13 +59,13 @@ export default defineCachedEventHandler(async (event) => {
   const q = process.env.NUXT_RELEASES_QUERY
     || `author:${user} type:pr is:merged is:public`
 
-  const search = await $fetch<{ items?: any[], total_count?: number }>(
+  const search = await $fetch<{ items?: GhSearchItem[], total_count?: number }>(
     `https://api.github.com/search/issues?q=${encodeURIComponent(q)}&sort=updated&order=desc&per_page=${BATCH}`,
     { headers, retry: 0 },
   ).catch(() => ({ items: [], total_count: 0 }))
 
   const base = (search.items ?? [])
-    .map((it: any) => {
+    .map((it) => {
       const full = (it.repository_url ?? '').replace('https://api.github.com/repos/', '')
       const [org, repo] = full.split('/')
       return {

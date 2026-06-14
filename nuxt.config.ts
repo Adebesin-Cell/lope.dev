@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     'tegaki/nuxt',
     'nuxt-og-image',
+    '@nuxtjs/sitemap',
   ],
   devtools: { enabled: true },
   compatibilityDate: '2024-04-03',
@@ -54,6 +55,10 @@ export default defineNuxtConfig({
       || (process.env.VERCEL_PROJECT_PRODUCTION_URL && `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`)
       || 'https://lope.cell.vercel.app',
     name: 'Adebesin Tolulope (Lope)',
+  },
+  sitemap: {
+    excludeAppSources: true,
+    sources: ['/api/__sitemap__/urls'],
   },
   ogImage: {
     defaults: { cacheMaxAgeSeconds: 60 * 60 * 24 },

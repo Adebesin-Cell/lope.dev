@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
   const site = String(useRuntimeConfig(event).public.siteUrl).replace(/\/$/, '')
 
   const posts = (await queryCollection(event, 'blog').order('date', 'DESC').all())
-    .filter((p: any) => !p.draft)
+    .filter(p => !p.draft)
 
   const feed = new Feed({
     title: 'Adebesin Tolulope (Lope) — Blog',
@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
     author: { name: 'Adebesin Tolulope', link: site },
   })
 
-  for (const p of posts as any[]) {
+  for (const p of posts) {
     feed.addItem({
       title: p.title,
       id: `${site}${p.path}`,

@@ -6,3 +6,5 @@ Allow: /
 # Keep crawlers off internal/function-backed paths (no SEO value).
 Disallow: /_og/
 Disallow: /api/
+
+Sitemap: https://lope.cell.vercel.app/sitemap.xml

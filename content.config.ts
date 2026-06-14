@@ -12,8 +12,6 @@ export default defineContentConfig({
         readingTime: z.string().optional(),
         lang: z.string().optional(),
         draft: z.boolean().optional(),
-        // Points search engines at the original (e.g. Medium) so a self-hosted
-        // copy isn't flagged as duplicate content.
         canonical: z.string().optional(),
       }),
     }),
