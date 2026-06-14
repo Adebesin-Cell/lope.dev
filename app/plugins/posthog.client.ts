@@ -7,7 +7,8 @@ export default defineNuxtPlugin(() => {
     return
 
   const client = posthog.init(key, {
-    api_host: config.posthogHost as string,
+    api_host: '/ingest',
+    ui_host: 'https://us.posthog.com',
     defaults: '2026-01-30',
     loaded: (ph) => {
       if (import.meta.dev)
