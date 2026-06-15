@@ -48,6 +48,7 @@ export default defineNuxtConfig({
         || 'https://lope.cell.vercel.app',
       posthogPublicKey: process.env.NUXT_PUBLIC_POSTHOG_PUBLIC_KEY || '',
       posthogHost: process.env.NUXT_PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com',
+      posthogOptoutToken: process.env.NUXT_PUBLIC_POSTHOG_OPTOUT_TOKEN || '',
     },
   },
   vite: {
