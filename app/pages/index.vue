@@ -102,7 +102,7 @@ const roleRows = [
     <ark.p class="text-base text-ink-muted leading-relaxed">
       You can find my work on
       <ark.a href="https://github.com/Adebesin-Cell" class="underline">GitHub</ark.a>,
-      reach me at <ark.span class="font-mono text-ink">lope@braindao.org</ark.span>,
+      reach me by <EmailLink />,
       or browse my <NuxtLink to="/projects" class="underline">projects</NuxtLink>.
     </ark.p>
   </ark.article>
