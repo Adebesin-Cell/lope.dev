@@ -25,8 +25,8 @@ usePageSeo({
         <ark.span class="text-ink font-500">React Conf</ark.span> is right at the top of my list.
       </ark.p>
       <ark.p class="text-sm text-ink-muted leading-relaxed mt-3">
-        If you're organising a meetup or conference and want me there, reach me by
-        <EmailLink />.
+        If you're organising a meetup or conference and want me there, reach me on
+        <ark.a href="https://www.linkedin.com/in/adebesin-tolulope/" class="underline">LinkedIn</ark.a>.
       </ark.p>
     </ark.div>
   </ark.article>

@@ -96,6 +96,13 @@ export const projects: ProjectGroup[] = [
         icon: 'i-lucide-users',
         color: '#A78BFA',
       },
+      {
+        name: 'Recall',
+        description: 'Quick brain games for memory, focus, and reaction — playable in seconds, shareable by link. No sign-up.',
+        href: 'https://playrecuerdo.vercel.app/',
+        icon: 'i-lucide-brain',
+        color: '#A855F7',
+      },
     ],
   },
   {
