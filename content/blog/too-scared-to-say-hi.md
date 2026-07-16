@@ -1,7 +1,7 @@
 ---
 title: Too scared to say Hi
 description: How a kid with crippling imposter syndrome went from too scared to type "Hi" to maintaining Chakra UI and leading Panda v2. The origin. Raw.
-date: 2026-07-16
+date: 2026-08-31
 ---
 
 ::hi-cover
