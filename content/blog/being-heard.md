@@ -2,7 +2,6 @@
 title: Being Heard Isn't Just About Speaking — It's About Understanding
 description: A guide to internationalization (i18n) in Next.js using next-intl to build multilingual, user-aware web experiences.
 date: 2025-05-26
-readingTime: 6min
 canonical: https://iamlope.medium.com/being-heard-isnt-just-about-speaking-it-s-about-understanding-b700929c5743
 ---
 

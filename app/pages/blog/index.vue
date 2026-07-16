@@ -12,9 +12,8 @@ usePageSeo({
 interface PostItem {
   title: string
   date: string
-  description?: string
-  readingTime?: string
   lang?: string
+  readingTime?: string
   path?: string
   external?: string
 }
@@ -22,19 +21,25 @@ interface PostItem {
 const { data } = await useAsyncData('blog-list', () =>
   queryCollection('blog')
     .order('date', 'DESC')
-    .all() as Promise<(PostItem & { draft?: boolean })[]>,
+    .all(),
 )
 
 const grouped = computed(() => {
   const onSite: PostItem[] = (data.value ?? [])
     .filter(p => !p.draft)
-    .map(({ draft: _draft, ...p }) => p)
+    .map(p => ({
+      title: p.title,
+      date: p.date,
+      lang: p.lang,
+      readingTime: readingTimeText(p.body),
+      path: p.path,
+    }))
 
   const external: PostItem[] = mediumPosts.map(m => ({
     title: m.title,
     date: m.date,
-    description: m.description,
     lang: m.lang,
+    readingTime: m.readingTime,
     external: m.url,
   }))
 
@@ -75,29 +80,31 @@ function fmt(d: string) {
       >
         {{ year }}
       </ark.div>
-      <ark.ul class="slide-enter-content relative space-y-3 md:space-y-1 pt-10 md:pt-0">
+      <ark.ul class="slide-enter-content relative space-y-4 md:space-y-2 pt-10 md:pt-0">
         <ark.li v-for="post in posts" :key="post.external ?? post.path">
           <component
             :is="post.external ? 'a' : NuxtLink"
             v-bind="post.external ? { href: post.external, target: '_blank', rel: 'noopener' } : { to: post.path }"
-            class="flex flex-col md:flex-row md:items-baseline gap-0.5 md:gap-3 py-1 md:py-2 hover:op-100 op-90 transition-opacity"
+            class="flex flex-col md:flex-row md:items-baseline gap-0.5 md:gap-3 py-1 op-90 hover:op-100 transition-opacity"
           >
-            <ark.span
-              v-if="post.lang"
-              class="text-xs bg-ink/10 rounded px-1.5 py-0.5 text-ink-muted self-start"
-            >
-              {{ post.lang }}
+            <ark.span class="flex items-baseline gap-1.5 flex-wrap">
+              <ark.span
+                v-if="post.lang"
+                class="text-xs bg-ink/10 rounded px-1.5 py-0.5 text-ink-muted self-center"
+              >
+                {{ post.lang }}
+              </ark.span>
+              <ark.span class="text-base leading-snug">{{ post.title }}</ark.span>
+              <ark.span
+                v-if="post.external"
+                class="i-lucide-arrow-up-right text-xs text-ink-faint self-center"
+                aria-hidden="true"
+              />
             </ark.span>
-            <ark.span class="text-base">{{ post.title }}</ark.span>
-            <ark.span class="text-sm text-ink-muted">{{ fmt(post.date) }}</ark.span>
-            <ark.span v-if="post.readingTime" class="text-sm text-ink-faint">
-              · {{ post.readingTime }}
-            </ark.span>
-            <ark.span
-              v-if="post.external"
-              class="text-xs text-ink-faint self-start md:self-auto"
-            >
-              Medium ↗
+            <ark.span class="flex items-center gap-1 text-sm text-ink-muted whitespace-nowrap">
+              <ark.span>{{ fmt(post.date) }}</ark.span>
+              <ark.span v-if="post.readingTime" class="text-ink-faint">· {{ post.readingTime }}</ark.span>
+              <ark.span v-if="post.external" class="text-ink-faint">· Medium</ark.span>
             </ark.span>
           </component>
         </ark.li>
