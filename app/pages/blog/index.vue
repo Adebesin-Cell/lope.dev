@@ -24,7 +24,7 @@ const { data } = await useAsyncData('blog-list', () =>
     .all(),
 )
 
-const grouped = computed(() => {
+const posts = computed<PostItem[]>(() => {
   const onSite: PostItem[] = (data.value ?? [])
     .filter(p => !p.draft)
     .map(p => ({
@@ -43,18 +43,12 @@ const grouped = computed(() => {
     external: m.url,
   }))
 
-  const byYear = new Map<string, PostItem[]>()
-  for (const post of [...onSite, ...external]) {
-    const year = new Date(post.date).getFullYear().toString()
-    if (!byYear.has(year))
-      byYear.set(year, [])
-    byYear.get(year)!.push(post)
-  }
-  for (const posts of byYear.values())
-    posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-
-  return Array.from(byYear.entries()).sort((a, b) => Number(b[0]) - Number(a[0]))
+  return [...onSite, ...external].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 })
+
+function year(d: string) {
+  return new Date(d).getFullYear()
+}
 
 function fmt(d: string) {
   return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
@@ -66,26 +60,32 @@ function fmt(d: string) {
     <ark.h1 class="text-4xl font-700 tracking-tight mb-3">
       Blog
     </ark.h1>
-    <ark.p class="text-ink-muted mb-12">
+    <ark.p class="text-ink-muted mb-10">
       Notes on open source, engineering with LLMs, and projects I'm building.
     </ark.p>
 
-    <ark.div v-if="!grouped.length" class="text-ink-muted text-sm italic">
+    <ark.div v-if="!posts.length" class="text-ink-muted text-sm italic">
       No posts yet — drafts in flight.
     </ark.div>
 
-    <ark.section v-for="[year, posts] in grouped" :key="year" :id="`y${year}`" :data-toc="year" class="relative scroll-mt-24 mb-10 md:min-h-28 overflow-hidden md:overflow-visible">
-      <ark.div
-        class="absolute top-0 md:-top-6 -start-2 md:-start-14 text-5xl sm:text-7xl md:text-8xl font-700 op-5 select-none pointer-events-none tracking-tight"
-      >
-        {{ year }}
-      </ark.div>
-      <ark.ul class="slide-enter-content relative space-y-4 md:space-y-2 pt-10 md:pt-0">
-        <ark.li v-for="post in posts" :key="post.external ?? post.path">
+    <ark.ul class="relative">
+      <template v-for="(post, idx) in posts" :key="post.external ?? post.path">
+        <ark.li
+          v-if="idx === 0 || year(post.date) !== year(posts[idx - 1].date)"
+          :id="`y${year(post.date)}`"
+          :data-toc="year(post.date)"
+          class="relative select-none pointer-events-none scroll-mt-24 h-16 md:h-20 mt-10 first:mt-2"
+          aria-hidden="true"
+        >
+          <ark.span class="absolute -top-2 md:-top-4 -start-1 md:-start-3 text-6xl sm:text-7xl md:text-8xl font-700 op-5 tracking-tight leading-none">
+            {{ year(post.date) }}
+          </ark.span>
+        </ark.li>
+        <ark.li class="slide-enter-content relative">
           <component
             :is="post.external ? 'a' : NuxtLink"
             v-bind="post.external ? { href: post.external, target: '_blank', rel: 'noopener' } : { to: post.path }"
-            class="flex flex-col md:flex-row md:items-baseline gap-0.5 md:gap-3 py-1 op-90 hover:op-100 transition-opacity"
+            class="flex flex-col md:flex-row md:items-baseline gap-0.5 md:gap-3 py-2 op-90 hover:op-100 transition-opacity"
           >
             <ark.span class="flex items-baseline gap-1.5 flex-wrap">
               <ark.span
@@ -104,11 +104,10 @@ function fmt(d: string) {
             <ark.span class="flex items-center gap-1 text-sm text-ink-muted whitespace-nowrap">
               <ark.span>{{ fmt(post.date) }}</ark.span>
               <ark.span v-if="post.readingTime" class="text-ink-faint">· {{ post.readingTime }}</ark.span>
-              <ark.span v-if="post.external" class="text-ink-faint">· Medium</ark.span>
             </ark.span>
           </component>
         </ark.li>
-      </ark.ul>
-    </ark.section>
+      </template>
+    </ark.ul>
   </ark.article>
 </template>
