@@ -4,7 +4,8 @@ description: How a kid with crippling imposter syndrome went from too scared to 
 date: 2026-07-16
 ---
 
-![A chat box with a half-typed "Hi" and a blinking cursor, the send button just out of reach](/images/blog/oss/cover.svg)
+::hi-cover
+::
 
 It takes me real, physical effort to type "Hi" in a channel.
 
