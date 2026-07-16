@@ -2,7 +2,6 @@
 title: "Nuqs: Because URLs Should Do More"
 description: Type-safe URL search-param state management in Next.js with nuqs, so user context persists across refreshes and shared links.
 date: 2025-02-17
-readingTime: 7min
 canonical: https://iamlope.medium.com/nuqs-because-urls-should-do-more-5d5d86e873c1
 ---
 
