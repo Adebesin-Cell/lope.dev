@@ -11,6 +11,11 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap',
   ],
   devtools: { enabled: true },
+  components: [
+    // Global so MDC can resolve them by name inside markdown (e.g. ::quiet-cover).
+    { path: '~/components/content', global: true },
+    '~/components',
+  ],
   compatibilityDate: '2024-04-03',
   css: ['@unocss/reset/tailwind.css', '~/assets/css/main.css'],
   colorMode: {

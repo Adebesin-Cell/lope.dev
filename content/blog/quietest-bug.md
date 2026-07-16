@@ -7,7 +7,8 @@ readingTime: 6min
 
 ### Why optional chaining hides the failure you most need to see, and the rule I keep for it.
 
-![family?.familyName resolving to a dash: no error, no log, just a dash](/images/blog/quietest-bug/cover.svg)
+::quiet-cover
+::
 
 You know the little light on your dashboard. The orange one.
 
