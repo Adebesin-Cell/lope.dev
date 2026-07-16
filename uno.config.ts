@@ -15,8 +15,9 @@ const dataIcons = projects
   .filter((v): v is string => Boolean(v))
 
 const uiIcons = [
-  // homepage chips
+  // homepage chips + inline links
   'i-simple-icons-chakraui', 'i-logos-pandacss-icon', 'i-lucide-zap', 'i-lucide-anchor', 'i-lucide-feather',
+  'i-lucide-newspaper', 'i-simple-icons-linkedin',
   // header nav + socials + controls
   'i-lucide-pencil-line', 'i-lucide-folder-git-2', 'i-lucide-mic', 'i-lucide-git-merge',
   'i-lucide-rss', 'i-lucide-moon', 'i-lucide-sun', 'i-lucide-menu', 'i-lucide-x', 'i-lucide-arrow-up',

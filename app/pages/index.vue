@@ -82,7 +82,7 @@ const roleRows = [
 
     <ark.p class="text-base text-ink-muted leading-relaxed">
       Hey! I'm Lope, a software engineer and open-source contributor. Founding engineer at
-      <MagicLink href="https://www.bethelflow.com/" label="BethelFlow" logo="/brands/bethelflow.svg" />,
+      <Chip class="align-middle" href="https://www.bethelflow.com/" label="BethelFlow" logo="/brands/bethelflow.svg" />,
       working across the Chakra and IQ ecosystems.
     </ark.p>
 
@@ -95,15 +95,15 @@ const roleRows = [
 
     <ark.p class="text-base text-ink-muted leading-relaxed">
       I care about open-source sustainability, community growth, and how LLMs are reshaping
-      engineering practice. I write <MagicLink to="/blog" label="blog posts" icon="i-lucide-newspaper" /> about these,
+      engineering practice. I write <Chip class="align-middle" to="/blog" label="blog posts" icon="i-lucide-newspaper" /> about these,
       ship side-projects on the side, and maintain a few small tools I rely on every day.
     </ark.p>
 
     <ark.p class="text-base text-ink-muted leading-relaxed">
       You can find my work on
-      <MagicLink href="https://github.com/Adebesin-Cell" label="GitHub" icon="i-simple-icons-github" />,
-      reach me on <MagicLink href="https://www.linkedin.com/in/adebesin-tolulope/" label="LinkedIn" icon="i-simple-icons-linkedin" color="#0A66C2" />,
-      or browse my <MagicLink to="/projects" label="projects" icon="i-lucide-folder-git-2" />.
+      <Chip class="align-middle" href="https://github.com/Adebesin-Cell" label="GitHub" icon="i-simple-icons-github" />,
+      reach me on <Chip class="align-middle" href="https://www.linkedin.com/in/adebesin-tolulope/" label="LinkedIn" icon="i-simple-icons-linkedin" color="#0A66C2" />,
+      or browse my <Chip class="align-middle" to="/projects" label="projects" icon="i-lucide-folder-git-2" />.
     </ark.p>
   </ark.article>
 </template>
