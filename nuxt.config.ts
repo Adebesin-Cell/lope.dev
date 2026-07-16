@@ -12,7 +12,6 @@ export default defineNuxtConfig({
   ],
   devtools: { enabled: true },
   components: [
-    // Global so MDC can resolve them by name inside markdown (e.g. ::quiet-cover).
     { path: '~/components/content', global: true },
     '~/components',
   ],
