@@ -42,5 +42,8 @@
     "@takumi-rs/helpers": "^1.8.5",
     "oxfmt": "^0.54.0",
     "oxlint": "^1.69.0"
-  }
+  },
+  "trustedDependencies": [
+    "better-sqlite3"
+  ]
 }
