@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ark } from '@ark-ui/vue/factory'
 import { mediumPosts } from '~/data/medium-posts'
-import { substackPosts, substackUrl } from '~/data/substack-posts'
 
 const NuxtLink = resolveComponent('NuxtLink')
 
@@ -110,38 +109,5 @@ function fmt(d: string) {
         </ark.li>
       </template>
     </ark.ul>
-
-    <ark.section class="mt-14 pt-8 border-t border-ink/10">
-      <ark.div class="flex items-baseline justify-between gap-4 flex-wrap mb-3">
-        <ark.h2 class="text-lg font-600">
-          From the newsletter
-        </ark.h2>
-        <ark.a
-          :href="substackUrl"
-          target="_blank"
-          rel="noopener"
-          class="inline-flex items-center gap-1 text-sm text-ink-muted hover:text-ink transition-colors"
-        >
-          Read on Substack
-          <ark.span class="i-lucide-arrow-up-right text-xs" aria-hidden="true" />
-        </ark.a>
-      </ark.div>
-      <ark.p class="text-sm text-ink-muted mb-5 max-w-prose">
-        Beyond code, I write more personal essays — on effort, taste, and being human.
-      </ark.p>
-      <ark.ul class="space-y-2">
-        <ark.li v-for="post in substackPosts.slice(0, 5)" :key="post.url">
-          <ark.a
-            :href="post.url"
-            target="_blank"
-            rel="noopener"
-            class="flex flex-col md:flex-row md:items-baseline gap-0.5 md:gap-3 op-90 hover:op-100 transition-opacity"
-          >
-            <ark.span class="text-base leading-snug">{{ post.title }}</ark.span>
-            <ark.span class="text-sm text-ink-faint whitespace-nowrap">{{ fmt(post.date) }}</ark.span>
-          </ark.a>
-        </ark.li>
-      </ark.ul>
-    </ark.section>
   </ark.article>
 </template>
