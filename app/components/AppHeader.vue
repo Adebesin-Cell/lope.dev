@@ -17,19 +17,14 @@ const icons = [
 
 // Mobile menu state — opens a full-height slide-over drawer below md.
 const open = ref(false)
-
-// Frost the bar once it starts overlapping content, so the logo/links stay
-// legible over anything scrolling under it (incl. light/white images).
-const { y } = useWindowScroll()
 </script>
 
 <template>
-  <ark.header
-    class="fixed inset-x-0 top-0 z-50 px-6 py-5 border-b transition-colors duration-300"
-    :class="y > 24 ? 'bg-bg/70 backdrop-blur-md border-ink/10' : 'border-transparent'"
-  >
-    <ark.div class="flex items-center justify-between">
-      <Logo />
+  <ark.header class="absolute inset-x-0 top-0 z-40 px-6 py-5">
+    <!-- Only the logo persists (pinned on xl, like antfu); the nav scrolls away. -->
+    <Logo class="absolute xl:fixed top-5 left-6 z-50" />
+
+    <ark.div class="flex items-center justify-end">
 
       <!-- Desktop: keep the original inline layout exactly -->
       <ark.nav class="hidden md:flex items-center gap-5 text-sm">
