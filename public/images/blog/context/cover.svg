@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-label="A conversation panel you've walked into halfway: the top lines are cut off, the middle is clear, and the last line is only half typed with a blinking cursor.">
+  <style>
+    :root { color-scheme: light dark; }
+    .bg     { fill: #fbfbfa; }
+    .card   { fill: #ffffff; stroke: #1a1a1a; stroke-opacity: 0.12; stroke-width: 1.5; }
+    .ink    { fill: #16150f; }
+    .muted  { fill: #16150f; opacity: 0.14; }
+    .faint  { fill: #16150f; opacity: 0.07; }
+    .kicker { fill: #16150f; opacity: 0.45; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 20px; letter-spacing: 1px; }
+    .caret  { fill: #16150f; }
+    .dot    { fill: #16150f; opacity: 0.06; }
+    @media (prefers-color-scheme: dark) {
+      .bg    { fill: #0f0f0e; }
+      .card  { fill: #17171a; stroke: #ffffff; stroke-opacity: 0.12; }
+      .ink   { fill: #f2f2ee; }
+      .muted { fill: #f2f2ee; opacity: 0.16; }
+      .faint { fill: #f2f2ee; opacity: 0.08; }
+      .kicker{ fill: #f2f2ee; opacity: 0.5; }
+      .caret { fill: #f2f2ee; }
+      .dot   { fill: #f2f2ee; opacity: 0.07; }
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+    .caret { animation: blink 1.1s steps(1) infinite; }
+    @media (prefers-reduced-motion: reduce) { .caret { animation: none; } }
+  </style>
+
+  <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+    <circle class="dot" cx="2" cy="2" r="1.6" />
+  </pattern>
+
+  <rect class="bg" x="0" y="0" width="1200" height="520" />
+  <rect x="0" y="0" width="1200" height="520" fill="url(#dots)" />
+
+  <text class="kicker" x="140" y="92">context is everything</text>
+
+  <!-- panel, clipped so the top lines read as cut off / walked-in-halfway -->
+  <clipPath id="panelClip"><rect x="140" y="120" width="920" height="320" rx="20" /></clipPath>
+  <rect class="card" x="140" y="120" width="920" height="320" rx="20" />
+
+  <g clip-path="url(#panelClip)">
+    <!-- cut-off lines at the very top (the half you missed) -->
+    <rect class="faint" x="180" y="132" width="620" height="14" rx="7" />
+    <rect class="faint" x="180" y="160" width="500" height="14" rx="7" />
+
+    <!-- the part you caught, clear -->
+    <rect class="ink"   x="180" y="214" width="760" height="16" rx="8" />
+    <rect class="ink"   x="180" y="248" width="700" height="16" rx="8" />
+    <rect class="ink"   x="180" y="282" width="560" height="16" rx="8" />
+
+    <!-- the half-typed line, trailing into a caret -->
+    <rect class="muted" x="180" y="342" width="300" height="16" rx="8" />
+    <rect class="caret" x="496" y="338" width="4" height="24" rx="2" />
+  </g>
+</svg>
