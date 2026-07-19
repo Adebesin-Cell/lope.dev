@@ -15,6 +15,7 @@ if (!post.value)
 const postUrl = computed(() => `https://${host}${route.path}`)
 const shareTitle = computed(() => post.value?.title ?? '')
 const canonicalUrl = computed(() => post.value?.canonical || postUrl.value)
+const readingTime = computed(() => readingTimeText(post.value?.body))
 
 useSeoMeta({
   title: () => (post.value?.title ? `${post.value.title} — Lope` : 'Blog — Lope'),
@@ -91,7 +92,7 @@ function fmt(d?: string) {
       <ark.p class="text-sm text-ink-muted">
         {{ fmt(post.date) }}
         <ark.span v-if="post.duration"> · {{ post.duration }}</ark.span>
-        <ark.span v-else-if="post.readingTime"> · {{ post.readingTime }}</ark.span>
+        <ark.span v-else-if="readingTime"> · {{ readingTime }}</ark.span>
         <template v-if="post.place">
           <ark.span class="text-ink-faint"> · at </ark.span>
           <ark.a

@@ -2,7 +2,6 @@
 title: Stop yapping, Lock in
 description: Securing Next.js server actions with next-safe-action — typed input validation, Zod schemas, and clean error handling.
 date: 2025-04-25
-readingTime: 9min
 canonical: https://iamlope.medium.com/stop-yapping-lock-in-5e0a0673ab19
 ---
 

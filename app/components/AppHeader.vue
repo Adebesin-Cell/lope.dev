@@ -3,6 +3,7 @@ import { ark } from '@ark-ui/vue/factory'
 
 const links = [
   { to: '/blog', label: 'Blog', icon: 'i-lucide-pencil-line' },
+  { to: '/essays', label: 'Essays', icon: 'i-lucide-feather' },
   { to: '/projects', label: 'Projects', icon: 'i-lucide-folder-git-2' },
   { to: '/talks', label: 'Talks', icon: 'i-lucide-mic' },
   { to: '/releases', label: 'Releases', icon: 'i-lucide-git-merge' },
