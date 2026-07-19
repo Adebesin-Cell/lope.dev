@@ -86,7 +86,7 @@ Karpathy ended his post with a line I think about a lot: *the term "ChatGPT wrap
 
 Here's the thing that keeps getting me, though. We are *terrible* context engineers with each other, and we've had a lot longer to practise.
 
-Think about how we brief people. We fire off the Slack message with none of the backstory and wonder why the reply misses. We say "you know what I mean" to someone who provably does not. We walk a new teammate up to a two-year-old system and drop them at the door. We do to each other exactly what a bad prompt does to a model: too little context, or the wrong shape, and then we're surprised by the confident wrong answer that comes back.
+Think about how we brief people. We fire off the Slack message with none of the backstory and wonder why the reply misses. We say "you know what I mean" to someone who probably does not. We walk a new teammate up to a two-year-old system and drop them at the door. We do to each other exactly what a bad prompt does to a model: too little context, or the wrong shape, and then we're surprised by the confident wrong answer that comes back.
 
 The uncomfortable mirror is that everything I learned bolting context onto a forgetful model is just... good communication, formalized. Rewrite the follow-up so it stands alone: that's not making someone reconstruct the whole thread from memory. Return a summary, not the raw arrays: that's respecting someone's attention budget instead of forwarding the 200-email chain. Give each specialist only their slice: that's not CC'ing forty people on something two of them own. Write it down somewhere durable: that's the doc that outlives the one person who remembers.
 
