@@ -1,11 +1,30 @@
 import { queryCollection } from '@nuxt/content/server'
 import { Feed } from 'feed'
+import { mediumPosts } from '~/data/medium-posts'
 
 export default defineEventHandler(async (event) => {
   const site = String(useRuntimeConfig(event).public.siteUrl).replace(/\/$/, '')
 
-  const posts = (await queryCollection(event, 'blog').order('date', 'DESC').all())
+  const onSite = (await queryCollection(event, 'blog').order('date', 'DESC').all())
     .filter(p => !p.draft)
+    .map(p => ({
+      title: p.title,
+      link: `${site}${p.path}`,
+      description: p.description ?? '',
+      content: minimarkToHtml(p.body).replace(/(src|href)="\//g, `$1="${site}/`),
+      date: p.date,
+    }))
+
+  const external = mediumPosts.map(m => ({
+    title: m.title,
+    link: m.url,
+    description: m.description ?? '',
+    content: '',
+    date: m.date,
+  }))
+
+  const posts = [...onSite, ...external]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
   const feed = new Feed({
     title: 'Adebesin Tolulope (Lope) — Blog',
@@ -22,9 +41,10 @@ export default defineEventHandler(async (event) => {
   for (const p of posts) {
     feed.addItem({
       title: p.title,
-      id: `${site}${p.path}`,
-      link: `${site}${p.path}`,
-      description: p.description ?? '',
+      id: p.link,
+      link: p.link,
+      description: p.description,
+      content: p.content || undefined,
       date: new Date(p.date),
     })
   }
