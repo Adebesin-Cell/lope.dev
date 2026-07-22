@@ -9,9 +9,9 @@ export default defineEventHandler(async (event) => {
     .filter(p => !p.draft)
     .map(p => ({
       title: p.title,
-      link: `${site}${p.path}`,
+      link: p.canonical ?? `${site}${p.path}`,
       description: p.description ?? '',
-      content: minimarkToHtml(p.body).replace(/(src|href)="\//g, `$1="${site}/`),
+      content: p.canonical ? '' : minimarkToHtml(p.body).replace(/(src|href)="\//g, `$1="${site}/`),
       date: p.date,
     }))
 
@@ -50,5 +50,8 @@ export default defineEventHandler(async (event) => {
   }
 
   setHeader(event, 'content-type', 'application/rss+xml; charset=utf-8')
-  return feed.rss2()
+  return feed.rss2().replace(
+    /^<\?xml[^>]*\?>/,
+    `$&\n<?xml-stylesheet type="text/xsl" href="/feed.xsl"?>`,
+  )
 })

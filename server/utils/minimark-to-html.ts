@@ -18,6 +18,13 @@ function nodeToHtml(node: MinimarkNode): string {
     return escapeText(node)
 
   const [tag, props, ...children] = node
+
+  // shiki dumps highlight spans + a <style> block into the body; feeds want neither.
+  if (tag === 'style')
+    return ''
+  if (tag === 'pre' && props?.code != null)
+    return `<pre><code>${escapeText(String(props.code))}</code></pre>`
+
   const attrs = Object.entries(props ?? {})
     .filter(([, v]) => v != null && v !== false)
     .map(([k, v]) => (v === true ? ` ${k}` : ` ${k}="${escapeAttr(Array.isArray(v) ? v.join(' ') : String(v))}"`))
