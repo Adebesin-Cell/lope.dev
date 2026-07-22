@@ -22,6 +22,9 @@
           a { color: inherit; }
           time { font-size: .8rem; opacity: .6; display: block; margin-bottom: .2rem; }
           .item-desc { opacity: .75; font-size: .92rem; margin: .3rem 0 0; }
+          .via { font-size: .7rem; letter-spacing: .03em; text-transform: uppercase;
+            opacity: .55; border: 1px solid color-mix(in oklab, currentColor 25%, transparent);
+            border-radius: 999px; padding: .05rem .5rem; margin-left: .5rem; vertical-align: middle; }
         </style>
       </head>
       <body>
@@ -35,6 +38,7 @@
             <li>
               <time><xsl:value-of select="pubDate"/></time>
               <a href="{link}"><xsl:value-of select="title"/></a>
+              <xsl:if test="contains(link, 'medium.com')"><span class="via">via Medium</span></xsl:if>
               <p class="item-desc"><xsl:value-of select="description"/></p>
             </li>
           </xsl:for-each>
