@@ -7,6 +7,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
+    "capture:play": "bun scripts/capture-play.ts",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
     "format": "oxfmt",
@@ -41,6 +42,7 @@
     "@takumi-rs/core": "^1.8.5",
     "@takumi-rs/helpers": "^1.8.5",
     "oxfmt": "^0.54.0",
-    "oxlint": "^1.69.0"
+    "oxlint": "^1.69.0",
+    "playwright": "^1.61.1"
   }
 }
