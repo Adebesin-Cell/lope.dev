@@ -32,7 +32,7 @@ export const play: PlayItem[] = [
     title: 'Cadence',
     blurb: 'An animated experiment in motion and rhythm.',
     tags: ['GSAP', 'Vue'],
-    href: '',
+    href: 'https://trycadence.netlify.app',
     poster: '/play/cadence.jpg',
     video: '/play/cadence.webm',
   },
