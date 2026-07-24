@@ -33,7 +33,9 @@ usePageSeo({
         The dream stage
       </ark.h2>
       <ark.p class="text-sm text-ink-muted leading-relaxed">
-        <ark.span class="text-ink font-500">React Conf</ark.span> is the one I'm aiming for.
+        <ark.span class="text-ink font-500">React Conf</ark.span>,
+        <ark.span class="text-ink font-500">VueConf</ark.span> (yes, I write Vue too), the big
+        open-source gatherings. The dream is being on stage with the community I build alongside.
       </ark.p>
       <ark.p class="text-sm text-ink-muted leading-relaxed mt-3">
         Organising a meetup or conference? I'd love to give a talk. Reach me on
