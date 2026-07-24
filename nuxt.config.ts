@@ -11,6 +11,10 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap',
   ],
   devtools: { enabled: true },
+  components: [
+    { path: '~/components/content', global: true },
+    '~/components',
+  ],
   compatibilityDate: '2024-04-03',
   css: ['@unocss/reset/tailwind.css', '~/assets/css/main.css'],
   colorMode: {
