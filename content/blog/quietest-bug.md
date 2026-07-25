@@ -1,7 +1,7 @@
 ---
 title: The quietest kind of bug
 description: Optional chaining hides the failure you most need to see. A user found a bug in BethelFlow before I did because of it. My honest take, and the rule I keep.
-date: 2026-09-07
+date: 2026-07-16
 readingTime: 6min
 ---
 
