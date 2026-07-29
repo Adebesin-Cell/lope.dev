@@ -201,8 +201,12 @@ function fmt(d?: string) {
   color: rgb(var(--ink) / 0.55);
 }
 .prose-content :deep(a) {
-  text-decoration: underline;
-  text-underline-offset: 4px;
+  text-decoration: none;
+  border-bottom: 1px solid rgb(var(--ink) / 0.25);
+  transition: border-color 0.3s ease;
+}
+.prose-content :deep(a:hover) {
+  border-bottom-color: rgb(var(--ink) / 0.7);
 }
 /* Nuxt Content wraps heading text in a self-anchor — don't underline those. */
 .prose-content :deep(h1 a),
@@ -210,7 +214,28 @@ function fmt(d?: string) {
 .prose-content :deep(h3 a),
 .prose-content :deep(h4 a) {
   text-decoration: none;
+  border-bottom: none;
   color: inherit;
+}
+/* antfu-style '#' that fades in on heading hover (md+ so it never crowds mobile) */
+@media (min-width: 768px) {
+  .prose-content :deep(h2),
+  .prose-content :deep(h3) {
+    position: relative;
+  }
+  .prose-content :deep(h2 a)::before,
+  .prose-content :deep(h3 a)::before {
+    content: "#";
+    position: absolute;
+    left: -1.1em;
+    color: rgb(var(--ink) / 0.28);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  .prose-content :deep(h2:hover a)::before,
+  .prose-content :deep(h3:hover a)::before {
+    opacity: 1;
+  }
 }
 .prose-content :deep(code) {
   font-family: 'JetBrains Mono', monospace;
@@ -245,9 +270,28 @@ function fmt(d?: string) {
 .prose-content :deep(ol) { list-style: decimal; }
 .prose-content :deep(li) { margin-block: 0.35rem; }
 .prose-content :deep(img) {
-  margin-block: 1.5rem;
-  border-radius: 8px;
+  margin-block: 2.4rem;
+  border-radius: 10px;
   max-width: 100%;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.12);
+}
+/* Let images bleed a touch wider than the text column on large screens */
+@media (min-width: 1024px) {
+  .prose-content :deep(img) {
+    width: calc(100% + 5rem);
+    max-width: none;
+    margin-inline: -2.5rem;
+  }
+}
+.prose-content :deep(hr) {
+  width: 50px;
+  border: none;
+  border-top: 1px solid rgb(var(--ink) / 0.2);
+  margin: 2.5rem auto;
+}
+.prose-content :deep(strong) {
+  color: rgb(var(--ink) / 0.95);
+  font-weight: 650;
 }
 .prose-content :deep(h1) {
   font-size: 1.8rem;

@@ -21,9 +21,11 @@ const open = ref(false)
 </script>
 
 <template>
-  <ark.header class="fixed inset-x-0 top-0 z-50 px-6 py-5">
-    <ark.div class="flex items-center justify-between">
-      <Logo />
+  <ark.header class="absolute inset-x-0 top-0 z-40 px-6 py-5">
+    <!-- Only the logo persists (pinned on xl, like antfu); the nav scrolls away. -->
+    <Logo class="absolute xl:fixed top-5 left-6 z-50" />
+
+    <ark.div class="flex items-center justify-end">
 
       <!-- Desktop: keep the original inline layout exactly -->
       <ark.nav class="hidden md:flex items-center gap-5 text-sm">
