@@ -51,7 +51,7 @@ export default defineNuxtConfig({
       siteUrl:
         process.env.NUXT_PUBLIC_SITE_URL
         || (process.env.VERCEL_PROJECT_PRODUCTION_URL && `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`)
-        || 'https://lope.cell.vercel.app',
+        || 'https://lope.adebesin.com',
       posthogPublicKey: process.env.NUXT_PUBLIC_POSTHOG_PUBLIC_KEY || '',
       posthogHost: process.env.NUXT_PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com',
       posthogOptoutToken: process.env.NUXT_PUBLIC_POSTHOG_OPTOUT_TOKEN || '',
@@ -66,7 +66,7 @@ export default defineNuxtConfig({
     url:
       process.env.NUXT_PUBLIC_SITE_URL
       || (process.env.VERCEL_PROJECT_PRODUCTION_URL && `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`)
-      || 'https://lope.cell.vercel.app',
+      || 'https://lope.adebesin.com',
     name: 'Adebesin Tolulope (Lope)',
   },
   sitemap: {
@@ -90,6 +90,7 @@ export default defineNuxtConfig({
   routeRules: {
     '/': { prerender: true },
     '/projects': { prerender: true },
+    '/play': { prerender: true },
     '/talks': { prerender: true },
     '/blog/**': { prerender: true },
     '/feed.xml': { prerender: true },
