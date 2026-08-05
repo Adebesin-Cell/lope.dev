@@ -4,7 +4,7 @@ import { substackPosts, substackUrl } from '~/data/substack-posts'
 
 usePageSeo({
   title: 'Essays — Adebesin Tolulope',
-  description: 'Away from code, I try to write. Just write, and perhaps share what I think. Personal essays on Substack.',
+  description: 'I write to figure out what I actually mean. Usually it costs more than I thought. Personal essays on Substack.',
 })
 
 function fmt(d: string) {
@@ -18,7 +18,7 @@ function fmt(d: string) {
       Essays
     </ark.h1>
     <ark.p class="text-ink-muted mb-10 max-w-prose">
-      Away from code, I try to write. Just write, and perhaps share what I think. It lives on
+      I write to figure out what I actually mean. Usually it costs more than I thought. It lives on
       <ark.a
         :href="substackUrl"
         target="_blank"
