@@ -2,9 +2,11 @@
 import type { CardFormat } from '~/composables/useHighlightCard'
 import { ark } from '@ark-ui/vue/factory'
 
-const props = defineProps<{ title?: string, url?: string }>()
+const props = defineProps<{ title?: string, url?: string, date?: string }>()
 
 const { draw } = useHighlightCard()
+
+const year = computed(() => (props.date ? String(new Date(props.date).getFullYear()) : undefined))
 
 const open = ref(false)
 const quote = ref('')
@@ -44,7 +46,7 @@ async function download(fmt: CardFormat) {
   format.value = fmt
   if (!canvasRef.value)
     return
-  await draw(canvasRef.value, fmt, { quote: quote.value, title: props.title, url: props.url })
+  await draw(canvasRef.value, fmt, { quote: quote.value, title: props.title, url: props.url, year: year.value })
   canvasRef.value.toBlob((blob) => {
     if (!blob)
       return
@@ -59,7 +61,7 @@ async function download(fmt: CardFormat) {
 async function copyCard() {
   if (!canvasRef.value)
     return
-  await draw(canvasRef.value, format.value, { quote: quote.value, title: props.title, url: props.url })
+  await draw(canvasRef.value, format.value, { quote: quote.value, title: props.title, url: props.url, year: year.value })
   canvasRef.value.toBlob(async (blob) => {
     try {
       if (!blob)
@@ -125,47 +127,53 @@ if (import.meta.client) {
           ref="dialogRef"
           role="dialog"
           aria-modal="true"
-          aria-label="Share highlight as a card"
+          aria-label="Share this highlight"
           tabindex="-1"
           class="fixed inset-0 z-[200] flex flex-col items-center justify-center gap-5 bg-black/55 p-6 backdrop-blur-md outline-none"
           @click.self="close"
           @keydown="trapTab"
         >
-          <ShareCard :quote="quote" :title="title" :url="url" :format="format" />
+          <ShareCard :quote="quote" :title="title" :url="url" :year="year" :format="format" />
 
-          <ark.div class="flex items-center gap-1 rounded-xl border border-ink/12 bg-bg-soft/85 p-1.5 text-sm shadow-xl">
-            <ark.span class="mx-2 h-3 w-3 rounded-full border-2 border-ink/40" aria-hidden="true" />
+          <ark.div class="flex flex-wrap items-center justify-center gap-2.5">
             <ark.button
               type="button"
-              class="inline-flex items-center gap-1.5 h-9 px-3 rounded-lg hover:bg-ink/8 transition-colors"
-              :class="format === 'ig' ? 'text-ink' : 'text-ink-muted'"
+              aria-label="Save a square card for Instagram"
+              class="btn"
+              :class="format === 'ig' ? 'btn-solid' : 'btn-ghost'"
               @click="download('ig')"
             >
-              <ark.span class="i-lucide-arrow-down" aria-hidden="true" /> Download IG
+              <ark.span class="i-lucide-arrow-down" aria-hidden="true" /> Save for Instagram
             </ark.button>
             <ark.button
               type="button"
-              class="inline-flex items-center gap-1.5 h-9 px-3 rounded-lg hover:bg-ink/8 transition-colors"
-              :class="format === 'x' ? 'text-ink' : 'text-ink-muted'"
+              aria-label="Save a wide card for X"
+              class="btn"
+              :class="format === 'x' ? 'btn-solid' : 'btn-ghost'"
               @click="download('x')"
             >
-              <ark.span class="i-lucide-arrow-down" aria-hidden="true" /> Download X
+              <ark.span class="i-lucide-arrow-down" aria-hidden="true" /> Save for X
             </ark.button>
             <ark.button
               type="button"
-              class="inline-flex items-center h-9 px-3 rounded-lg text-ink-muted hover:bg-ink/8 hover:text-ink transition-colors"
+              aria-label="Copy the card to your clipboard"
+              class="btn btn-ghost"
               @click="copyCard"
             >
+              <ark.span :class="copied ? 'i-lucide-check' : 'i-lucide-copy'" aria-hidden="true" />
               {{ copied ? 'Copied' : 'Copy' }}
             </ark.button>
-            <ark.button
-              type="button"
-              class="inline-flex items-center gap-2 h-9 px-3 rounded-lg text-ink-faint hover:bg-ink/8 hover:text-ink transition-colors"
-              @click="close"
-            >
-              Close <ark.kbd class="text-xs font-mono italic">esc</ark.kbd>
-            </ark.button>
           </ark.div>
+
+          <ark.button
+            type="button"
+            aria-label="Close"
+            title="Close (Esc)"
+            class="absolute top-5 end-5 inline-flex items-center justify-center w-9 h-9 rounded-lg text-ink-muted hover:text-ink hover:bg-ink/10 transition-colors"
+            @click="close"
+          >
+            <ark.span class="i-lucide-x text-lg" aria-hidden="true" />
+          </ark.button>
 
           <canvas ref="canvasRef" class="hidden" aria-hidden="true" />
         </ark.div>

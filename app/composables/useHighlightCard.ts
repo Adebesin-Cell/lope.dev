@@ -2,6 +2,7 @@ export interface CardData {
   quote: string
   title?: string
   url?: string
+  year?: string
 }
 
 export type CardFormat = 'x' | 'ig'
@@ -93,7 +94,7 @@ export function plumSegments(w: number, h: number, seed: number): PlumSegment[] 
   const len = w / 260
   const segs: PlumSegment[] = []
   const step = (x: number, y: number, rad: number) => {
-    if (segs.length > 3200)
+    if (segs.length > 6500)
       return
     const length = rand() * len
     const nx = x + Math.cos(rad) * length
@@ -107,14 +108,17 @@ export function plumSegments(w: number, h: number, seed: number): PlumSegment[] 
     if (rand() < rate)
       step(nx, ny, rad - rand() * r15)
   }
-  step(w + 5, rand() * h * 0.5 + h * 0.15, r180)
-  step(rand() * w * 0.4 + w * 0.55, -5, r90)
+  const mid = () => 0.15 + rand() * 0.7
+  step(mid() * w, -5, r90)
+  step(mid() * w, h + 5, -r90)
+  step(-5, mid() * h, 0)
+  step(w + 5, mid() * h, r180)
   return segs
 }
 
 function drawPlum(ctx: CanvasRenderingContext2D, w: number, h: number, seed: number) {
   ctx.save()
-  ctx.strokeStyle = 'rgba(210,210,215,0.16)'
+  ctx.strokeStyle = 'rgba(210,210,215,0.13)'
   ctx.lineWidth = 1
   ctx.lineCap = 'round'
   for (const [x1, y1, x2, y2] of plumSegments(w, h, seed)) {
@@ -144,23 +148,29 @@ export function useHighlightCard() {
 
     const P = Math.round(w * 0.07)
     const contentW = w - P * 2
-    const inset = Math.round(P * 0.55)
-    drawPlum(ctx, w, h, PLUM_SEED)
 
-    const L = 26
-    ctx.strokeStyle = 'rgba(244,244,245,0.28)'
-    ctx.lineWidth = 1.5
-    const corner = (cx: number, cy: number, dx: number, dy: number) => {
-      ctx.beginPath()
-      ctx.moveTo(cx, cy + dy * L)
-      ctx.lineTo(cx, cy)
-      ctx.lineTo(cx + dx * L, cy)
-      ctx.stroke()
+    ctx.fillStyle = 'rgba(244,244,245,0.05)'
+    const dot = 26
+    for (let gx = P * 0.5; gx < w; gx += dot) {
+      for (let gy = P * 0.5; gy < h; gy += dot) {
+        ctx.beginPath()
+        ctx.arc(gx, gy, 1, 0, Math.PI * 2)
+        ctx.fill()
+      }
     }
-    corner(inset, inset, 1, 1)
-    corner(w - inset, inset, -1, 1)
-    corner(inset, h - inset, 1, -1)
-    corner(w - inset, h - inset, -1, -1)
+
+    if (data.year) {
+      ctx.save()
+      ctx.textAlign = 'right'
+      ctx.fillStyle = 'rgba(244,244,245,0.05)'
+      ctx.letterSpacing = `${-w * 0.006}px`
+      ctx.font = `700 ${Math.round(Math.min(w * 0.28, h * 0.42))}px Inter, sans-serif`
+      ctx.fillText(data.year, w - P * 0.4, h + w * 0.02)
+      ctx.letterSpacing = '0px'
+      ctx.restore()
+    }
+
+    drawPlum(ctx, w, h, PLUM_SEED)
 
     const av = 52
     ctx.save()
@@ -178,18 +188,16 @@ export function useHighlightCard() {
     ctx.fillText('Adebesin Tolulope', nameX, P + av / 2 + 1)
     const nameW = ctx.measureText('Adebesin Tolulope').width
     ctx.fillStyle = MUTED
-    ctx.font = 'italic 500 26px Newsreader, serif'
-    ctx.fillText('/ Blog', nameX + nameW + 12, P + av / 2 + 1)
+    ctx.font = '500 26px Inter, sans-serif'
+    ctx.fillText('(Lope)', nameX + nameW + 10, P + av / 2 + 1)
 
     ctx.textAlign = 'right'
-    ctx.fillStyle = FAINT
-    ctx.font = '500 14px "JetBrains Mono", monospace'
-    ctx.letterSpacing = '3px'
-    ctx.fillText('PULLED FROM THE POST', w - P, P + av / 2 + 1)
-    ctx.letterSpacing = '0px'
+    ctx.textBaseline = 'alphabetic'
+    ctx.fillStyle = MUTED
+    ctx.font = '700 46px Caveat, cursive'
+    ctx.fillText('at', w - P, P + 40)
     ctx.textAlign = 'left'
 
-    ctx.textBaseline = 'alphabetic'
     const markY = P + av + 74
     ctx.fillStyle = 'rgba(244,244,245,0.22)'
     ctx.font = '500 96px Newsreader, serif'
@@ -197,9 +205,8 @@ export function useHighlightCard() {
 
     const paras = data.quote.split('\n').map(s => s.trim()).filter(Boolean)
     const textTop = markY + 18
-    const footerTop = h - P - 46
-    const sigGap = 54
-    const availH = footerTop - sigGap - textTop
+    const footerBoundary = h - P - 78
+    const availH = footerBoundary - textTop
 
     const max = Math.round(w * 0.05)
     const min = Math.round(w * 0.015)
@@ -231,23 +238,45 @@ export function useHighlightCard() {
       y += lh
     }
 
+    ctx.textAlign = 'left'
+    ctx.textBaseline = 'alphabetic'
     ctx.fillStyle = INK
     ctx.font = '600 42px Caveat, cursive'
-    ctx.fillText('— Lope', P, footerTop - 6)
+    ctx.fillText('— Lope', P, h - P + 4)
 
-    ctx.textAlign = 'right'
-    if (data.title) {
-      ctx.fillStyle = MUTED
-      ctx.font = 'italic 400 19px Newsreader, serif'
-      const t = `from “${data.title}”`
-      ctx.fillText(ctx.measureText(t).width > contentW * 0.9 ? `${t.slice(0, 60)}…”` : t, w - P, footerTop + 8)
-    }
     if (data.url) {
       ctx.fillStyle = FAINT
       ctx.font = '400 14px "JetBrains Mono", monospace'
-      ctx.fillText(data.url.replace(/^https?:\/\//, ''), w - P, footerTop + 32)
+      ctx.fillText(data.url.replace(/^https?:\/\//, ''), P, h - P + 28)
     }
-    ctx.textAlign = 'left'
+
+    if (data.title) {
+      ctx.font = '500 20px Inter, sans-serif'
+      let label = data.title
+      const maxTw = contentW * 0.5
+      if (ctx.measureText(label).width > maxTw) {
+        while (label.length > 4 && ctx.measureText(`${label}…`).width > maxTw)
+          label = label.slice(0, -1)
+        label = `${label.trimEnd()}…`
+      }
+      const tw = ctx.measureText(label).width
+      const padX = 18
+      const pillH = 42
+      const pillW = tw + padX * 2
+      const pillX = w - P - pillW
+      const pillY = h - P - pillH + 6
+      ctx.beginPath()
+      ctx.roundRect(pillX, pillY, pillW, pillH, 8)
+      ctx.fillStyle = 'rgba(244,244,245,0.05)'
+      ctx.fill()
+      ctx.strokeStyle = 'rgba(244,244,245,0.12)'
+      ctx.lineWidth = 1
+      ctx.stroke()
+      ctx.fillStyle = INK
+      ctx.textBaseline = 'middle'
+      ctx.fillText(label, pillX + padX, pillY + pillH / 2 + 1)
+      ctx.textBaseline = 'alphabetic'
+    }
   }
 
   return { draw }
