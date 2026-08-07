@@ -138,21 +138,21 @@ if (import.meta.client) {
           <ark.div class="flex flex-wrap items-center justify-center gap-2.5">
             <ark.button
               type="button"
-              aria-label="Download a square card for Instagram"
+              aria-label="Save a square card for Instagram"
               class="btn"
               :class="format === 'ig' ? 'btn-solid' : 'btn-ghost'"
               @click="download('ig')"
             >
-              <ark.span class="i-lucide-arrow-down" aria-hidden="true" /> Instagram
+              <ark.span class="i-lucide-arrow-down" aria-hidden="true" /> Save for Instagram
             </ark.button>
             <ark.button
               type="button"
-              aria-label="Download a wide card for X"
+              aria-label="Save a wide card for X"
               class="btn"
               :class="format === 'x' ? 'btn-solid' : 'btn-ghost'"
               @click="download('x')"
             >
-              <ark.span class="i-lucide-arrow-down" aria-hidden="true" /> X
+              <ark.span class="i-lucide-arrow-down" aria-hidden="true" /> Save for X
             </ark.button>
             <ark.button
               type="button"
