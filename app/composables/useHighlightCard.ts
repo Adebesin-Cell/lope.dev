@@ -94,7 +94,7 @@ export function plumSegments(w: number, h: number, seed: number): PlumSegment[] 
   const len = w / 260
   const segs: PlumSegment[] = []
   const step = (x: number, y: number, rad: number) => {
-    if (segs.length > 3200)
+    if (segs.length > 6500)
       return
     const length = rand() * len
     const nx = x + Math.cos(rad) * length
@@ -108,14 +108,17 @@ export function plumSegments(w: number, h: number, seed: number): PlumSegment[] 
     if (rand() < rate)
       step(nx, ny, rad - rand() * r15)
   }
-  step(w + 5, rand() * h * 0.5 + h * 0.15, r180)
-  step(rand() * w * 0.4 + w * 0.55, -5, r90)
+  const mid = () => 0.15 + rand() * 0.7
+  step(mid() * w, -5, r90)
+  step(mid() * w, h + 5, -r90)
+  step(-5, mid() * h, 0)
+  step(w + 5, mid() * h, r180)
   return segs
 }
 
 function drawPlum(ctx: CanvasRenderingContext2D, w: number, h: number, seed: number) {
   ctx.save()
-  ctx.strokeStyle = 'rgba(210,210,215,0.16)'
+  ctx.strokeStyle = 'rgba(210,210,215,0.13)'
   ctx.lineWidth = 1
   ctx.lineCap = 'round'
   for (const [x1, y1, x2, y2] of plumSegments(w, h, seed)) {
