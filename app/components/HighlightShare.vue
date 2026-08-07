@@ -74,6 +74,25 @@ async function copyCard() {
   }, 'image/png')
 }
 
+function trapTab(e: KeyboardEvent) {
+  if (e.key !== 'Tab')
+    return
+  const nodes = dialogRef.value?.$el?.querySelectorAll<HTMLElement>('button:not([disabled])')
+  if (!nodes?.length)
+    return
+  const first = nodes[0]!
+  const last = nodes[nodes.length - 1]!
+  const active = document.activeElement
+  if (e.shiftKey && (active === first || active === dialogRef.value?.$el)) {
+    last.focus()
+    e.preventDefault()
+  }
+  else if (!e.shiftKey && active === last) {
+    first.focus()
+    e.preventDefault()
+  }
+}
+
 onKeyStroke('Escape', (e) => {
   if (open.value) {
     close()
@@ -110,6 +129,7 @@ if (import.meta.client) {
           tabindex="-1"
           class="fixed inset-0 z-[200] flex flex-col items-center justify-center gap-5 bg-black/55 p-6 backdrop-blur-md outline-none"
           @click.self="close"
+          @keydown="trapTab"
         >
           <ShareCard :quote="quote" :title="title" :url="url" :format="format" />
 

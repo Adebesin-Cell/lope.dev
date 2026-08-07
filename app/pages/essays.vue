@@ -35,7 +35,7 @@ function fmt(d: string) {
           :href="post.url"
           target="_blank"
           rel="noopener"
-          class="flex flex-col md:flex-row md:items-baseline gap-0.5 md:gap-3 py-1 op-90 hover:op-100 transition-opacity"
+          class="inline-flex flex-col md:flex-row md:items-baseline gap-0.5 md:gap-3 py-1 w-fit op-90 hover:op-100 transition-opacity"
         >
           <ark.span class="flex items-baseline gap-1.5">
             <ark.span class="text-base leading-snug">{{ post.title }}</ark.span>
