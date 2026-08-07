@@ -42,7 +42,7 @@ const quoteStyle = computed(() => {
       preserveAspectRatio="xMidYMid slice"
       aria-hidden="true"
     >
-      <ark.path :d="branches.d" fill="none" stroke="rgba(210,210,215,0.16)" stroke-width="1" stroke-linecap="round" />
+      <ark.path :d="branches.d" fill="none" stroke="rgba(210,210,215,0.13)" stroke-width="1" stroke-linecap="round" />
     </ark.svg>
 
     <ark.header class="head">
