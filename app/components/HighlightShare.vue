@@ -8,6 +8,12 @@ const { draw } = useHighlightCard()
 
 const year = computed(() => (props.date ? String(new Date(props.date).getFullYear()) : undefined))
 
+const slug = computed(() => (props.title ?? 'highlight')
+  .toLowerCase()
+  .replace(/[^a-z0-9]+/g, '-')
+  .replace(/^-+|-+$/g, '')
+  .slice(0, 60) || 'highlight')
+
 const open = ref(false)
 const quote = ref('')
 const format = ref<CardFormat>('x')
@@ -52,7 +58,7 @@ async function download(fmt: CardFormat) {
       return
     const a = document.createElement('a')
     a.href = URL.createObjectURL(blob)
-    a.download = `highlight-${fmt}.png`
+    a.download = `${slug.value}-quote-${fmt}.png`
     a.click()
     URL.revokeObjectURL(a.href)
   }, 'image/png')
