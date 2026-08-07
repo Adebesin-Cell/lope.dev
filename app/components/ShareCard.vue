@@ -8,6 +8,7 @@ const props = defineProps<{
   quote: string
   title?: string
   url?: string
+  year?: string
   format: CardFormat
 }>()
 
@@ -32,6 +33,9 @@ const quoteStyle = computed(() => {
     class="share-card"
     :class="format === 'ig' ? 'w-[clamp(320px,72vw,560px)]' : 'w-[clamp(360px,86vw,860px)]'"
   >
+    <ark.div class="dots" aria-hidden="true" />
+    <ark.span v-if="year" class="watermark" aria-hidden="true">{{ year }}</ark.span>
+
     <ark.svg
       class="branches"
       :viewBox="`0 0 ${branches.w} ${branches.h}`"
@@ -41,18 +45,18 @@ const quoteStyle = computed(() => {
       <ark.path :d="branches.d" fill="none" stroke="rgba(210,210,215,0.16)" stroke-width="1" stroke-linecap="round" />
     </ark.svg>
 
-    <ark.span class="corner c-tl" aria-hidden="true" />
-    <ark.span class="corner c-tr" aria-hidden="true" />
-    <ark.span class="corner c-bl" aria-hidden="true" />
-    <ark.span class="corner c-br" aria-hidden="true" />
-
     <ark.header class="head">
       <ark.div class="who">
         <ark.img src="/lope-avatar.jpeg" alt="" class="avatar" />
         <ark.span class="name">Adebesin Tolulope</ark.span>
-        <ark.span class="tag">/ Blog</ark.span>
+        <ark.span class="alias">(Lope)</ark.span>
       </ark.div>
-      <ark.span class="label">PULLED FROM THE POST</ark.span>
+      <ClientOnly>
+        <TegakiRenderer :font="caveat" text="at" :time="{ mode: 'uncontrolled', loop: true, speed: 0.6 }" class="stamp" />
+        <template #fallback>
+          <ark.span class="stamp">at</ark.span>
+        </template>
+      </ClientOnly>
     </ark.header>
 
     <ark.div class="body">
@@ -63,21 +67,19 @@ const quoteStyle = computed(() => {
     </ark.div>
 
     <ark.footer class="foot">
-      <ClientOnly>
-        <TegakiRenderer
-          :font="caveat"
-          text="— Lope"
-          :time="{ mode: 'uncontrolled', loop: false, speed: 0.9 }"
-          class="sign"
-        />
-        <template #fallback>
-          <ark.span class="sign">— Lope</ark.span>
-        </template>
-      </ClientOnly>
-      <ark.div v-if="title || url" class="source">
-        <ark.span v-if="title" class="from">from “{{ title }}”</ark.span>
+      <ark.div class="sign-col">
+        <ClientOnly>
+          <TegakiRenderer :font="caveat" text="— Lope" :time="{ mode: 'uncontrolled', loop: false, speed: 0.9 }" class="sign" />
+          <template #fallback>
+            <ark.span class="sign">— Lope</ark.span>
+          </template>
+        </ClientOnly>
         <ark.span v-if="url" class="link">{{ cleanUrl }}</ark.span>
       </ark.div>
+      <ark.span v-if="title" class="source">
+        <ark.span class="i-lucide-newspaper source-icon" aria-hidden="true" />
+        <ark.span class="source-title">{{ title }}</ark.span>
+      </ark.span>
     </ark.footer>
   </ark.figure>
 </template>
@@ -98,27 +100,40 @@ const quoteStyle = computed(() => {
   color: #f4f4f5;
 }
 
+.dots {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: radial-gradient(circle, rgba(244, 244, 245, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+}
+.watermark {
+  position: absolute;
+  right: -1.5cqw;
+  bottom: -6cqw;
+  z-index: 0;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 36cqw;
+  letter-spacing: -0.04em;
+  line-height: 0.8;
+  color: rgba(244, 244, 245, 0.05);
+  pointer-events: none;
+  user-select: none;
+}
 .branches {
   position: absolute;
   inset: 0;
+  z-index: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
 }
 
-.corner {
-  position: absolute;
-  width: 4cqw;
-  height: 4cqw;
-  border: 0 solid rgba(244, 244, 245, 0.28);
-}
-.c-tl { top: 3cqw; left: 3cqw; border-top-width: 1.5px; border-left-width: 1.5px; }
-.c-tr { top: 3cqw; right: 3cqw; border-top-width: 1.5px; border-right-width: 1.5px; }
-.c-bl { bottom: 3cqw; left: 3cqw; border-bottom-width: 1.5px; border-left-width: 1.5px; }
-.c-br { bottom: 3cqw; right: 3cqw; border-bottom-width: 1.5px; border-right-width: 1.5px; }
-
 .head {
   position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -143,22 +158,23 @@ const quoteStyle = computed(() => {
   font-size: 1.7cqw;
   white-space: nowrap;
 }
-.tag {
-  font-family: 'Newsreader', serif;
-  font-style: italic;
+.alias {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
   font-size: 1.7cqw;
   color: rgba(161, 161, 170, 0.9);
 }
-.label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 1cqw;
-  letter-spacing: 0.22em;
-  color: #71717a;
-  white-space: nowrap;
+.stamp {
+  font-family: 'Caveat', cursive;
+  font-weight: 700;
+  font-size: 3.4cqw;
+  line-height: 1;
+  color: rgba(161, 161, 170, 0.9);
 }
 
 .body {
   position: relative;
+  z-index: 1;
   min-height: 0;
   display: flex;
   flex-direction: column;
@@ -182,33 +198,52 @@ const quoteStyle = computed(() => {
 
 .foot {
   position: relative;
+  z-index: 1;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   gap: 2cqw;
   margin-top: 5cqw;
 }
+.sign-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8cqw;
+}
 .sign {
   font-family: 'Caveat', cursive;
   font-weight: 600;
   font-size: 3.2cqw;
+  line-height: 1;
   color: #f4f4f5;
 }
-.source {
-  text-align: right;
-  line-height: 1.5;
-}
-.from {
-  display: block;
-  font-family: 'Newsreader', serif;
-  font-style: italic;
-  font-size: 1.35cqw;
-  color: rgba(161, 161, 170, 0.9);
-}
 .link {
-  display: block;
   font-family: 'JetBrains Mono', monospace;
   font-size: 1cqw;
   color: #71717a;
+}
+.source {
+  display: inline-flex;
+  align-items: center;
+  gap: 1cqw;
+  max-width: 50cqw;
+  padding: 1cqw 1.6cqw;
+  border-radius: 8px;
+  background: rgba(244, 244, 245, 0.05);
+  border: 1px solid rgba(244, 244, 245, 0.1);
+}
+.source-icon {
+  flex-shrink: 0;
+  width: 1.6cqw;
+  height: 1.6cqw;
+  color: rgba(161, 161, 170, 0.9);
+}
+.source-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 1.5cqw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>

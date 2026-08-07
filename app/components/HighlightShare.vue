@@ -2,9 +2,11 @@
 import type { CardFormat } from '~/composables/useHighlightCard'
 import { ark } from '@ark-ui/vue/factory'
 
-const props = defineProps<{ title?: string, url?: string }>()
+const props = defineProps<{ title?: string, url?: string, date?: string }>()
 
 const { draw } = useHighlightCard()
+
+const year = computed(() => (props.date ? String(new Date(props.date).getFullYear()) : undefined))
 
 const open = ref(false)
 const quote = ref('')
@@ -44,7 +46,7 @@ async function download(fmt: CardFormat) {
   format.value = fmt
   if (!canvasRef.value)
     return
-  await draw(canvasRef.value, fmt, { quote: quote.value, title: props.title, url: props.url })
+  await draw(canvasRef.value, fmt, { quote: quote.value, title: props.title, url: props.url, year: year.value })
   canvasRef.value.toBlob((blob) => {
     if (!blob)
       return
@@ -59,7 +61,7 @@ async function download(fmt: CardFormat) {
 async function copyCard() {
   if (!canvasRef.value)
     return
-  await draw(canvasRef.value, format.value, { quote: quote.value, title: props.title, url: props.url })
+  await draw(canvasRef.value, format.value, { quote: quote.value, title: props.title, url: props.url, year: year.value })
   canvasRef.value.toBlob(async (blob) => {
     try {
       if (!blob)
@@ -125,18 +127,19 @@ if (import.meta.client) {
           ref="dialogRef"
           role="dialog"
           aria-modal="true"
-          aria-label="Share highlight as a card"
+          aria-label="Share this highlight"
           tabindex="-1"
           class="fixed inset-0 z-[200] flex flex-col items-center justify-center gap-5 bg-black/55 p-6 backdrop-blur-md outline-none"
           @click.self="close"
           @keydown="trapTab"
         >
-          <ShareCard :quote="quote" :title="title" :url="url" :format="format" />
+          <ShareCard :quote="quote" :title="title" :url="url" :year="year" :format="format" />
 
           <ark.div class="flex items-center gap-1 rounded-xl border border-ink/12 bg-bg-soft/85 p-1.5 text-sm shadow-xl">
             <ark.span class="mx-2 h-3 w-3 rounded-full border-2 border-ink/40" aria-hidden="true" />
             <ark.button
               type="button"
+              aria-label="Download a square card for Instagram"
               class="inline-flex items-center gap-1.5 h-9 px-3 rounded-lg hover:bg-ink/8 transition-colors"
               :class="format === 'ig' ? 'text-ink' : 'text-ink-muted'"
               @click="download('ig')"
@@ -145,6 +148,7 @@ if (import.meta.client) {
             </ark.button>
             <ark.button
               type="button"
+              aria-label="Download a wide card for X"
               class="inline-flex items-center gap-1.5 h-9 px-3 rounded-lg hover:bg-ink/8 transition-colors"
               :class="format === 'x' ? 'text-ink' : 'text-ink-muted'"
               @click="download('x')"
@@ -153,6 +157,7 @@ if (import.meta.client) {
             </ark.button>
             <ark.button
               type="button"
+              aria-label="Copy the card to your clipboard"
               class="inline-flex items-center h-9 px-3 rounded-lg text-ink-muted hover:bg-ink/8 hover:text-ink transition-colors"
               @click="copyCard"
             >
