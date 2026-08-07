@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-label="A download button pressed over and over, each tap rippling out into nothing, with a counter reading times twenty.">
+  <style>
+    :root { color-scheme: light dark; }
+    .bg      { fill: #fbfbfa; }
+    .card    { fill: #ffffff; stroke: #16150f; stroke-opacity: 0.14; stroke-width: 1.5; }
+    .ink     { fill: #16150f; }
+    .muted   { fill: #16150f; opacity: 0.16; }
+    .faint   { fill: #16150f; opacity: 0.07; }
+    .dot     { fill: #16150f; opacity: 0.06; }
+    .ripple  { fill: none; stroke: #16150f; stroke-opacity: 0.10; stroke-width: 2; }
+    .accent  { fill: #e0a05e; }
+    .arrow   { stroke: #16150f; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    .kicker  { fill: #16150f; opacity: 0.45; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 20px; letter-spacing: 4px; }
+    .label   { fill: #16150f; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 26px; font-weight: 500; }
+    .note    { fill: #16150f; opacity: 0.35; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 24px; letter-spacing: 2px; }
+    .count   { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 30px; font-weight: 600; }
+    .tagline { fill: #16150f; opacity: 0.16; font-family: Georgia, 'Times New Roman', serif; font-size: 40px; font-style: italic; }
+    @media (prefers-color-scheme: dark) {
+      .bg      { fill: #0f0f0e; }
+      .card    { fill: #17171a; stroke: #f2f2ee; stroke-opacity: 0.14; }
+      .ink     { fill: #f2f2ee; }
+      .muted   { fill: #f2f2ee; opacity: 0.18; }
+      .faint   { fill: #f2f2ee; opacity: 0.08; }
+      .dot     { fill: #f2f2ee; opacity: 0.07; }
+      .ripple  { stroke: #f2f2ee; stroke-opacity: 0.12; }
+      .arrow   { stroke: #f2f2ee; }
+      .kicker  { fill: #f2f2ee; opacity: 0.5; }
+      .label   { fill: #f2f2ee; }
+      .note    { fill: #f2f2ee; opacity: 0.4; }
+      .tagline { fill: #f2f2ee; opacity: 0.18; }
+    }
+  </style>
+
+  <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+    <circle class="dot" cx="2" cy="2" r="1.6" />
+  </pattern>
+
+  <rect class="bg" x="0" y="0" width="1200" height="520" />
+  <rect x="0" y="0" width="1200" height="520" fill="url(#dots)" />
+
+  <text class="kicker" x="140" y="96">my pastor once said</text>
+
+  <!-- taps rippling out from the button into nothing -->
+  <g>
+    <circle class="ripple" cx="600" cy="250" r="120" opacity="0.9" />
+    <circle class="ripple" cx="600" cy="250" r="180" opacity="0.6" />
+    <circle class="ripple" cx="600" cy="250" r="248" opacity="0.35" />
+    <circle class="ripple" cx="600" cy="250" r="320" opacity="0.18" />
+  </g>
+
+  <!-- the button, still looking perfectly fine -->
+  <rect class="card" x="472" y="216" width="256" height="68" rx="34" />
+  <g class="arrow" transform="translate(516,250)">
+    <line x1="0" y1="-13" x2="0" y2="9" />
+    <polyline points="-8,1 0,9 8,1" />
+    <line x1="-9" y1="15" x2="9" y2="15" />
+  </g>
+  <text class="label" x="556" y="259">Download</text>
+
+  <text class="note" x="140" y="360">tap.&#160;&#160;tap.&#160;&#160;tap.&#160;&#160;<tspan class="accent">×20</tspan></text>
+
+  <text class="tagline" x="140" y="452">The button that did nothing.</text>
+</svg>
