@@ -120,6 +120,8 @@ function fmt(d?: string) {
 
     <ContentRenderer :value="post" class="prose-content" />
 
+    <HighlightShare :title="shareTitle" :url="postUrl" />
+
     <ark.div class="mt-14 pt-6 border-t border-ink/10 flex items-center gap-4 text-sm text-ink-muted">
       <ark.span>Share</ark.span>
       <ark.a

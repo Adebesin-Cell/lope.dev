@@ -85,7 +85,7 @@ function fmt(d: string) {
           <component
             :is="post.external ? 'a' : NuxtLink"
             v-bind="post.external ? { href: post.external, target: '_blank', rel: 'noopener' } : { to: post.path }"
-            class="flex flex-col md:flex-row md:items-baseline gap-0.5 md:gap-3 py-2 op-90 hover:op-100 transition-opacity"
+            class="inline-flex flex-col md:flex-row md:items-baseline gap-0.5 md:gap-3 py-2 w-fit op-90 hover:op-100 transition-opacity"
           >
             <ark.span class="flex items-baseline gap-1.5 flex-wrap">
               <ark.span
