@@ -135,42 +135,45 @@ if (import.meta.client) {
         >
           <ShareCard :quote="quote" :title="title" :url="url" :year="year" :format="format" />
 
-          <ark.div class="flex items-center gap-1 rounded-xl border border-ink/12 bg-bg-soft/85 p-1.5 text-sm shadow-xl">
-            <ark.span class="mx-2 h-3 w-3 rounded-full border-2 border-ink/40" aria-hidden="true" />
+          <ark.div class="flex flex-wrap items-center justify-center gap-2.5">
             <ark.button
               type="button"
               aria-label="Download a square card for Instagram"
-              class="inline-flex items-center gap-1.5 h-9 px-3 rounded-lg hover:bg-ink/8 transition-colors"
-              :class="format === 'ig' ? 'text-ink' : 'text-ink-muted'"
+              class="btn"
+              :class="format === 'ig' ? 'btn-solid' : 'btn-ghost'"
               @click="download('ig')"
             >
-              <ark.span class="i-lucide-arrow-down" aria-hidden="true" /> Download IG
+              <ark.span class="i-lucide-arrow-down" aria-hidden="true" /> Instagram
             </ark.button>
             <ark.button
               type="button"
               aria-label="Download a wide card for X"
-              class="inline-flex items-center gap-1.5 h-9 px-3 rounded-lg hover:bg-ink/8 transition-colors"
-              :class="format === 'x' ? 'text-ink' : 'text-ink-muted'"
+              class="btn"
+              :class="format === 'x' ? 'btn-solid' : 'btn-ghost'"
               @click="download('x')"
             >
-              <ark.span class="i-lucide-arrow-down" aria-hidden="true" /> Download X
+              <ark.span class="i-lucide-arrow-down" aria-hidden="true" /> X
             </ark.button>
             <ark.button
               type="button"
               aria-label="Copy the card to your clipboard"
-              class="inline-flex items-center h-9 px-3 rounded-lg text-ink-muted hover:bg-ink/8 hover:text-ink transition-colors"
+              class="btn btn-ghost"
               @click="copyCard"
             >
+              <ark.span :class="copied ? 'i-lucide-check' : 'i-lucide-copy'" aria-hidden="true" />
               {{ copied ? 'Copied' : 'Copy' }}
             </ark.button>
-            <ark.button
-              type="button"
-              class="inline-flex items-center gap-2 h-9 px-3 rounded-lg text-ink-faint hover:bg-ink/8 hover:text-ink transition-colors"
-              @click="close"
-            >
-              Close <ark.kbd class="text-xs font-mono italic">esc</ark.kbd>
-            </ark.button>
           </ark.div>
+
+          <ark.button
+            type="button"
+            aria-label="Close"
+            title="Close (Esc)"
+            class="absolute top-5 end-5 inline-flex items-center justify-center w-9 h-9 rounded-lg text-ink-muted hover:text-ink hover:bg-ink/10 transition-colors"
+            @click="close"
+          >
+            <ark.span class="i-lucide-x text-lg" aria-hidden="true" />
+          </ark.button>
 
           <canvas ref="canvasRef" class="hidden" aria-hidden="true" />
         </ark.div>
