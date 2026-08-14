@@ -88,6 +88,9 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
+    // Graduation guestbook — a separate Vercel/Nuxt app mounted under this path.
+    '/lope-is-graduating': { redirect: '/lope-is-graduating/' },
+    '/lope-is-graduating/**': { proxy: 'https://guestbook-lopes-projects-7fdc62e5.vercel.app/lope-is-graduating/**' },
     '/': { prerender: true },
     '/projects': { prerender: true },
     '/play': { prerender: true },
