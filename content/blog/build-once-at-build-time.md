@@ -56,6 +56,6 @@ We'd start using the beta version in this blog, and I'd share more about other t
 
 So think of this as part one. Panda's [official docs and blog](https://v2.pandacss.com) will cover the broad strokes, the releases, the headline features. These posts are the other view. Straight from the trenches of using it in production, while it's still being built.
 
-Next time I want to stay under the hood. Short one, but there's a nice speed win in it. Runtime `css()` calls. A couple of them used to be slow, and now there's a cache, so `css('color: red')` called all over your app only gets looked up once because the extraction already happened. Big difference from how it used to work.
+Next time I want to stay under the hood. Short one, but there's a nice speed win in it. Runtime `css()` calls. A couple of them used to be slow, and now there's a cache, so `css({ color: 'red' })` called all over your app only gets looked up once because the extraction already happened. Big difference from how it used to work.
 
 More soon.
