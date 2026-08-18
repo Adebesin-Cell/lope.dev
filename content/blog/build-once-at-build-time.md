@@ -5,6 +5,8 @@ date: 2026-08-18
 draft: true
 ---
 
+![The Panda CSS mark beside many repeated style declarations collapsing into a single built rule.](/images/blog/build-once-at-build-time/cover.svg)
+
 Around April and March, we were thinking about [Chakra](https://chakra-ui.com) v4, though many times before that we'd had the conversation subtly. Let's start preparing for v4. I started making some chicken code on how v4 would look for Chakra. I had so much fun building it out and kept improving it, alongside [Segun Adebayo](https://github.com/segunadebayo). And during the course of it we decided to move it to [Panda](https://v2.pandacss.com) for all the extraction, generation and working. Which led to so many experiments. Learning Rust, and making the best use of the new layer to make Panda CSS faster. And tbh, the speed is amazing. Here, check it out for yourself.
 
 Same config, a 100-file project, setup time aside:
