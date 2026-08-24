@@ -12,14 +12,14 @@ Well, this is another project to wrap up my last day at Forcados.
 
 I had already prepared a slide some time during the semester for our fair project.
 
-**CPE 510 - COMPUTER SECURITY TECHNIQUES**
-
-Page 360 of Network Security Essentials
-Sub-Topic: Malware countermeasure approaches
-
-Assignment: There are four main elements of prevention listed by SP 800-83: *Policy, Awareness, Vulnerability Mitigation, Threat Mitigation.*
-
-Divide yourselves into four groups, one element per group and do something educative or presentable with the element assigned to your group, it can even go beyond the classroom, towards the whole school.
+> **CPE 510 - COMPUTER SECURITY TECHNIQUES**
+>
+> Page 360 of Network Security Essentials  
+> Sub-Topic: Malware countermeasure approaches
+>
+> Assignment: There are four main elements of prevention listed by SP 800-83: *Policy, Awareness, Vulnerability Mitigation, Threat Mitigation.*
+>
+> Divide yourselves into four groups, one element per group and do something educative or presentable with the element assigned to your group, it can even go beyond the classroom, towards the whole school.
 
 The experience was mostly personal. I was trying to download a sermon, and I think it was on the old site, and yeah, there was some weird behavior. I saw an Apple boot screen, so identical, and then I was told to copy some things into the terminal to make the window go away. In a panic, I almost fell for the trick till I researched it. 😅
 
