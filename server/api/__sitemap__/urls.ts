@@ -8,6 +8,8 @@ export default defineSitemapEventHandler(async (event) => {
     { loc: '/' },
     { loc: '/projects' },
     { loc: '/talks' },
+    { loc: '/play' },
+    { loc: '/essays' },
     { loc: '/blog' },
     { loc: '/releases' },
     ...original.map((p) => {

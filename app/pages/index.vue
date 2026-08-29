@@ -23,6 +23,7 @@ useHead({
           'https://github.com/Adebesin-Cell',
           'https://x.com/I_am_Lope',
           'https://bsky.app/profile/lopeadebesin.bsky.social',
+          'https://iamlope.substack.com',
         ],
       }),
     },

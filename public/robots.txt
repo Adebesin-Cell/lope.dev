@@ -1,4 +1,4 @@
-# https://lope.cell.vercel.app
+# https://lope.adebesin.com
 # Search engines and social-card scrapers welcome.
 User-agent: *
 Allow: /
@@ -7,4 +7,4 @@ Allow: /
 Disallow: /_og/
 Disallow: /api/
 
-Sitemap: https://lope.cell.vercel.app/sitemap.xml
+Sitemap: https://lope.adebesin.com/sitemap.xml
