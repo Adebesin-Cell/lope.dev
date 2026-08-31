@@ -22,7 +22,7 @@ const open = ref(false)
 </script>
 
 <template>
-  <ark.header class="fixed inset-x-0 top-0 z-50 px-6 py-5">
+  <ark.header class="absolute inset-x-0 top-0 z-50 px-6 py-5">
     <ark.div class="flex items-center justify-between">
       <Logo />
 
