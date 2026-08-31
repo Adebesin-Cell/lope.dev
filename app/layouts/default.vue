@@ -14,7 +14,7 @@ import { ark } from '@ark-ui/vue/factory'
     <ArtPlum />
     <AppHeader />
     <TocNav />
-    <ark.main id="main" class="relative mx-auto max-w-3xl px-6 py-24 md:py-32">
+    <ark.main id="main" class="relative mx-auto max-w-3xl px-6 pt-10 pb-24 md:pt-16 md:pb-32">
       <slot />
     </ark.main>
     <AppFooter />
