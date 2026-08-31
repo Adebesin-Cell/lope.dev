@@ -1,8 +1,7 @@
 ---
 title: A year, a verse and an ecosystem
 description: A year inside the chakraverse. The components, the codemod, the pro system work I wasn't proud of, and what a year of building for other developers taught me.
-date: 2026-12-01
-draft: true
+date: 2026-08-31
 ---
 
 ### A year in the chakraverse. What I built, what I threw away, and where we're headed.
