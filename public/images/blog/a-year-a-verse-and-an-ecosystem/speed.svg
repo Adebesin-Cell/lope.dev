@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-labelledby="st">
+<title id="st">Cold parse of 100 files: the old TypeScript pipeline takes 177ms, the Rust compiler takes 7.6ms, about 23 times faster. Warm re-parse of a single file goes from 652 microseconds to 1.8 microseconds, about 360 times faster.</title>
+<style>
+.f { font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+.eyebrow { font-weight:700; font-size:15px; letter-spacing:2.4px; fill:#63636f; }
+.label { font-weight:700; font-size:22px; fill:#17171b; }
+.time { font-weight:800; font-size:26px; letter-spacing:-.02em; }
+.note { font-weight:500; font-size:19px; fill:#33333a; }
+</style>
+
+<rect width="1200" height="420" fill="#faf9f5"/>
+<text class="f eyebrow" x="80" y="72">COLD PARSE · 100 FILES</text>
+
+<text class="f label" x="80" y="164">v1, ts-morph</text>
+<rect x="330" y="142" width="700" height="30" rx="15" fill="#e6e4da"/>
+<rect x="330" y="142" width="700" height="30" rx="15" fill="#63636f">
+  <animate attributeName="width" values="0;700;700" keyTimes="0;0.4;1" dur="5s" repeatCount="indefinite"/>
+</rect>
+<text class="f time" x="1048" y="165" fill="#63636f">177ms
+  <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.38;0.42;1" dur="5s" repeatCount="indefinite"/>
+</text>
+
+<text class="f label" x="80" y="254">v2, Rust</text>
+<rect x="330" y="232" width="700" height="30" rx="15" fill="#e6e4da"/>
+<rect x="330" y="232" width="30" height="30" rx="15" fill="#ffd23f">
+  <animate attributeName="width" values="0;30;30" keyTimes="0;0.017;1" dur="5s" repeatCount="indefinite"/>
+</rect>
+<text class="f time" x="1048" y="255" fill="#7a5c00">7.6ms
+  <animate attributeName="opacity" values="0;1;1" keyTimes="0;0.03;1" dur="5s" repeatCount="indefinite"/>
+</text>
+
+<line x1="80" y1="316" x2="1120" y2="316" stroke="#e6e4da" stroke-width="1"/>
+<text class="f note" x="80" y="360">About 23x. And the one you actually feel, a warm re-parse of a single file,</text>
+<text class="f note" x="80" y="388">went from 652µs to 1.8µs. Roughly 360x.</text>
+</svg>
