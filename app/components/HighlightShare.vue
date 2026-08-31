@@ -22,6 +22,28 @@ const canvasRef = ref<HTMLCanvasElement>()
 const dialogRef = ref<{ $el?: HTMLElement }>()
 let lastFocused: HTMLElement | null = null
 
+const BLOCKS = 'p, li, blockquote, h1, h2, h3, h4, pre'
+
+function paragraphs(sel: Selection, scope: Element) {
+  const range = sel.getRangeAt(0)
+  const blocks = [...scope.querySelectorAll(BLOCKS)]
+    .filter(b => range.intersectsNode(b) && !b.querySelector(BLOCKS))
+  if (!blocks.length)
+    return sel.toString().replace(/\s+/g, ' ').trim()
+  return blocks
+    .map((b) => {
+      const r = document.createRange()
+      r.selectNodeContents(b)
+      if (r.compareBoundaryPoints(Range.START_TO_START, range) < 0)
+        r.setStart(range.startContainer, range.startOffset)
+      if (r.compareBoundaryPoints(Range.END_TO_END, range) > 0)
+        r.setEnd(range.endContainer, range.endOffset)
+      return r.toString().replace(/\s+/g, ' ').trim()
+    })
+    .filter(Boolean)
+    .join('\n')
+}
+
 function onSelect() {
   if (open.value)
     return
@@ -31,9 +53,10 @@ function onSelect() {
     return
   const node = sel.anchorNode
   const el = node instanceof Element ? node : node?.parentElement
-  if (!el?.closest('.prose-content'))
+  const scope = el?.closest('.prose-content')
+  if (!scope)
     return
-  quote.value = raw.replace(/\s*\n\s*/g, '\n').slice(0, 600)
+  quote.value = paragraphs(sel, scope).slice(0, 600)
   sel.removeAllRanges()
   lastFocused = document.activeElement as HTMLElement | null
   format.value = 'x'
