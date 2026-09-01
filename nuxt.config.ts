@@ -10,6 +10,14 @@ export default defineNuxtConfig({
     'nuxt-og-image',
     '@nuxtjs/sitemap',
   ],
+  content: {
+    build: {
+      markdown: {
+        highlight: { langs: ['cpp'] },
+      },
+      transformers: ['~~/transformers/image-size'],
+    },
+  },
   devtools: { enabled: true },
   components: [
     { path: '~/components/content', global: true },

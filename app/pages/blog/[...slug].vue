@@ -246,10 +246,59 @@ function fmt(d?: string) {
 .prose-content :deep(ul) { list-style: disc; }
 .prose-content :deep(ol) { list-style: decimal; }
 .prose-content :deep(li) { margin-block: 0.35rem; }
-.prose-content :deep(img) {
+.prose-content :deep(video) {
+  display: block;
   margin-block: 1.5rem;
   border-radius: 8px;
   max-width: 100%;
+  height: auto;
+}
+.prose-content :deep(img) {
+  display: block;
+  margin-block: 1.5rem;
+  border-radius: 8px;
+  max-width: 100%;
+  height: auto;
+}
+.prose-content :deep(hr) {
+  border: 0;
+  height: 1px;
+  margin-block: 2.5rem;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgb(var(--ink) / 0.16) 20%,
+    rgb(var(--ink) / 0.16) 80%,
+    transparent
+  );
+}
+.prose-content :deep(table) {
+  width: 100%;
+  margin-block: 1.5rem;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  display: block;
+  overflow-x: auto;
+}
+.prose-content :deep(th) {
+  text-align: start;
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgb(var(--ink) / 0.55);
+  padding: 0.5rem 0.9rem 0.5rem 0;
+  border-bottom: 1px solid rgb(var(--ink) / 0.12);
+}
+.prose-content :deep(td) {
+  vertical-align: top;
+  padding: 0.7rem 0.9rem 0.7rem 0;
+  color: rgb(var(--ink) / 0.78);
+  border-bottom: 1px solid rgb(var(--ink) / 0.06);
+}
+.prose-content :deep(tr:last-child td) {
+  border-bottom: 0;
 }
 .prose-content :deep(h1) {
   font-size: 1.8rem;
