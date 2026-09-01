@@ -117,7 +117,7 @@ So we added 3 audios to make the robot more human. Three tracks on the SD card, 
 | `0003.mp3` | Bin-full sensor trips, robot parks | *"Please empty the trash."* |
 
 <!-- TODO: YouTube URL of the demo, so people can hear all three live. -->
-You can hear all three in the demo video: [Elvon, full run](https://youtube.com/watch?v=TODO).
+You can hear all three in the demo video: [Elvon, full run](https://1drv.ms/v/c/0b40b905323055ca/IQDLE1FB-RF9TpgcVQfxtQ6jAZ7Tr8_ad21ayhlklzirNjE?e=dRcxQE).
 
 Now the robot would introduce itself after a warm boot, and then move (without a map, this is most efficient for motor robots). If it senses it's expected to work, it says the line out loud and holds still long enough for you to actually drop something.
 
@@ -143,8 +143,7 @@ Eventually we figured it out. We connected one of the output pins of the DFPlaye
 
 (It's the DFPlayer, though. Nothing was wrong with the speaker. Two nights. A ground wire.)
 
-<!-- GIF: the first time Elvon actually speaks. Faces in frame if possible. Best GIF in the post. -->
-![The moment Elvon says its first line out loud](/images/blog/hey-elvon/first-voice.gif)
+Here it is, [the moment Elvon says its first line out loud](https://testfutaedu-my.sharepoint.com/:v:/g/personal/ogundipevocpe2020_futa_edu_ng/IQCY9FMv5TFMTqkmJd5GG_yOAccUtvn-4Avei3hgZUlujEs?e=hyawX2).
 
 ## Teardown, four days out
 
