@@ -7,7 +7,7 @@ readingTime: 12min
 
 ### How a random group assignment became the best team I've worked with, and a robot that actually moves.
 
-![Elvon, the autonomous trash collector, on the lab table with its bin, wheels and exposed wiring](/images/blog/hey-elvon/cover.png)
+![Elvon, the autonomous trash collector, on the lab table with its bin, wheels and exposed wiring](/images/blog/hey-elvon/cover.jpg){loading="eager" fetchpriority="high"}
 
 Hey Elvon!
 
@@ -19,11 +19,11 @@ The team selection was done in class at random, and we got assigned a trash coll
 
 Five of us. Babatunde Yetunde (our group leader), Ogundipe Victor (circuit specialist), Ajayi John (our media director), Alonge Emmanuel (build and packaging), and Adebesin Tolulope (software guy, that's me).
 
-![The team around the workbench on day one, cameras out, nothing burnt yet](/images/blog/hey-elvon/team.png)
+![The team around the workbench, minus John, who was behind the camera](/images/blog/hey-elvon/team.jpg)
 
 Before any robotics project, we need to simulate and make a visual prototype, which Victor helped create for us to build freely.
 
-![The circuit prototype Victor built, Arduino Uno with the motor driver, PIR sensors, ultrasonic and DFPlayer laid out](/images/blog/hey-elvon/prototype.png)
+![The Arduino, motor driver and ultrasonic sensor wired up on the breadboard for obstacle detection](/images/blog/hey-elvon/prototype.jpg)
 
 ## Day one was all vibes
 
@@ -31,13 +31,11 @@ For the first day, it was all vibes and chill. I remember it was so calm and eve
 
 And yeah, I tried to engage this time without being more passive. I was laughed at, obviously, so you don't know anything outside of working on your laptop (partly true). Because at the first point of touch, I didn't know what to do. I also have the fear of, well, electricity. We also tried to check if our glue gun was hot (yeah, I touched it and got a bit burnt, others claimed it wasn't hot). What are they feeding you guys?
 
-<!-- GIF: me tentatively poking the glue gun / everyone laughing. Short, 2s loop. -->
-![The glue gun test, and my very brave hand](/images/blog/hey-elvon/glue-gun.gif)
+!["Just a little tap." Easy for him to say.](/images/blog/hey-elvon/glue-gun.gif)
 
 John took the major part of the camera work, he's a pro with cameras. Emmanuel and I started with the coupling, making sure we had the chassis ready and wheels for the more structural engineers to work here, Victor and Yetunde (their final year projects involved using Arduino, so they had more experience at it). And yeah, we got the very first setup. The motor connected and battery working as well. I [posted this](https://x.com/I_am_Lope/status/2090907430687309843) as we were packing up for the day.
 
-<!-- GIF: first wheel spin. The "it moves" moment. -->
-![First motor spin on the bare chassis](/images/blog/hey-elvon/first-spin.gif)
+![The bare chassis on its wheels, motors wired, nothing else on it yet](/images/blog/hey-elvon/chassis.jpg)
 
 ## The code
 
@@ -85,8 +83,8 @@ int readDistanceCm() {
 
 I think progressing from there was fully robotics. We worked on the obstacle avoidance, which I [shared on my X page](https://x.com/I_am_Lope/status/2091286868742566077).
 
-<!-- GIF or embed: the obstacle avoidance clip from X. -->
-![Elvon backing off a wall and picking a new direction](/images/blog/hey-elvon/obstacle-avoidance.gif)
+::clip{src="/videos/blog/hey-elvon/obstacle-avoidance.mp4" alt="Elvon backing off a wall and picking a new direction" width="1280" height="720"}
+::
 
 ## Then everything started breaking
 
@@ -104,7 +102,7 @@ Before we also realized that we had maxed the output on the PIR sensors, so it h
 
 We removed one PIR and then we moved forward.
 
-![The PIR sensor with its two potentiometers, sensitivity and delay, both turned all the way up](/images/blog/hey-elvon/pir-sensor.png)
+![The PIR sensor with its two potentiometers, sensitivity and delay, both turned all the way up](/images/blog/hey-elvon/pir-sensor.jpg)
 
 ## Giving it a name, and a voice
 
@@ -156,7 +154,7 @@ Now all was working, but we needed the robot to reverse and turn properly. That 
 
 And yay, we got it running. Really running. And all that was left was packaging.
 
-![Elvon fully disassembled on the table, every part laid out before the rebuild](/images/blog/hey-elvon/teardown.png)
+![Elvon fully disassembled on the table, every part laid out before the rebuild](/images/blog/hey-elvon/teardown.jpg)
 
 Emmanuel was solid here. He helped to ensure the proper packing of the robot, the design build.
 
