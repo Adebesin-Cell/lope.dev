@@ -279,9 +279,30 @@ At the end of the day, the biggest achievement isn't just having a working auton
 
 ![Emmanuel packing the chassis, the part that made it look finished](/images/blog/hey-elvon/emmanuel.png)
 
-<!-- TODO: Emmanuel's answers. Same seven questions. He handled coupling with me early on and the final packaging. -->
+**The moment it held together.**
+It was the exact moment we dropped the chassis on the floor with all the components inside, and nothing broke or fell out. When we turned on the power and the motor wheels actually moved, moving the whole weight smoothly without the wheels shaking or bending.
 
-*Answers coming.*
+*(He says "dropped" like it was a planned test. It was not a planned test.)*
+
+**The worst late night.**
+That had to be around 9:00 PM when the ultrasonic sensor suddenly stopped detecting obstacles and the robot was just crashing straight into the wall.
+
+**One thing to erase from memory.**
+Definitely, trying to get the speaker to work. It was really stressful troubleshooting that. At first we thought we got the wrong model of the DFPlayer.
+
+**Most proud of.**
+I'm secretly most proud of how the PIR sensor and the ultrasonic sensor smoothly work together, because part of the bug we faced is getting the PIR to differentiate an obstacle, which is handled by ultrasonic, from an actual human motion.
+
+*(This is the one nobody outside the team would notice, and it's the hardest thing in the build. A wall and a person look the same to a PIR.)*
+
+**Would you do another one?**
+Yeah, I would love to do it again.
+
+**The teamwork.**
+It was a great experience, honestly. We had to heavily rely on each other. While I was focused on the chassis and the obstacle avoidance, others were handling the PIR motion sensor and the speaker audio. Communication was key, because if one person's code or wiring messed up, the whole robot would just park. We pushed each other through the frustrating moments.
+
+**Advice.**
+My advice is simple: triple-check your power supply and use quality jumper wires. Most importantly, start small. Build the chassis and get the wheels moving first before you start adding all the fancy sensors.
 
 ---
 
