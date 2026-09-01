@@ -110,7 +110,22 @@ We removed one PIR and then we moved forward.
 
 Now, a working robot. Let's add more human touch. Yetunde led the vision for the product here. We had to coin out the name for the robot. We called it Elvon.
 
-So we added 3 audios to make the robot more human. Now the robot would introduce itself after a warm boot, and then move (without a map, this is most efficient for motor robots). If it senses it's expected to work, it says the audio out, "Kindly drop your trash in the bin."
+So we added 3 audios to make the robot more human. Three tracks on the SD card, three moments:
+
+| Track | When it plays | What Elvon says |
+| --- | --- | --- |
+| `0001.mp3` | On boot, before it starts roaming | *"Hi, I'm Elvon, your autonomous trash collector, made by CPE Group 7."* |
+| `0002.mp3` | A PIR sees a person | *"Hi, kindly drop your trash in the waste bin."* |
+| `0003.mp3` | Bin-full sensor trips, robot parks | *"Please empty the trash."* |
+
+<!-- TODO: YouTube URL of the demo, so people can hear all three live. -->
+You can hear all three in the demo video: [Elvon, full run](https://youtube.com/watch?v=TODO).
+
+Now the robot would introduce itself after a warm boot, and then move (without a map, this is most efficient for motor robots). If it senses it's expected to work, it says the line out loud and holds still long enough for you to actually drop something.
+
+And here's the part I'm still not over. The first version of that voice was **me**. I recorded all three lines myself, and we actually shipped it, because the team said I sounded robotic. 😔 That was the compliment.
+
+We only swapped it for a synthesised one because that one was louder, and in a room full of people you need the volume more than you need the authenticity.
 
 But nah. Nothing made a sound.
 
