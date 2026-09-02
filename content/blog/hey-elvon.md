@@ -31,7 +31,8 @@ For the first day, it was all vibes and chill. I remember it was so calm and eve
 
 And yeah, I tried to engage this time without being more passive. I was laughed at, obviously, so you don't know anything outside of working on your laptop (partly true). Because at the first point of touch, I didn't know what to do. I also have the fear of, well, electricity. We also tried to check if our glue gun was hot (yeah, I touched it and got a bit burnt, others claimed it wasn't hot). What are they feeding you guys?
 
-!["Just a little tap." Easy for him to say.](/images/blog/hey-elvon/glue-gun.gif)
+::clip{src="/videos/blog/hey-elvon/glue-gun.mp4" poster="/videos/blog/hey-elvon/glue-gun.poster.webp" alt='"Just a little tap." Easy for him to say.' width="640" height="640"}
+::
 
 John took the major part of the camera work, he's a pro with cameras. Emmanuel and I started with the coupling, making sure we had the chassis ready and wheels for the more structural engineers to work here, Victor and Yetunde (their final year projects involved using Arduino, so they had more experience at it). And yeah, we got the very first setup. The motor connected and battery working as well. I [posted this](https://x.com/I_am_Lope/status/2090907430687309843) as we were packing up for the day.
 
@@ -83,7 +84,7 @@ int readDistanceCm() {
 
 I think progressing from there was fully robotics. We worked on the obstacle avoidance, which I [shared on my X page](https://x.com/I_am_Lope/status/2091286868742566077).
 
-::clip{src="/videos/blog/hey-elvon/obstacle-avoidance.mp4" alt="Elvon backing off a wall and picking a new direction" width="1280" height="720"}
+::clip{src="/videos/blog/hey-elvon/obstacle-avoidance.mp4" poster="/videos/blog/hey-elvon/obstacle-avoidance.poster.webp" alt="Elvon backing off a wall and picking a new direction" width="1280" height="720"}
 ::
 
 ## Then everything started breaking
