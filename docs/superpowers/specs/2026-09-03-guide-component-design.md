@@ -64,7 +64,7 @@ one alone renders on its own, and neither drops the header.
 
 | attribute | required | renders as |
 | --- | --- | --- |
-| `title` | yes | `h3`, and the source of the anchor id |
+| `title` | yes | `h4`, and the source of the anchor id |
 | `parts` | no | a muted line under the title |
 | `gotcha` | no | a callout after the body |
 
@@ -83,8 +83,11 @@ Body content is the slot.
 - Renders an `<li>` carrying `id="step-<slug of title>"` plus a self-link, so a
   step can be linked directly. Slugified from the title rather than numbered by
   position, so reordering steps does not break inbound links.
-- `h3` title, `parts` line, body slot, `gotcha` callout in that order.
-- `h3` sits under the post's `h2` sections, keeping the document outline intact.
+- `h4` title, `parts` line, body slot, `gotcha` callout in that order.
+- The guide's own title is an `h3` under the post's `h2` sections and the steps
+  are `h4` beneath it, so the outline nests instead of flattening. `h4` also
+  keeps steps out of the table of contents, which reads `h2, h3` only and would
+  otherwise be flooded by a nine-step walkthrough.
 
 Both follow the existing `app/components/content/*` pattern (`Mention`,
 `QuietCover`, `Clip`): globally registered by the `~/components/content` entry
@@ -93,7 +96,7 @@ in `nuxt.config.ts`, styled from the `prose-content` block in
 
 ## Feed serialization
 
-`server/utils/minimark.ts` walks the content AST and emits HTML for the RSS
+`server/utils/minimark-to-html.ts` walks the content AST and emits HTML for the RSS
 feed. Custom components have no mapping, so they currently emit their own tag
 name: `::clip` reaches feed readers as `<clip src="...">`, which renders as
 nothing. This is a live bug, not a new one, and the same gap would deliver a
@@ -116,7 +119,7 @@ same function and the same class of defect.
 piece here worth a runnable check, and the piece most likely to rot unnoticed:
 nobody reads their own RSS output.
 
-`server/utils/minimark.check.ts`, in the style of
+`server/utils/minimark-to-html.check.ts`, in the style of
 `transformers/image-size.check.ts` (`node:assert`, run with `bun`, no
 framework), asserts:
 

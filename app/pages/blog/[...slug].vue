@@ -257,4 +257,92 @@ function fmt(d?: string) {
   margin-top: 2.5rem;
   margin-bottom: 0.75rem;
 }
+.prose-content :deep(.guide) {
+  margin-block: 2rem;
+  padding: 1.25rem 1.4rem 1.4rem;
+  border: 1px solid rgb(var(--ink) / 0.10);
+  border-radius: 10px;
+  background: rgb(var(--ink) / 0.03);
+}
+.prose-content :deep(.guide-head) {
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid rgb(var(--ink) / 0.08);
+}
+.prose-content :deep(.guide-title) {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.prose-content :deep(.guide-meta) {
+  margin: 0.3rem 0 0;
+  font-size: 0.8rem;
+  color: rgb(var(--ink) / 0.5);
+}
+.prose-content :deep(.guide-steps) {
+  counter-reset: step;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.prose-content :deep(.step) {
+  counter-increment: step;
+  position: relative;
+  margin: 0;
+  padding: 1.4rem 0 0.2rem 2.7rem;
+}
+.prose-content :deep(.step:not(:last-child)::after) {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0.85rem;
+  top: 3.1rem;
+  bottom: -0.2rem;
+  width: 1px;
+  background: rgb(var(--ink) / 0.12);
+}
+.prose-content :deep(.step::before) {
+  content: counter(step);
+  position: absolute;
+  inset-inline-start: 0;
+  top: 1.25rem;
+  display: grid;
+  place-items: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
+  border: 1px solid rgb(var(--ink) / 0.18);
+  background: rgb(var(--bg));
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: rgb(var(--ink) / 0.7);
+}
+.prose-content :deep(.step-title) {
+  margin: 0;
+  font-size: 1.02rem;
+  font-weight: 600;
+}
+.prose-content :deep(.step-title a) {
+  text-decoration: none;
+}
+.prose-content :deep(.step-title a:hover) {
+  text-decoration: underline;
+}
+.prose-content :deep(.step-parts) {
+  margin: 0.3rem 0 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: rgb(var(--ink) / 0.5);
+}
+.prose-content :deep(.step-body > :first-child) {
+  margin-top: 0.6rem;
+}
+.prose-content :deep(.step-gotcha) {
+  margin: 0.9rem 0 0;
+  padding: 0.6rem 0.8rem;
+  border-inline-start: 2px solid rgb(var(--ink) / 0.3);
+  background: rgb(var(--ink) / 0.04);
+  font-size: 0.88rem;
+  color: rgb(var(--ink) / 0.7);
+}
 </style>
