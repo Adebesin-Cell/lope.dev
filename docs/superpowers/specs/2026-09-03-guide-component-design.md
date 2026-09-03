@@ -1,7 +1,7 @@
 # `<Guide>`: step-by-step walkthroughs inside a post
 
 Date: 2026-09-03
-Status: approved, not yet implemented
+Status: implemented in c493c44
 
 ## Problem
 
