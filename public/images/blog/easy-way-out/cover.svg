@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-label="A circuit split into two paths to a green checkmark. The top path runs through a resistor labeled 'actually fix it' and carries little current. The bottom path is a short circuit carrying almost all the current, with a spark where it jumps.">
+  <style>
+    .bg     { fill: #fbfbfa; }
+    .ink    { fill: #16150f; }
+    .kicker { fill: #16150f; opacity: 0.45; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 21px; letter-spacing: 1px; }
+    .label  { fill: #16150f; opacity: 0.55; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 19px; }
+    .wire   { fill: none; stroke: #16150f; stroke-opacity: 0.30; stroke-width: 3; }
+    .node   { fill: #16150f; }
+    .flow   { fill: none; stroke: #16150f; stroke-linecap: round; }
+    .flow-fast { stroke-width: 5; stroke-opacity: 0.85; stroke-dasharray: 5 19; animation: flow 1.1s linear infinite; }
+    .flow-slow { stroke-width: 3; stroke-opacity: 0.4;  stroke-dasharray: 4 44; animation: flow 4.2s linear infinite; }
+    .green  { fill: none; stroke: #15a34a; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+    .greenring { fill: none; stroke: #15a34a; stroke-opacity: 0.5; stroke-width: 2.5; }
+    .spark  { fill: none; stroke: #e0562d; stroke-width: 3.5; stroke-linecap: round; }
+    .dot    { fill: #16150f; opacity: 0.06; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #0f0f0e; }
+      .ink { fill: #f2f2ee; }
+      .kicker { fill: #f2f2ee; opacity: 0.5; }
+      .label  { fill: #f2f2ee; opacity: 0.6; }
+      .wire { stroke: #f2f2ee; stroke-opacity: 0.28; }
+      .node { fill: #f2f2ee; }
+      .flow { stroke: #f2f2ee; }
+      .green { stroke: #2fbf5a; }
+      .greenring { stroke: #2fbf5a; stroke-opacity: 0.55; }
+      .spark { stroke: #ff7a4d; }
+      .dot { fill: #f2f2ee; opacity: 0.07; }
+    }
+    @keyframes flow { to { stroke-dashoffset: -240; } }
+    @media (prefers-reduced-motion: reduce) { .flow-fast, .flow-slow { animation: none; } }
+  </style>
+
+  <pattern id="cdots" width="24" height="24" patternUnits="userSpaceOnUse"><circle class="dot" cx="2" cy="2" r="1.6" /></pattern>
+  <rect class="bg" x="0" y="0" width="1200" height="520" />
+  <rect x="0" y="0" width="1200" height="520" fill="url(#cdots)" />
+
+  <text class="kicker" x="120" y="86">// the cheapest path to green</text>
+
+  <!-- battery / source -->
+  <g class="ink">
+    <rect x="96" y="238" width="8" height="48" rx="2" />
+    <rect x="116" y="252" width="6" height="20" rx="2" />
+  </g>
+  <text class="label" x="70" y="330">in</text>
+
+  <!-- base wiring -->
+  <!-- source to split -->
+  <path class="wire" d="M122 262 H300" />
+  <!-- top branch: up, across (with resistor gap), down -->
+  <path class="wire" d="M300 262 V150 H470" />
+  <path class="wire" d="M690 150 H900 V262" />
+  <!-- resistor (zigzag) on top branch -->
+  <path class="wire" d="M470 150 l14 -16 l28 32 l28 -32 l28 32 l28 -32 l28 32 l14 -16 H690" />
+  <!-- bottom branch: the short -->
+  <path class="wire" d="M300 262 V378 H900 V262" />
+  <!-- merge to target -->
+  <path class="wire" d="M900 262 H980" />
+
+  <!-- current flow overlays -->
+  <!-- top branch, little current -->
+  <path class="flow flow-slow" d="M300 262 V150 H470 M690 150 H900" />
+  <!-- bottom branch, most of the current -->
+  <path class="flow flow-fast" d="M300 262 V378 H900 V262 H980" />
+
+  <!-- nodes -->
+  <circle class="node" cx="300" cy="262" r="6" />
+  <circle class="node" cx="900" cy="262" r="6" />
+
+  <!-- labels -->
+  <text class="label" x="486" y="126">actually fix it</text>
+  <text class="label" x="520" y="418">delete the test</text>
+
+  <!-- spark on the short -->
+  <g class="spark">
+    <path d="M596 378 l-16 -22 M596 378 l20 -16 M596 378 l-6 26 M596 378 l24 10" />
+  </g>
+
+  <!-- target: green check -->
+  <circle class="greenring" cx="1030" cy="262" r="52" />
+  <path class="green" d="M1006 262 l16 18 l34 -40" />
+</svg>

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 430" role="img" aria-label="A signal path splits into two branches around a rejoining node. The top branch runs through the emitter resistor and carries only a thin trickle of current. The bottom branch runs through a bypass capacitor and carries almost all of the current, taking the easy path around the resistor.">
+  <style>
+    .bg     { fill: #fbfbfa; }
+    .ink    { fill: #16150f; }
+    .comp   { fill: none; stroke: #16150f; stroke-opacity: 0.6; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+    .wire   { fill: none; stroke: #16150f; stroke-opacity: 0.32; stroke-width: 3; }
+    .kicker { fill: #16150f; opacity: 0.45; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 21px; letter-spacing: 1px; }
+    .label  { fill: #16150f; opacity: 0.6;  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 20px; }
+    .sub    { fill: #16150f; opacity: 0.4;  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 16px; }
+    .flow      { fill: none; stroke: #16150f; stroke-linecap: round; }
+    .flow-thin { stroke-width: 2.5; stroke-opacity: 0.38; stroke-dasharray: 3 45; animation: flow 4.6s linear infinite; }
+    .flow-fat  { stroke-width: 6.5; stroke-opacity: 0.9;  stroke-dasharray: 6 16; animation: flow 1s   linear infinite; }
+    .node   { fill: #16150f; }
+    .dot    { fill: #16150f; opacity: 0.06; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #0f0f0e; }
+      .ink { fill: #f2f2ee; }
+      .comp { stroke: #f2f2ee; stroke-opacity: 0.62; }
+      .wire { stroke: #f2f2ee; stroke-opacity: 0.3; }
+      .kicker { fill: #f2f2ee; opacity: 0.5; }
+      .label  { fill: #f2f2ee; opacity: 0.62; }
+      .sub    { fill: #f2f2ee; opacity: 0.42; }
+      .flow { stroke: #f2f2ee; }
+      .node { fill: #f2f2ee; }
+      .dot { fill: #f2f2ee; opacity: 0.07; }
+    }
+    @keyframes flow { to { stroke-dashoffset: -276; } }
+    @media (prefers-reduced-motion: reduce) { .flow-thin, .flow-fat { animation: none; } }
+  </style>
+
+  <pattern id="bdots" width="24" height="24" patternUnits="userSpaceOnUse"><circle class="dot" cx="2" cy="2" r="1.6" /></pattern>
+  <rect class="bg" x="0" y="0" width="1200" height="430" />
+  <rect x="0" y="0" width="1200" height="430" fill="url(#bdots)" />
+
+  <text class="kicker" x="120" y="70">// bypass the resistor, reclaim the gain</text>
+
+  <!-- main line in and out -->
+  <path class="wire" d="M150 215 H320" />
+  <path class="wire" d="M880 215 H1050" />
+  <text class="sub" x="118" y="250">signal</text>
+
+  <!-- top branch: emitter resistor -->
+  <path class="wire" d="M320 215 V130 H430" />
+  <path class="wire" d="M430 130 l14 -16 l28 32 l28 -32 l28 32 l28 -32 l28 32 l14 -16 H770 V215" />
+  <path class="flow flow-thin" d="M320 215 V130 H430 M650 130 H770 V215" />
+  <text class="label" x="470" y="106">emitter resistor</text>
+  <text class="sub"   x="470" y="150">feedback · costs gain</text>
+
+  <!-- bottom branch: bypass capacitor -->
+  <path class="wire" d="M320 215 V305 H548" />
+  <path class="comp" d="M548 278 V332 M572 278 V332" />
+  <path class="wire" d="M572 305 H770 V215" />
+  <path class="flow flow-fat" d="M320 215 V305 H548 M572 305 H770 V215" />
+  <text class="label" x="470" y="392">bypass capacitor</text>
+  <text class="sub"   x="620" y="392">the easy way around</text>
+
+  <!-- split / merge nodes -->
+  <circle class="node" cx="320" cy="215" r="6" />
+  <circle class="node" cx="770" cy="215" r="6" />
+</svg>
