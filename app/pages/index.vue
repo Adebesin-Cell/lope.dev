@@ -3,7 +3,7 @@ import { ark } from '@ark-ui/vue/factory'
 
 usePageSeo({
   title: 'Adebesin Tolulope (Lope)',
-  description: 'Software engineer and open-source contributor — founding engineer at BethelFlow, working across the Chakra and IQ ecosystems.',
+  description: 'Software engineer and open-source maintainer — founding engineer at BethelFlow, maintainer at Chakra UI, Panda and Ark UI, working across the Chakra and IQ ecosystems.',
 })
 
 const siteUrl = useSiteConfig().url.replace(/\/$/, '')
@@ -52,13 +52,13 @@ const roleRows = [
     chips: [
       { icon: 'i-simple-icons-chakraui', color: '#4FD1C5', label: 'Chakra UI', href: 'https://github.com/chakra-ui/chakra-ui' },
       { icon: 'i-logos-pandacss-icon', label: 'Panda', href: 'https://github.com/chakra-ui/panda' },
+      { logo: '/brands/ark.png', label: 'Ark UI', href: 'https://github.com/chakra-ui/ark' },
     ],
   },
   {
     label: 'Contributing to',
     chips: [
       { logo: '/brands/zag.png', label: 'Zag', href: 'https://github.com/chakra-ui/zag' },
-      { logo: '/brands/ark.png', label: 'Ark UI', href: 'https://github.com/chakra-ui/ark' },
       { logo: '/brands/npmx.svg', logoLight: '/brands/npmx-light.svg', label: 'npmx.dev', href: 'https://npmx.dev' },
     ],
   },
