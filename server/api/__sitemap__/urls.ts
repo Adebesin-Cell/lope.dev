@@ -10,6 +10,8 @@ export default defineSitemapEventHandler(async (event) => {
     { loc: '/talks' },
     { loc: '/play' },
     { loc: '/essays' },
+    { loc: '/academia' },
+    { loc: '/academia/ekphrasis' },
     { loc: '/blog' },
     { loc: '/releases' },
     ...original.map((p) => {

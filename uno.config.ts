@@ -70,6 +70,7 @@ export default defineConfig({
     'dot-bg': 'bg-[radial-gradient(circle,var(--dot-color)_1px,transparent_1px)] bg-[length:24px_24px]',
     'chip': 'inline-flex items-center gap-1.5 h-7 px-2.5 rounded-md bg-ink/5 text-sm leading-none border border-ink/5 hover:bg-ink/10 transition-colors',
     'nav-link': 'op-70 hover:op-100 transition-opacity',
+    'ref-link': 'underline decoration-ink/25 underline-offset-3 hover:decoration-ink/60 hover:text-ink transition-colors',
     'btn': 'inline-flex items-center justify-center gap-2 h-9 px-4 rounded-lg text-sm font-500 transition',
     'watermark': 'absolute pointer-events-none select-none font-bold text-7xl md:text-8xl lg:text-9xl op-3 tracking-tight uppercase',
   },
