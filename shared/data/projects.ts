@@ -70,8 +70,8 @@ export const projects: ProjectGroup[] = [
     projects: [
       {
         name: 'Ekphrasis',
-        description: 'A project that keeps pulling me back. The motivation behind it is on the blog.',
-        href: 'https://github.com/Adebesin-Cell/ekphrasis',
+        description: 'Context-aware image descriptions for blind and low-vision readers. Final-year project.',
+        href: '/academia/ekphrasis',
         icon: 'i-lucide-feather',
         color: '#34D399',
       },

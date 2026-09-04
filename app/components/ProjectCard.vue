@@ -2,14 +2,21 @@
 import { ark } from '@ark-ui/vue/factory'
 import type { Project } from '~~/shared/data/projects'
 
-defineProps<{ project: Project }>()
+const props = defineProps<{ project: Project }>()
+
+const internal = computed(() => props.project.href.startsWith('/'))
+const tag = computed(() => (internal.value ? resolveComponent('NuxtLink') : 'a'))
+const linkAttrs = computed(() =>
+  internal.value
+    ? { to: props.project.href }
+    : { href: props.project.href, target: '_blank', rel: 'noopener' },
+)
 </script>
 
 <template>
-  <ark.a
-    :href="project.href"
-    target="_blank"
-    rel="noopener"
+  <component
+    :is="tag"
+    v-bind="linkAttrs"
     class="card group flex items-start gap-3 p-3 -mx-3 rounded-lg hover:bg-ink/3 transition-colors"
   >
     <ark.div class="grid place-items-center w-6 h-6 mt-0.5 shrink-0" aria-hidden="true">
@@ -35,5 +42,5 @@ defineProps<{ project: Project }>()
         {{ project.description }}
       </ark.div>
     </ark.div>
-  </ark.a>
+  </component>
 </template>
