@@ -4,7 +4,7 @@ description: What years of building AI agents taught me about context engineerin
 date: 2026-07-18
 ---
 
-![A conversation panel you've walked into halfway: the top lines cut off, the middle clear, the last line only half typed.](/images/blog/context/cover.svg)
+![A conversation panel you've walked into halfway: the top lines cut off, the middle clear, the last line only half typed.](/images/blog/context/cover.svg){loading="eager" fetchpriority="high"}
 
 There's a specific kind of lost you feel walking into a conversation halfway through. People are laughing at something. Someone says "yeah, but that's exactly what *he* did," and you nod along like you know who *he* is. You don't. You've got the words but none of the wiring underneath them, and if you're not careful you'll repeat the half you caught as if it were the whole thing. That's the dangerous part. Not knowing nothing. Knowing *half*.
 

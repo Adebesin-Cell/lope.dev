@@ -3,6 +3,7 @@ import { redirectRouteRules } from './shared/redirects'
 export default defineNuxtConfig({
   modules: [
     '@nuxt/content',
+    '@nuxt/image',
     '@unocss/nuxt',
     '@nuxtjs/color-mode',
     '@vueuse/nuxt',
@@ -10,6 +11,19 @@ export default defineNuxtConfig({
     'nuxt-og-image',
     '@nuxtjs/sitemap',
   ],
+  image: {
+    provider: process.env.VERCEL ? 'vercel' : 'ipx',
+    format: ['avif', 'webp'],
+    quality: 70,
+  },
+  content: {
+    build: {
+      markdown: {
+        highlight: { langs: ['cpp'] },
+      },
+      transformers: ['~~/transformers/image-size'],
+    },
+  },
   devtools: { enabled: true },
   components: [
     { path: '~/components/content', global: true },
