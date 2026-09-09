@@ -284,22 +284,22 @@ At the end of the day, the biggest achievement isn't just having a working auton
 ![Yetunde, who named Elvon and led the vision](/images/blog/hey-elvon/yetunde.jpg)
 
 **The moment it held together.**
-From the beginning. I came to work on the project with a positive mindset. And yeah God was with us from the start 💪. I believed everything was going to work perfectly from the start.
+From the beginning. I came to work on the project with a positive mindset. And yeah, God was with us from the start 💪. I believed everything was going to work perfectly from the start.
 
 **The worst late night.**
-The sensor fusion for the ultrasonic sensor and PIR sensor alongside with the operation logic of the robot, it didn't go smoothly at first. I didn't troubleshoot it alone though.
+The sensor fusion for the ultrasonic sensor and PIR sensor, along with the operation logic of the robot. It didn't go smoothly at first. I didn't troubleshoot it alone though.
 
 **One thing to erase from memory.**
-None. Every bug and error and every troubleshooting was an important step in achieving the final result. I won't erase them from my memory, I will use them as experience for later.
+None. Every bug and error and every troubleshooting was an important step in achieving the final result. I won't erase them from my memory. I will use them as experience for later.
 
 **Most proud of.**
-The human interaction part of the work. The dfplayer module was not working at all, but I didn't want to give up on it. After much troubleshooting it started responding.
+The human interaction part of the work. The DFPlayer module was not working at all, but I didn't want to give up on it. After much troubleshooting, it started responding.
 
 **Would you do another one?**
 Yeah, I think it would be nice.
 
 **The teamwork.**
-Great, very great. I worked with team mates who were active, tenacious and Smart.
+Great, very great. I worked with teammates who were active, tenacious and smart.
 
 **Advice.**
 When you get stuck, rest a while, come back, check again, troubleshoot again, till it all works well.
