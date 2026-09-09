@@ -35,7 +35,7 @@ export const projects: ProjectGroup[] = [
       },
       {
         name: 'Chakra Ecosystem',
-        description: 'Maintainer at Chakra UI & Panda · contributor to Zag & Ark UI.',
+        description: 'Maintainer at Chakra UI, Panda & Ark UI · contributor to Zag.',
         href: 'https://github.com/chakra-ui',
         icon: 'i-simple-icons-chakraui',
         color: '#4FD1C5',
