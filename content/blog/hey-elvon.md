@@ -284,9 +284,30 @@ At the end of the day, the biggest achievement isn't just having a working auton
 
 ![Yetunde, who named Elvon and led the vision](/images/blog/hey-elvon/yetunde.jpg)
 
-<!-- TODO: Yetunde's answers. Same seven questions. She led the product vision and named Elvon, so Q4 and Q6 are the ones to push on. -->
+**The moment it held together.**
+From the beginning. I came to work on the project with a positive mindset, and yeah, God was with us from the start 💪. I believed everything was going to work perfectly.
 
-*Answers coming, she's the one who named Elvon and led the vision for what it should feel like, so I'm not publishing this section half-done.*
+**The worst late night.**
+The sensor fusion for the ultrasonic and PIR sensors, alongside the operation logic of the robot. It didn't go smoothly at first. I didn't troubleshoot it alone though.
+
+*(Nobody troubleshot anything alone on this project. That's kind of the whole point.)*
+
+**One thing to erase from memory.**
+None. Every bug, every error, every round of troubleshooting was an important step in getting to the final result. I won't erase them, I'll use them as experience for later.
+
+**Most proud of.**
+The human interaction part of the work. The DFPlayer module wasn't working at all, but I didn't want to give up on it. After much troubleshooting, it started responding.
+
+*(This is the same speaker that cost Victor and Emmanuel two nights. She's the reason we didn't just cut it.)*
+
+**Would you do another one?**
+Yeah, I think it would be nice.
+
+**The teamwork.**
+Great, very great. I worked with teammates who were active, tenacious and smart.
+
+**Advice.**
+When you get stuck, rest a while, come back, check again, troubleshoot again, till it all works well.
 
 ---
 
