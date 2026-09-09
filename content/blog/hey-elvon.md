@@ -166,7 +166,9 @@ On the same day, two days to our defense, the robot wire got burned pretty bad. 
 
 But we didn't let that make us panic. We took an old charger and removed its pieces to make it work.
 
-![The burnt wire, and the old charger we harvested to replace it](/images/blog/hey-elvon/burnt-wire.png)
+![Sparks off a shorting wire](/images/blog/hey-elvon/burnt-wire.gif)
+
+*(Oh no, another one, a few days before defense.)*
 
 ## What we learned about power
 
@@ -188,7 +190,7 @@ One simple piece of engineering here is: simple design, but make it work. Don't 
 
 And yes, the robot is working. And the team really is the best I've worked with so far, responsive and very active group.
 
-![The team after defense, Elvon in front, everyone still standing](/images/blog/hey-elvon/defense-day.png)
+![The five of us, one shot each, stitched into a single grid](/images/blog/hey-elvon/team-grid.jpg)
 
 ## Let's hear from the team
 
@@ -210,7 +212,7 @@ Here's what I asked everyone:
 
 [Victor on X](https://x.com/Victobiloba)
 
-![Victor mid-wiring, multimeter in hand](/images/blog/hey-elvon/victor.png)
+![Victor, our circuit specialist](/images/blog/hey-elvon/victor.jpg)
 
 **The moment it held together.**
 There was a time everything stopped working, all the sensors. The moment we disconnected them and started all over again and they started working one after the other.
@@ -239,7 +241,7 @@ Make sure you have a good team where everyone is willing to pour in their contri
 
 ### John, media director
 
-![John behind the camera, shooting the demo](/images/blog/hey-elvon/john.png)
+![John, our media director](/images/blog/hey-elvon/john.jpg)
 
 **The moment it held together.**
 For me, that moment came when we finally powered the system and saw the different parts responding the way we had designed them to. Seeing the sensors communicate with the controller and the motors respond to the commands made everything feel real.
@@ -280,7 +282,7 @@ At the end of the day, the biggest achievement isn't just having a working auton
 
 ### Yetunde, group leader
 
-![Yetunde with Elvon, the person who named it](/images/blog/hey-elvon/yetunde.png)
+![Yetunde, who named Elvon and led the vision](/images/blog/hey-elvon/yetunde.jpg)
 
 <!-- TODO: Yetunde's answers. Same seven questions. She led the product vision and named Elvon, so Q4 and Q6 are the ones to push on. -->
 
@@ -290,7 +292,7 @@ At the end of the day, the biggest achievement isn't just having a working auton
 
 ### Emmanuel, build and packaging
 
-![Emmanuel packing the chassis, the part that made it look finished](/images/blog/hey-elvon/emmanuel.png)
+![Emmanuel, who built and packaged the chassis](/images/blog/hey-elvon/emmanuel.jpg)
 
 **The moment it held together.**
 It was the exact moment we dropped the chassis on the floor with all the components inside, and nothing broke or fell out. When we turned on the power and the motor wheels actually moved, moving the whole weight smoothly without the wheels shaking or bending.
@@ -326,3 +328,87 @@ Five people, one Arduino Uno, two PIR sensors (one of which we fired), an ultras
 If you're building yours: keep the design simple, keep the wiring accessible, and when the code looks wrong, check the ground first. 😅
 
 And get the team right. That part isn't in the datasheet.
+
+## Build your own
+
+Everything above is what happened. If you want to build one, here's the same thing as an order of operations, with our mistakes taken out.
+
+::guide{title="Build your own Elvon" cta="Open the build guide" time="9 steps" team="a few evenings"}
+  :::step{title="Get the chassis rolling first" parts="4WD acrylic chassis, TT gear motors, L298N motor driver, Arduino Uno, battery pack" gotcha="If a wheel spins backwards, don't debug the code. Swap the two wires on that motor's terminal block."}
+  Nothing else matters until the thing moves. Mount the motors, wire the driver, and write the smallest sketch that drives all four wheels forward for two seconds.
+
+  Do this before the deck goes on and before a single sensor is attached. Every hour you spend on sensors while the motors are unproven is an hour you'll spend twice.
+  :::
+
+  :::step{title="Calibrate the turns by hand" gotcha="These are wall-clock guesses, not geometry. Your floor, your battery level and your tyres all change them."}
+  There's no encoder here, so a turn is just "drive the wheels in opposite directions for N milliseconds." That number is a knob you tune by watching it:
+
+  ```cpp
+  const unsigned long TURN_90_MS = 500;   // bump up if it under-rotates
+  const unsigned long REVERSE_MS = 600;
+  ```
+
+  Put a piece of tape on the floor, run the turn ten times, and adjust until it lands square. Do it on a fresh battery, then again on a low one, and pick something that survives both.
+  :::
+
+  :::step{title="Add the ultrasonic and get obstacle avoidance working" parts="HC-SR04 ultrasonic sensor" gotcha="Reverse before you turn. Turning against a wall you're already touching just grinds."}
+  One sensor, one job: how far is the thing in front of me. When it reads under your threshold, stop, reverse for `REVERSE_MS`, turn, and carry on.
+
+  This is the point where it starts looking like a robot rather than a car.
+
+  ::clip{src="/videos/blog/hey-elvon/obstacle-avoidance.mp4" poster="/videos/blog/hey-elvon/obstacle-avoidance.poster.webp" alt="Elvon backing off a wall and picking a new direction" width="1280" height="720"}
+  ::
+  :::
+
+  :::step{title="Add exactly one PIR, and turn it down" parts="HC-SR501 PIR sensor" gotcha="Both potentiometers maxed is the mistake we made. Full sensitivity plus full delay means it triggers on everything and then refuses to let go."}
+  We started with two PIRs for coverage and the robot became useless, stopping every few seconds because something, somewhere, was warm and moving. We pulled one out and it got better immediately.
+
+  Then turn the sensitivity down. The two little pots on the board are range and hold time, and the sane starting position is nowhere near maximum.
+
+  Budget 30 seconds of warm-up before you trust a single reading:
+
+  ```cpp
+  const unsigned long PIR_WARMUP_MS = 30000;
+  ```
+
+  A PIR that just powered on lies to you.
+  :::
+
+  :::step{title="Give the motion a state machine" gotcha="Without explicit states, the speaker and the servo fight the drive loop and you'll blame the sensors."}
+  Three states covered everything Elvon needed to do:
+
+  ```cpp
+  enum RobotState {
+    PATROL,
+    PIR_WAIT,
+    OBSTACLE_AVOID
+  };
+  ```
+
+  Patrol until something interesting happens, wait when a person appears, back off when a wall appears. Write it this way from the start. Retrofitting states onto a pile of `if` statements is how we lost an evening.
+  :::
+
+  :::step{title="Wire the voice last" parts="DFPlayer Mini, microSD card, small speaker" gotcha="Tie the DFPlayer's ground to the Arduino's ground. If you get static or silence, this is the problem. It cost us two nights and it was one wire."}
+  Name your tracks `0001.mp3`, `0002.mp3`, `0003.mp3` on the card and trigger them by index. Ours were a greeting on boot, a prompt when the PIR saw someone, and a complaint when the bin filled up.
+
+  Test the module on its own, on the bench, before it goes anywhere near the robot. And if you record the voice yourself, know that the synthesised one is louder, and in a room full of people volume beats authenticity.
+  :::
+
+  :::step{title="Sort out power before you add anything heavy" parts="4x battery, buck converter" gotcha="Feed 4 batteries straight to the Arduino and you'll burn it. The buck converter isn't optional."}
+  Turning draws more than driving straight, and a sagging pack shows up as a robot that suddenly can't complete a rotation. We landed on four batteries through a buck converter.
+
+  Expect short runtimes. It's rechargeable, so it's fine for demos, but it won't patrol a corridor all afternoon.
+  :::
+
+  :::step{title="Mount the bin, and weigh it first" gotcha="The first bin we bought was too heavy for the chassis. Fully assembled, the robot simply refused to move."}
+  Hold the empty bin in one hand and the chassis in the other. If the bin feels comparable, it's too heavy.
+
+  We wanted a servo to tip it and gave that up. The bin that works is a light one, fixed in place, sitting over the drive platform rather than behind it.
+  :::
+
+  :::step{title="Tear it down once before you demo it" gotcha="Do this four days out, not the night before. Ours turned up a wire that had already burned."}
+  Take the whole thing apart, check every joint, and rebuild it. It feels like a waste of an evening and it is the reason nothing failed in front of our lecturer.
+
+  Have a spare of whatever charges it. Our charger module died on defense day.
+  :::
+::
