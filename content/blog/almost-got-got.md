@@ -4,7 +4,7 @@ description: I was just trying to download a sermon, and I almost pasted malware
 date: 2026-08-23
 ---
 
-![Almost Got Got, a field guide to social engineering](/images/blog/almost-got-got/og.png)
+![Almost Got Got, a field guide to social engineering](/images/blog/almost-got-got/og.png){loading="eager" fetchpriority="high"}
 
 Security is important.
 

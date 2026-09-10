@@ -6,7 +6,7 @@ date: 2026-08-31
 
 ### A year in the chakraverse. What I built, what I threw away, and where we're headed.
 
-![A year, a verse and an ecosystem. The Panda, Chakra UI, Zag and Ark marks floating around the title on a warm cream background.](/images/blog/a-year-a-verse-and-an-ecosystem/cover.svg)
+![A year, a verse and an ecosystem. The Panda, Chakra UI, Zag and Ark marks floating around the title on a warm cream background.](/images/blog/a-year-a-verse-and-an-ecosystem/cover.svg){loading="eager" fetchpriority="high"}
 
 A year ago, I was working as an IT student at a polytechnic networking department. Reasonably a very serene environment, I was able to meet every quota of work, my day job at [IQ.wiki](https://iq.wiki), and my IT as well.
 

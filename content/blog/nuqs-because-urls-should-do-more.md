@@ -7,7 +7,7 @@ canonical: https://iamlope.medium.com/nuqs-because-urls-should-do-more-5d5d86e87
 
 ### Move beyond local state — Go beyond, plus ultra.
 
-![](https://cdn-images-1.medium.com/max/665/1*KUe2LG5cA3cR80GodnXW8A.jpeg)
+![](https://cdn-images-1.medium.com/max/665/1*KUe2LG5cA3cR80GodnXW8A.jpeg){loading="eager" fetchpriority="high"}
 
 Valentine's Day. I had planned it down to perfection. The right place, the right atmosphere, the right seat — because ambiance matters, and I wanted this night to be unforgettable. I took my time picking the best spot, ensuring that when we arrived, everything would be set.
 

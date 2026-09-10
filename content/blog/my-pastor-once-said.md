@@ -7,7 +7,7 @@ readingTime: 9min
 
 ### A campaign for the lines that stuck. What I designed, what broke, what the numbers said, and where it landed.
 
-![The My Pastor Once Said landing page, a wall of quote cards fanning out around the words "My Pastor Once Said…" in BethelFlow blue.](/images/blog/my-pastor-once-said/hero.png)
+![The My Pastor Once Said landing page, a wall of quote cards fanning out around the words "My Pastor Once Said…" in BethelFlow blue.](/images/blog/my-pastor-once-said/hero.png){loading="eager" fetchpriority="high"}
 
 Every church has a few lines it never forgot. The one your pastor said at the end of every service. The sentence you were half-listening to at seventeen that you're still carrying at twenty-seven. *Shalom.* *You are not a mistake.* *Shout hallelujah.* You know the ones.
 

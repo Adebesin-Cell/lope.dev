@@ -7,7 +7,7 @@ readingTime: 7min
 
 ### Most of my users lived on a phone. I built the whole thing on a laptop. Here's what that cost, and the rule I keep now.
 
-![A download button pressed over and over, each tap rippling out into nothing, with a counter reading times twenty.](/images/blog/the-button-that-did-nothing/cover.svg)
+![A download button pressed over and over, each tap rippling out into nothing, with a counter reading times twenty.](/images/blog/the-button-that-did-nothing/cover.svg){loading="eager" fetchpriority="high"}
 
 You've met a dead button. The crosswalk one that isn't wired to anything. The elevator "close door" that's decoration. The one you press, and when nothing happens you press it again, harder, because surely it heard you the first time. There's a particular small humiliation in it, standing there jabbing a button while the world declines to respond.
 

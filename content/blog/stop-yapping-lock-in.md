@@ -7,7 +7,7 @@ canonical: https://iamlope.medium.com/stop-yapping-lock-in-5e0a0673ab19
 
 #### Keep your Next action safe — we've all overshared, but now you know better. Don't cast your actions… be legendary and anon.
 
-![](https://cdn-images-1.medium.com/max/736/1*AYssJZ41GpzFIedW-rC-ig.jpeg)
+![](https://cdn-images-1.medium.com/max/736/1*AYssJZ41GpzFIedW-rC-ig.jpeg){loading="eager" fetchpriority="high"}
 
 *stay locked in!*
 
