@@ -1,7 +1,7 @@
 ---
 title: Hey Elvon!
 description: Five people, one random class assignment, and an autonomous trash collector we named Elvon. The wiring disasters, the two nights we lost to a speaker, the wire that burned two days before defense, and what the team had to say about it.
-date: 2026-09-01
+date: 2026-09-10
 readingTime: 12min
 ---
 
