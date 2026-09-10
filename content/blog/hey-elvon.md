@@ -209,7 +209,7 @@ Here's what I asked everyone:
 
 ### Victor, circuit specialist
 
-[Victor on X](https://x.com/Victobiloba)
+[Victor on X](https://x.com/Victobiloba) · [LinkedIn](https://www.linkedin.com/in/victor-ogundipe-933b34259/)
 
 ![Victor, our circuit specialist](/images/blog/hey-elvon/victor.jpg)
 
@@ -280,6 +280,8 @@ At the end of the day, the biggest achievement isn't just having a working auton
 ---
 
 ### Yetunde, group leader
+
+[Yetunde on LinkedIn](https://www.linkedin.com/in/yetunde-babatunde-345009226/)
 
 ![Yetunde, who named Elvon and led the vision](/images/blog/hey-elvon/yetunde.jpg)
 
