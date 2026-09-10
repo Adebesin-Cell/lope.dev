@@ -65,7 +65,7 @@ const roleRows = [
   {
     label: 'Author of',
     chips: [
-      { icon: 'i-lucide-feather', color: '#34D399', label: 'Ekphrasis', href: 'https://github.com/Adebesin-Cell/ekphrasis' },
+      { icon: 'i-lucide-feather', color: '#34D399', label: 'Ekphrasis', to: '/academia/ekphrasis' },
     ],
   },
   {
