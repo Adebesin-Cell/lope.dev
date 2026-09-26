@@ -74,7 +74,7 @@ type PrayerRequestRows = NonNullable<
 >
 ```
 
-Read it inside out. [`ReturnType`](https://www.typescriptlang.org/docs/handbook/utility-types.html#returntypetype) gets what the function returns. It's async, so that's a promise, and [`Awaited`](https://www.typescriptlang.org/docs/handbook/utility-types.html#awaitedtype) unwraps it. Index into `prayerRequests`, strip the `null` with `NonNullable`, and you have the exact rows the table is going to receive. Change the schema, and the action, the hook, the table, the column headers and the bulk-update modal all update with it. Or they stop compiling and tell you where to look. That line shows up more than 140 times across the codebase. Declare the type once, and let every call site infer it.
+Read it inside out. [`ReturnType`](https://www.typescriptlang.org/docs/handbook/utility-types.html#returntypetype) gets what the function returns. It's async, so that's a promise, and [`Awaited`](https://www.typescriptlang.org/docs/handbook/utility-types.html#awaitedtype) unwraps it. Index into `prayerRequests`, strip the `null` with `NonNullable`, and you have the exact rows the table is going to receive. Change the schema, and the action, the hook, the table, the column headers and the bulk-update modal all update with it. Or they stop compiling and tell you where to look. Some version of that line lives in almost 90 files, borrowing types from 57 different functions. Declare the type once, and let every call site infer it.
 
 And the components compose. The view is tiny. It owns the layout, hands the loading state to `<Suspense>`, and lets the list worry about data:
 
