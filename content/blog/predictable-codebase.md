@@ -56,15 +56,7 @@ prayer-request/
 
 Open any other feature, services, departments, records, and you'll find the same files in the same places. You don't learn the codebase feature by feature. You learn it once.
 
-The types live in `_schema.ts`, and they're declared exactly once, as Zod schemas. The TypeScript types fall out of them:
-
-```ts
-export const prayerRequestSchema = z.object({ /* ... */ })
-
-export type PrayerRequest = z.infer<typeof prayerRequestSchema>
-```
-
-The server actions parse what the API sends back with the same schema, with `safeParse`, so a surprise shape from the backend gets stopped at the edge instead of leaking into a component three files away. Nothing downstream ever has to wonder what it was handed. Mutations go through [next-safe-action](https://next-safe-action.dev), with an auth client every action builds on, which I wrote about in [Stop yapping, Lock in](/blog/stop-yapping-lock-in). Even the URL is typed, with [nuqs](/blog/nuqs-because-urls-should-do-more) parsers living in that same `_schema.ts`.
+The types live in `_schema.ts`, declared exactly once as Zod schemas, and the TypeScript types fall out of them with `z.infer`. The server actions parse what the API sends back with the same schema, with `safeParse`, so a surprise shape from the backend gets stopped at the edge instead of leaking into a component three files away. Nothing downstream ever has to wonder what it was handed. Mutations go through [next-safe-action](https://next-safe-action.dev), with an auth client every action builds on, which I wrote about in [Stop yapping, Lock in](/blog/stop-yapping-lock-in). Even the URL is typed, with [nuqs](/blog/nuqs-because-urls-should-do-more) parsers living in that same `_schema.ts`.
 
 Here's the part I'm most fond of. Once a function returns typed data, nobody downstream declares that type again. They ask the function for it. The table that renders prayer requests never imports a `PrayerRequest[]` interface. It borrows the shape straight from the thing that fetched the data:
 
@@ -76,46 +68,9 @@ type PrayerRequestRows = NonNullable<
 
 Read it inside out. [`ReturnType`](https://www.typescriptlang.org/docs/handbook/utility-types.html#returntypetype) gets what the function returns. It's async, so that's a promise, and [`Awaited`](https://www.typescriptlang.org/docs/handbook/utility-types.html#awaitedtype) unwraps it. Index into `prayerRequests`, strip the `null` with `NonNullable`, and you have the exact rows the table is going to receive. Change the schema, and the action, the hook, the table, the column headers and the bulk-update modal all update with it. Or they stop compiling and tell you where to look. Some version of that line lives in almost 90 files, borrowing types from 57 different functions. Declare the type once, and let every call site infer it.
 
-And the components compose. The view is tiny. It owns the layout, hands the loading state to `<Suspense>`, and lets the list worry about data:
+And the components compose. The prayer-request view is a few lines long. It owns the layout, wraps the list in `<Suspense>` with a table skeleton as the fallback, and lets the list worry about data. The skeleton renders the skeleton. The table renders the table. Nobody checks `isLoading`.
 
-```tsx
-export async function PrayerRequestsView() {
-  const { page, query, status } = prayerRequestSearchParamsCache.all()
-
-  return (
-    <div className="bg-card rounded-2xl p-4 sm:p-6 shadow-sm">
-      <PrayerRequestTableActions />
-      <Suspense
-        key={`${page}-${query}-${status}`}
-        fallback={<DashboardTableSkeleton />}
-      >
-        <PrayerRequestsList />
-      </Suspense>
-    </div>
-  )
-}
-```
-
-The skeleton renders the skeleton. The table renders the table. Nobody checks `isLoading`.
-
-The same idea goes one level deeper. Every dashboard table is the same shared `DashboardTable`, and it knows nothing about prayer requests, members or services. A feature doesn't fork the table to add a bulk action. It hands the table a description of the action, with a [render prop](https://react.dev/reference/react/Children#calling-a-render-prop-to-customize-rendering) for the modal:
-
-```tsx
-{
-  id: 'bulk-status-update',
-  label: t('updateStatus'),
-  icon: <RotateCcw className="h-4 w-4" />,
-  renderModal: (selectedPrayerRequests: PrayerRequestRows, onClose: () => void) => (
-    <BulkStatusUpdateModal
-      selectedPrayerRequests={selectedPrayerRequests}
-      isOpen
-      onClose={onClose}
-    />
-  ),
-}
-```
-
-The table owns selection, the sticky action bar and when the modal opens. The feature owns what the modal is. `TableAction<PrayerRequestRows[number]>` is generic over the row, so `selectedPrayerRequests` comes in already typed with that inferred shape from above. One table, lots of features, and none of them reach inside it.
+The same idea goes one level deeper. Every dashboard table is one shared `DashboardTable` that knows nothing about prayer requests, members or services. A feature doesn't fork it to add a bulk action. It passes in a small action object with a [render prop](https://react.dev/reference/react/Children#calling-a-render-prop-to-customize-rendering) for the modal. The table owns selection and when the modal opens. The feature owns what the modal is. And because the action is generic over the row, the selected rows arrive already typed with that inferred shape from above. One table, lots of features, and none of them reach inside it.
 
 Across the dashboard there are close to five hundred component and page files now. The median one is about a hundred lines. That number is the whole philosophy, measured.
 
