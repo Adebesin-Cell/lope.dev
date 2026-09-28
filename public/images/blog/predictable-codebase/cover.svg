@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-label="Four feature folders side by side, each holding the same four files: page, loading, error and queries. The last folder is dashed and still being written, and it already matches the others.">
+  <style>
+    :root { color-scheme: light dark; }
+    .bg          { fill: #fbfbfa; }
+    .card        { fill: #ffffff; stroke: #16150f; stroke-opacity: 0.14; stroke-width: 1.5; }
+    .ghost       { fill: none; stroke: #16150f; stroke-opacity: 0.28; stroke-width: 1.5; stroke-dasharray: 6 6; }
+    .faint       { fill: #16150f; opacity: 0.08; }
+    .dot         { fill: #16150f; opacity: 0.06; }
+    .caret       { fill: #e0a05e; }
+    .kicker      { fill: #16150f; opacity: 0.45; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 20px; letter-spacing: 4px; }
+    .fname       { fill: #16150f; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 22px; font-weight: 600; }
+    .fname-ghost { fill: #e0a05e; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 22px; font-weight: 600; }
+    .file        { fill: #16150f; opacity: 0.6; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 18px; }
+    .fmuted      { fill: #16150f; opacity: 0.35; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 18px; }
+    .tagline     { fill: #16150f; opacity: 0.16; font-family: Georgia, 'Times New Roman', serif; font-size: 40px; font-style: italic; }
+    @media (prefers-color-scheme: dark) {
+      .bg      { fill: #0f0f0e; }
+      .card    { fill: #17171a; stroke: #f2f2ee; stroke-opacity: 0.14; }
+      .ghost   { stroke: #f2f2ee; stroke-opacity: 0.3; }
+      .faint   { fill: #f2f2ee; opacity: 0.1; }
+      .dot     { fill: #f2f2ee; opacity: 0.07; }
+      .kicker  { fill: #f2f2ee; opacity: 0.5; }
+      .fname   { fill: #f2f2ee; }
+      .file    { fill: #f2f2ee; opacity: 0.65; }
+      .fmuted  { fill: #f2f2ee; opacity: 0.4; }
+      .tagline { fill: #f2f2ee; opacity: 0.18; }
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+    .caret { animation: blink 1.1s steps(1) infinite; }
+    @media (prefers-reduced-motion: reduce) { .caret { animation: none; } }
+  </style>
+
+  <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+    <circle class="dot" cx="2" cy="2" r="1.6" />
+  </pattern>
+
+  <rect class="bg" x="0" y="0" width="1200" height="520" />
+  <rect x="0" y="0" width="1200" height="520" fill="url(#dots)" />
+
+  <text class="kicker" x="140" y="92">predictable codebase</text>
+
+  <rect class="card" x="140" y="128" width="210" height="236" rx="18" />
+  <text class="fname" x="164" y="172">members/</text>
+  <rect class="faint" x="164" y="190" width="162" height="1.5" />
+  <text class="file" x="164" y="228">page.tsx</text>
+  <text class="file" x="164" y="266">loading.tsx</text>
+  <text class="file" x="164" y="304">error.tsx</text>
+  <text class="file" x="164" y="342">queries.ts</text>
+  <rect class="card" x="376" y="128" width="210" height="236" rx="18" />
+  <text class="fname" x="400" y="172">events/</text>
+  <rect class="faint" x="400" y="190" width="162" height="1.5" />
+  <text class="file" x="400" y="228">page.tsx</text>
+  <text class="file" x="400" y="266">loading.tsx</text>
+  <text class="file" x="400" y="304">error.tsx</text>
+  <text class="file" x="400" y="342">queries.ts</text>
+  <rect class="card" x="612" y="128" width="210" height="236" rx="18" />
+  <text class="fname" x="636" y="172">giving/</text>
+  <rect class="faint" x="636" y="190" width="162" height="1.5" />
+  <text class="file" x="636" y="228">page.tsx</text>
+  <text class="file" x="636" y="266">loading.tsx</text>
+  <text class="file" x="636" y="304">error.tsx</text>
+  <text class="file" x="636" y="342">queries.ts</text>
+  <rect class="ghost" x="848" y="128" width="210" height="236" rx="18" />
+  <text class="fname-ghost" x="872" y="172">sermons/</text>
+  <rect class="faint" x="872" y="190" width="162" height="1.5" />
+  <text class="fmuted" x="872" y="228">page.tsx</text>
+  <text class="fmuted" x="872" y="266">loading.tsx</text>
+  <text class="fmuted" x="872" y="304">error.tsx</text>
+  <text class="fmuted" x="872" y="342">quer</text>
+  <rect class="caret" x="918" y="324" width="3" height="22" rx="1.5" />
+
+  <text class="tagline" x="140" y="452">Same shape, every time.</text>
+</svg>

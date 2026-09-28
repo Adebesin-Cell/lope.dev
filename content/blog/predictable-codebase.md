@@ -2,10 +2,11 @@
 title: Predictable codebase
 description: The first codebase I ever set up myself, the IQ.wiki rewrite that taught me what I wanted it to look like, the weeks of harsh reviews it took, and why the same rules now let Claude ship pages that look like I wrote them.
 date: 2026-09-26
-draft: true
 ---
 
 ### Why constraints scale code. For the humans on the team, and for the agents.
+
+![Four feature folders side by side, each holding the same four files: page, loading, error and queries. The last folder is dashed and still being written, and it already matches the others.](/images/blog/predictable-codebase/cover.svg){loading="eager" fetchpriority="high"}
 
 When we started building [BethelFlow](https://www.bethelflow.com/), I had a lot of opinions about how I wanted the codebase to look. What I didn't have was any experience setting one up.
 
