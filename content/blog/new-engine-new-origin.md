@@ -10,7 +10,7 @@ draft: true
 
 ![New engine, new origin. The Panda CSS mark between Rust and Chakra UI chips, with the install size dropping from 111 MB to 37 MB.](/images/blog/new-engine-new-origin/cover.svg){loading="eager" fetchpriority="high"}
 
-In January to March, after I was done with the codemod for Chakra v3, Sage and I started talking about Chakra v4. We wanted v4 to be smooth, so we had a lot of conversations about it.
+In January to March, after I was done with the codemod for Chakra v3, Sage (Segun Adebayo) and I started talking about Chakra v4. We wanted v4 to be smooth, so we had a lot of conversations about it.
 
 During those conversations, the idea came up of moving Chakra to [Panda CSS](https://panda-css.com) and swapping out the Emotion layer. We couldn't do that yet though, because of some limits in how Chakra works today and how Panda worked at the time.
 
@@ -20,7 +20,7 @@ This is the story of how that turned into Panda v2, which shipped today.
 
 Before writing any code, I wanted to understand what we were actually building. So I read up on how other libraries handle zero-runtime styling (Panda, Vanilla Extract, Linaria, Kuma UI) and came back to Sage with a long list of questions. Should style props like `<Box p={4} bg="red.500" />` still work? Would they compile statically, or would some runtime stay? How much of Chakra's theme maps to Panda tokens? Do multi-part components move to slot recipes?
 
-Sage answered every single one, and at the end said they loved the questions. [TODO: Lope, keep or change this reaction? Suggested: "I still think about that."]
+Sage answered every single one, and at the end said they loved the questions.
 
 Those answers set the direction for everything after. Style props stay, but they only work for CSS that already exists. So for this to work:
 
@@ -220,9 +220,9 @@ Not everything on the list made it. There's no built-in `light-dark()` token out
 
 Panda v2 is out today, around 160 merged PRs and a lot more commits straight onto the branch.
 
-Thank you to Sage, for the answers, the Rust foundation, and the patience. And thank you to everyone who tested the betas and sent repros and debug dumps. [TODO: Lope, names or handles to thank]
+Thank you to Sage, for the answers, the Rust foundation, and the patience. And thank you to everyone who tested the betas and sent repros and debug dumps.
 
-But for me this was always step one. It started as a Chakra v4 question: how do we make Chakra static without breaking everyone? Panda v2 is the engine for that, and now we get to build v4 on top of it. [TODO: include the Stitches/Mantine point?]
+But for me this was always step one. It started as a Chakra v4 question: how do we make Chakra static without breaking everyone? Panda v2 is the engine for that, [and now we get to build v4 on top of it](https://github.com/chakra-ui/chakra-ui/discussions/10959).
 
 The job isn't done yet.
 
