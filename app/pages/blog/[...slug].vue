@@ -272,14 +272,15 @@ function fmt(d?: string) {
     transparent
   );
 }
+.prose-content :deep(.prose-table) {
+  margin-block: 1.5rem;
+  overflow-x: auto;
+}
 .prose-content :deep(table) {
   width: 100%;
-  margin-block: 1.5rem;
   border-collapse: collapse;
   font-size: 0.9rem;
   line-height: 1.6;
-  display: block;
-  overflow-x: auto;
 }
 .prose-content :deep(th) {
   text-align: start;
