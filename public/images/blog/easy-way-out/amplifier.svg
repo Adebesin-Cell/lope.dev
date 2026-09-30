@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 540" role="img" aria-label="Two amplifiers. Left: an op-amp with an intact negative-feedback loop produces a clean bounded wave. Right: the same amplifier with its feedback loop cut produces a runaway oscillation that clips against the supply rails.">
+  <style>
+    .bg     { fill: #fbfbfa; }
+    .ink    { fill: #16150f; }
+    .amp    { fill: none; stroke: #16150f; stroke-opacity: 0.6; stroke-width: 3.5; stroke-linejoin: round; }
+    .wire   { fill: none; stroke: #16150f; stroke-opacity: 0.34; stroke-width: 3; }
+    .title  { fill: #16150f; opacity: 0.62; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 22px; letter-spacing: 1px; }
+    .sub    { fill: #16150f; opacity: 0.42; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 17px; }
+    .pin    { fill: #16150f; opacity: 0.55; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 22px; }
+    .clean  { fill: none; stroke: #15a34a; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+    .blow   { fill: none; stroke: #e0562d; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+    .rail   { fill: none; stroke: #16150f; stroke-opacity: 0.22; stroke-width: 2; stroke-dasharray: 6 8; }
+    .cut    { fill: none; stroke: #e0562d; stroke-width: 3.5; stroke-linecap: round; }
+    .divide { fill: none; stroke: #16150f; stroke-opacity: 0.12; stroke-width: 2; }
+    .dot    { fill: #16150f; opacity: 0.06; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #0f0f0e; }
+      .ink { fill: #f2f2ee; }
+      .amp { stroke: #f2f2ee; stroke-opacity: 0.6; }
+      .wire { stroke: #f2f2ee; stroke-opacity: 0.3; }
+      .title { fill: #f2f2ee; opacity: 0.65; }
+      .sub   { fill: #f2f2ee; opacity: 0.45; }
+      .pin   { fill: #f2f2ee; opacity: 0.6; }
+      .clean { stroke: #2fbf5a; }
+      .blow  { stroke: #ff7a4d; }
+      .rail  { stroke: #f2f2ee; stroke-opacity: 0.2; }
+      .cut   { stroke: #ff7a4d; }
+      .divide{ stroke: #f2f2ee; stroke-opacity: 0.12; }
+      .dot   { fill: #f2f2ee; opacity: 0.07; }
+    }
+  </style>
+
+  <pattern id="adots" width="24" height="24" patternUnits="userSpaceOnUse"><circle class="dot" cx="2" cy="2" r="1.6" /></pattern>
+  <rect class="bg" x="0" y="0" width="1200" height="540" />
+  <rect x="0" y="0" width="1200" height="540" fill="url(#adots)" />
+  <path class="divide" d="M600 70 V470" />
+
+  <!-- ================= PANEL A: honest negative feedback ================= -->
+  <text class="title" x="70" y="60">NEGATIVE FEEDBACK</text>
+  <text class="sub"   x="70" y="88">gain traded for a clean signal</text>
+
+  <!-- inputs -->
+  <path class="wire" d="M70 200 H210" />
+  <path class="wire" d="M70 240 H210" />
+  <text class="pin" x="182" y="196">+</text>
+  <text class="pin" x="184" y="252">–</text>
+
+  <!-- op-amp triangle -->
+  <path class="amp" d="M210 150 V290 L360 220 Z" />
+
+  <!-- output -->
+  <path class="wire" d="M360 220 H470" />
+  <circle class="ink" cx="430" cy="220" r="5" />
+
+  <!-- feedback loop (intact), with resistor -->
+  <path class="wire" d="M430 220 V120 H322" />
+  <path class="wire" d="M322 120 l-10 -12 l-20 24 l-20 -24 l-20 24 l-10 -12 H150 V240 H210" />
+
+  <!-- clean bounded output -->
+  <path class="clean" d="M470 220 Q489 196 508 220 Q527 244 546 220 Q565 196 584 220" />
+
+  <!-- ================= PANEL B: tampered loop ================= -->
+  <text class="title" x="650" y="60">LOOP TAMPERED</text>
+  <text class="sub"   x="650" y="88">it flips positive and screams</text>
+
+  <!-- inputs -->
+  <path class="wire" d="M650 200 H790" />
+  <path class="wire" d="M650 240 H790" />
+  <text class="pin" x="762" y="196">+</text>
+  <text class="pin" x="764" y="252">–</text>
+
+  <!-- op-amp triangle -->
+  <path class="amp" d="M790 150 V290 L940 220 Z" />
+
+  <!-- output -->
+  <path class="wire" d="M940 220 H1010" />
+  <circle class="ink" cx="1000" cy="220" r="5" />
+
+  <!-- feedback loop, CUT near the top -->
+  <path class="wire" d="M1000 220 V120 H952" />
+  <path class="wire" d="M888 120 H730 V240 H790" />
+  <!-- the cut -->
+  <g class="cut">
+    <path d="M948 108 l-16 24 M932 108 l16 24" />
+    <path d="M902 120 l14 -18 M902 120 l18 12 M902 120 l-4 22" />
+  </g>
+  <text class="sub" x="856" y="150" fill="#e0562d">cut</text>
+
+  <!-- supply rails -->
+  <path class="rail" d="M1010 150 H1150" />
+  <path class="rail" d="M1010 290 H1150" />
+
+  <!-- runaway oscillation, growing until it clips the rails -->
+  <path class="blow" d="M1010 220 Q1021 210 1032 220 Q1043 230 1054 220 Q1066 200 1078 220 Q1090 240 1102 220 Q1114 152 1126 220 Q1138 288 1150 220" />
+</svg>
