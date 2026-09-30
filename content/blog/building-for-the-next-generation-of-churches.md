@@ -30,13 +30,9 @@ So it got me thinking. The next generation of churches is starting, and it's alr
 
 It doesn't look like one thing. It's the home cell of twelve people in someone's living room. It's the church plant meeting in a school hall with folding chairs. It's the diaspora church that started as a prayer meeting and now runs three services. And it's the large bodies of churches we already have today, with branches in cities their founders never visited.
 
-Here's what the numbers say.
+And it's bigger than I thought. There are about 4.7 million congregations in the world right now, and the [Center for the Study of Global Christianity](https://www.worldchristiandatabase.org/static/downloads/Status-of-Global-Christianity-2026.2b54be19fc0c.pdf) expects 6.1 million by 2075. I did the arithmetic on their table, and that works out to roughly 240 new congregations a day, even after counting the ones that close. So somewhere today, a couple of hundred churches had their very first meeting, probably in a living room or a hall.
 
-There are about **4.7 million congregations** in the world right now. By 2075, the [Center for the Study of Global Christianity](https://www.worldchristiandatabase.org/static/downloads/Status-of-Global-Christianity-2026.2b54be19fc0c.pdf) projects **6.1 million**. If you do the arithmetic on their own table, that's roughly 87,000 more congregations every year, net of the ones that close. Around 240 a day. Somewhere, today, a couple of hundred new churches had their first meeting.
-
-There are 2.67 billion Christians today. That's projected to be 3.68 billion by 2075. About a billion more people within the lifetime of today's young adults.
-
-Africa alone has around 780 million Christians, growing 2.6% a year, and is projected to pass 1.8 billion by 2075. By then, more than eight in ten Christians will live in the Global South. Eight in ten people will live in cities. Migration keeps moving people, and wherever people move, churches start. London saw two new churches open every week at one point, most of them Pentecostal and Black-majority. The UK has more congregations today than it did in 2008, even though membership has fallen. New, small churches keep filling the gaps.
+Most of that growth is happening in places like the ones I was walking around in. Africa alone has around 780 million Christians and is projected to pass 1.8 billion by 2075, and wherever people move, churches start with them, which is why London at one point was seeing two new churches open every week, most of them Pentecostal and Black-majority.
 
 We've not even seen the peak yet.
 
@@ -46,23 +42,23 @@ I really wanted to quote the UK "Quiet Revival" numbers here. You probably saw t
 
 It got [withdrawn in March](https://www.thetablet.co.uk/news/bible-society-pulls-flawed-quiet-revival-report/). The survey behind it had fraudulent respondents in it, and the Bible Society pulled the report. The more careful UK data shows [no big youth revival](https://natcen.ac.uk/publications/there-religious-revival-britain), at least not in the national figures.
 
-I find that more interesting than the headline, to be honest. So many of us wanted that story that a bad poll went viral. The real picture is less dramatic and more useful. Growth is uneven. It's happening in pockets: in evangelical and Pentecostal churches, in diaspora churches, in young churches most surveys don't reach. Allison Norton, one of the researchers at Hartford, put it better than I can: *"What we're seeing is not a revival — it's a recalibration."*
+I find that more interesting than the headline, to be honest. So many of us wanted that story that a bad poll went viral. The real picture is less dramatic and more useful. Growth is uneven. It's happening in pockets: in evangelical and Pentecostal churches, in diaspora churches, in young churches most surveys don't reach. Allison Norton, one of the researchers at Hartford, [put it better than I can](https://www.covidreligionresearch.org/study-rise-congregation-attendance/): *"What we're seeing is not a revival — it's a recalibration."*
 
 Churches aren't disappearing. They're changing shape.
 
 ## What does it mean?
 
-Most churches are small. In the US, the median congregation is about [70 people](https://www.covidreligionresearch.org/study-rise-congregation-attendance/). Ninety percent have 250 or fewer. But 70% of churchgoers sit in the other ten percent, the big ones.
+Think about the big Sunday and the small one I went to. They're both church, but they're not the same problem at all.
 
-That's the tension. Most *churches* are small. Most *churchgoers* are in big churches. And most church software, if we're being honest, is built for the big ones. The ones with a paid admin, an IT person, a budget line for tools.
+Most churches look a lot more like the small one. In the US, the median congregation is about [70 people](https://www.covidreligionresearch.org/study-rise-congregation-attendance/), and 90% have 250 or fewer, even though most churchgoers end up in the big ones. And most church software, if we're being honest, is built for the big ones, the ones with a paid admin, an IT person and a budget line for tools.
 
-The small ones are run by people who already have another job. About a third of US congregations are led by pastors who work somewhere else as well. A quarter of senior pastors [seriously considered quitting](https://www.barna.com/trends/pastors-quitting-ministry-barna-data/) in the past year, and the top reason was the stress of the job. In the UK, volunteers give the average evangelical church almost [£250,000 worth of time](https://www.eauk.org/assets/files/downloads/Changing-Church-2025-FINAL.pdf) a year, and two thirds of churches say they don't have enough people for children's work.
+The small ones are run by people who already have a lot on their plate. A quarter of US senior pastors [seriously considered quitting](https://www.barna.com/trends/pastors-quitting-ministry-barna-data/) in the past year, mostly because of the stress of the job. In the UK, two thirds of evangelical churches say they don't have [enough people for children's work](https://www.eauk.org/assets/files/downloads/Changing-Church-2025-FINAL.pdf). It's the small Sunday again, where the person who welcomes you is also the person reading the announcements.
 
-And the people coming in behave differently. The average churchgoer now attends about 1.6 times a month. Someone can be deeply part of a church and still only be in the room twice a month. Some watch online. Some come to cell on Wednesday and skip Sunday. A quarter of US churchgoers regularly worship online.
+And people belong differently now. The average churchgoer attends about [1.6 times a month](https://www.barna.com/research/young-adults-lead-resurgence-in-church-attendance/), so someone can be deeply part of a church and only be in the room twice a month. Some watch online, some come to cell on Wednesday and skip Sunday.
 
-So "who was here on Sunday" is the wrong question. The right one is closer to "who are our people, and is anyone looking out for them?"
+So "who was here on Sunday" is kinda the wrong question. The right one is closer to "who are our people, and is anyone looking out for them?"
 
-That's what building for the next generation means to me. Not a fancier dashboard. Software that knows a church is people, not a headcount.
+That's what building for the next generation means to me, software that knows a church is people and not a headcount.
 
 ## How do we take care of that?
 
@@ -74,7 +70,7 @@ A few things I keep coming back to.
 
 **Keep the old ways working.** Most US churches still [pass the plate](https://research.lifeway.com/2025/07/08/most-churches-still-pass-the-offering-plate/), even though most also take gifts online. Digital got added next to the old way, it didn't replace it. The next generation of churches will be hybrid in everything, not just their services.
 
-**Take the weight off the few people carrying it.** The volunteer at the children's church door. The pastor doing admin at 11pm. If software gives them more to do, it has failed, no matter how many features it has.
+**Take the weight off the few people carrying it.** Whether it's the volunteer at the children's church door or the pastor doing admin at 11pm, if software gives them more to do, it has failed, no matter how many features it has.
 
 **Grow with them.** The living room becomes a hall. The hall becomes a building. One church becomes five branches in three countries. The tool should be the same tool the whole way.
 
