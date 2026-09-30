@@ -6,6 +6,8 @@ date: 2026-09-30
 
 ### What it means, how we take care of it, and where we are.
 
+![Building for the next generation of churches. The BethelFlow mark above a winding, dashed route with a few wrong turns, passing a small house, a hall, a church, and finally a cluster of churches.](/images/blog/building-for-the-next-generation-of-churches/cover.svg){loading="eager" fetchpriority="high"}
+
 I've been on a bit of a tour recently. Lagos, Ibadan, Ogun State. New cities, new roads, and me trying to map every direction as I went.
 
 I got lost a lot, Lagos especially 🤭. Wrong turn, wrong bus stop, a street that looked right until it very much wasn't. There were moments I just stood somewhere and felt stranded.
