@@ -101,7 +101,7 @@ Template literals, simple math and TypeScript casts like `as const` get worked o
 - A function parameter, unless its type spells out the literal values.
 - Anything that only exists at runtime. Props, state, an API response.
 
-Those get skipped. Panda would rather generate nothing than guess. The Panda docs have a good example of how that can catch you out:
+Those get skipped. Panda would rather generate nothing than guess. The Panda docs have [a good example](https://panda-css.com/docs/styling/dynamic-styling#runtime-reference-on-known-objects) of how that can catch you out:
 
 ```tsx
 const colorByType = {
@@ -141,7 +141,7 @@ Remember the generated `css` function? In the browser, it takes your object and 
 
 No CSS created, no `<style>` tag injected. Just a string.
 
-In v2, even that can go. Turn on source transforms with `transform: true` on the Vite, webpack, Rollup or Bun plugin, and the bundler replaces the call with the strings Panda already worked out. The `active` check stays, because that's still a runtime decision. It's opt-in, it doesn't work with Turbopack yet, and any call Panda couldn't resolve stays as a normal runtime call.
+In v2, even that can go. Turn on [source transforms](https://panda-css.com/docs/styling/source-transforms) with `transform: true` on the Vite, webpack, Rollup or Bun plugin, and the bundler replaces the call with the strings Panda already worked out. The `active` check stays, because that's still a runtime decision. It's opt-in, it doesn't work with Turbopack yet, and any call Panda couldn't resolve stays as a normal runtime call.
 
 ## What build time can't see
 
@@ -149,7 +149,7 @@ All of this only works on what's in your source. When Sage [wrote about Panda](h
 
 When a value really does depend on runtime, you've got a few options:
 
-- **Recipes.** This is the one the Panda docs push hardest. For the `colorByType` case above, a `cva` recipe with a `type` variant puts every color in the source, so all of them get extracted.
+- **Recipes.** This is the one [the Panda docs push hardest](https://panda-css.com/docs/styling/dynamic-styling#runtime-reference-on-known-objects). For the `colorByType` case above, a [`cva` recipe](https://panda-css.com/docs/recipes/atomic-recipe) with a `type` variant puts every color in the source, so all of them get extracted.
 - **CSS variables.** Set the variable at runtime, reference it in your styles:
 
   ```tsx
@@ -159,7 +159,7 @@ When a value really does depend on runtime, you've got a few options:
   />
   ```
 
-- **`staticCss`.** Tell Panda in your config which styles to generate anyway.
+- **[`staticCss`](https://panda-css.com/docs/styling/static).** Tell Panda in your config which styles to generate anyway.
 - **Tokens.** If a value can be a token, make it one. A finite set of tokens means a finite stylesheet.
 
 ## The whole trip
