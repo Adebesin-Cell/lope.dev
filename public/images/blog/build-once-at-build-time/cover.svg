@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-label="A css() call with a color and a padding passes through a build step and comes out as a stylesheet with just two rules. Beneath it: 62,656 lines, crossed out, and the number 2.">
+  <style>
+    :root { color-scheme: light dark; }
+    .bg      { fill: #fbfbfa; }
+    .card    { fill: #ffffff; stroke: #16150f; stroke-opacity: 0.14; stroke-width: 1.5; }
+    .ghost   { fill: none; stroke: #16150f; stroke-opacity: 0.22; stroke-width: 1.5; stroke-dasharray: 6 6; }
+    .dot     { fill: #16150f; opacity: 0.06; }
+    .accent  { fill: #e0a05e; }
+    .stroke  { stroke: #e0a05e; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .kicker  { fill: #16150f; opacity: 0.45; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 20px; letter-spacing: 4px; }
+    .fname   { fill: #16150f; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 20px; font-weight: 600; }
+    .code    { fill: #16150f; opacity: 0.75; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 20px; }
+    .muted   { fill: #16150f; opacity: 0.35; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 20px; }
+    .label   { fill: #e0a05e; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 18px; letter-spacing: 2px; }
+    .tagline { fill: #16150f; opacity: 0.2; font-family: Georgia, 'Times New Roman', serif; font-size: 40px; font-style: italic; }
+    .strike  { stroke: #16150f; stroke-opacity: 0.2; stroke-width: 2; }
+    @media (prefers-color-scheme: dark) {
+      .bg      { fill: #0f0f0e; }
+      .card    { fill: #17171a; stroke: #f2f2ee; stroke-opacity: 0.14; }
+      .ghost   { stroke: #f2f2ee; stroke-opacity: 0.24; }
+      .dot     { fill: #f2f2ee; opacity: 0.07; }
+      .kicker  { fill: #f2f2ee; opacity: 0.5; }
+      .fname   { fill: #f2f2ee; }
+      .code    { fill: #f2f2ee; opacity: 0.8; }
+      .muted   { fill: #f2f2ee; opacity: 0.4; }
+      .tagline { fill: #f2f2ee; opacity: 0.22; }
+      .strike  { stroke: #f2f2ee; stroke-opacity: 0.22; }
+    }
+  </style>
+
+  <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+    <circle class="dot" cx="2" cy="2" r="1.6" />
+  </pattern>
+
+  <rect class="bg" x="0" y="0" width="1200" height="520" />
+  <rect x="0" y="0" width="1200" height="520" fill="url(#dots)" />
+
+  <text class="kicker" x="80" y="92">BUILD ONCE · AT BUILD TIME</text>
+
+  <rect class="card" x="80" y="130" width="440" height="220" rx="14" />
+  <text class="fname" x="108" y="174">button.tsx</text>
+  <text class="code" x="108" y="222">css({</text>
+  <text class="code" x="132" y="254">color: 'red.300',</text>
+  <text class="code" x="132" y="286">padding: '4'</text>
+  <text class="code" x="108" y="318">})</text>
+
+  <text class="label" x="560" y="226" text-anchor="middle">BUILD</text>
+  <path class="stroke" d="M532 244 H588" />
+  <path class="stroke" d="M578 234 L590 244 L578 254" />
+
+  <rect class="card" x="660" y="130" width="460" height="220" rx="14" />
+  <text class="fname" x="688" y="174">styles.css</text>
+  <text class="code" x="688" y="222">.c_red\.300 { color: … }</text>
+  <text class="code" x="688" y="254">.p_4 { padding: … }</text>
+  <text class="muted" x="688" y="304">2 rules. That's it.</text>
+
+  <text class="tagline" x="80" y="440">62,656 lines</text>
+  <line class="strike" x1="76" y1="426" x2="300" y2="426" />
+  <text class="tagline" x="340" y="440">→ 2</text>
+</svg>

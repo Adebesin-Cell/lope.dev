@@ -7,6 +7,8 @@ draft: true
 
 ### Most styling makes the browser pay the rent. Panda pays it up front.
 
+![A css() call with a color and a padding goes through a build step and comes out as a stylesheet with just two rules. Below it, 62,656 lines crossed out, and the number 2.](/images/blog/build-once-at-build-time/cover.svg){loading="eager" fetchpriority="high"}
+
 Last week, :mention{handle="segunadebayo" name="Sage"}, :mention{handle="estheragbaje" name="Esther"} and I went [live](https://www.youtube.com/live/5VcTX2I6Xk8) to talk about [Panda v2](https://panda-css.com/blog/panda-css-v2). We walked through what changed, and a lot changed. Over the years, the thing people asked us for most was speed, so we spent a lot of time making Panda faster. A new engine. A smaller package. Faster everything.
 
 Funny thing is, for you, almost nothing changed. We said it in the [release post](https://panda-css.com/blog/panda-css-v2) too: the way you write Panda hasn't really changed. The engine underneath did.
