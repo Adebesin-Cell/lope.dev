@@ -86,7 +86,7 @@ One fun detail. Panda reads your code at build time, so it can't know which side
 css({ color: isActive ? 'red.300' : 'gray.700' })
 ```
 
-So it keeps both. Two atoms, `c_red.300` and `c_gray.700`. The design notes call it "the union, not a choice."
+So it keeps both. Two atoms, `c_red.300` and `c_gray.700`.
 
 ## From atom to class
 
@@ -120,7 +120,7 @@ That's the real shift. Your stylesheet grows with the number of distinct atoms y
 
 Here's a bug most of us have hit. Two rules with the same specificity, and whichever one loaded last wins. Move an import, and your button changes color.
 
-Panda's set has no order at all. The encoder even says so in a comment: "Iteration order isn't stable." So before writing anything out, Panda sorts every rule by a fixed key:
+A set has no order. So before writing anything out, Panda sorts every rule by a fixed key:
 
 1. The layer the rule belongs to.
 2. At-rules, like media and container queries.
@@ -129,7 +129,7 @@ Panda's set has no order at all. The encoder even says so in a comment: "Iterati
 
 Ties fall back to the property name and the value. Nothing in that list depends on which file Panda read first, or what you imported where.
 
-The design notes have a line I like for this: "The key invariant is that class names and CSS ordering are separate." The class name is what your component gets. Where the rule sits in the file is decided by the sorter, and only the sorter.
+Class names and CSS order are two separate things. The class name is what your component gets. Where the rule sits in the file is decided by the sorter, and only the sorter.
 
 ## Where atoms stop
 
@@ -147,7 +147,7 @@ const style = { ...base, ...override }
 
 Atomic classes don't work like that. If two classes both set `color`, the browser picks whichever rule comes later *in the stylesheet*. Not later in your object. Not later in your `className` string.
 
-Panda handles most of this for you. `css(base, override)` merges the objects first, then turns the result into atoms, so the override wins the way you'd expect. And with source transforms on, if Panda can't tell which value wins at build time, it doesn't guess. It leaves the call alone. The design notes are honest about why: "independent atomic classes cannot represent object last-write-wins behavior."
+Panda handles most of this for you. `css(base, override)` merges the objects first, then turns the result into atoms, so the override wins the way you'd expect. And with source transforms on, if Panda can't tell which value wins at build time, it doesn't guess. It leaves the call alone.
 
 The thing to avoid is joining two class strings by hand and expecting the second one to win. Merge styles with `css()`, not with string concatenation.
 
