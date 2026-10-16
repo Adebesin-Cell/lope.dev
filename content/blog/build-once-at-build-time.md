@@ -2,7 +2,6 @@
 title: Build once, at build time
 description: Before I worked on Panda, I rebuilt it by accident. 3.8 MB of CSS later, I understood why it does the work before your code ever ships.
 date: 2026-10-16
-draft: true
 ---
 
 ### Most styling makes the browser pay the rent. Panda pays it up front.
