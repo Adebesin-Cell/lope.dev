@@ -27,7 +27,7 @@
 <text x="556" y="580" font-size="34">🐼</text>
 </g>
 
-<text class="e" x="600" y="216" text-anchor="middle">PANDA CSS</text>
+<text class="e" x="600" y="216" text-anchor="middle">PANDA INTERNALS · 1</text>
 <text class="d" x="600" y="322" text-anchor="middle" font-size="76">Build once,</text>
 <text class="d" x="600" y="404" text-anchor="middle" font-size="76">at build time</text>
 <text class="l" x="600" y="462" text-anchor="middle" font-size="26">Most styling makes the browser pay the rent.</text>

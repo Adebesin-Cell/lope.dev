@@ -9,6 +9,8 @@ draft: true
 
 ![Build once, at build time, on a warm cream background with yellow and coral glows, surrounded by the Panda and Chakra logos, a css() sticker and a pill that reads 3.8 MB to 2 rules.](/images/blog/build-once-at-build-time/cover.svg){loading="eager" fetchpriority="high"}
 
+*Panda internals, part 1.*
+
 Last week, :mention{handle="segunadebayo" name="Sage"}, :mention{handle="estheragbaje" name="Esther"} and I went [live](https://www.youtube.com/live/5VcTX2I6Xk8) to talk about [Panda v2](https://panda-css.com/blog/panda-css-v2). We walked through what changed, and a lot changed. Over the years, the thing people asked us for most was speed, so we spent a lot of time making Panda faster. A new engine. A smaller package. Faster everything.
 
 Funny thing is, for you, almost nothing changed. We said it in the [release post](https://panda-css.com/blog/panda-css-v2) too: the way you write Panda hasn't really changed. The engine underneath did.
