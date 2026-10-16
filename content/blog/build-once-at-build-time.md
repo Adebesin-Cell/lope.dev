@@ -1,6 +1,6 @@
 ---
 title: Build once, at build time
-description: Before I worked on Panda, I rebuilt it by accident. 3.8 MB of CSS later, I understood why it does the work before your code ever ships.
+description: What Panda actually does at build time, step by step, and why doing the work there instead of in the browser matters.
 date: 2026-10-16
 ---
 
@@ -10,87 +10,136 @@ date: 2026-10-16
 
 *Panda internals, part 1.*
 
-Last week, :mention{handle="segunadebayo" name="Sage"}, :mention{handle="estheragbaje" name="Esther"} and I went [live](https://www.youtube.com/live/5VcTX2I6Xk8) to talk about [Panda v2](https://panda-css.com/blog/panda-css-v2). We walked through what changed, and a lot changed. Over the years, the thing people asked us for most was speed, so we spent a lot of time making Panda faster. A new engine. A smaller package. Faster everything.
-
-Funny thing is, for you, almost nothing changed. We said it in the [release post](https://panda-css.com/blog/panda-css-v2) too: the way you write Panda hasn't really changed. The engine underneath did.
-
-But one thing made a bigger difference than any of that, long before the new engine. It's the core of what Panda is. You build once, and you do it at build time.
-
-## The rent
-
-Most styling solutions make your user's browser pay the rent for developer ergonomics. Runtime CSS-in-JS is the clearest case. You write styles right next to your components, which feels great. Then on every render, in the browser, something has to turn those objects into CSS. Interpolate the strings, hash a class name, inject a `<style>` tag. Your users pay for your comfort, on their device, every time.
-
-I know this one well, because Chakra pays it. Chakra v3 runs on Emotion, and every style prop on every component gets resolved at runtime.
-
-## 3.8 MB
-
-Back in March, we started talking about Chakra v4, and I wanted to answer one question for myself. Could Chakra drop Emotion and ship plain static CSS instead?
-
-I started a private repo for it, and the README slowly turned into a diary. The first line under the hypothesis: "Worst case I learn why it's harder than it looks."
-
-I learned. My first attempt was a generator I wrote from scratch. A token dictionary, 62 utility configs, breakpoints, pseudo-states. Then it generated a class for every combination of all of them, ahead of time, so nothing had to happen in the browser.
-
-It worked. The playground rendered with zero runtime style computation. It also produced 62,656 lines of CSS. 3.8 MB. Every token, times every utility, times every condition. Almost none of it would ever be used by anybody.
+Earlier this year, before I worked on Panda, I tried to get Chakra to ship static CSS instead of running Emotion in the browser. My first attempt was a generator that wrote a CSS rule for every token, every utility and every condition, ahead of time. It produced 62,656 lines of CSS. 3.8 MB. Almost none of it would ever be used.
 
 So, technically, build time. Just the dumb version of it. 😅
 
-## Panda already reads your code
+Panda does its work at build time too. The difference is where it starts. It reads your code first, and only generates what you actually wrote. This post walks through what that looks like, step by step.
 
-I showed Sage. Sage pointed me at Panda. So I went and read the source.
+## Why build time at all
 
-Everything I'd built was already there. The token dictionary, the utilities, the conditions, the recipes. Better tested, and handling edge cases I hadn't even thought of. I deleted my 600 lines and replaced them with about 90 that call Panda directly. In my notes I wrote that the "I have to build this from scratch to understand it" instinct cost me a week. It did. But I don't think I'd understand Panda the way I do without that week.
+Most styling solutions make your user's browser pay the rent for developer ergonomics. Runtime CSS-in-JS is the clearest case. You write styles next to your components, which feels great. Then on every render, in the browser, something has to turn those objects into CSS. Interpolate the strings, hash a class name, inject a `<style>` tag. Your users pay for your comfort, on their device, every time.
 
-The difference between my generator and Panda comes down to one word. Mine *enumerated*. Panda *reads*. It parses your source files at build time, finds what you actually wrote, and generates CSS for that and nothing else.
+People have been moving away from that for a while. In 2022, Sam Magura, one of Emotion's maintainers, [wrote about breaking up with it](https://dev.to/srmagura/why-were-breaking-up-wiht-css-in-js-4g9b). Moving to Sass Modules cut their render time from 54.3ms to 27.7ms. Last month, GitHub [wrote up](https://github.blog/engineering/architecture-optimization/improving-site-performance-by-shipping-more-css/) moving Primer off styled-components and onto CSS Modules, and server rendering took 55% less time.
 
-You write this:
+The cost was never writing styles in JS. It was *when* the work happened.
+
+My Chakra experiment had numbers on this too, and they weren't all wins. Same demo, built with Emotion and with static CSS. The render timer went *up*, from about 1ms to 2.5ms, because the browser now parses a stylesheet up front. But Total Blocking Time went from 160ms to 10ms. You trade a little CSS parsing for no style work during render.
+
+Panda makes that trade for you. Here's what happens when it runs.
+
+## 1. Scan
+
+Panda starts with the files you point it at. That's `include` in your config:
+
+```ts
+export default defineConfig({
+  include: ['./src/**/*.{ts,tsx}'],
+})
+```
+
+Anything outside that list, Panda never reads.
+
+## 2. Parse
+
+Each file is parsed once into a syntax tree. In v2 the parser is [Oxc](https://oxc.rs), written in Rust. Every step after this reads that same tree, so a file is never parsed twice.
+
+Most files don't use Panda at all, so the first thing Panda looks at is the imports. If a file doesn't import anything from your `styled-system`, Panda stops there and moves on to the next one.
+
+## 3. Find
+
+For files that do, Panda checks what you imported. `css` from `styled-system/css`, `cva`, patterns like `stack`, your recipes, and JSX like `styled.div` or `<Box>`. Then it finds every place you call them.
+
+It also checks scope. If you declare your own `css` that shadows the import, Panda knows that one isn't Panda's and leaves it alone.
+
+## 4. Evaluate, without running anything
+
+Now Panda has your calls, but it needs the values inside them. `css({ color: 'red.300' })` is easy. Real code isn't always that literal:
+
+```ts
+import { brand } from './tokens'
+
+const size = 'lg'
+
+css({
+  color: brand,
+  padding: size === 'lg' ? '8' : '4',
+})
+```
+
+Panda never runs your code. It works the values out from the syntax alone:
+
+- `size` is a `const` with a literal value, so Panda knows it's `'lg'`.
+- `brand` comes from another file, so Panda follows the import and reads it there, as long as it's static too.
+- `size === 'lg'` can now be decided, so the ternary resolves to `'8'`.
+- If a ternary *can't* be decided, Panda keeps both branches and generates CSS for each.
+- Template literals, simple math and TypeScript casts like `as const` get worked out too.
+
+What it can't work out:
+
+- A `let` that gets reassigned somewhere.
+- A function parameter.
+- Anything that only exists at runtime. Props, state, an API response.
+
+Those get skipped. Panda would rather generate nothing than guess.
+
+v1 did this by running a JavaScript evaluator over your code. v2 works the expressions out directly in Rust, with no interpreter involved.
+
+## 5. Encode and write the CSS
+
+Every style object Panda found gets broken down into atoms. One property, one value, one condition. Each atom is kept once, sorted into a fixed order, and written out as CSS.
+
+So this:
 
 ```tsx
 <div className={css({ color: 'red.300', padding: '4' })} />
 ```
 
-Panda reads it before anything runs, and your stylesheet gets this:
+becomes this in your stylesheet:
 
 ```css
 .c_red\.300 { color: var(--colors-red-300) }
 .p_4 { padding: var(--spacing-4) }
 ```
 
-Two classes, because you used two styles. Not 62,656 lines.
+Two classes, because you used two styles. Not 62,656 lines. How atoms work is big enough for its own post, so that's part 2.
 
-## Flipping the contract
+## 6. Codegen
 
-So Panda flips the contract. You keep the nice part: styles in TypeScript, next to your components, with autocomplete on your tokens. But the work moves. It happens once, on your machine or in CI, instead of on every render on someone else's phone.
+Panda also writes a folder into your project, `styled-system`. Run `panda codegen` and you get the functions you import from it: `css`, `cva`, patterns, recipes, the JSX helpers, and types for every token in your config. That's where your autocomplete comes from.
 
-The people who left runtime CSS-in-JS weren't wrong to. In 2022, Sam Magura, one of Emotion's maintainers, [wrote about breaking up with it](https://dev.to/srmagura/why-were-breaking-up-wiht-css-in-js-4g9b). Moving to Sass Modules cut their render time from 54.3ms to 27.7ms. Last month, GitHub [wrote up](https://github.blog/engineering/architecture-optimization/improving-site-performance-by-shipping-more-css/) moving Primer off styled-components and onto CSS Modules, and server rendering took 55% less time. They left the runtime, and that made sense.
+These functions are small. `css()` in the browser doesn't create any CSS. It takes your object and returns class names, the same ones the build already wrote into the stylesheet.
 
-Where I'd push back is the conclusion that you have to stop writing styles in JS to get there. The cost was never the syntax. It was *when* the work happened.
+## 7. Source transforms
 
-My v4 experiment had numbers on this too, and they weren't all wins. I built the same demo in Chakra v3 and v4 and compared production builds. The render timer went *up*, from about 1ms to 2.5ms, because the browser now parses a stylesheet up front instead of getting styles drip-fed. But Total Blocking Time went from 160ms to 10ms. My note at the time: "The tradeoff is CSS parse time vs. runtime computation." I'd take that trade every time.
-
-And v2 goes one step further. The CSS was always built ahead of time, but `css()` itself still ran in the browser to put the class names together. Now it doesn't have to. Turn on [source transforms](https://panda-css.com/docs/styling/source-transforms) and your bundler rewrites the call into the string Panda already computed:
+In v2, even that last step can go. Turn on source transforms with `transform: true` on the Vite, webpack, Rollup or Bun plugin, and the bundler swaps the call for the string Panda already worked out:
 
 ```tsx
 <div className="c_red.300 p_4" />
 ```
 
-As Sage put it on the stream: "Panda is already zero runtime, but in terms of like the JavaScript that it ships... we introduced the Vite plugin to remove all of that." By the time your code hits the wire, the styling engine is already gone.
+No `css()` call left to run. It's opt-in, it doesn't work with Turbopack yet, and any call Panda couldn't resolve at build time stays as a normal runtime call.
 
-<!-- verify Sage's line against the stream, ~17:00 -->
+## What build time can't see
 
-## The constraint I'd already learned
+All of this only works on what's in your source. When Sage [wrote about Panda](https://www.adebayosegun.com/blog/chakra-panda-and-ark-whats-the-plan) back in 2023, it was described as "constrained to styles that can be statically analyzed." That's the deal.
 
-There's a catch, and it's on purpose. Panda can only generate what it can see. Back in 2023, Sage [described Panda](https://www.adebayosegun.com/blog/chakra-panda-and-ark-whats-the-plan) as "constrained to styles that can be statically analyzed." A value that only exists at runtime, like a color you fetch from an API, can't be extracted. So for v4, Sage was clear: no arbitrary values.
+When you do need a value that only exists at runtime, you've got a few options:
 
-I agreed straight away. I'd just generated 3.8 MB of CSS trying to cover every value someone *might* use. I knew exactly what "anything goes" costs. A finite set of tokens means a finite stylesheet. You can read it. You can predict it. So can your build.
+- **CSS variables.** Set the variable at runtime, reference it in your styles:
 
-It's the same thing I wrote about in [Predictable codebase](/blog/predictable-codebase). The constraint is what makes the output predictable. And for the truly dynamic stuff, there's the `style` prop and CSS variables. Panda doesn't pretend otherwise.
+  ```tsx
+  <div
+    className={css({ color: 'var(--accent)' })}
+    style={{ '--accent': accent }}
+  />
+  ```
 
-## Two days later
+- **`staticCss`.** Tell Panda in your config which styles to generate anyway, like every variant of a recipe.
+- **Tokens.** If a value can be a token, make it one. A finite set of tokens means a finite stylesheet, and that's what keeps the output small and predictable.
 
-The last push to my experiment was on April 26. On April 28, I opened my first PR to Panda.
+## In short
 
-That's the short version. The long version is seven months of v2, and that one deserves its own post. But one PR from that stretch still makes me smile. In June, I opened the one that removed v1's old pipeline entirely.
+At build time, Panda reads the files you gave it, parses each one once, finds your Panda calls, works out their values without running anything, turns them into atoms, and writes the CSS.
 
-In March, I rebuilt Panda by accident. In June, I deleted the old one on purpose.
-
-Build once, at build time. It's how Panda works. Turns out it's also how I learned it: the expensive way, once, so I'd never have to pay for it again.
+By the time your code reaches the browser, the styling work is already done.
