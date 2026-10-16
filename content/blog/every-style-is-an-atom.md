@@ -25,7 +25,7 @@ const header = css({ display: 'flex', padding: '4', _hover: { color: 'red.300' }
 const footer = css({ display: 'flex', padding: '4' })
 ```
 
-With component-scoped CSS, each of these gets its own class. `display: flex` and `padding: 1rem` get written three times, under three different names. That's not a bug. It's the model. One class per component, so the stylesheet grows with your components.
+With component-scoped CSS, each of these gets its own class. `display: flex` and `padding: 1rem` get written three times, under three different names. That's how component-scoped CSS is meant to work: one class per component, so the stylesheet grows with your components.
 
 Panda asks a different question. How many *different* declarations are in there?
 
@@ -78,9 +78,9 @@ This isn't new to v2. v1 did the same thing in JavaScript, with a `Set<string>`.
 'display]___[value:flex'
 ```
 
-v2 keeps the same idea, but the key is a typed struct with its hash computed once and cached. Less string building, same answer.
+v2 keeps the same idea, but the key is a typed struct with its hash computed once and cached.
 
-One fun detail. Panda reads your code at build time, so it can't know which side of a ternary runs:
+Ternaries work a little differently. Panda reads your code at build time, so it can't know which side of a ternary runs:
 
 ```ts
 css({ color: isActive ? 'red.300' : 'gray.700' })
@@ -114,11 +114,11 @@ So the three components from earlier come out as this:
 
 Four rules for three components. Add a fiftieth component with `display: flex` and `padding: 4`, and you get zero new rules.
 
-That's the real shift. Your stylesheet grows with the number of distinct atoms you use, not the number of components you write. And because your tokens are a finite set, most new code ends up reusing atoms that already exist.
+So your stylesheet grows with the number of distinct atoms you use, not the number of components you write. And because your tokens are a finite set, most new code ends up reusing atoms that already exist.
 
 ## Order, without import order
 
-Here's a bug most of us have hit. Two rules with the same specificity, and whichever one loaded last wins. Move an import, and your button changes color.
+In plain CSS, when two rules have the same specificity, whichever one loaded last wins. Move an import, and your button changes color.
 
 A set has no order. So before writing anything out, Panda sorts every rule by a fixed key:
 
@@ -133,7 +133,7 @@ Class names and CSS order are two separate things. The class name is what your c
 
 ## Where atoms stop
 
-There are two edges worth knowing about.
+Two places work differently.
 
 **Recipes.** Config recipes, the ones you define under `recipes` in your Panda config, aren't atomic. A button recipe gives you `.button` and `.button--size_md`, with the declarations grouped under those class names in `@layer recipes`. They go through the same encoder walk, but come out grouped, in the order you wrote them. Atomic recipes, `cva` and `sva`, are different. They do become atoms.
 
@@ -151,7 +151,7 @@ Panda handles most of this for you. `css(base, override)` merges the objects fir
 
 The thing to avoid is joining two class strings by hand and expecting the second one to win. Merge styles with `css()`, not with string concatenation.
 
-## Pieces, not stylesheets
+## In short
 
 So when you write `css({ ... })`, you're not adding a stylesheet. You're adding atoms to a set.
 
