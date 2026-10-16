@@ -62,7 +62,7 @@ Two classes, because you used two styles. Not 62,656 lines.
 
 So Panda flips the contract. You keep the nice part: styles in TypeScript, next to your components, with autocomplete on your tokens. But the work moves. It happens once, on your machine or in CI, instead of on every render on someone else's phone.
 
-The people who left runtime CSS-in-JS weren't wrong to. In 2022, Sam Magura, one of Emotion's maintainers, [wrote about breaking up with it](https://dev.to/srmagura/why-were-breaking-up-wiht-css-in-js-4g9b). Moving to Sass Modules cut their render time from 54.3ms to 27.7ms. Last month, GitHub [wrote up](https://github.blog/engineering/architecture-optimization/improving-site-performance-by-shipping-more-css/) moving Primer off styled-components and onto CSS Modules, and server rendering took 55% less time. They left the runtime. Fair.
+The people who left runtime CSS-in-JS weren't wrong to. In 2022, Sam Magura, one of Emotion's maintainers, [wrote about breaking up with it](https://dev.to/srmagura/why-were-breaking-up-wiht-css-in-js-4g9b). Moving to Sass Modules cut their render time from 54.3ms to 27.7ms. Last month, GitHub [wrote up](https://github.blog/engineering/architecture-optimization/improving-site-performance-by-shipping-more-css/) moving Primer off styled-components and onto CSS Modules, and server rendering took 55% less time. They left the runtime, and that made sense.
 
 Where I'd push back is the conclusion that you have to stop writing styles in JS to get there. The cost was never the syntax. It was *when* the work happened.
 
@@ -84,7 +84,7 @@ There's a catch, and it's on purpose. Panda can only generate what it can see. B
 
 I agreed straight away. I'd just generated 3.8 MB of CSS trying to cover every value someone *might* use. I knew exactly what "anything goes" costs. A finite set of tokens means a finite stylesheet. You can read it. You can predict it. So can your build.
 
-It's the same thing I wrote about in [Predictable codebase](/blog/predictable-codebase). Constraints aren't the price of a good system. Most of the time, they are the system. And for the truly dynamic stuff, there's the `style` prop and CSS variables. Panda doesn't pretend otherwise.
+It's the same thing I wrote about in [Predictable codebase](/blog/predictable-codebase). The constraint is what makes the output predictable. And for the truly dynamic stuff, there's the `style` prop and CSS variables. Panda doesn't pretend otherwise.
 
 ## Two days later
 
