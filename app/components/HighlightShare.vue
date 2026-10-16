@@ -5,6 +5,7 @@ import { ark } from '@ark-ui/vue/factory'
 const props = defineProps<{ title?: string, url?: string, date?: string }>()
 
 const { draw } = useHighlightCard()
+const track = useTrack()
 
 const year = computed(() => (props.date ? String(new Date(props.date).getFullYear()) : undefined))
 
@@ -61,6 +62,7 @@ function onSelect() {
   lastFocused = document.activeElement as HTMLElement | null
   format.value = 'x'
   open.value = true
+  track('highlight_opened', { quote: quote.value.slice(0, 200) })
   document.body.style.overflow = 'hidden'
   nextTick(() => dialogRef.value?.$el?.focus())
 }
@@ -73,6 +75,7 @@ function close() {
 
 async function download(fmt: CardFormat) {
   format.value = fmt
+  track('highlight_card_downloaded', { format: fmt, quote: quote.value.slice(0, 200) })
   if (!canvasRef.value)
     return
   await draw(canvasRef.value, fmt, { quote: quote.value, title: props.title, url: props.url, year: year.value })
@@ -101,6 +104,7 @@ async function copyCard() {
       await navigator.clipboard.writeText(quote.value)
     }
     copied.value = true
+    track('highlight_card_copied', { format: format.value, quote: quote.value.slice(0, 200) })
     setTimeout(() => { copied.value = false }, 1500)
   }, 'image/png')
 }
