@@ -21,7 +21,7 @@ No CSS gets created there. But that string still has to be worked out, and `css(
 
 A cache needs a key. Seen these arguments before? Return the saved answer. The whole cost is in working out, cheaply, whether you've seen them before.
 
-## The key used to be the cost
+## Building the key was the slow part
 
 The first version of this cache used `JSON.stringify`. Turn the arguments into a string, use the string as the key.
 
@@ -31,7 +31,7 @@ So the memo in v2 doesn't build its key one way. It picks one of three, per call
 
 There's also a check before any of them. When `css()` gets a single style object, it first looks that exact object up in a `WeakMap`. Pass the same object again, like one defined once at module level, and that's the whole lookup. An object written inline is a new object on every render, though, so it misses and moves on.
 
-## 1. Flat styles get a hash
+## 1. Flat styles: hash the values
 
 The call above is the common case the hash is built for. One object, no nesting, plain strings and numbers as values.
 
@@ -49,7 +49,7 @@ That's simplified. If it hits a nested object halfway through, it gives up and r
 
 A hash can collide, so a match on the number isn't trusted on its own. Panda keeps a few entries per hash and compares the actual keys and values before returning anything. On a variant-heavy button benchmark, that alone gave 30 to 40 percent more SSR throughput.
 
-## 2. Wrapper chains get identity
+## 2. Composed styles: follow the objects
 
 Composed styles are where the hash runs out.
 
@@ -86,7 +86,7 @@ Each step that holds an object is a `WeakMap`, so a style object that only lived
 
 On a three-level chain, that took a composed call from 1.52ms to 0.85ms. On a six-level chain, 2.11ms to 1.28ms.
 
-## Why it waits before trusting an object
+### Only objects it has seen before
 
 Keying on identity is right for the chain above. It's wrong for this:
 
@@ -100,7 +100,7 @@ So the trie doesn't take everything. A call only gets a place in it once the obj
 
 That's enough for a repeating chain to land in the trie within a few calls, while inline styles barely pay anything for being checked. The inline shape ended up faster than it was before identity keys existed.
 
-## 3. Everything else gets a string
+## 3. Everything else: stringify
 
 Responsive values, nested conditions, anything the hash bails on and that isn't a composed array:
 
@@ -110,7 +110,7 @@ css({ padding: { base: '2', md: '4' } })
 
 These still use `JSON.stringify`. V8's stringify is native code, and it beats walking a nested object in JavaScript. For shapes that don't fit the first two paths, it's the fastest key available.
 
-## Keeping it small
+## How big the cache can get
 
 Each part of the cache has a limit:
 
@@ -121,7 +121,7 @@ Each part of the cache has a limit:
 
 Put together, on dense server-rendered pages, the v2 benchmarks have repeated inline styles about 3x faster than the unmemoized path, a three-level wrapper chain about 4x, a six-level chain about 3x, and repeated flat objects 30 to 40 percent faster.
 
-## The calls that stay
+## Calls that never run
 
 Some calls never reach the memo.
 
