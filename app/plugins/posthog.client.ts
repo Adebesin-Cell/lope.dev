@@ -10,6 +10,7 @@ export default defineNuxtPlugin(() => {
     api_host: '/ingest',
     ui_host: 'https://us.posthog.com',
     defaults: '2026-01-30',
+    capture_pageleave: true,
     loaded: (ph) => {
       if (import.meta.dev)
         ph.debug()

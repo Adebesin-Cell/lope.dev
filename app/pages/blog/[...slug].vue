@@ -59,11 +59,13 @@ const shareBlueskyUrl = computed(() =>
 const shareLinkedInUrl = computed(() =>
   `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl.value)}`,
 )
+const track = useTrack()
 const copied = ref(false)
 async function copyLink() {
   if (!import.meta.client)
     return
   await navigator.clipboard.writeText(postUrl.value)
+  track('post_shared', { network: 'copy_link' })
   copied.value = true
   setTimeout(() => { copied.value = false }, 1500)
 }
@@ -129,6 +131,7 @@ function fmt(d?: string) {
         target="_blank"
         rel="noopener"
         aria-label="Share on X"
+        @click="track('post_shared', { network: 'x' })"
         class="inline-flex items-center hover:text-ink transition-colors"
       >
         <ark.span class="i-simple-icons-x" aria-hidden="true" />
@@ -138,6 +141,7 @@ function fmt(d?: string) {
         target="_blank"
         rel="noopener"
         aria-label="Share on Bluesky"
+        @click="track('post_shared', { network: 'bluesky' })"
         class="inline-flex items-center hover:text-ink transition-colors"
       >
         <ark.span class="i-simple-icons-bluesky" aria-hidden="true" />
@@ -147,6 +151,7 @@ function fmt(d?: string) {
         target="_blank"
         rel="noopener"
         aria-label="Share on LinkedIn"
+        @click="track('post_shared', { network: 'linkedin' })"
         class="inline-flex items-center hover:text-ink transition-colors"
       >
         <ark.span class="i-simple-icons-linkedin" aria-hidden="true" />
@@ -272,14 +277,15 @@ function fmt(d?: string) {
     transparent
   );
 }
+.prose-content :deep(.prose-table) {
+  margin-block: 1.5rem;
+  overflow-x: auto;
+}
 .prose-content :deep(table) {
   width: 100%;
-  margin-block: 1.5rem;
   border-collapse: collapse;
   font-size: 0.9rem;
   line-height: 1.6;
-  display: block;
-  overflow-x: auto;
 }
 .prose-content :deep(th) {
   text-align: start;
