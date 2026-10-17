@@ -2,7 +2,6 @@
 title: Every style is an atom
 description: How Panda breaks your styles into atoms, keeps each one exactly once, and where atoms stop.
 date: 2026-10-17
-draft: true
 ---
 
 ### How Panda turns your styles into atoms, and keeps each one exactly once.
@@ -27,7 +26,7 @@ const footer = css({ display: 'flex', padding: '4' })
 
 With component-scoped CSS, each of these gets its own class. `display: flex` and `padding: 1rem` get written three times, under three different names. That's how component-scoped CSS is meant to work: one class per component, so the stylesheet grows with your components.
 
-Panda asks a different question. How many *different* declarations are in there?
+Panda counts something else. How many *different* declarations are in there?
 
 - `display: flex`
 - `padding: 4`
@@ -114,7 +113,7 @@ So the three components from earlier come out as this:
 
 Four rules for three components. Add a fiftieth component with `display: flex` and `padding: 4`, and you get zero new rules.
 
-So your stylesheet grows with the number of distinct atoms you use, not the number of components you write. And because your tokens are a finite set, most new code ends up reusing atoms that already exist.
+So your stylesheet grows with the number of distinct atoms you use, not the number of components you write. And since your tokens are a finite set, there are only so many atoms to make.
 
 ## Order, without import order
 
@@ -122,8 +121,8 @@ In plain CSS, when two rules have the same specificity, whichever one loaded las
 
 A set has no order. So before writing anything out, Panda sorts every rule by a fixed key:
 
-1. The layer the rule belongs to.
-2. At-rules, like media and container queries.
+1. Plain rules first, then rules with a selector, then rules inside at-rules.
+2. At-rules in a fixed order: supports, media, container, print. Size queries sort by their size.
 3. Selector priority, from a table of pseudo-classes, so `:hover` and `:focus` land in a predictable order.
 4. Property priority. Shorthands go before longhands, so `padding-top` comes after `padding` and wins.
 
@@ -145,7 +144,7 @@ So "everything in Panda is atomic" isn't quite true. It also means recipe rules 
 const style = { ...base, ...override }
 ```
 
-Atomic classes don't work like that. If two classes both set `color`, the browser picks whichever rule comes later *in the stylesheet*. Not later in your object. Not later in your `className` string.
+Atomic classes don't work like that. If two classes both set `color`, the browser picks whichever rule comes later *in the stylesheet*. Not by where it appears in your object or your `className` string.
 
 Panda handles most of this for you. `css(base, override)` merges the objects first, then turns the result into atoms, so the override wins the way you'd expect. And with source transforms on, if Panda can't tell which value wins at build time, it doesn't guess. It leaves the call alone.
 
@@ -155,4 +154,4 @@ The thing to avoid is joining two class strings by hand and expecting the second
 
 So when you write `css({ ... })`, you're not adding a stylesheet. You're adding atoms to a set.
 
-Most of the time, they're already in it.
+Often, they're already in it.
