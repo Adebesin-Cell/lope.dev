@@ -170,4 +170,4 @@ It started as an object full of expressions in `badge.tsx`. Panda read the file,
 
 The browser gets a stylesheet that's already done.
 
-Step 4 skipped over how atoms actually work: how Panda decides what counts as one, keeps each exactly once, and puts them in order. That's part 2.
+Step 4 skipped over how atoms actually work: how Panda decides what counts as one, keeps each exactly once, and puts them in order. That's [part 2](/blog/every-style-is-an-atom).
