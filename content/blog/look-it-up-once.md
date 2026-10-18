@@ -11,15 +11,21 @@ draft: true
 
 *Panda internals, part 3. Part 1: [Build once, at build time](/blog/build-once-at-build-time). Part 2: [Every style is an atom](/blog/every-style-is-an-atom).*
 
-Part 1 ended in the browser. The CSS was already written at build time, and all `css()` had left to do was hand back class names. This call returns `'c_red.300 p_4'`:
+In Panda, the CSS is already written at build time. What `css()` does in the browser is hand back class names. This call returns `'c_red.300 p_4'`:
 
 ```ts
 css({ color: 'red.300', padding: '4' })
 ```
 
-No CSS gets created there. But that string still has to be worked out, and `css()` runs a lot. Every component, every render, and on the server for every request. So Panda wraps it in a small cache, `memo()`. The same goes for `cva`, `sva`, recipes and patterns in the generated `styled-system`.
+No CSS gets created there. But `css()` runs a lot. Every component, every render, and on the server for every request. So Panda wraps it in a small cache, `memo()`. The same goes for `cva`, `sva`, recipes and patterns in the generated `styled-system`.
 
-A cache needs a key. Seen these arguments before? Return the saved answer. The whole cost is in working out, cheaply, whether you've seen them before.
+A cache needs a key, and building that key cheaply is the whole trick. Panda picks one of three, per call:
+
+1. **Flat styles** get a hash of their values.
+2. **Composed styles** get looked up by the objects inside them.
+3. **Everything else** gets a string.
+
+Here's why each one exists.
 
 ## Building the key was the slow part
 
@@ -27,27 +33,29 @@ The first version of this cache used `JSON.stringify`. Turn the arguments into a
 
 It's correct, but it runs on every call, hits and misses alike. To find out the answer was already sitting in the cache, `memo()` first had to serialize the whole style object. In a page full of variant buttons, that stringify was the single biggest cost in the whole `css()` path.
 
-So the memo in v2 doesn't build its key one way. It picks one of three, per call, based on what the arguments look like.
+That's why the memo in v2 picks its key based on what the arguments look like.
 
-There's also a check before any of them. When `css()` gets a single style object, it first looks that exact object up in a `WeakMap`. Pass the same object again, like one defined once at module level, and that's the whole lookup. An object written inline is a new object on every render, though, so it misses and moves on.
+There's also a check before any of the three. When `css()` gets a single style object, it first looks that exact object up in a `WeakMap`. Pass the same object again, like one defined once at module level, and that's the whole lookup. An object written inline is a new object on every render, though, so it misses and moves on.
 
 ## 1. Flat styles: hash the values
 
-The call above is the common case the hash is built for. One object, no nesting, plain strings and numbers as values.
+The call at the top of this post is the common case the hash is built for. One object, no nesting, plain strings and numbers as values.
 
 For those, Panda skips the string entirely. It walks the object once and folds every key and value into a number:
 
 ```ts
 let h = 5381
 for (const key in style) {
-  for (const char of key) h = (h * 33) ^ char.charCodeAt(0)
-  for (const char of String(style[key])) h = (h * 33) ^ char.charCodeAt(0)
+  const text = key + String(style[key])
+  for (const ch of text) {
+    h = (h * 33) ^ ch.charCodeAt(0)
+  }
 }
 ```
 
 That's simplified. If it hits a nested object halfway through, it gives up and returns `null`, and the call moves on to another path.
 
-A hash can collide, so a match on the number isn't trusted on its own. Panda keeps a few entries per hash and compares the actual keys and values before returning anything. On a variant-heavy button benchmark, that alone gave 30 to 40 percent more SSR throughput.
+A hash can collide, so a match on the number isn't trusted on its own. Panda keeps a few entries per hash and compares the actual keys and values before returning anything. On a variant-heavy button benchmark, that alone gave [30 to 40 percent more SSR throughput](https://github.com/chakra-ui/panda/commit/6e3c1600dc197250ae61ccda76fb79cff6cba53f).
 
 ## 2. Composed styles: follow the objects
 
@@ -56,11 +64,12 @@ Composed styles are where the hash runs out.
 You build a component on top of a component, and forward styles down:
 
 ```tsx
-const base = css.raw({ px: '4', rounded: 'md' })
-const danger = css.raw({ bg: 'red.500', color: 'white' })
+const base = css.raw({ px: '4' })
+const danger = css.raw({ bg: 'red.500' })
 
 function Button({ css: extra = [] }) {
-  return <button className={css([base, ...extra])} />
+  const cls = css([base, ...extra])
+  return <button className={cls} />
 }
 
 function DangerButton({ css: extra = [] }) {
@@ -77,14 +86,14 @@ So when the arguments contain an array, Panda keys the call on **object identity
 ```
 root
 └─ base
-   └─ danger  → 'px_4 bdr_md bg_red.500 c_white'
+   └─ danger → 'px_4 bg_red.500'
 ```
 
 The same objects in the same order always reach the same leaf.
 
 Each step that holds an object is a `WeakMap`, so a style object that only lived for one render isn't kept alive by the cache.
 
-On a three-level chain, that took a composed call from 1.52ms to 0.85ms. On a six-level chain, 2.11ms to 1.28ms.
+On a three-level chain, that [took a composed call from 1.52ms to 0.85ms](https://github.com/chakra-ui/panda/commit/25137db545ce9129462662483390b49f82d85ba8). On a six-level chain, 2.11ms to 1.28ms.
 
 ### Only objects it has seen before
 
@@ -94,7 +103,7 @@ Keying on identity is right for the chain above. It's wrong for this:
 <Button css={[{ mt: '2' }]} />
 ```
 
-That `{ mt: '2' }` is a fresh object on every render. Its identity never repeats, so the trie would never hit. Worse, every render would add new branches that nothing ever reads again. Keying every composed call on identity made this shape about **7x slower** than just serializing it.
+That `{ mt: '2' }` is a fresh object on every render. Its identity never repeats, so the trie would never hit. Worse, every render would add new branches that nothing ever reads again. Keying every composed call on identity made this shape [about **7x slower**](https://github.com/chakra-ui/panda/commit/172c52fb5326e84c3ab7e9aea2b718b1c0610ed2) than just serializing it.
 
 So the trie doesn't take everything. A call only gets a place in it once the objects in it have been seen before. Until then, it goes down the value path like any other call. Reading the trie allocates nothing, so a miss is cheap. And the "have I seen these objects?" bookkeeping only runs on every fourth miss, not every miss.
 
@@ -119,7 +128,7 @@ Each part of the cache has a limit:
 - **500 entries per cache.** Past that, the oldest goes.
 - **Identity lookups use `WeakMap`s.** They don't hold on to objects your code has let go of.
 
-Put together, on dense server-rendered pages, the v2 benchmarks have repeated inline styles about 3x faster than the unmemoized path, a three-level wrapper chain about 4x, a six-level chain about 3x, and repeated flat objects 30 to 40 percent faster.
+Put together, on dense server-rendered pages, the [v2 benchmarks](https://panda-css.com/blog/panda-css-v2) have repeated inline styles about 3x faster than the unmemoized path, a three-level wrapper chain about 4x, a six-level chain about 3x, and repeated flat objects 30 to 40 percent faster.
 
 ## Calls that never run
 
@@ -128,3 +137,5 @@ Some calls never reach the memo.
 Part 1 covered source transforms. With `transform: true`, the bundler replaces calls Panda can fully work out at build time with the plain class string. Those never reach the memo at all, because they never run.
 
 What's left at runtime is what couldn't be resolved ahead of time, like styles built from props or state. Those are the calls the memo is for.
+
+*Next in the series: how Panda works out your style values without ever running your code. If you're new here, start with [Build once, at build time](/blog/build-once-at-build-time) and [Every style is an atom](/blog/every-style-is-an-atom).*
