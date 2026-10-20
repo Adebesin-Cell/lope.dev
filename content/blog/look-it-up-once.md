@@ -19,13 +19,11 @@ css({ color: 'red.300', padding: '4' })
 
 No CSS gets created there. But `css()` runs a lot. Every component, every render, and on the server for every request. So Panda wraps it in a small cache, `memo()`. The same goes for `cva`, `sva`, recipes and patterns in the generated `styled-system`.
 
-A cache needs a key, and building that key cheaply is the whole trick. Panda picks one of three, per call:
+A cache needs a key, and the key has to be cheap to build. Panda picks one of three, per call:
 
-1. **Flat styles** get a hash of their values.
-2. **Composed styles** get looked up by the objects inside them.
-3. **Everything else** gets a string.
-
-Here's why each one exists.
+1. Flat styles get a hash of their values.
+2. Composed styles get looked up by the objects inside them.
+3. Everything else gets a string.
 
 ## Building the key was the slow part
 
@@ -59,8 +57,6 @@ A hash can collide, so a match on the number isn't trusted on its own. Panda kee
 
 ## 2. Composed styles: follow the objects
 
-Composed styles are where the hash runs out.
-
 You build a component on top of a component, and forward styles down:
 
 ```tsx
@@ -77,7 +73,7 @@ function DangerButton({ css: extra = [] }) {
 }
 ```
 
-Every render builds brand new arrays. `[danger, ...extra]` is a new array. `[base, ...extra]` is a new array. But `base` and `danger` are the exact same objects every time. They were created once, when the module loaded.
+Every render builds new arrays, `[danger, ...extra]` and `[base, ...extra]`. But `base` and `danger` are the same objects every time, created once when the module loaded.
 
 The hash can't help here, because the arguments contain arrays. And stringify serializes the whole composition again, every render, for every element.
 
@@ -97,15 +93,15 @@ On a three-level chain, that [took a composed call from 1.52ms to 0.85ms](https:
 
 ### Only objects it has seen before
 
-Keying on identity is right for the chain above. It's wrong for this:
+Keying on identity works for the chain above, but not for this:
 
 ```tsx
 <Button css={[{ mt: '2' }]} />
 ```
 
-That `{ mt: '2' }` is a fresh object on every render. Its identity never repeats, so the trie would never hit. Worse, every render would add new branches that nothing ever reads again. Keying every composed call on identity made this shape [about **7x slower**](https://github.com/chakra-ui/panda/commit/172c52fb5326e84c3ab7e9aea2b718b1c0610ed2) than just serializing it.
+That `{ mt: '2' }` is a fresh object on every render. Its identity never repeats, so the trie would never hit. Worse, every render would add new branches that nothing ever reads again. Keying every composed call on identity made this shape [about 7x slower](https://github.com/chakra-ui/panda/commit/172c52fb5326e84c3ab7e9aea2b718b1c0610ed2) than just serializing it.
 
-So the trie doesn't take everything. A call only gets a place in it once the objects in it have been seen before. Until then, it goes down the value path like any other call. Reading the trie allocates nothing, so a miss is cheap. And the "have I seen these objects?" bookkeeping only runs on every fourth miss, not every miss.
+So a call only gets a place in the trie once the objects in it have been seen before. Until then, it goes down the value path like any other call. Reading the trie allocates nothing, so a miss is cheap. And the "have I seen these objects?" bookkeeping only runs on every fourth miss, not every miss.
 
 That's enough for a repeating chain to land in the trie within a few calls, while inline styles barely pay anything for being checked. The inline shape ended up faster than it was before identity keys existed.
 
@@ -123,16 +119,14 @@ These still use `JSON.stringify`. V8's stringify is native code, and it beats wa
 
 Each part of the cache has a limit:
 
-- **The last call is checked first.** Re-rendering with the same arguments is common enough to get its own shortcut.
-- **Eight entries per hash.** Older ones for the same hash drop off.
-- **500 entries per cache.** Past that, the oldest goes.
-- **Identity lookups use `WeakMap`s.** They don't hold on to objects your code has let go of.
+- The last call is checked first, because re-rendering with the same arguments is common.
+- Each hash keeps up to eight entries. Older ones for the same hash drop off.
+- Each cache keeps up to 500 entries. Past that, the oldest goes.
+- Identity lookups use `WeakMap`s, so they don't hold on to objects your code has let go of.
 
 Put together, on dense server-rendered pages, the [v2 benchmarks](https://panda-css.com/blog/panda-css-v2) have repeated inline styles about 3x faster than the unmemoized path, a three-level wrapper chain about 4x, a six-level chain about 3x, and repeated flat objects 30 to 40 percent faster.
 
 ## Calls that never run
-
-Some calls never reach the memo.
 
 Part 1 covered source transforms. With `transform: true`, the bundler replaces calls Panda can fully work out at build time with the plain class string. Those never reach the memo at all, because they never run.
 
