@@ -1,8 +1,7 @@
 ---
 title: Look it up once
 description: Why calling css() on every render stays cheap. The three ways Panda's runtime memo builds a cache key, and why it waits before trusting an object.
-date: 2026-10-17
-draft: true
+date: 2026-10-20
 ---
 
 ### Why calling `css()` on every render stays cheap.
