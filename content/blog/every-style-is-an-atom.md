@@ -155,3 +155,5 @@ The thing to avoid is joining two class strings by hand and expecting the second
 So when you write `css({ ... })`, you're not adding a stylesheet. You're adding atoms to a set.
 
 Often, they're already in it.
+
+*Next in the series: [Look it up once](/blog/look-it-up-once), why calling `css()` on every render stays cheap.*
