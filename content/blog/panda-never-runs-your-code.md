@@ -184,6 +184,18 @@ A default value counts. In `function Button({ size = 'md' })`, Panda generates C
 
 A partly known object still counts. If an object mixes static values with runtime ones, Panda keeps the static ones and skips the rest. One unknown property doesn't throw away the whole object.
 
+## MDX files too
+
+Panda reads `.mdx` files in your `include` the same way. It picks up imports, `{expressions}` and the props on components:
+
+```mdx
+import { Box } from '../styled-system/jsx'
+
+<Box color="red.300">Hello</Box>
+```
+
+It skips fenced code blocks, inline code, frontmatter and link URLs, so a code example in your docs never turns into real CSS. This landed in Panda 2.1.2. Before that, the Markdown around a component could stop its styles from being found.
+
 ## Fixing the puzzle
 
 Since `type` is only known at runtime, the fix is to put every color somewhere Panda can see it. A `cva` recipe does that, because each variant is written out in full:
@@ -204,6 +216,6 @@ section({ type })
 
 Now every color is in the source, so every color gets CSS, and the runtime only has to pick a class.
 
-That's the pattern behind everything in this post. Panda can work out a lot more than people expect: imports, enums, tokens, helpers, both sides of a ternary. When it can't, the answer is to move the values into a shape it can read.
+That's the pattern behind everything in this post. Panda can work out a lot more than people expect: imports, enums, tokens, helpers, both sides of a ternary. When it can't, move the values into a shape it can read, like a recipe, or list them in [`staticCss`](https://panda-css.com/docs/styling/static) so Panda generates them anyway.
 
 *Next in the series: how Panda rewrites those ternaries straight into your code. If you missed the earlier parts: [Build once, at build time](/blog/build-once-at-build-time), [Every style is an atom](/blog/every-style-is-an-atom), [Look it up once](/blog/look-it-up-once).*
