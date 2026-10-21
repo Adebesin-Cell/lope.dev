@@ -3,7 +3,7 @@ import { ark } from '@ark-ui/vue/factory'
 
 usePageSeo({
   title: 'Adebesin Tolulope (Lope)',
-  description: 'Software engineer and open-source maintainer — product engineer at BethelFlow, maintainer at Chakra UI, Panda and Ark UI, working across the Chakra and IQ ecosystems.',
+  description: 'Software engineer and open-source maintainer — founding engineer at BethelFlow, maintainer at Chakra UI, Panda and Ark UI, working across the Chakra and IQ ecosystems.',
 })
 
 const siteUrl = useSiteConfig().url.replace(/\/$/, '')
@@ -82,7 +82,7 @@ const roleRows = [
     </ark.h1>
 
     <ark.p class="text-base text-ink-muted leading-relaxed">
-      Hey! I'm Lope, a software engineer and open-source contributor. Product engineer at
+      Hey! I'm Lope, a software engineer and open-source contributor. Founding engineer at
       <Chip class="align-middle" href="https://www.bethelflow.com/" label="BethelFlow" logo="/brands/bethelflow.svg" />,
       working across the Chakra and IQ ecosystems.
     </ark.p>
