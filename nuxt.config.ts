@@ -19,7 +19,7 @@ export default defineNuxtConfig({
   content: {
     build: {
       markdown: {
-        highlight: { langs: ['cpp'] },
+        highlight: { langs: ['cpp', 'tsx', 'jsx', 'css', 'json', 'rust'] },
       },
       transformers: ['~~/transformers/image-size'],
     },
