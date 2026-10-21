@@ -28,7 +28,7 @@ async function copy() {
       v-if="props.code"
       type="button"
       :aria-label="copied ? 'Copied' : 'Copy code'"
-      class="absolute right-2 top-2 inline-flex items-center rounded-md p-1.5 text-ink-muted opacity-60 transition hover:text-ink hover:opacity-100 focus-visible:opacity-100 group-hover:opacity-100"
+      class="copy-code absolute right-2 top-2 inline-flex items-center rounded-md p-1.5 text-ink-muted transition hover:text-ink"
       @click="copy"
     >
       <ark.span :class="copied ? 'i-lucide-check' : 'i-lucide-copy'" aria-hidden="true" />
@@ -39,5 +39,20 @@ async function copy() {
 <style>
 pre code .line {
   display: block;
+}
+
+.copy-code {
+  opacity: 0;
+}
+
+.group:hover .copy-code,
+.copy-code:focus-visible {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .copy-code {
+    opacity: 0.6;
+  }
 }
 </style>
