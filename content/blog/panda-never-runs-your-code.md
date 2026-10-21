@@ -11,7 +11,7 @@ draft: true
 
 *Panda internals, part 4. Start with [Build once, at build time](/blog/build-once-at-build-time) if you're new here.*
 
-Here's a component that looks completely static:
+Here's a component where every color is written right there in the file:
 
 ```tsx
 const colorByType = {
@@ -19,14 +19,22 @@ const colorByType = {
   secondary: 'blue.300',
 }
 
-css({
-  color: colorByType[type] ?? 'gray.100',
-})
+function Section() {
+  const [type] = useState('primary')
+
+  return (
+    <section
+      className={css({
+        color: colorByType[type] ?? 'gray.100',
+      })}
+    />
+  )
+}
 ```
 
-Every color is written right there in the file. But Panda only generates CSS for one of them, `gray.100`.
+Panda only generates CSS for one of them, `gray.100`.
 
-The reason is that Panda never runs your code. It reads it. At build time it works out each style value from the source alone, and it stops wherever a value depends on something only the running app knows. Here, that's `type`.
+The reason is that Panda never runs your code. It reads it. At build time it works out each style value from the source alone, and it stops wherever a value depends on something only the running app knows. Here, that's `type`, which comes from `useState`. If `type` were a plain `const`, Panda could follow it and pick the right color.
 
 So the useful question is what Panda can work out, and where it stops. In short, it follows:
 
