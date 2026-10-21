@@ -21,14 +21,11 @@ const colorByType = {
 
 function Section() {
   const [type] = useState('primary')
+  const cls = css({
+    color: colorByType[type] ?? 'gray.100',
+  })
 
-  return (
-    <section
-      className={css({
-        color: colorByType[type] ?? 'gray.100',
-      })}
-    />
-  )
+  return <section className={cls} />
 }
 ```
 
