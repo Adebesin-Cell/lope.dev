@@ -3,8 +3,33 @@ import { ark } from '@ark-ui/vue/factory'
 import { projects } from '~~/shared/data/projects'
 
 usePageSeo({
-  title: 'Projects — Adebesin Tolulope',
-  description: 'Open-source projects Lope has built, maintains, or contributes to — across the Chakra and IQ ecosystems.',
+  title: 'Projects: Panda CSS, Ark UI, Chakra UI — Adebesin Tolulope',
+  description: 'What Lope maintains and builds: Panda CSS, Ark UI, Chakra UI and Zag in the Chakra ecosystem, adk-ts and IQ.wiki at IQ, BethelFlow, and side projects.',
+})
+
+const siteUrl = useSiteConfig().url.replace(/\/$/, '')
+const items = projects.flatMap(g => g.projects).filter(p => p.href)
+
+useHead({
+  script: [{
+    type: 'application/ld+json',
+    innerHTML: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      'name': 'Projects',
+      'url': `${siteUrl}/projects`,
+      'author': { '@type': 'Person', 'name': 'Adebesin Tolulope', 'url': siteUrl },
+      'mainEntity': {
+        '@type': 'ItemList',
+        'itemListElement': items.map((p, i) => ({
+          '@type': 'ListItem',
+          'position': i + 1,
+          'name': p.name,
+          'url': p.href,
+        })),
+      },
+    }),
+  }],
 })
 </script>
 
@@ -15,7 +40,7 @@ usePageSeo({
         Projects
       </ark.h1>
       <ark.p class="text-ink-muted">
-        Things I've built, contribute to, or care about.
+        Open source I maintain, products I build at work, and things I make for fun.
       </ark.p>
       <ark.div class="flex items-center justify-center gap-3 mt-6">
         <ark.a
