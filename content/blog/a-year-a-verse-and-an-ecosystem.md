@@ -1,6 +1,7 @@
 ---
 title: A year, a verse and an ecosystem
-description: A year inside the chakraverse. The components, the codemod, the pro system work I wasn't proud of, and what a year of building for other developers taught me.
+description: "A year inside the chakraverse: the components, the codemod, the pro work I wasn't proud of, and what building for other developers taught me."
+seoTitle: "A year in the Chakra UI ecosystem: open source lessons"
 date: 2026-08-31
 ---
 

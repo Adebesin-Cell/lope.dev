@@ -1,6 +1,7 @@
 ---
 title: Context is everything
-description: What years of building AI agents taught me about context engineering, and how much of it turned out to be the same thing as briefing another human well.
+description: "What years of building AI agents taught me about context engineering, and why it is mostly the same skill as briefing another human well."
+seoTitle: "Context is everything: context engineering for AI agents"
 date: 2026-07-18
 ---
 

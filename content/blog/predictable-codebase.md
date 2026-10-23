@@ -1,6 +1,7 @@
 ---
 title: Predictable codebase
-description: The first codebase I ever set up myself, the IQ.wiki rewrite that taught me what I wanted it to look like, the weeks of harsh reviews it took, and why the same rules now let Claude ship pages that look like I wrote them.
+description: "The IQ.wiki rewrite that taught me what a predictable codebase looks like, the harsh reviews it took, and why those rules let Claude write code like mine."
+seoTitle: "Predictable codebase: lessons from the IQ.wiki rewrite"
 date: 2026-09-26
 ---
 
