@@ -24,7 +24,7 @@ export const projects: ProjectGroup[] = [
     projects: [
       {
         name: 'Panda CSS',
-        role: 'Maintainer',
+        role: 'Core maintainer',
         description: 'Build-time CSS-in-JS with type-safe styles, design tokens and recipes. v2 runs on a Rust engine.',
         href: 'https://github.com/chakra-ui/panda',
         stack: ['Rust', 'Oxc', 'TypeScript', 'WASI'],
@@ -40,7 +40,7 @@ export const projects: ProjectGroup[] = [
       },
       {
         name: 'Chakra UI',
-        role: 'Maintainer',
+        role: 'Core maintainer',
         description: 'Accessible React component library for building design systems and apps.',
         href: 'https://github.com/chakra-ui/chakra-ui',
         stack: ['React', 'TypeScript', 'Codemods'],
@@ -49,7 +49,7 @@ export const projects: ProjectGroup[] = [
       },
       {
         name: 'Zag',
-        role: 'Maintainer',
+        role: 'Core maintainer',
         description: 'Framework-agnostic state machines behind Ark UI.',
         href: 'https://github.com/chakra-ui/zag',
         stack: ['TypeScript', 'State machines'],
@@ -62,8 +62,7 @@ export const projects: ProjectGroup[] = [
     projects: [
       {
         name: 'BethelFlow',
-        role: 'Product engineer',
-        description: 'Church management platform for members, services, giving and attendance (40k+ attendance records), with an AI analytics assistant.',
+        description: 'The church operating system. Auto check-in and attendance (40k+ records tracked), member and family records, children\'s check-in, service planning and ticketed events, first-timer follow-up, bulk SMS and email, giving, growth analytics, and multi-branch church networks, all in one place.',
         href: 'https://www.bethelflow.com/',
         stack: ['Next.js', 'Nuxt', 'Panda CSS', 'Ark UI', 'AI SDK', 'Postgres'],
         logo: '/brands/bethelflow.svg',
