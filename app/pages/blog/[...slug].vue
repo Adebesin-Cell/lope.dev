@@ -18,7 +18,7 @@ const canonicalUrl = computed(() => post.value?.canonical || postUrl.value)
 const readingTime = computed(() => readingTimeText(post.value?.body))
 
 useSeoMeta({
-  title: () => (post.value?.title ? `${post.value.title} — Lope` : 'Blog — Lope'),
+  title: () => (post.value?.title ? `${post.value.title} — Adebesin Tolulope` : 'Blog — Adebesin Tolulope'),
   description: () => post.value?.description ?? '',
   ogType: 'article',
   ogTitle: () => post.value?.title ?? '',
