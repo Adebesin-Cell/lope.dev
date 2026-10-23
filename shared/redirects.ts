@@ -3,6 +3,7 @@ export const redirects: Record<string, string> = {
   '/work': '/projects',
   '/resume': '/',
   '/contact': '/',
+  '/blog/oss-in-a-year': '/blog/a-year-a-verse-and-an-ecosystem',
 }
 
 export const redirectRouteRules = Object.fromEntries(
