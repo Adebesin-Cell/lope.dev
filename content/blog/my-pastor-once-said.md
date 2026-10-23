@@ -1,6 +1,7 @@
 ---
 title: My Pastor Once Said
-description: The product-design story behind a BethelFlow campaign, a card generator for the lines our pastors never stopped saying. What we designed, the rough edges, the numbers, and where it landed.
+description: "The product design story behind a BethelFlow campaign: a card generator for the lines our pastors never stopped saying. The numbers, and where it landed."
+seoTitle: "My Pastor Once Said: designing a BethelFlow card generator"
 date: 2026-08-09
 readingTime: 9min
 ---

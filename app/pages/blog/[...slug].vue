@@ -18,7 +18,8 @@ const canonicalUrl = computed(() => post.value?.canonical || postUrl.value)
 const readingTime = computed(() => readingTimeText(post.value?.body))
 
 useSeoMeta({
-  title: () => (post.value?.title ? `${post.value.title} — Adebesin Tolulope` : 'Blog — Adebesin Tolulope'),
+  title: () => post.value?.seoTitle ?? (post.value?.title ? `${post.value.title} — Adebesin Tolulope` : 'Blog — Adebesin Tolulope'),
+  robots: () => (post.value?.draft ? 'noindex, nofollow' : undefined),
   description: () => post.value?.description ?? '',
   ogType: 'article',
   ogTitle: () => post.value?.title ?? '',
@@ -39,11 +40,15 @@ useHead(() => ({
     innerHTML: JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'BlogPosting',
-      'headline': post.value?.title,
+      'headline': post.value?.seoTitle ?? post.value?.title,
       'description': post.value?.description,
+      'url': postUrl.value,
       'datePublished': post.value?.date,
-      'author': { '@type': 'Person', 'name': 'Adebesin Tolulope', 'url': `https://${host}` },
-      'mainEntityOfPage': postUrl.value,
+      'dateModified': post.value?.updated ?? post.value?.date,
+      'inLanguage': 'en',
+      'author': { '@type': 'Person', 'name': 'Adebesin Tolulope', 'alternateName': 'Lope', 'url': `https://${host}` },
+      'publisher': { '@type': 'Person', 'name': 'Adebesin Tolulope', 'url': `https://${host}` },
+      'mainEntityOfPage': { '@type': 'WebPage', '@id': postUrl.value },
     }),
   }],
 }))

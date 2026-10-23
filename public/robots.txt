@@ -4,7 +4,6 @@ User-agent: *
 Allow: /
 
 # Keep crawlers off internal/function-backed paths (no SEO value).
-Disallow: /_og/
 Disallow: /api/
 
 Sitemap: https://lope.adebesin.com/sitemap.xml

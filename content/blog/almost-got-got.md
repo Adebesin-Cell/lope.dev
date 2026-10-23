@@ -1,6 +1,7 @@
 ---
 title: Almost got got
-description: I was just trying to download a sermon, and I almost pasted malware into my terminal. That near-miss turned into our CPE 510 project, and a small crusade to make security policy something people actually remember.
+description: "I almost pasted malware into my terminal while downloading a sermon. That near-miss became our CPE 510 project on making security policy stick."
+seoTitle: "Almost got got: the malware I nearly pasted into my terminal"
 date: 2026-08-23
 ---
 
