@@ -76,7 +76,7 @@ export const projects: ProjectGroup[] = [
       {
         name: 'BethelFlow',
         role: 'Product engineer',
-        description: 'Church management platform. I lead the web frontend and its Panda design system, built the AI analytics assistant, and own backend pieces like month-in-review reports, recurring-service scheduling, and attendance.',
+        description: 'Church management platform. I lead the web frontend and its Panda design system, built the AI analytics assistant, and own backend pieces like month-in-review reports, recurring-service scheduling, and attendance tracking (40k+ records).',
         href: 'https://www.bethelflow.com/',
         stack: ['Next.js', 'Nuxt', 'Panda CSS', 'Ark UI', 'AI SDK', 'Postgres'],
         logo: '/brands/bethelflow.svg',
