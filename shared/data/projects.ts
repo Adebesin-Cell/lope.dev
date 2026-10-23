@@ -70,6 +70,27 @@ export const projects: ProjectGroup[] = [
     ],
   },
   {
+    title: 'Montcha',
+    projects: [
+      {
+        name: 'Montcha',
+        description: 'A design studio of small apps, games and gifts, all built on one Panda CSS and Ark UI design system.',
+        href: 'https://studio.adebesin.com',
+        stack: ['Nuxt', 'Panda CSS', 'Ark UI', 'Bun'],
+        icon: 'i-lucide-palette',
+        color: '#F472B6',
+      },
+      {
+        name: 'Flowers',
+        description: 'Give them their flowers while they are here. Pick a bouquet from a pink garden, tie it with a note, and send the link.',
+        href: 'https://flowers.studio.adebesin.com',
+        stack: ['Nuxt', 'three.js', 'WebGPU'],
+        icon: 'i-lucide-flower-2',
+        color: '#F9A8D4',
+      },
+    ],
+  },
+  {
     title: 'Packages',
     projects: [
       {
@@ -86,8 +107,7 @@ export const projects: ProjectGroup[] = [
     projects: [
       {
         name: 'Ekphrasis',
-        role: 'Author',
-        description: 'My undergraduate capstone at FUTA, and a project that keeps pulling me back. Source is private for now.',
+        description: 'A Chrome extension that writes image descriptions for blind and low-vision users, grounded in the page around the image, with every claim checked against the image itself.',
         icon: 'i-lucide-feather',
         color: '#34D399',
       },
@@ -158,7 +178,6 @@ export const projects: ProjectGroup[] = [
     projects: [
       {
         name: 'adk-ts',
-        role: 'Product engineer',
         description: 'Open-source TypeScript framework for building AI agents with multi-provider LLM support.',
         href: 'https://github.com/IQAIcom/adk-ts',
         stack: ['TypeScript', 'Node.js', 'LLMs'],
@@ -171,7 +190,6 @@ export const projects: ProjectGroup[] = [
     projects: [
       {
         name: 'ep-ui',
-        role: 'Senior frontend engineer',
         description: 'Frontend for IQ.wiki, the crypto encyclopedia.',
         href: 'https://iq.wiki/',
         stack: ['Next.js', 'React', 'Tailwind', 'shadcn/Radix', 'GraphQL'],
