@@ -23,22 +23,9 @@ export const projects: ProjectGroup[] = [
     title: 'Current Focus',
     projects: [
       {
-        name: 'e18e Ecosystem Issues',
-        description: 'Improving the perf, size, and dep health of the JS ecosystem.',
-        href: 'https://github.com/e18e/ecosystem-issues',
-        logo: '/brands/e18e.svg',
-      },
-      {
-        name: 'npmx.dev',
-        description: 'A fast, modern browser for the npm registry.',
-        href: 'https://npmx.dev',
-        logo: '/brands/npmx.svg',
-        logoLight: '/brands/npmx-light.svg',
-      },
-      {
         name: 'Panda CSS',
         role: 'Maintainer',
-        description: 'Build-time CSS-in-JS with a Rust engine in v2. I own publishable design systems end to end, plus runtime memoization of css() and the WASI build.',
+        description: 'Build-time CSS-in-JS with type-safe styles, design tokens and recipes. v2 runs on a Rust engine.',
         href: 'https://github.com/chakra-ui/panda',
         stack: ['Rust', 'Oxc', 'TypeScript', 'WASI'],
         icon: 'i-logos-pandacss-icon',
@@ -46,7 +33,7 @@ export const projects: ProjectGroup[] = [
       {
         name: 'Ark UI',
         role: 'Core maintainer',
-        description: 'Headless, accessible components for React, Vue, Solid and Svelte. Leading the v6 work.',
+        description: 'Headless, accessible UI components for React, Vue, Solid and Svelte.',
         href: 'https://github.com/chakra-ui/ark',
         stack: ['TypeScript', 'React', 'Vue', 'Solid', 'Svelte', 'Zag'],
         logo: '/brands/ark.png',
@@ -54,7 +41,7 @@ export const projects: ProjectGroup[] = [
       {
         name: 'Chakra UI',
         role: 'Maintainer',
-        description: 'The React component library. Reviews, fixes, and the codemods that move codebases between major versions.',
+        description: 'Accessible React component library for building design systems and apps.',
         href: 'https://github.com/chakra-ui/chakra-ui',
         stack: ['React', 'TypeScript', 'Codemods'],
         icon: 'i-simple-icons-chakraui',
@@ -76,7 +63,7 @@ export const projects: ProjectGroup[] = [
       {
         name: 'BethelFlow',
         role: 'Product engineer',
-        description: 'Church management platform. I lead the web frontend and its Panda design system, built the AI analytics assistant, and own backend pieces like month-in-review reports, recurring-service scheduling, and attendance tracking (40k+ records).',
+        description: 'Church management platform for members, services, giving and attendance (40k+ attendance records), with an AI analytics assistant.',
         href: 'https://www.bethelflow.com/',
         stack: ['Next.js', 'Nuxt', 'Panda CSS', 'Ark UI', 'AI SDK', 'Postgres'],
         logo: '/brands/bethelflow.svg',
@@ -139,6 +126,19 @@ export const projects: ProjectGroup[] = [
     title: 'Open Source Contributions',
     projects: [
       {
+        name: 'e18e Ecosystem Issues',
+        description: 'Improving the perf, size, and dep health of the JS ecosystem.',
+        href: 'https://github.com/e18e/ecosystem-issues',
+        logo: '/brands/e18e.svg',
+      },
+      {
+        name: 'npmx.dev',
+        description: 'A fast, modern browser for the npm registry.',
+        href: 'https://npmx.dev',
+        logo: '/brands/npmx.svg',
+        logoLight: '/brands/npmx-light.svg',
+      },
+      {
         name: 'Syncia',
         description: 'A browser extension that brings ChatGPT-like AI assistants to any site.',
         href: 'https://github.com/Royal-lobster/Syncia',
@@ -160,7 +160,7 @@ export const projects: ProjectGroup[] = [
       {
         name: 'adk-ts',
         role: 'Product engineer',
-        description: 'Open-source TypeScript framework for building AI agents with multi-provider LLM support. I built its plugin system.',
+        description: 'Open-source TypeScript framework for building AI agents with multi-provider LLM support.',
         href: 'https://github.com/IQAIcom/adk-ts',
         stack: ['TypeScript', 'Node.js', 'LLMs'],
         logo: '/brands/iq.svg',
@@ -173,7 +173,7 @@ export const projects: ProjectGroup[] = [
       {
         name: 'ep-ui',
         role: 'Senior frontend engineer',
-        description: 'Frontend for IQ.wiki, the crypto encyclopedia. Worked on it from junior to senior, including the rewrite from Chakra UI to Tailwind and the shadcn/Radix migration.',
+        description: 'Frontend for IQ.wiki, the crypto encyclopedia.',
         href: 'https://iq.wiki/',
         stack: ['Next.js', 'React', 'Tailwind', 'shadcn/Radix', 'GraphQL'],
         logo: '/brands/iq.svg',
@@ -193,13 +193,13 @@ export const projects: ProjectGroup[] = [
       },
       {
         name: 'iq-login',
-        description: 'Auth for IQ.wiki apps. I wrote the getAuth server helper and the useEnsureCorrectChain hook.',
+        description: 'Authentication and wallet connection for IQ.wiki apps.',
         href: 'https://github.com/EveripediaNetwork/iq-login',
         logo: '/brands/iq.svg',
       },
       {
         name: 'iq-utils',
-        description: 'Shared utilities for IQ.wiki: wiki validity checks, wiki scoring, and the Zod wiki-schema migration.',
+        description: 'Shared utilities for IQ.wiki: wiki schemas, validity checks and scoring.',
         href: 'https://github.com/EveripediaNetwork/iq-utils',
         logo: '/brands/iq.svg',
       },
@@ -210,7 +210,7 @@ export const projects: ProjectGroup[] = [
     projects: [
       {
         name: '4Herfrika',
-        description: 'A movement for the education and guidance of women and girls. I built the landing page and keep supporting it.',
+        description: 'A movement for the education and guidance of women and girls.',
         href: 'https://github.com/4HerfrikaHQ/landing-page',
         logo: '/brands/4herfrika.png',
       },
