@@ -3,7 +3,7 @@ import { ark } from '@ark-ui/vue/factory'
 
 usePageSeo({
   title: 'Adebesin Tolulope (Lope) — Software Engineer',
-  description: 'Software engineer and open-source maintainer — product engineer at BethelFlow, maintainer at Chakra UI, Panda, Ark UI and Zag, working across the Chakra and IQ ecosystems.',
+  description: 'Software engineer and open-source maintainer — product engineer at BethelFlow, core maintainer at Chakra UI, Panda, Ark UI and Zag, working across the Chakra and IQ ecosystems.',
 })
 
 const siteUrl = useSiteConfig().url.replace(/\/$/, '')
@@ -54,7 +54,7 @@ const roleRows = [
     ],
   },
   {
-    label: 'Maintainer at',
+    label: 'Core maintainer at',
     chips: [
       { icon: 'i-simple-icons-chakraui', color: '#4FD1C5', label: 'Chakra UI', href: 'https://github.com/chakra-ui/chakra-ui' },
       { icon: 'i-logos-pandacss-icon', label: 'Panda', href: 'https://github.com/chakra-ui/panda' },
