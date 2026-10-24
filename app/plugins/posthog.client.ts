@@ -1,6 +1,6 @@
 import posthog from 'posthog-js'
 
-export default defineNuxtPlugin(() => {
+export default defineNuxtPlugin((nuxtApp) => {
   const { public: config } = useRuntimeConfig()
   const key = config.posthogPublicKey as string
   if (!key)
@@ -10,6 +10,7 @@ export default defineNuxtPlugin(() => {
     api_host: '/ingest',
     ui_host: 'https://us.posthog.com',
     defaults: '2026-01-30',
+    capture_pageview: false,
     capture_pageleave: true,
     loaded: (ph) => {
       if (import.meta.dev)
@@ -28,6 +29,10 @@ export default defineNuxtPlugin(() => {
 
   if (import.meta.dev)
     client.opt_out_capturing()
+
+  nuxtApp.hook('page:finish', () => {
+    client.capture('$pageview')
+  })
 
   return {
     provide: { posthog: () => client },
