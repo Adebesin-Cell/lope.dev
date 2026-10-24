@@ -125,7 +125,7 @@ export const projects: ProjectGroup[] = [
       },
       {
         name: 'Rumate (TRUmate)',
-        description: 'Roommate-finding app for university students.',
+        description: 'Student housing near Truman State University. Browse verified rentals, subleases and roommate-friendly places around campus.',
         href: 'https://www.rumate.app/',
         icon: 'i-lucide-users',
         color: '#A78BFA',
