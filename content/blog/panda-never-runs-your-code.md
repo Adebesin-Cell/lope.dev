@@ -1,8 +1,8 @@
 ---
 title: Panda never runs your code
-description: What Panda can work out from your source at build time, what it can't, and how to write styles it can see.
-date: 2026-10-21
-draft: true
+description: "Panda CSS reads your source at build time and never runs it. What its static evaluator can follow, where it stops, and how to write styles it can see."
+seoTitle: "Panda never runs your code: how Panda CSS evaluates styles statically"
+date: 2026-10-24
 ---
 
 ### What Panda figures out before your app runs.
