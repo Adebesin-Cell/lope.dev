@@ -2,8 +2,8 @@
 import { ark } from '@ark-ui/vue/factory'
 
 usePageSeo({
-  title: 'Adebesin Tolulope (Lope)',
-  description: 'Software engineer and open-source maintainer — founding engineer at BethelFlow, maintainer at Chakra UI, Panda and Ark UI, working across the Chakra and IQ ecosystems.',
+  title: 'Adebesin Tolulope (Lope) — Software Engineer',
+  description: 'Software engineer and open-source maintainer — product engineer at BethelFlow, core maintainer at Chakra UI, Panda, Ark UI and Zag, working across the Chakra and IQ ecosystems.',
 })
 
 const siteUrl = useSiteConfig().url.replace(/\/$/, '')
@@ -18,12 +18,18 @@ useHead({
         'name': 'Adebesin Tolulope',
         'alternateName': 'Lope',
         'url': siteUrl,
+        'image': `${siteUrl}/lope-avatar.jpeg`,
         'jobTitle': 'Software Engineer',
+        'worksFor': { '@type': 'Organization', 'name': 'IQ.AI', 'url': 'https://iqai.com/' },
+        'alumniOf': { '@type': 'CollegeOrUniversity', 'name': 'Federal University of Technology, Akure' },
+        'knowsAbout': ['Panda CSS', 'Chakra UI', 'Ark UI', 'Zag', 'Vue', 'Nuxt', 'React', 'TypeScript', 'Design systems', 'AI agents'],
         'sameAs': [
           'https://github.com/Adebesin-Cell',
+          'https://www.linkedin.com/in/adebesin-tolulope/',
           'https://x.com/I_am_Lope',
           'https://bsky.app/profile/lopeadebesin.bsky.social',
           'https://iamlope.substack.com',
+          'https://iamlope.medium.com',
         ],
       }),
     },
@@ -48,24 +54,24 @@ const roleRows = [
     ],
   },
   {
-    label: 'Maintainer at',
+    label: 'Core maintainer at',
     chips: [
       { icon: 'i-simple-icons-chakraui', color: '#4FD1C5', label: 'Chakra UI', href: 'https://github.com/chakra-ui/chakra-ui' },
       { icon: 'i-logos-pandacss-icon', label: 'Panda', href: 'https://github.com/chakra-ui/panda' },
       { logo: '/brands/ark.png', label: 'Ark UI', href: 'https://github.com/chakra-ui/ark' },
+      { logo: '/brands/zag.png', label: 'Zag', href: 'https://github.com/chakra-ui/zag' },
     ],
   },
   {
     label: 'Contributing to',
     chips: [
-      { logo: '/brands/zag.png', label: 'Zag', href: 'https://github.com/chakra-ui/zag' },
       { logo: '/brands/npmx.svg', logoLight: '/brands/npmx-light.svg', label: 'npmx.dev', href: 'https://npmx.dev' },
     ],
   },
   {
     label: 'Author of',
     chips: [
-      { icon: 'i-lucide-feather', color: '#34D399', label: 'Ekphrasis', href: 'https://github.com/Adebesin-Cell/ekphrasis' },
+      { icon: 'i-lucide-feather', color: '#34D399', label: 'Ekphrasis', to: '/projects#own-projects' },
     ],
   },
   {
@@ -82,7 +88,7 @@ const roleRows = [
     </ark.h1>
 
     <ark.p class="text-base text-ink-muted leading-relaxed">
-      Hey! I'm Lope, a software engineer and open-source contributor. Founding engineer at
+      Hey! I'm Lope, a software engineer and open-source contributor. Product engineer at
       <Chip class="align-middle" href="https://www.bethelflow.com/" label="BethelFlow" logo="/brands/bethelflow.svg" />,
       working across the Chakra and IQ ecosystems.
     </ark.p>

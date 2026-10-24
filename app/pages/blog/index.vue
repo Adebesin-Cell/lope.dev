@@ -6,7 +6,7 @@ const NuxtLink = resolveComponent('NuxtLink')
 
 usePageSeo({
   title: 'Blog — Adebesin Tolulope',
-  description: 'Notes on open source, engineering with LLMs, and the projects Lope is building.',
+  description: 'Adebesin Tolulope on Panda CSS internals, design systems, open source in the Chakra ecosystem, engineering with LLMs, and building BethelFlow.',
 })
 
 interface PostItem {

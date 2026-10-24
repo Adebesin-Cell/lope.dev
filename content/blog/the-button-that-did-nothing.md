@@ -1,6 +1,7 @@
 ---
 title: The button that did nothing
-description: Most of my users were on a phone, tapping a download button that silently did nothing. My desktop never once felt it. What a session recording taught me about building where your users actually live.
+description: "Most of my users were on a phone, tapping a download button that did nothing. What a session recording taught me about building where users live."
+seoTitle: "The button that did nothing: a silent mobile download bug"
 date: 2026-08-07
 readingTime: 7min
 ---

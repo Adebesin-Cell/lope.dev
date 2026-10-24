@@ -1,7 +1,9 @@
 export interface Project {
   name: string
   description: string
-  href: string
+  role?: string
+  stack?: string[]
+  href?: string
   icon?: string
   // Brand tint for a monochrome `icon` (full-colour logos ignore it).
   color?: string
@@ -21,24 +23,37 @@ export const projects: ProjectGroup[] = [
     title: 'Current Focus',
     projects: [
       {
-        name: 'e18e Ecosystem Issues',
-        description: 'Improving the perf, size, and dep health of the JS ecosystem.',
-        href: 'https://github.com/e18e/ecosystem-issues',
-        logo: '/brands/e18e.svg',
+        name: 'Panda CSS',
+        role: 'Core maintainer',
+        description: 'Build-time CSS-in-JS with type-safe styles, design tokens and recipes. v2 runs on a Rust engine.',
+        href: 'https://github.com/chakra-ui/panda',
+        stack: ['Rust', 'Oxc', 'TypeScript', 'WASI'],
+        icon: 'i-logos-pandacss-icon',
       },
       {
-        name: 'npmx.dev',
-        description: 'A fast, modern browser for the npm registry.',
-        href: 'https://npmx.dev',
-        logo: '/brands/npmx.svg',
-        logoLight: '/brands/npmx-light.svg',
+        name: 'Ark UI',
+        role: 'Core maintainer',
+        description: 'Headless, accessible UI components for React, Vue, Solid and Svelte.',
+        href: 'https://github.com/chakra-ui/ark',
+        stack: ['TypeScript', 'React', 'Vue', 'Solid', 'Svelte', 'Zag'],
+        logo: '/brands/ark.png',
       },
       {
-        name: 'Chakra Ecosystem',
-        description: 'Maintainer at Chakra UI, Panda & Ark UI · contributor to Zag.',
-        href: 'https://github.com/chakra-ui',
+        name: 'Chakra UI',
+        role: 'Core maintainer',
+        description: 'Accessible React component library for building design systems and apps.',
+        href: 'https://github.com/chakra-ui/chakra-ui',
+        stack: ['React', 'TypeScript', 'Codemods'],
         icon: 'i-simple-icons-chakraui',
         color: '#4FD1C5',
+      },
+      {
+        name: 'Zag',
+        role: 'Core maintainer',
+        description: 'Framework-agnostic state machines behind Ark UI.',
+        href: 'https://github.com/chakra-ui/zag',
+        stack: ['TypeScript', 'State machines'],
+        logo: '/brands/zag.png',
       },
     ],
   },
@@ -47,9 +62,29 @@ export const projects: ProjectGroup[] = [
     projects: [
       {
         name: 'BethelFlow',
-        description: 'Founding engineer — backend, frontend, mobile, and design.',
+        description: 'The church operating system. Auto check-in and attendance (40k+ records tracked), member and family records, children\'s check-in, service planning and ticketed events, first-timer follow-up, bulk SMS and email, giving, growth analytics, and multi-branch church networks, all in one place.',
         href: 'https://www.bethelflow.com/',
+        stack: ['Next.js', 'Tailwind', 'shadcn/ui', 'Radix', 'Nuxt', 'AI SDK', 'Postgres'],
         logo: '/brands/bethelflow.svg',
+      },
+    ],
+  },
+  {
+    title: 'Montcha',
+    projects: [
+      {
+        name: 'Montcha',
+        description: 'A design studio of small apps, games and gifts, all built on one Panda CSS and Ark UI design system.',
+        href: 'https://studio.adebesin.com',
+        stack: ['Nuxt', 'Panda CSS', 'Ark UI', 'Bun'],
+        logo: '/brands/montcha.png',
+      },
+      {
+        name: 'Flowers',
+        description: 'Give them their flowers while they are here. Pick a bouquet from a pink garden, tie it with a note, and send the link.',
+        href: 'https://flowers.studio.adebesin.com',
+        stack: ['Nuxt', 'three.js', 'WebGPU'],
+        logo: '/brands/flowers.png',
       },
     ],
   },
@@ -70,8 +105,7 @@ export const projects: ProjectGroup[] = [
     projects: [
       {
         name: 'Ekphrasis',
-        description: 'A project that keeps pulling me back. The motivation behind it is on the blog.',
-        href: 'https://github.com/Adebesin-Cell/ekphrasis',
+        description: 'A Chrome extension that writes image descriptions for blind and low-vision users, grounded in the page around the image, with every claim checked against the image itself.',
         icon: 'i-lucide-feather',
         color: '#34D399',
       },
@@ -91,7 +125,7 @@ export const projects: ProjectGroup[] = [
       },
       {
         name: 'Rumate (TRUmate)',
-        description: 'Roommate-finding app for university students.',
+        description: 'Student housing near Truman State University. Browse verified rentals, subleases and roommate-friendly places around campus.',
         href: 'https://www.rumate.app/',
         icon: 'i-lucide-users',
         color: '#A78BFA',
@@ -108,6 +142,19 @@ export const projects: ProjectGroup[] = [
   {
     title: 'Open Source Contributions',
     projects: [
+      {
+        name: 'e18e Ecosystem Issues',
+        description: 'Improving the perf, size, and dep health of the JS ecosystem.',
+        href: 'https://github.com/e18e/ecosystem-issues',
+        logo: '/brands/e18e.svg',
+      },
+      {
+        name: 'npmx.dev',
+        description: 'A fast, modern browser for the npm registry.',
+        href: 'https://npmx.dev',
+        logo: '/brands/npmx.svg',
+        logoLight: '/brands/npmx-light.svg',
+      },
       {
         name: 'Syncia',
         description: 'A browser extension that brings ChatGPT-like AI assistants to any site.',
@@ -129,8 +176,9 @@ export const projects: ProjectGroup[] = [
     projects: [
       {
         name: 'adk-ts',
-        description: 'Robust framework for building AI agents with multi-provider LLM support.',
+        description: 'Open-source TypeScript framework for building AI agents with multi-provider LLM support.',
         href: 'https://github.com/IQAIcom/adk-ts',
+        stack: ['TypeScript', 'Node.js', 'LLMs'],
         logo: '/brands/iq.svg',
       },
     ],
@@ -140,14 +188,16 @@ export const projects: ProjectGroup[] = [
     projects: [
       {
         name: 'ep-ui',
-        description: 'IQ.wiki frontend and web app.',
+        description: 'Frontend for IQ.wiki, the crypto encyclopedia.',
         href: 'https://iq.wiki/',
+        stack: ['Next.js', 'React', 'Tailwind', 'shadcn/Radix', 'GraphQL'],
         logo: '/brands/iq.svg',
       },
       {
         name: 'iq-dashboard',
-        description: 'IQ.wiki dashboard for staking tokens, facilitate cross-blockchain bridging, vote on governance proposals.',
+        description: 'Dashboard for staking IQ tokens, bridging across chains, and voting on governance proposals.',
         href: 'https://iq.iqai.com/dashboard',
+        stack: ['Next.js', 'wagmi', 'viem', 'Tailwind'],
         logo: '/brands/iq.svg',
       },
       {
@@ -158,16 +208,16 @@ export const projects: ProjectGroup[] = [
       },
       {
         name: 'iq-login',
-        description: 'IQ.wiki authentication system.',
+        description: 'Authentication and wallet connection for IQ.wiki apps.',
         href: 'https://github.com/EveripediaNetwork/iq-login',
         logo: '/brands/iq.svg',
       },
       {
-        name: "iq-utils",
-        description: 'Utility functions for IQ.wiki and related projects.',
+        name: 'iq-utils',
+        description: 'Shared utilities for IQ.wiki: wiki schemas, validity checks and scoring.',
         href: 'https://github.com/EveripediaNetwork/iq-utils',
         logo: '/brands/iq.svg',
-      }
+      },
     ],
   },
   {
@@ -175,7 +225,7 @@ export const projects: ProjectGroup[] = [
     projects: [
       {
         name: '4Herfrika',
-        description: 'Mission-driven volunteer work — landing page and ongoing support.',
+        description: 'A movement for the education and guidance of women and girls.',
         href: 'https://github.com/4HerfrikaHQ/landing-page',
         logo: '/brands/4herfrika.png',
       },

@@ -1,6 +1,7 @@
 ---
 title: The quietest kind of bug
-description: Optional chaining hides the failure you most need to see. A user found a bug in BethelFlow before I did because of it. My honest take, and the rule I keep.
+description: "Optional chaining hides the failure you most need to see. A BethelFlow user found the bug before I did. My honest take, and the rule I keep."
+seoTitle: "The quietest bug: when optional chaining hides failures"
 date: 2026-07-16
 readingTime: 6min
 ---
