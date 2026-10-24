@@ -132,4 +132,4 @@ Part 1 covered source transforms. With `transform: true`, the bundler replaces c
 
 What's left at runtime is what couldn't be resolved ahead of time, like styles built from props or state. Those are the calls the memo is for.
 
-*Next in the series: how Panda works out your style values without ever running your code. If you're new here, start with [Build once, at build time](/blog/build-once-at-build-time) and [Every style is an atom](/blog/every-style-is-an-atom).*
+*Next in the series: [Panda never runs your code](/blog/panda-never-runs-your-code), how Panda works out your style values without ever running your code. If you're new here, start with [Build once, at build time](/blog/build-once-at-build-time) and [Every style is an atom](/blog/every-style-is-an-atom).*
