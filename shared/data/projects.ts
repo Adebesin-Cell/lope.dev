@@ -64,7 +64,7 @@ export const projects: ProjectGroup[] = [
         name: 'BethelFlow',
         description: 'The church operating system. Auto check-in and attendance (40k+ records tracked), member and family records, children\'s check-in, service planning and ticketed events, first-timer follow-up, bulk SMS and email, giving, growth analytics, and multi-branch church networks, all in one place.',
         href: 'https://www.bethelflow.com/',
-        stack: ['Next.js', 'Nuxt', 'Panda CSS', 'Ark UI', 'AI SDK', 'Postgres'],
+        stack: ['Next.js', 'Tailwind', 'shadcn/ui', 'Radix', 'Nuxt', 'AI SDK', 'Postgres'],
         logo: '/brands/bethelflow.svg',
       },
     ],
