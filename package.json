@@ -36,7 +36,8 @@
     "nuxt-og-image": "^7.0.7",
     "posthog-js": "^1.386.6",
     "tegaki": "^0.18.0",
-    "unocss": "^66.6.8"
+    "unocss": "^66.6.8",
+    "vue": "^3.5.44"
   },
   "devDependencies": {
     "@oxlint/plugins": "^1.89.0",
