@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ark } from '@ark-ui/vue/factory'
+import { css } from 'styled-system/css'
 
 const active = ref<HTMLImageElement>()
 const src = ref('')
@@ -67,10 +68,13 @@ onKeyStroke('Escape', (e) => {
   }
 })
 
-const enterActive = reduceMotion ? '' : 'transition-all duration-200 ease-out'
-const leaveActive = reduceMotion ? '' : 'transition-all duration-150 ease-in'
-const fadeFrom = reduceMotion ? '' : 'opacity-0 scale-95'
-const fadeTo = reduceMotion ? '' : 'opacity-100 scale-100'
+const enterActive = reduceMotion ? '' : css({ transitionProperty: 'all', transitionDuration: '200ms', transitionTimingFunction: 'ease-out' })
+const leaveActive = reduceMotion ? '' : css({ transitionProperty: 'all', transitionDuration: '150ms', transitionTimingFunction: 'ease-in' })
+const fadeFrom = reduceMotion ? '' : css({ opacity: '0', transform: 'scale(0.95)' })
+const fadeTo = reduceMotion ? '' : css({ opacity: '1', transform: 'scale(1)' })
+
+const overlay = css({ position: 'fixed', inset: '0', zIndex: '200', display: 'flex', alignItems: 'center', justifyContent: 'center', bg: 'black/80', p: '6', backdropFilter: 'blur(12px)' })
+const image = css({ maxH: '90vh', maxW: '90vw', objectFit: 'contain' })
 </script>
 
 <template>
@@ -88,14 +92,14 @@ const fadeTo = reduceMotion ? '' : 'opacity-100 scale-100'
         role="dialog"
         aria-modal="true"
         aria-label="Image preview"
-        class="fixed inset-0 z-[200] flex items-center justify-center bg-black/80 p-6 backdrop-blur-md"
+        :class="overlay"
         style="cursor: zoom-out"
         @click="close"
       >
         <img
           :src="src"
           :alt="alt"
-          class="max-h-[90vh] max-w-[90vw] object-contain"
+          :class="image"
           style="cursor: zoom-out"
         >
       </ark.div>

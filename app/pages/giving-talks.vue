@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import { ark } from '@ark-ui/vue/factory'
+import { css } from 'styled-system/css'
+import { link } from 'styled-system/recipes'
+
+const prose = css({ color: 'ink.muted', lineHeight: '[2rem]', '& > * + *': { mt: '6' } })
+const underlineLink = link()
 
 usePageSeo({
   title: 'Giving Talks — Adebesin Tolulope',
@@ -17,26 +22,32 @@ const info = [
   { label: 'X', value: '@I_am_Lope', href: 'https://x.com/I_am_Lope' },
   { label: 'LinkedIn', value: 'adebesin-tolulope', href: 'https://www.linkedin.com/in/adebesin-tolulope/' },
 ]
+
+const title = css({ fontSize: '4xl', fontWeight: '700', letterSpacing: 'tight', color: 'ink', mb: '8' })
+const subhead = css({ fontSize: 'xl', fontWeight: '700', color: 'ink', pt: '4' })
+const grid = css({ display: 'grid', gridTemplateColumns: 'max-content 1fr', columnGap: '4', rowGap: '2', lineHeight: '1.75rem' })
+const term = css({ textAlign: 'end', fontWeight: '600', opacity: '0.6' })
+const value = css({ color: 'ink' })
 </script>
 
 <template>
-  <ark.article class="slide-enter-content space-y-6 text-ink-muted leading-8">
-    <ark.h1 class="text-4xl font-700 tracking-tight text-ink mb-8">
+  <ark.article :class="['slide-enter-content', prose]">
+    <ark.h1 :class="title">
       Giving Talks
     </ark.h1>
 
     <ark.p>
-      Hey! I'm <NuxtLink to="/" class="text-ink underline decoration-ink/30 underline-offset-4">Lope</NuxtLink>,
+      Hey! I'm <NuxtLink to="/" :class="underlineLink">Lope</NuxtLink>,
       a design engineer and open sourcer. I talk about Panda CSS, design systems, headless components and open source.
-      Here are the <NuxtLink to="/talks" class="text-ink underline decoration-ink/30 underline-offset-4">talks I've given</NuxtLink>.
+      Here are the <NuxtLink to="/talks" :class="underlineLink">talks I've given</NuxtLink>.
     </ark.p>
 
     <ark.p>
       Organising a conference or meetup? I'd love to give a talk. Reach me on
-      <ark.a href="https://www.linkedin.com/in/adebesin-tolulope/" target="_blank" rel="noopener" class="text-ink underline decoration-ink/30 underline-offset-4">LinkedIn</ark.a>.
+      <ark.a href="https://www.linkedin.com/in/adebesin-tolulope/" target="_blank" rel="noopener" :class="underlineLink">LinkedIn</ark.a>.
     </ark.p>
 
-    <ark.h2 class="text-xl font-700 text-ink pt-4">
+    <ark.h2 :class="subhead">
       Information
     </ark.h2>
 
@@ -44,14 +55,14 @@ const info = [
       You can use the following to introduce me:
     </ark.p>
 
-    <ark.dl class="grid grid-cols-[max-content_1fr] gap-x-4 gap-y-2 leading-7">
+    <ark.dl :class="grid">
       <template v-for="row in info" :key="row.label">
-        <ark.dt class="text-end font-600 op-60">
+        <ark.dt :class="term">
           {{ row.label }}
         </ark.dt>
-        <ark.dd class="text-ink">
+        <ark.dd :class="value">
           <TextCopy :text="row.copy ?? row.value">
-            <ark.a v-if="row.href" :href="row.href" target="_blank" rel="noopener" class="underline decoration-ink/30 underline-offset-4 hover:decoration-ink transition-colors">
+            <ark.a v-if="row.href" :href="row.href" target="_blank" rel="noopener" :class="underlineLink">
               {{ row.value }}
             </ark.a>
             <template v-else>

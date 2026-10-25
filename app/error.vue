@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { NuxtError } from '#app'
 import { ark } from '@ark-ui/vue/factory'
+import { css } from 'styled-system/css'
+import { button } from 'styled-system/recipes'
 
 const props = defineProps<{ error: NuxtError }>()
 
@@ -42,32 +44,52 @@ useSeoMeta({
 function go(path: string) {
   clearError({ redirect: path })
 }
+
+const relative = css({ position: 'relative' })
+const codeMark = css({
+  position: 'absolute',
+  top: { base: '-10', md: '-16' },
+  insetStart: { base: '-2', md: '-6' },
+  fontSize: { base: '[7rem]', sm: '[10rem]', md: '[13rem]' },
+  fontWeight: 'bold',
+  opacity: '0.05',
+  userSelect: 'none',
+  pointerEvents: 'none',
+  letterSpacing: 'tight',
+  lineHeight: 'none',
+})
+const body = css({ position: 'relative', pt: { base: '20', md: '28' }, '& > * + *': { mt: '5' } })
+const title = css({ fontSize: { base: '3xl', md: '4xl' }, fontWeight: 'bold', letterSpacing: 'tight' })
+const blurbStyle = css({ fontSize: 'md', color: 'ink.muted', lineHeight: 'relaxed', maxW: 'prose' })
+const actions = css({ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '3', pt: '2' })
+const solid = button({ variant: 'solid' })
+const ghost = button()
 </script>
 
 <template>
   <NuxtLayout>
     <ark.article class="slide-enter-content">
-      <ark.div class="relative">
+      <ark.div :class="relative">
         <ark.div
-          class="absolute -top-10 md:-top-16 -start-2 md:-start-6 text-[7rem] sm:text-[10rem] md:text-[13rem] font-700 op-5 select-none pointer-events-none tracking-tight leading-none"
+          :class="codeMark"
           aria-hidden="true"
         >
           {{ code }}
         </ark.div>
 
-        <ark.div class="relative pt-20 md:pt-28 space-y-5">
-          <ark.h1 class="text-3xl md:text-4xl font-700 tracking-tight">
+        <ark.div :class="body">
+          <ark.h1 :class="title">
             {{ heading }}
           </ark.h1>
 
-          <ark.p class="text-base text-ink-muted leading-relaxed max-w-prose">
+          <ark.p :class="blurbStyle">
             {{ blurb }}
           </ark.p>
 
-          <ark.div class="flex flex-wrap items-center gap-3 pt-2">
+          <ark.div :class="actions">
             <ark.button
               type="button"
-              class="btn btn-solid inline-flex items-center gap-1.5 rounded-md px-4 py-2 text-sm font-500 transition"
+              :class="solid"
               @click="go('/')"
             >
               <ark.span class="i-lucide-arrow-left" aria-hidden="true" />
@@ -77,7 +99,7 @@ function go(path: string) {
             <ark.button
               v-if="isBlog"
               type="button"
-              class="btn btn-ghost inline-flex items-center gap-1.5 rounded-md px-4 py-2 text-sm font-500 transition"
+              :class="ghost"
               @click="go('/blog')"
             >
               <ark.span class="i-lucide-pen-line" aria-hidden="true" />
@@ -86,7 +108,7 @@ function go(path: string) {
             <template v-else>
               <ark.button
                 type="button"
-                class="btn btn-ghost inline-flex items-center gap-1.5 rounded-md px-4 py-2 text-sm font-500 transition"
+                :class="ghost"
                 @click="go('/projects')"
               >
                 <ark.span class="i-lucide-box" aria-hidden="true" />
@@ -94,7 +116,7 @@ function go(path: string) {
               </ark.button>
               <ark.button
                 type="button"
-                class="btn btn-ghost inline-flex items-center gap-1.5 rounded-md px-4 py-2 text-sm font-500 transition"
+                :class="ghost"
                 @click="go('/blog')"
               >
                 <ark.span class="i-lucide-pen-line" aria-hidden="true" />

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { CardFormat } from '~/composables/useHighlightCard'
 import { ark } from '@ark-ui/vue/factory'
+import { css } from 'styled-system/css'
 import caveat from 'tegaki/fonts/caveat'
 import { DIMENSIONS, PLUM_SEED, plumSegments } from '~/composables/useHighlightCard'
 
@@ -26,12 +27,15 @@ const quoteStyle = computed(() => {
   const cqw = Math.min(5.2, Math.max(2.4, 5.4 - props.quote.length * 0.006))
   return { fontSize: `${cqw.toFixed(2)}cqw` }
 })
+
+const squareWidth = css({ w: '[clamp(320px, 72vw, 560px)]' })
+const wideWidth = css({ w: '[clamp(360px, 86vw, 860px)]' })
 </script>
 
 <template>
   <ark.figure
     class="share-card"
-    :class="format === 'ig' ? 'w-[clamp(320px,72vw,560px)]' : 'w-[clamp(360px,86vw,860px)]'"
+    :class="format === 'ig' ? squareWidth : wideWidth"
   >
     <ark.div class="dots" aria-hidden="true" />
     <ark.span v-if="year" class="watermark" aria-hidden="true">{{ year }}</ark.span>

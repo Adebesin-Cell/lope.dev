@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { CardFormat } from '~/composables/useHighlightCard'
 import { ark } from '@ark-ui/vue/factory'
+import { css } from 'styled-system/css'
+import { button } from 'styled-system/recipes'
 
 const props = defineProps<{ title?: string, url?: string, date?: string }>()
 
@@ -144,16 +146,53 @@ if (import.meta.client) {
     document.body.style.overflow = ''
   })
 }
+
+const fadeActiveIn = css({ transitionProperty: 'opacity', transitionDuration: '200ms', transitionTimingFunction: 'ease-out' })
+const fadeActiveOut = css({ transitionProperty: 'opacity', transitionDuration: '150ms', transitionTimingFunction: 'ease-in' })
+const hidden = css({ opacity: '0' })
+const overlay = css({
+  position: 'fixed',
+  inset: '0',
+  zIndex: '200',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '5',
+  bg: 'black/55',
+  p: '6',
+  backdropFilter: 'blur(12px)',
+  outline: 'none',
+})
+const actions = css({ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '2.5' })
+const solid = button({ variant: 'solid' })
+const ghost = button()
+const closeButton = css({
+  position: 'absolute',
+  top: '5',
+  insetEnd: '5',
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  w: '9',
+  h: '9',
+  rounded: 'lg',
+  color: 'ink.muted',
+  transition: 'colors',
+  _hover: { color: 'ink', bg: 'ink/10' },
+})
+const closeIcon = css({ fontSize: 'lg' })
+const offscreen = css({ display: 'none' })
 </script>
 
 <template>
   <ClientOnly>
     <Teleport to="body">
       <Transition
-        enter-active-class="transition-opacity duration-200 ease-out"
-        enter-from-class="opacity-0"
-        leave-active-class="transition-opacity duration-150 ease-in"
-        leave-to-class="opacity-0"
+        :enter-active-class="fadeActiveIn"
+        :enter-from-class="hidden"
+        :leave-active-class="fadeActiveOut"
+        :leave-to-class="hidden"
       >
         <ark.div
           v-if="open"
@@ -162,18 +201,17 @@ if (import.meta.client) {
           aria-modal="true"
           aria-label="Share this highlight"
           tabindex="-1"
-          class="fixed inset-0 z-[200] flex flex-col items-center justify-center gap-5 bg-black/55 p-6 backdrop-blur-md outline-none"
+          :class="overlay"
           @click.self="close"
           @keydown="trapTab"
         >
           <ShareCard :quote="quote" :title="title" :url="url" :year="year" :format="format" />
 
-          <ark.div class="flex flex-wrap items-center justify-center gap-2.5">
+          <ark.div :class="actions">
             <ark.button
               type="button"
               aria-label="Save a square card for Instagram"
-              class="btn"
-              :class="format === 'ig' ? 'btn-solid' : 'btn-ghost'"
+              :class="format === 'ig' ? solid : ghost"
               @click="download('ig')"
             >
               <ark.span class="i-lucide-arrow-down" aria-hidden="true" /> Save for Instagram
@@ -181,8 +219,7 @@ if (import.meta.client) {
             <ark.button
               type="button"
               aria-label="Save a wide card for X"
-              class="btn"
-              :class="format === 'x' ? 'btn-solid' : 'btn-ghost'"
+              :class="format === 'x' ? solid : ghost"
               @click="download('x')"
             >
               <ark.span class="i-lucide-arrow-down" aria-hidden="true" /> Save for X
@@ -190,7 +227,7 @@ if (import.meta.client) {
             <ark.button
               type="button"
               aria-label="Copy the card to your clipboard"
-              class="btn btn-ghost"
+              :class="ghost"
               @click="copyCard"
             >
               <ark.span :class="copied ? 'i-lucide-check' : 'i-lucide-copy'" aria-hidden="true" />
@@ -202,13 +239,13 @@ if (import.meta.client) {
             type="button"
             aria-label="Close"
             title="Close (Esc)"
-            class="absolute top-5 end-5 inline-flex items-center justify-center w-9 h-9 rounded-lg text-ink-muted hover:text-ink hover:bg-ink/10 transition-colors"
+            :class="closeButton"
             @click="close"
           >
-            <ark.span class="i-lucide-x text-lg" aria-hidden="true" />
+            <ark.span :class="['i-lucide-x', closeIcon]" aria-hidden="true" />
           </ark.button>
 
-          <canvas ref="canvasRef" class="hidden" aria-hidden="true" />
+          <canvas ref="canvasRef" :class="offscreen" aria-hidden="true" />
         </ark.div>
       </Transition>
     </Teleport>

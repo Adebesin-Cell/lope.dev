@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ark } from '@ark-ui/vue/factory'
+import { css } from 'styled-system/css'
 
 interface TocItem {
   id: string
@@ -47,29 +48,35 @@ function collect() {
 onMounted(() => nextTick(collect))
 watch(() => route.fullPath, () => nextTick(collect))
 onBeforeUnmount(() => observer?.disconnect())
+
+const nav = css({ position: 'fixed', insetStart: '5', top: '24', zIndex: '40', display: { base: 'none', lg: 'block' } })
+const trigger = css({ display: 'grid', placeItems: 'center', w: '9', h: '9', color: 'ink.muted' })
+const triggerIcon = css({ fontSize: 'lg' })
+const panel = css({ position: 'absolute', insetStart: '0', top: 'full', minW: '48', maxW: '64', maxH: '70vh', overflow: 'auto', pt: '3', pe: '4' })
+const link = css({ display: 'block', truncate: true, py: '1', fontSize: 'sm', color: 'ink.faint', transition: 'colors', _hover: { color: 'ink' } })
+const current = css({ color: 'ink', fontWeight: '500' })
 </script>
 
 <template>
   <ClientOnly>
     <ark.nav
       v-if="items.length"
-      class="toc-nav fixed start-5 top-24 z-40 hidden lg:block"
+      :class="['toc-nav', nav]"
       aria-label="On this page"
     >
       <ark.button
         type="button"
-        class="toc-trigger grid place-items-center w-9 h-9 text-ink-muted"
+        :class="['toc-trigger', trigger]"
         aria-label="On this page"
       >
-        <ark.span class="i-lucide-menu text-lg" />
+        <ark.span :class="['i-lucide-menu', triggerIcon]" />
       </ark.button>
 
-      <ark.ul class="toc-panel absolute start-0 top-full min-w-48 max-w-64 max-h-[70vh] overflow-auto pt-3 pe-4">
+      <ark.ul :class="['toc-panel', panel]">
         <ark.li v-for="i in items" :key="i.id">
           <ark.a
             :href="`#${i.id}`"
-            class="block truncate py-1 text-sm text-ink-faint hover:text-ink transition-colors"
-            :class="{ 'text-ink font-500': activeId === i.id }"
+            :class="[link, activeId === i.id && current]"
             :aria-current="activeId === i.id ? 'true' : undefined"
           >
             {{ i.text }}

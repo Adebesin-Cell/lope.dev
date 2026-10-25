@@ -1,3 +1,5 @@
+import { fileURLToPath } from 'node:url'
+import { pandacss } from '@pandacss/vite'
 import { redirectRouteRules } from './shared/redirects'
 
 export default defineNuxtConfig({
@@ -30,7 +32,8 @@ export default defineNuxtConfig({
     '~/components',
   ],
   compatibilityDate: '2024-04-03',
-  css: ['@unocss/reset/tailwind.css', '~/assets/css/main.css'],
+  css: ['~/assets/css/panda.css', '~/assets/css/main.css'],
+  alias: { 'styled-system': fileURLToPath(new URL('./styled-system', import.meta.url)) },
   colorMode: {
     classSuffix: '',
     preference: 'dark',
@@ -52,6 +55,9 @@ export default defineNuxtConfig({
         { name: 'twitter:site', content: '@I_am_Lope' },
       ],
       link: [
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&family=Caveat:wght@500;600;700&display=swap' },
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
@@ -73,6 +79,7 @@ export default defineNuxtConfig({
     },
   },
   vite: {
+    plugins: [pandacss({ cwd: fileURLToPath(new URL('.', import.meta.url)), transform: true })],
     optimizeDeps: {
       include: ['@ark-ui/vue/factory', '@vue/devtools-core', '@vue/devtools-kit', 'posthog-js'],
     },

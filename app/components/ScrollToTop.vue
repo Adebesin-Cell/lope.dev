@@ -1,7 +1,27 @@
 <script setup lang="ts">
 import { ark } from '@ark-ui/vue/factory'
+import { css } from 'styled-system/css'
 
 const { y } = useWindowScroll()
+
+const button = css({
+  position: 'fixed',
+  bottom: '6',
+  insetEnd: '6',
+  zIndex: '50',
+  w: '10',
+  h: '10',
+  rounded: 'full',
+  display: 'grid',
+  placeItems: 'center',
+  borderWidth: '1px',
+  borderColor: 'ink/10',
+  bg: 'bg.soft',
+  boxShadow: 'lg',
+  color: 'ink.muted',
+  transition: 'colors',
+  _hover: { color: 'ink', bg: 'ink/10' },
+})
 
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -14,7 +34,7 @@ function scrollToTop() {
       v-if="y > 400"
       type="button"
       aria-label="Scroll to top"
-      class="fixed bottom-6 end-6 z-50 w-10 h-10 rounded-full grid place-items-center border border-ink/10 bg-bg-soft/100 shadow-lg shadow-black/10 text-ink-muted hover:text-ink hover:bg-ink/10 transition-colors"
+      :class="button"
       @click="scrollToTop"
     >
       <span class="i-lucide-arrow-up" aria-hidden="true" />

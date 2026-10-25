@@ -105,16 +105,16 @@ onBeforeUnmount(() => lockPage(false))
   gap: 1rem;
   width: 100%;
   padding: 0.95rem 1.1rem;
-  border: 1px solid rgb(var(--ink) / 0.14);
+  border: 1px solid color-mix(in srgb, var(--colors-ink) 14%, transparent);
   border-radius: 10px;
-  background: rgb(var(--ink) / 0.03);
+  background: color-mix(in srgb, var(--colors-ink) 3%, transparent);
   text-align: start;
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s;
 }
 .guide-trigger:hover {
-  background: rgb(var(--ink) / 0.07);
-  border-color: rgb(var(--ink) / 0.3);
+  background: color-mix(in srgb, var(--colors-ink) 7%, transparent);
+  border-color: color-mix(in srgb, var(--colors-ink) 30%, transparent);
 }
 .guide-trigger-text {
   display: flex;
@@ -125,17 +125,17 @@ onBeforeUnmount(() => lockPage(false))
 .guide-trigger-label {
   font-size: 0.95rem;
   font-weight: 600;
-  color: rgb(var(--ink));
+  color: var(--colors-ink);
 }
 .guide-trigger-meta {
   font-size: 0.8rem;
-  color: rgb(var(--ink) / 0.5);
+  color: color-mix(in srgb, var(--colors-ink) 50%, transparent);
 }
 .guide-trigger-icon {
-  color: rgb(var(--ink) / 0.45);
+  color: color-mix(in srgb, var(--colors-ink) 45%, transparent);
 }
 .guide-trigger:hover .guide-trigger-icon {
-  color: rgb(var(--ink));
+  color: var(--colors-ink);
 }
 .guide-dialog {
   position: fixed;
@@ -154,10 +154,10 @@ onBeforeUnmount(() => lockPage(false))
   width: min(46rem, 100%);
   max-height: min(85vh, 100%);
   padding: 1.3rem 1.5rem 1.5rem;
-  border: 1px solid rgb(var(--ink) / 0.12);
+  border: 1px solid color-mix(in srgb, var(--colors-ink) 12%, transparent);
   border-radius: 12px;
-  background: rgb(var(--bg));
-  color: rgb(var(--ink));
+  background: var(--colors-bg);
+  color: var(--colors-ink);
   overflow: hidden;
 }
 .guide-head {
@@ -166,7 +166,7 @@ onBeforeUnmount(() => lockPage(false))
   justify-content: space-between;
   gap: 1rem;
   padding-bottom: 0.9rem;
-  border-bottom: 1px solid rgb(var(--ink) / 0.08);
+  border-bottom: 1px solid color-mix(in srgb, var(--colors-ink) 8%, transparent);
 }
 .guide-title {
   margin: 0;
@@ -178,18 +178,18 @@ onBeforeUnmount(() => lockPage(false))
 .guide-meta {
   margin: 0.3rem 0 0;
   font-size: 0.8rem;
-  color: rgb(var(--ink) / 0.5);
+  color: color-mix(in srgb, var(--colors-ink) 50%, transparent);
 }
 .guide-close {
   flex: none;
   padding: 0.2rem 0.45rem;
   border-radius: 6px;
-  color: rgb(var(--ink) / 0.5);
+  color: color-mix(in srgb, var(--colors-ink) 50%, transparent);
   cursor: pointer;
 }
 .guide-close:hover {
-  background: rgb(var(--ink) / 0.08);
-  color: rgb(var(--ink));
+  background: color-mix(in srgb, var(--colors-ink) 8%, transparent);
+  color: var(--colors-ink);
 }
 .guide-steps {
   counter-reset: step;

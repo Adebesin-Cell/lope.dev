@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { ark } from '@ark-ui/vue/factory'
+import { css } from 'styled-system/css'
 import { projects } from '~~/shared/data/projects'
+import { button } from 'styled-system/recipes'
+
+const ghostButton = button()
+const lead = css({ color: 'ink.muted' })
+const pageTitle = css({ textStyle: 'display', mb: '3' })
 
 usePageSeo({
   title: 'Projects: Panda CSS, Ark UI, Chakra UI — Adebesin Tolulope',
@@ -31,28 +37,31 @@ useHead({
     }),
   }],
 })
+
+const header = css({ mb: '10' })
+const actions = css({ display: 'flex', alignItems: 'center', gap: '3', mt: '6' })
 </script>
 
 <template>
   <ark.article class="slide-enter-content">
-    <ark.header class="mb-10">
-      <ark.h1 class="text-4xl font-700 tracking-tight mb-3">
+    <ark.header :class="header">
+      <ark.h1 :class="pageTitle">
         Projects
       </ark.h1>
-      <ark.p class="text-ink-muted">
+      <ark.p :class="lead">
         Open source I maintain, products I build at work, and things I make for fun.
       </ark.p>
-      <ark.div class="flex items-center gap-3 mt-6">
+      <ark.div :class="actions">
         <ark.a
           href="https://github.com/Adebesin-Cell"
           target="_blank"
           rel="noopener"
-          class="btn btn-ghost"
+          :class="ghostButton"
         >
           <ark.span class="i-simple-icons-github" aria-hidden="true" />
           GitHub
         </ark.a>
-        <NuxtLink to="/releases" class="btn btn-ghost">
+        <NuxtLink to="/releases" :class="ghostButton">
           <ark.span class="i-lucide-rocket" aria-hidden="true" />
           Recent Releases
         </NuxtLink>
