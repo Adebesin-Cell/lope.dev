@@ -34,6 +34,15 @@ useSeoMeta({
   twitterCreator: '@I_am_Lope',
 })
 
+const [ogImagePath] = defineOgImage('BlogPost.takumi', {
+  title: post.value?.title,
+  description: post.value?.description,
+  series: post.value?.series,
+  part: post.value?.part,
+  host,
+})
+const ogImage = useState(`og-image:${route.path}`, () => (ogImagePath ? `https://${host}${ogImagePath}` : undefined))
+
 useHead(() => ({
   link: [{ rel: 'canonical', href: canonicalUrl.value }],
   script: [
@@ -48,6 +57,7 @@ useHead(() => ({
         datePublished: post.value?.date,
         dateModified: post.value?.updated ?? post.value?.date,
         inLanguage: 'en',
+        image: ogImage.value,
         author: { '@type': 'Person', name: 'Adebesin Tolulope', alternateName: 'Lope', url: `https://${host}` },
         publisher: { '@type': 'Person', name: 'Adebesin Tolulope', url: `https://${host}` },
         mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl.value },
@@ -55,14 +65,6 @@ useHead(() => ({
     },
   ],
 }))
-
-defineOgImage('BlogPost.takumi', {
-  title: post.value?.title,
-  description: post.value?.description,
-  series: post.value?.series,
-  part: post.value?.part,
-  host,
-})
 
 const shareXUrl = computed(
   () =>
