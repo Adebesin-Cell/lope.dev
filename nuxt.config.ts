@@ -5,6 +5,7 @@ import { redirectRouteRules } from './shared/redirects'
 export default defineNuxtConfig({
   modules: [
     '@nuxt/content',
+    '@nuxt/fonts',
     '@nuxt/image',
     '@unocss/nuxt',
     '@nuxtjs/color-mode',
@@ -25,6 +26,14 @@ export default defineNuxtConfig({
       },
       transformers: ['~~/transformers/image-size'],
     },
+  },
+  fonts: {
+    families: [
+      { name: 'Inter', provider: 'google', weights: [400, 500, 600, 700], global: true },
+      { name: 'JetBrains Mono', provider: 'google', weights: [400, 500], global: true },
+      { name: 'Newsreader', provider: 'google', weights: [400, 500], styles: ['normal', 'italic'], global: true },
+      { name: 'Caveat', provider: 'google', weights: [500, 600, 700], global: true },
+    ],
   },
   devtools: { enabled: true },
   components: [{ path: '~/components/content', global: true }, '~/components'],
@@ -59,12 +68,6 @@ export default defineNuxtConfig({
         { name: 'twitter:site', content: '@I_am_Lope' },
       ],
       link: [
-        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-        {
-          rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&family=Caveat:wght@500;600;700&display=swap',
-        },
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
