@@ -3,6 +3,8 @@ title: Every style is an atom
 description: "How Panda CSS breaks your styles into atomic CSS, keeps each atom exactly once, and where atoms stop."
 seoTitle: "Every style is an atom: how Panda CSS generates atomic CSS"
 date: 2026-10-17
+series: Panda internals
+part: 2
 ---
 
 ### How Panda turns your styles into atoms, and keeps each one exactly once.

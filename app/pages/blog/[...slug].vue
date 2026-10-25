@@ -56,7 +56,13 @@ useHead(() => ({
   ],
 }))
 
-defineOgImage('BlogPost.takumi', { title: post.value?.title, host })
+defineOgImage('BlogPost.takumi', {
+  title: post.value?.title,
+  description: post.value?.description,
+  series: post.value?.series,
+  part: post.value?.part,
+  host,
+})
 
 const shareXUrl = computed(
   () =>

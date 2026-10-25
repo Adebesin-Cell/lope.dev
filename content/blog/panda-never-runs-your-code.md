@@ -3,6 +3,8 @@ title: Panda never runs your code
 description: "Panda CSS reads your source at build time and never runs it. What its static evaluator can follow, where it stops, and how to write styles it can see."
 seoTitle: "Panda never runs your code: how Panda CSS evaluates styles statically"
 date: 2026-10-24
+series: Panda internals
+part: 4
 ---
 
 ### What Panda figures out before your app runs.
