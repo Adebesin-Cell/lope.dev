@@ -40,6 +40,11 @@ const page = computed(() => {
   return Math.min(n, totalPages.value)
 })
 const pagedPrs = computed(() => allPrs.value.slice((page.value - 1) * PER_PAGE, page.value * PER_PAGE))
+const pageItems = computed(() => {
+  const keep = (p: number) => p === 1 || p === totalPages.value || Math.abs(p - page.value) <= 1
+  const pages = Array.from({ length: totalPages.value }, (_, i) => i + 1).filter(keep)
+  return pages.flatMap((p, i) => (i > 0 && p - pages[i - 1]! > 1 ? (['gap', p] as const) : [p]))
+})
 
 function go(to: number) {
   const next = Math.min(Math.max(1, to), totalPages.value)
@@ -129,6 +134,7 @@ const when = css({
 })
 const merged = css({ color: 'emerald.400/70' })
 const xs = css({ fontSize: 'xs' })
+const gap = css({ px: '1', color: 'ink.faint' })
 const pager = css({
   mt: '10',
   display: 'flex',
@@ -202,17 +208,19 @@ const otherPage = css({ color: 'ink.muted' })
         <ark.span class="i-lucide-chevron-left" aria-hidden="true" />
       </ark.button>
 
-      <ark.button
-        v-for="p in totalPages"
-        :key="p"
-        type="button"
-        :class="[chipClass, pageNumber, p === page ? currentPage : otherPage]"
-        :aria-current="p === page ? 'page' : undefined"
-        :aria-label="`Page ${p}`"
-        @click="go(p)"
-      >
-        {{ p }}
-      </ark.button>
+      <template v-for="(p, i) in pageItems" :key="`${p}-${i}`">
+        <ark.span v-if="p === 'gap'" :class="gap" aria-hidden="true">…</ark.span>
+        <ark.button
+          v-else
+          type="button"
+          :class="[chipClass, pageNumber, p === page ? currentPage : otherPage]"
+          :aria-current="p === page ? 'page' : undefined"
+          :aria-label="`Page ${p}`"
+          @click="go(p)"
+        >
+          {{ p }}
+        </ark.button>
+      </template>
 
       <ark.button
         type="button"
