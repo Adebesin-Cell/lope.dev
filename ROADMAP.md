@@ -9,6 +9,12 @@ A living list of where this site is headed — and a few things I'm holding myse
 - [ ] **Fill the blog** — write real bodies for the two draft posts (Ekphrasis motivation, LLMs in engineering) and import the rest of the Medium pieces.
 - [ ] **GitHub stars on project cards** — show repo stars / last-release like the releases page, so the work has weight.
 - [ ] **Command palette (⌘K)** — quick jump to pages, projects, posts.
+- [ ] **Ask about Lope.** An "Ask" mode in the command palette, answering questions about me from one long `lope.md` encyclopedia.
+  - **Content first:** `lope.md` covers work, projects, talks, stack, how I work, BethelFlow, Panda and life away from the keyboard, in clear sections. I write or approve every fact.
+  - **Search is the base:** the palette searches `lope.md`, pages and posts with no AI, so it works in every browser and links to the matching section.
+  - **On-device answers when available:** in Chrome 148+ desktop, Chrome's built-in model (Prompt API, Gemini Nano) answers from the best-matching sections only, says when it doesn't know, and shows its sources. Other browsers fall back to search results. `@browser-ai/core` wraps it for the AI SDK.
+  - **Later, if wanted:** an opt-in "load a local model" button with WebLLM (`@mlc-ai/web-llm`, a few hundred MB download) for other browsers, or a server model through Vercel AI Gateway with rate limits.
+  - Inspiration: small models in the browser, like [gpu-lexer](https://shud.in/thoughts/ideas-behind-gpu-lexer).
 
 ## AFK — the personal section
 
