@@ -62,7 +62,6 @@ function fmt(d: string) {
     </ark.h1>
     <ark.p class="text-ink-muted mb-10">
       Notes on open source, engineering with LLMs, and projects I'm building.
-      Personal essays live on <NuxtLink to="/essays" class="underline hover:text-ink transition-colors">Substack</NuxtLink>.
     </ark.p>
 
     <ark.div v-if="!posts.length" class="text-ink-muted text-sm italic">

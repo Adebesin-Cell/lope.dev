@@ -84,7 +84,7 @@ const roleRows = [
 </script>
 
 <template>
-  <ark.article class="slide-enter-content space-y-6 text-base text-ink-muted leading-7">
+  <ark.article class="slide-enter-content space-y-6 text-base text-ink-muted leading-8">
     <ark.h1 class="text-4xl font-700 tracking-tight leading-tight text-ink mb-8">
       Adebesin Tolulope <ark.span class="text-ink-muted">(Lope)</ark.span>
     </ark.h1>
@@ -93,10 +93,10 @@ const roleRows = [
       Hi, I'm Adebesin Tolulope, a design engineer and open sourcer.
     </ark.p>
 
-    <ark.p class="leading-9">
+    <ark.p class="leading-9 [&_.chip]:me-1">
       <template v-for="row in roleRows" :key="row.label">
         {{ row.label }}
-        <Chip v-for="c in row.chips" :key="c.label" v-bind="c" class="me-1" />
+        <Chip v-for="c in row.chips" :key="c.label" v-bind="c" />
         <br>
       </template>
     </ark.p>
