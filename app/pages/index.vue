@@ -94,16 +94,34 @@ const roleRows = [
     </ark.div>
 
     <ark.p class="text-base text-ink-muted leading-relaxed">
-      I care about open-source sustainability, community growth, and how LLMs are reshaping
-      engineering practice. I write <Chip class="align-middle" to="/blog" label="blog posts" icon="i-lucide-newspaper" /> about these,
-      ship side-projects on the side, and maintain a few small tools I rely on every day.
+      I build the tools other developers style their apps with, then use them to make products
+      that feel good to use. Most of my time goes into Panda, Ark and Zag, and the rest into
+      BethelFlow, software churches use to run their week. Everything is on my
+      <Chip class="align-middle" to="/projects" label="projects" icon="i-lucide-folder-git-2" /> page.
     </ark.p>
 
     <ark.p class="text-base text-ink-muted leading-relaxed">
-      You can find my work on
-      <Chip class="align-middle" href="https://github.com/Adebesin-Cell" label="GitHub" icon="i-simple-icons-github" />,
-      reach me on <Chip class="align-middle" href="https://www.linkedin.com/in/adebesin-tolulope/" label="LinkedIn" icon="i-simple-icons-linkedin" color="#0A66C2" />,
-      or browse my <Chip class="align-middle" to="/projects" label="projects" icon="i-lucide-folder-git-2" />.
+      I write a <Chip class="align-middle" to="/blog/build-once-at-build-time" label="series" icon="i-lucide-newspaper" />
+      on how Panda CSS works inside, and gave my first talk,
+      <Chip class="align-middle" href="https://sailsconf.com/2026/talks/17347112-5f4c-4086-bd0d-013eb2d2ff77" label="Rebuilding Panda's Engine" icon="i-lucide-mic" />,
+      at SailsConf in October 2026. For fun, I make animated pages and small games in
+      <Chip class="align-middle" to="/play" label="play" icon="i-lucide-gamepad-2" />.
     </ark.p>
+
+    <ark.p class="text-base text-ink-muted leading-relaxed">
+      Away from the keyboard, I play basketball, train at the gym and cook, and church is a big part of my life.
+    </ark.p>
+
+    <ark.div class="space-y-3">
+      <ark.p class="text-base text-ink-muted">
+        Find me on
+      </ark.p>
+      <ark.div class="flex flex-wrap gap-2">
+        <Chip href="https://github.com/Adebesin-Cell" label="GitHub" icon="i-simple-icons-github" />
+        <Chip href="https://www.linkedin.com/in/adebesin-tolulope/" label="LinkedIn" icon="i-simple-icons-linkedin" color="#0A66C2" />
+        <Chip href="https://bsky.app/profile/lopeadebesin.bsky.social" label="Bluesky" icon="i-simple-icons-bluesky" color="#1185FE" />
+        <Chip href="https://x.com/I_am_Lope" label="X" icon="i-simple-icons-x" />
+      </ark.div>
+    </ark.div>
   </ark.article>
 </template>

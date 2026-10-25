@@ -35,14 +35,14 @@ useHead({
 
 <template>
   <ark.article class="slide-enter-content">
-    <ark.header class="text-center mb-12">
+    <ark.header class="mb-10">
       <ark.h1 class="text-4xl font-700 tracking-tight mb-3">
         Projects
       </ark.h1>
       <ark.p class="text-ink-muted">
         Open source I maintain, products I build at work, and things I make for fun.
       </ark.p>
-      <ark.div class="flex items-center justify-center gap-3 mt-6">
+      <ark.div class="flex items-center gap-3 mt-6">
         <ark.a
           href="https://github.com/Adebesin-Cell"
           target="_blank"
