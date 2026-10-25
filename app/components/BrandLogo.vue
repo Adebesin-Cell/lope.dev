@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ark } from '@ark-ui/vue/factory'
+import { css } from 'styled-system/css'
 
 const props = defineProps<{
   src: string
@@ -13,6 +14,8 @@ const colorMode = useColorMode()
 const resolved = computed(() =>
   colorMode.value === 'light' && props.light ? props.light : props.src,
 )
+
+const img = css({ objectFit: 'contain' })
 </script>
 
 <template>
@@ -20,6 +23,6 @@ const resolved = computed(() =>
     :src="resolved"
     :alt="alt ?? ''"
     loading="lazy"
-    class="object-contain"
+    :class="img"
   />
 </template>

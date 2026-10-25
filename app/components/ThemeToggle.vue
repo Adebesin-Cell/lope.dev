@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { link } from 'styled-system/recipes'
+
+const navLink = link({ tone: 'nav' })
+
 const colorMode = useColorMode()
 
 function setPreference() {
@@ -52,7 +56,7 @@ function toggle(event: MouseEvent) {
   <button
     type="button"
     aria-label="Toggle theme"
-    class="nav-link"
+    :class="navLink"
     @click="toggle"
   >
     <ClientOnly>

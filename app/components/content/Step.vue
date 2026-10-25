@@ -39,7 +39,7 @@ const id = computed(() => `step-${props.title
   top: 3.1rem;
   bottom: -0.2rem;
   width: 1px;
-  background: rgb(var(--ink) / 0.12);
+  background: color-mix(in srgb, var(--colors-ink) 12%, transparent);
 }
 .step::before {
   content: counter(step);
@@ -51,11 +51,11 @@ const id = computed(() => `step-${props.title
   width: 1.7rem;
   height: 1.7rem;
   border-radius: 50%;
-  border: 1px solid rgb(var(--ink) / 0.18);
-  background: rgb(var(--bg));
+  border: 1px solid color-mix(in srgb, var(--colors-ink) 18%, transparent);
+  background: var(--colors-bg);
   font-size: 0.75rem;
   font-variant-numeric: tabular-nums;
-  color: rgb(var(--ink) / 0.7);
+  color: color-mix(in srgb, var(--colors-ink) 70%, transparent);
 }
 .step-title {
   margin: 0;
@@ -72,30 +72,30 @@ const id = computed(() => `step-${props.title
   margin: 0.3rem 0 0;
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.75rem;
-  color: rgb(var(--ink) / 0.5);
+  color: color-mix(in srgb, var(--colors-ink) 50%, transparent);
 }
 .step-body > :first-child {
   margin-top: 0.6rem;
 }
 .step-body p {
   margin-block: 0.8rem;
-  color: rgb(var(--ink) / 0.8);
+  color: color-mix(in srgb, var(--colors-ink) 80%, transparent);
 }
 .step-body pre {
   margin-block: 0.8rem;
   padding: 0.8rem 0.9rem;
   border-radius: 8px;
-  border: 1px solid rgb(var(--ink) / 0.10);
-  background: rgb(var(--ink) / 0.05);
+  border: 1px solid color-mix(in srgb, var(--colors-ink) 10%, transparent);
+  background: color-mix(in srgb, var(--colors-ink) 5%, transparent);
   overflow-x: auto;
   font-size: 0.8rem;
 }
 .step-gotcha {
   margin: 0.9rem 0 0;
   padding: 0.6rem 0.8rem;
-  border-inline-start: 2px solid rgb(var(--ink) / 0.3);
-  background: rgb(var(--ink) / 0.04);
+  border-inline-start: 2px solid color-mix(in srgb, var(--colors-ink) 30%, transparent);
+  background: color-mix(in srgb, var(--colors-ink) 4%, transparent);
   font-size: 0.88rem;
-  color: rgb(var(--ink) / 0.7);
+  color: color-mix(in srgb, var(--colors-ink) 70%, transparent);
 }
 </style>

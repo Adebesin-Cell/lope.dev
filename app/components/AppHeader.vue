@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import { ark } from '@ark-ui/vue/factory'
+import { css, cx } from 'styled-system/css'
+import { link } from 'styled-system/recipes'
+
+const navLink = link({ tone: 'nav' })
 
 const links = [
   { to: '/blog', label: 'Blog', icon: 'i-lucide-pencil-line' },
@@ -17,28 +21,35 @@ const icons = [
 
 // Mobile menu state — opens a full-height slide-over drawer below md.
 const open = ref(false)
+
+const header = css({ position: 'relative', zIndex: '50' })
+const logo = css({ position: { base: 'absolute', xl: 'fixed' }, m: '5', userSelect: 'none', outline: 'none' })
+const nav = css({ display: 'grid', gridTemplateColumns: 'auto max-content', alignItems: 'center', w: 'full', px: '6', py: '5', boxSizing: 'border-box' })
+const bar = css({ display: 'flex', alignItems: 'center', gap: '5', fontSize: 'sm' })
+const desktop = css({ display: { base: 'none', md: 'flex' }, alignItems: 'center', gap: '5' })
+const divider = css({ w: '1px', h: '4', bg: 'ink/10' })
+const menuButton = cx(navLink, css({ fontSize: 'xl', display: { md: 'none' } }))
 </script>
 
 <template>
-  <ark.header class="relative z-50">
+  <ark.header :class="header">
     <!-- Pinned separately from the nav, so it stays put on wide screens. -->
-    <Logo class="absolute xl:fixed m-5 select-none outline-none" />
+    <Logo :class="logo" />
 
-    <ark.nav class="grid grid-cols-[auto_max-content] items-center w-full px-6 py-5 box-border">
+    <ark.nav :class="nav">
       <ark.div />
 
-      <ark.div class="flex items-center gap-5 text-sm">
-        <ark.div class="hidden md:flex items-center gap-5">
+      <ark.div :class="bar">
+        <ark.div :class="desktop">
           <NuxtLink
             v-for="l in links"
             :key="l.to"
             :to="l.to"
-            class="nav-link"
-            active-class="op-100 font-500"
+            :class="navLink"
           >
             {{ l.label }}
           </NuxtLink>
-          <ark.span class="w-px h-4 bg-ink/10" />
+          <ark.span :class="divider" />
           <ark.a
             v-for="i in icons"
             :key="i.href"
@@ -46,7 +57,7 @@ const open = ref(false)
             :aria-label="i.label"
             target="_blank"
             rel="noopener"
-            class="nav-link"
+            :class="navLink"
           >
             <ark.span :class="i.icon" aria-hidden="true" />
           </ark.a>
@@ -56,7 +67,7 @@ const open = ref(false)
 
         <ark.button
           type="button"
-          class="nav-link text-xl md:hidden"
+          :class="menuButton"
           :aria-expanded="open"
           aria-controls="mobile-nav"
           aria-label="Open menu"

@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { ark } from '@ark-ui/vue/factory'
+import { css } from 'styled-system/css'
+import { chip } from 'styled-system/recipes'
 
 usePageSeo({
   title: 'Releases — Adebesin Tolulope',
@@ -67,15 +69,15 @@ function relTime(iso: string) {
 
 
 const TYPE_COLOR: Record<string, string> = {
-  feat: 'text-emerald-400',
-  fix: 'text-rose-400',
-  perf: 'text-violet-400',
-  refactor: 'text-amber-400',
-  docs: 'text-sky-400',
-  release: 'text-emerald-400',
+  feat: css({ color: 'emerald.400' }),
+  fix: css({ color: 'rose.400' }),
+  perf: css({ color: 'violet.400' }),
+  refactor: css({ color: 'amber.400' }),
+  docs: css({ color: 'sky.400' }),
+  release: css({ color: 'emerald.400' }),
 }
 function typeColor(type: string) {
-  return TYPE_COLOR[type] ?? 'text-ink-faint'
+  return TYPE_COLOR[type] ?? css({ color: 'ink.faint' })
 }
 
 function cleanTitle(title: string, type: string) {
@@ -86,38 +88,64 @@ const starFormatter = new Intl.NumberFormat('en', { notation: 'compact', maximum
 function formatStars(n: number) {
   return starFormatter.format(n)
 }
+
+const header = css({ mb: '10' })
+const avatar = css({ w: '20', h: '20', rounded: 'full', mb: '5', bg: 'ink/5', outline: '1px solid', outlineColor: 'ink/10' })
+const title = css({ textStyle: 'display', mb: '3' })
+const shipping = css({ color: 'ink.muted', animation: 'shipping', _motionReduce: { animation: 'none', opacity: '1' } })
+const lead = css({ color: 'ink.muted' })
+const empty = css({ textAlign: 'center', color: 'ink.muted', fontSize: 'sm', fontStyle: 'italic' })
+const list = css({ '& > * + *': { mt: '1' } })
+const prRow = css({ display: 'flex', alignItems: 'center', gap: '4', p: '3', mx: '-3', rounded: 'lg', transition: 'colors', _hover: { bg: 'ink/3' } })
+const orgAvatar = css({ w: '10', h: '10', rounded: 'lg', bg: 'ink/5', objectFit: 'cover', flexShrink: '0' })
+const body = css({ flex: '1', minW: '0' })
+const repoLine = css({ fontSize: 'xs', color: 'ink.muted', display: 'flex', alignItems: 'center', gap: '1.5' })
+const medium = css({ fontWeight: 'medium' })
+const number = css({ color: 'ink.faint', fontFamily: 'mono' })
+const stars = css({ color: 'ink.faint', display: 'inline-flex', alignItems: 'center', gap: '0.5' })
+const prTitle = css({ fontSize: 'sm', fontWeight: 'medium', color: 'ink', truncate: true })
+const typeTag = css({ fontFamily: 'mono', fontSize: 'xs', me: '1' })
+const when = css({ textAlign: 'end', flexShrink: '0', display: 'flex', alignItems: 'center', gap: '2', color: 'ink.faint' })
+const merged = css({ color: 'emerald.400/70' })
+const xs = css({ fontSize: 'xs' })
+const pager = css({ mt: '10', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '1.5', fontSize: 'sm' })
+const chipClass = chip()
+const pageEdge = css({ _disabled: { opacity: '0.3', pointerEvents: 'none' } })
+const pageNumber = css({ minW: '8', justifyContent: 'center' })
+const currentPage = css({ bg: 'ink/15', color: 'ink', fontWeight: 'semibold' })
+const otherPage = css({ color: 'ink.muted' })
 </script>
 
 <template>
   <ark.article class="slide-enter-content">
-    <ark.header class="mb-10">
+    <ark.header :class="header">
       <SubNav />
       <ark.img
         src="https://github.com/Adebesin-Cell.png"
         alt="Adebesin Tolulope (Lope)"
         width="80"
         height="80"
-        class="w-20 h-20 rounded-full mb-5 bg-ink/5 ring-1 ring-ink/10"
+        :class="avatar"
       />
-      <ark.h1 class="text-4xl font-700 tracking-tight mb-3">
-        Lope is <ark.span class="shipping text-ink-muted">Shipping…</ark.span>
+      <ark.h1 :class="title">
+        Lope is <ark.span :class="shipping">Shipping…</ark.span>
       </ark.h1>
-      <ark.p class="text-ink-muted">
+      <ark.p :class="lead">
         Recent open-source pull requests I've merged, across the projects I work on.
       </ark.p>
     </ark.header>
 
-    <ark.div v-if="!data?.prs?.length" class="text-center text-ink-muted text-sm italic">
+    <ark.div v-if="!data?.prs?.length" :class="empty">
       No pull requests to show yet — or GitHub is rate-limiting. Try again in a bit.
     </ark.div>
 
-    <ark.ul class="space-y-1">
+    <ark.ul :class="list">
       <ark.li v-for="pr in pagedPrs" :key="pr.url">
         <ark.a
           :href="pr.url"
           target="_blank"
           rel="noopener"
-          class="pr-row group flex items-center gap-4 py-3 px-3 -mx-3 rounded-lg hover:bg-ink/3 transition-colors"
+          :class="['pr-row group', prRow]"
         >
           <ark.img
             :src="pr.orgAvatar"
@@ -125,24 +153,24 @@ function formatStars(n: number) {
             width="40"
             height="40"
             loading="lazy"
-            class="w-10 h-10 rounded-lg bg-ink/5 object-cover shrink-0"
+            :class="orgAvatar"
           />
-          <ark.div class="flex-1 min-w-0">
-            <ark.div class="text-xs text-ink-muted flex items-center gap-1.5">
-              <ark.span>{{ pr.org }}/<ark.span class="font-500">{{ pr.repo }}</ark.span></ark.span>
-              <ark.span class="text-ink-faint font-mono">#{{ pr.number }}</ark.span>
-              <ark.span v-if="pr.stars" class="text-ink-faint inline-flex items-center gap-0.5">
+          <ark.div :class="body">
+            <ark.div :class="repoLine">
+              <ark.span>{{ pr.org }}/<ark.span :class="medium">{{ pr.repo }}</ark.span></ark.span>
+              <ark.span :class="number">#{{ pr.number }}</ark.span>
+              <ark.span v-if="pr.stars" :class="stars">
                 <ark.span class="i-lucide-star" aria-hidden="true" />{{ formatStars(pr.stars) }}
               </ark.span>
             </ark.div>
-            <ark.div class="text-sm font-500 text-ink truncate">
-              <ark.span v-if="pr.type" :class="typeColor(pr.type)" class="font-mono text-xs me-1">{{ pr.type }}</ark.span>
+            <ark.div :class="prTitle">
+              <ark.span v-if="pr.type" :class="[typeColor(pr.type), typeTag]">{{ pr.type }}</ark.span>
               {{ cleanTitle(pr.title, pr.type) }}
             </ark.div>
           </ark.div>
-          <ark.div class="text-end shrink-0 flex items-center gap-2 text-ink-faint">
-            <ark.span class="i-lucide-git-merge text-emerald-400/70" aria-label="merged" role="img" />
-            <ark.span class="text-xs">{{ relTime(pr.mergedAt) }}</ark.span>
+          <ark.div :class="when">
+            <ark.span :class="['i-lucide-git-merge', merged]" aria-label="merged" role="img" />
+            <ark.span :class="xs">{{ relTime(pr.mergedAt) }}</ark.span>
           </ark.div>
         </ark.a>
       </ark.li>
@@ -150,12 +178,12 @@ function formatStars(n: number) {
 
     <ark.nav
       v-if="totalPages > 1"
-      class="mt-10 flex flex-wrap items-center justify-center gap-1.5 text-sm"
+      :class="pager"
       aria-label="Pagination"
     >
       <ark.button
         type="button"
-        class="chip disabled:op-30 disabled:pointer-events-none"
+        :class="[chipClass, pageEdge]"
         :disabled="page <= 1"
         aria-label="Previous page"
         @click="go(page - 1)"
@@ -167,8 +195,7 @@ function formatStars(n: number) {
         v-for="p in totalPages"
         :key="p"
         type="button"
-        class="chip min-w-8 justify-center"
-        :class="p === page ? 'bg-ink/15 text-ink font-600' : 'text-ink-muted'"
+        :class="[chipClass, pageNumber, p === page ? currentPage : otherPage]"
         :aria-current="p === page ? 'page' : undefined"
         :aria-label="`Page ${p}`"
         @click="go(p)"
@@ -178,7 +205,7 @@ function formatStars(n: number) {
 
       <ark.button
         type="button"
-        class="chip disabled:op-30 disabled:pointer-events-none"
+        :class="[chipClass, pageEdge]"
         :disabled="page >= totalPages"
         aria-label="Next page"
         @click="go(page + 1)"
@@ -188,24 +215,3 @@ function formatStars(n: number) {
     </ark.nav>
   </ark.article>
 </template>
-
-<style scoped>
-.shipping {
-  animation: ship-pulse 2.4s ease-in-out infinite;
-}
-@keyframes ship-pulse {
-  0%,
-  100% {
-    opacity: 0.4;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .shipping {
-    animation: none;
-    opacity: 1;
-  }
-}
-</style>

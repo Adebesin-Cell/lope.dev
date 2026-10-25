@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import type { Fn } from '@vueuse/core'
 import { ark } from '@ark-ui/vue/factory'
+import { css } from 'styled-system/css'
+
+const host = css({ position: 'fixed', inset: '0', zIndex: '-10', pointerEvents: 'none', _print: { display: 'none' } })
 
 const r180 = Math.PI
 const r90 = Math.PI / 2
@@ -110,7 +113,7 @@ onMounted(() => {
 
 <template>
   <ark.div
-    class="fixed inset-0 -z-10 pointer-events-none print:hidden"
+    :class="host"
     aria-hidden="true"
     style="mask-image: radial-gradient(circle, transparent, black); -webkit-mask-image: radial-gradient(circle, transparent, black);"
   >

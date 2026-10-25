@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { css } from 'styled-system/css'
+import { prose } from 'styled-system/recipes'
 import { ark } from '@ark-ui/vue/factory'
 
 const route = useRoute()
@@ -80,34 +82,50 @@ function fmt(d?: string) {
     return ''
   return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
 }
+
+const back = css({ display: 'inline-flex', alignItems: 'center', gap: '1.5', fontSize: 'sm', color: 'ink.muted', transition: 'colors', mb: '8', _hover: { color: 'ink' } })
+const header = css({ mb: '10' })
+const title = css({ textStyle: 'display', mb: '3' })
+const meta = css({ fontSize: 'sm', color: 'ink.muted' })
+const faint = css({ color: 'ink.faint' })
+const metaLink = css({ textDecoration: 'underline', _hover: { color: 'ink' } })
+const mediumLink = css({ color: 'ink.faint', textDecoration: 'underline', _hover: { color: 'ink.muted' } })
+const proseClass = prose()
+const share = css({ mt: '14', pt: '6', borderTopWidth: '1px', borderColor: 'ink/10', display: 'flex', alignItems: 'center', gap: '4', fontSize: 'sm', color: 'ink.muted' })
+const shareLink = css({ display: 'inline-flex', alignItems: 'center', transition: 'colors', _hover: { color: 'ink' } })
+const footer = css({ mt: '8', fontSize: 'sm', color: 'ink.muted' })
+const discuss = css({ color: 'ink', textDecoration: 'underline', _hover: { color: 'ink.muted' } })
+const cdUp = css({ mt: '10', fontFamily: 'mono', fontSize: 'sm' })
+const dim = css({ opacity: '0.5' })
+const cdLink = css({ opacity: '0.5', transition: 'opacity', _hover: { opacity: '0.75' } })
 </script>
 
 <template>
-  <ark.article v-if="post" class="prose-article slide-enter-content">
+  <ark.article v-if="post" :class="['prose-article slide-enter-content']">
     <NuxtLink
       to="/blog"
-      class="inline-flex items-center gap-1.5 text-sm text-ink-muted hover:text-ink transition-colors mb-8"
+      :class="back"
     >
       <ark.span class="i-lucide-arrow-left" />
       Back to blog
     </NuxtLink>
 
-    <ark.header class="mb-10">
-      <ark.h1 class="text-4xl font-700 tracking-tight mb-3">
+    <ark.header :class="header">
+      <ark.h1 :class="title">
         {{ post.title }}
       </ark.h1>
-      <ark.p class="text-sm text-ink-muted">
+      <ark.p :class="meta">
         {{ fmt(post.date) }}
         <ark.span v-if="post.duration"> · {{ post.duration }}</ark.span>
         <ark.span v-else-if="readingTime"> · {{ readingTime }}</ark.span>
         <template v-if="post.place">
-          <ark.span class="text-ink-faint"> · at </ark.span>
+          <ark.span :class="faint"> · at </ark.span>
           <ark.a
             v-if="post.placeLink"
             :href="post.placeLink"
             target="_blank"
             rel="noopener"
-            class="underline hover:text-ink"
+            :class="metaLink"
           >
             {{ post.place }}
           </ark.a>
@@ -118,18 +136,18 @@ function fmt(d?: string) {
           :href="post.canonical"
           target="_blank"
           rel="noopener"
-          class="text-ink-faint underline hover:text-ink-muted"
+          :class="mediumLink"
         >
           · originally on Medium
         </ark.a>
       </ark.p>
     </ark.header>
 
-    <ContentRenderer :value="post" class="prose-content" />
+    <ContentRenderer :value="post" :class="['prose-content', proseClass]" />
 
     <HighlightShare :title="shareTitle" :url="postUrl" :date="post.date" />
 
-    <ark.div class="mt-14 pt-6 border-t border-ink/10 flex items-center gap-4 text-sm text-ink-muted">
+    <ark.div :class="share">
       <ark.span>Share</ark.span>
       <ark.a
         :href="shareXUrl"
@@ -137,7 +155,7 @@ function fmt(d?: string) {
         rel="noopener"
         aria-label="Share on X"
         @click="track('post_shared', { network: 'x' })"
-        class="inline-flex items-center hover:text-ink transition-colors"
+        :class="shareLink"
       >
         <ark.span class="i-simple-icons-x" aria-hidden="true" />
       </ark.a>
@@ -147,7 +165,7 @@ function fmt(d?: string) {
         rel="noopener"
         aria-label="Share on Bluesky"
         @click="track('post_shared', { network: 'bluesky' })"
-        class="inline-flex items-center hover:text-ink transition-colors"
+        :class="shareLink"
       >
         <ark.span class="i-simple-icons-bluesky" aria-hidden="true" />
       </ark.a>
@@ -157,14 +175,14 @@ function fmt(d?: string) {
         rel="noopener"
         aria-label="Share on LinkedIn"
         @click="track('post_shared', { network: 'linkedin' })"
-        class="inline-flex items-center hover:text-ink transition-colors"
+        :class="shareLink"
       >
         <ark.span class="i-simple-icons-linkedin" aria-hidden="true" />
       </ark.a>
       <ark.button
         type="button"
         :aria-label="copied ? 'Link copied' : 'Copy link'"
-        class="inline-flex items-center hover:text-ink transition-colors"
+        :class="shareLink"
         @click="copyLink"
       >
         <ark.span :class="copied ? 'i-lucide-check' : 'i-lucide-link'" aria-hidden="true" />
@@ -173,155 +191,24 @@ function fmt(d?: string) {
 
     <ark.footer
       v-if="post.canonical"
-      class="mt-8 text-sm text-ink-muted"
+      :class="footer"
     >
       Have thoughts on this piece?
       <ark.a
         :href="post.canonical"
         target="_blank"
         rel="noopener"
-        class="text-ink underline hover:text-ink-muted"
+        :class="discuss"
       >
         Join the conversation on Medium →
       </ark.a>
     </ark.footer>
 
-    <ark.p class="mt-10 font-mono text-sm">
-      <ark.span class="op-50">&gt; </ark.span>
-      <NuxtLink to="/blog" class="op-50 hover:op-75 transition-opacity">
+    <ark.p :class="cdUp">
+      <ark.span :class="dim">&gt; </ark.span>
+      <NuxtLink to="/blog" :class="cdLink">
         cd ..
       </NuxtLink>
     </ark.p>
   </ark.article>
 </template>
-
-<style scoped>
-.prose-content :deep(h2) {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-top: 2.5rem;
-  margin-bottom: 0.75rem;
-}
-.prose-content :deep(h3) {
-  font-size: 1.15rem;
-  font-weight: 600;
-  margin-top: 2rem;
-  margin-bottom: 0.5rem;
-}
-.prose-content :deep(p) {
-  margin-block: 1rem;
-  line-height: 1.7;
-  color: rgb(var(--ink) / 0.78);
-}
-.prose-content :deep(blockquote) {
-  border-inline-start: 2px solid rgb(var(--ink) / 0.18);
-  padding-inline-start: 1rem;
-  font-style: italic;
-  color: rgb(var(--ink) / 0.55);
-}
-.prose-content :deep(a) {
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-/* Nuxt Content wraps heading text in a self-anchor — don't underline those. */
-.prose-content :deep(h1 a),
-.prose-content :deep(h2 a),
-.prose-content :deep(h3 a),
-.prose-content :deep(h4 a) {
-  text-decoration: none;
-  color: inherit;
-}
-.prose-content :deep(code) {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.9em;
-  background: rgb(var(--ink) / 0.08);
-  padding: 0.1em 0.35em;
-  border-radius: 4px;
-}
-.prose-content :deep(pre) {
-  margin-block: 1.25rem;
-  padding: 1rem 1.1rem;
-  border-radius: 8px;
-  background: rgb(var(--ink) / 0.05);
-  border: 1px solid rgb(var(--ink) / 0.10);
-  overflow-x: auto;
-  font-size: 0.85rem;
-  line-height: 1.6;
-}
-.prose-content :deep(pre code) {
-  background: none;
-  padding: 0;
-  font-size: inherit;
-}
-.prose-content :deep(ul),
-.prose-content :deep(ol) {
-  margin-block: 1rem;
-  padding-inline-start: 1.4rem;
-  line-height: 1.7;
-  color: rgb(var(--ink) / 0.78);
-}
-.prose-content :deep(ul) { list-style: disc; }
-.prose-content :deep(ol) { list-style: decimal; }
-.prose-content :deep(li) { margin-block: 0.35rem; }
-.prose-content :deep(video) {
-  display: block;
-  margin-block: 1.5rem;
-  border-radius: 8px;
-  max-width: 100%;
-  height: auto;
-}
-.prose-content :deep(img) {
-  display: block;
-  margin-block: 1.5rem;
-  border-radius: 8px;
-  max-width: 100%;
-  height: auto;
-}
-.prose-content :deep(hr) {
-  border: 0;
-  height: 1px;
-  margin-block: 2.5rem;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgb(var(--ink) / 0.16) 20%,
-    rgb(var(--ink) / 0.16) 80%,
-    transparent
-  );
-}
-.prose-content :deep(.prose-table) {
-  margin-block: 1.5rem;
-  overflow-x: auto;
-}
-.prose-content :deep(table) {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9rem;
-  line-height: 1.6;
-}
-.prose-content :deep(th) {
-  text-align: start;
-  font-weight: 600;
-  font-size: 0.75rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: rgb(var(--ink) / 0.55);
-  padding: 0.5rem 0.9rem 0.5rem 0;
-  border-bottom: 1px solid rgb(var(--ink) / 0.12);
-}
-.prose-content :deep(td) {
-  vertical-align: top;
-  padding: 0.7rem 0.9rem 0.7rem 0;
-  color: rgb(var(--ink) / 0.78);
-  border-bottom: 1px solid rgb(var(--ink) / 0.06);
-}
-.prose-content :deep(tr:last-child td) {
-  border-bottom: 0;
-}
-.prose-content :deep(h1) {
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-top: 2.5rem;
-  margin-bottom: 0.75rem;
-}
-</style>

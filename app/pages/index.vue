@@ -1,5 +1,11 @@
 <script setup lang="ts">
 import { ark } from '@ark-ui/vue/factory'
+import { css, cx } from 'styled-system/css'
+import { link } from 'styled-system/recipes'
+
+const lead = css({ color: 'ink.muted' })
+const prose = css({ color: 'ink.muted', lineHeight: '[2rem]', '& > * + *': { mt: '6' } })
+const underlineLink = link()
 
 usePageSeo({
   title: 'Adebesin Tolulope (Lope) — Design Engineer',
@@ -46,6 +52,14 @@ useHead({
   ],
 })
 
+const title = css({ fontSize: '4xl', fontWeight: '700', letterSpacing: 'tight', lineHeight: 'tight', color: 'ink', mb: '8' })
+const rows = css({ lineHeight: '2.25rem', '& .chip': { me: '1' } })
+const find = css({ pt: '6', borderTopWidth: '1px', borderColor: 'ink/10' })
+const findLabel = css({ mb: '3' })
+const socialList = css({ display: 'flex', flexWrap: 'wrap', columnGap: '4', rowGap: '2' })
+const socialLink = cx(underlineLink, css({ display: 'inline-flex', alignItems: 'center', gap: '1.5' }))
+const socialIcon = css({ opacity: '0.75' })
+
 const socials = [
   { href: 'https://github.com/Adebesin-Cell', label: 'GitHub', icon: 'i-simple-icons-github' },
   { href: 'https://www.linkedin.com/in/adebesin-tolulope/', label: 'LinkedIn', icon: 'i-simple-icons-linkedin' },
@@ -83,16 +97,16 @@ const roleRows = [
 </script>
 
 <template>
-  <ark.article class="slide-enter-content space-y-6 text-base text-ink-muted leading-8">
-    <ark.h1 class="text-4xl font-700 tracking-tight leading-tight text-ink mb-8">
-      Adebesin Tolulope <ark.span class="text-ink-muted">(Lope)</ark.span>
+  <ark.article :class="['slide-enter-content', prose]">
+    <ark.h1 :class="title">
+      Adebesin Tolulope <ark.span :class="lead">(Lope)</ark.span>
     </ark.h1>
 
     <ark.p>
       Hi, I'm Adebesin Tolulope, a design engineer and open sourcer.
     </ark.p>
 
-    <ark.p class="leading-9 [&_.chip]:me-1">
+    <ark.p :class="rows">
       <template v-for="row in roleRows" :key="row.label">
         {{ row.label }}
         <Chip v-for="c in row.chips" :key="c.label" v-bind="c" />
@@ -124,13 +138,13 @@ const roleRows = [
       because I believe in empowering women. Away from the keyboard: basketball, the gym, cooking and church.
     </ark.p>
 
-    <ark.div class="pt-6 border-t border-ink/10">
-      <ark.p class="mb-3">
+    <ark.div :class="find">
+      <ark.p :class="findLabel">
         Find me on
       </ark.p>
-      <ark.p class="flex flex-wrap gap-x-4 gap-y-2">
-        <ark.a v-for="l in socials" :key="l.label" :href="l.href" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-ink underline decoration-ink/30 underline-offset-4 hover:decoration-ink transition-colors">
-          <ark.span :class="l.icon" class="op-75" aria-hidden="true" />
+      <ark.p :class="socialList">
+        <ark.a v-for="l in socials" :key="l.label" :href="l.href" target="_blank" rel="noopener" :class="socialLink">
+          <ark.span :class="[l.icon, socialIcon]" aria-hidden="true" />
           {{ l.label }}
         </ark.a>
       </ark.p>

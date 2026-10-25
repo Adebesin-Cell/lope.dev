@@ -1,13 +1,4 @@
-import {
-  defineConfig,
-  presetAttributify,
-  presetIcons,
-  presetTypography,
-  presetUno,
-  presetWebFonts,
-  transformerDirectives,
-  transformerVariantGroup,
-} from 'unocss'
+import { defineConfig, presetIcons } from 'unocss'
 import { projects } from './shared/data/projects'
 
 const dataIcons = projects
@@ -27,8 +18,6 @@ const uiIcons = [
 
 export default defineConfig({
   presets: [
-    presetUno(),
-    presetAttributify(),
     presetIcons({
       scale: 1.2,
       extraProperties: {
@@ -36,56 +25,15 @@ export default defineConfig({
         'vertical-align': 'middle',
       },
     }),
-    presetTypography(),
-    presetWebFonts({
-      provider: 'google',
-      fonts: {
-        sans: 'Inter:400,500,600,700',
-        mono: 'JetBrains Mono:400,500',
-        serif: {
-          name: 'Newsreader',
-          weights: ['400', '500'],
-          italic: true,
-        },
-        script: 'Caveat:500,600,700',
-      },
-    }),
   ],
-  transformers: [
-    transformerDirectives(),
-    transformerVariantGroup(),
-  ],
+  outputToCssLayers: { cssLayerName: () => 'icons' },
   content: {
     pipeline: {
-      // Default pipeline only scans .vue/.jsx/.md etc — add plain .ts so the
-      // dynamically-bound icon classes in shared/data/*.ts are generated.
       include: [
-        /\.(vue|svelte|[jt]sx|mdx?|astro|elm|php|phtml|html)($|\?)/,
+        /\.(vue|[jt]sx|mdx?|html)($|\?)/,
         'shared/**/*.ts',
         'app/**/*.ts',
       ],
-    },
-  },
-  shortcuts: {
-    'dot-bg': 'bg-[radial-gradient(circle,var(--dot-color)_1px,transparent_1px)] bg-[length:24px_24px]',
-    'chip': 'inline-flex items-baseline gap-1 px-1.5 py-0.5 rounded bg-ink/8 text-ink text-[0.95em] leading-6 hover:bg-ink/14 transition-colors',
-    'nav-link': 'op-70 hover:op-100 transition-opacity',
-    'btn': 'inline-flex items-center justify-center gap-2 h-9 px-4 rounded-lg text-sm font-500 transition',
-    'watermark': 'absolute pointer-events-none select-none font-bold text-7xl md:text-8xl lg:text-9xl op-3 tracking-tight uppercase',
-  },
-  theme: {
-    colors: {
-      // Theme-aware via CSS vars (defined in main.css) so text/surfaces invert
-      // correctly in light mode. Faint is tuned to clear WCAG AA on each bg.
-      ink: {
-        DEFAULT: 'rgb(var(--ink) / %alpha%)',
-        muted: 'rgb(var(--ink-muted) / %alpha%)',
-        faint: 'rgb(var(--ink-faint) / %alpha%)',
-      },
-      bg: {
-        DEFAULT: 'rgb(var(--bg) / %alpha%)',
-        soft: 'rgb(var(--bg-soft) / %alpha%)',
-      },
     },
   },
   safelist: [...new Set([...uiIcons, ...dataIcons])],
