@@ -18,7 +18,7 @@ export const givenTalks: GivenTalk[] = [
     date: '2026-10-23',
     location: 'Online',
     watch: 'https://sailsconf.com/2026/talks/17347112-5f4c-4086-bd0d-013eb2d2ff77',
-    pdf: '/talks/rebuilding-pandas-engine.pdf',
+    pdf: '/slides/rebuilding-pandas-engine.pdf',
   },
 ]
 
