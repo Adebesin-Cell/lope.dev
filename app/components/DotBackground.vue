@@ -8,7 +8,7 @@ const dots = css({
   zIndex: '-10',
   opacity: '0.6',
   pointerEvents: 'none',
-  backgroundImage: 'radial-gradient(circle, var(--dot-color) 1px, transparent 1px)',
+  backgroundImage: 'radial-gradient(circle, {colors.dot} 1px, transparent 1px)',
   backgroundSize: '24px 24px',
 })
 </script>

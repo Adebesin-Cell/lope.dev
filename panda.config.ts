@@ -1,5 +1,5 @@
 import { defineConfig, defineRecipe, defineTextStyles } from '@pandacss/dev'
-import typographyPreset from '@pandacss/preset-typography'
+import { typographyPreset } from '@pandacss/preset-typography'
 
 const chip = defineRecipe({
   className: 'chip',
@@ -22,6 +22,7 @@ const chip = defineRecipe({
 
 const button = defineRecipe({
   className: 'button',
+  description: 'Pill-shaped actions: ghost by default, solid for the primary action',
   base: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -96,8 +97,6 @@ const proseExtension = {
 
 const textStyles = defineTextStyles({
   display: { value: { fontSize: '4xl', fontWeight: 'bold', letterSpacing: 'tight', lineHeight: 'tight' } },
-  heading: { value: { fontSize: '2xl', fontWeight: 'bold', letterSpacing: 'tight' } },
-  label: { value: { fontSize: 'xs', textTransform: 'uppercase', letterSpacing: 'wider' } },
 })
 
 export default defineConfig({
@@ -107,7 +106,7 @@ export default defineConfig({
   outdir: 'styled-system',
   preflight: true,
   strictTokens: true,
-  jsxFramework: 'vue',
+  optimize: { removeUnusedTokens: true, removeUnusedKeyframes: true },
   conditions: {
     extend: {
       light: 'html.light &',
@@ -122,8 +121,8 @@ export default defineConfig({
       scrollPaddingTop: '20',
       overflowX: 'hidden',
       _motionReduce: { scrollBehavior: 'auto' },
-      _light: { colorScheme: 'light' },
     },
+    'html.light': { colorScheme: 'light' },
     body: {
       bg: 'transparent',
       fontFamily: 'sans',
@@ -152,23 +151,34 @@ export default defineConfig({
           '2xs': { value: '0.6875rem' },
           '3xs': { value: '0.625rem' },
         },
+        colors: {
+          lope: {
+            50: { value: '#fafafa' },
+            100: { value: '#f0f0f0' },
+            300: { value: '#d4d4d8' },
+            400: { value: '#a1a1aa' },
+            500: { value: '#80808a' },
+            550: { value: '#71717a' },
+            600: { value: '#6b6b75' },
+            700: { value: '#52525b' },
+            900: { value: '#111111' },
+            950: { value: '#0a0a0a' },
+          },
+        },
         animations: {
-          slideEnter: { value: 'slideEnter 1s both' },
-          shimmer: { value: 'shimmer 4s linear infinite' },
-          pulse: { value: 'pulse 1.8s ease-in-out infinite' },
           shipping: { value: 'fadePulse 2.4s ease-in-out infinite' },
         },
       },
       semanticTokens: {
         colors: {
           ink: {
-            DEFAULT: { value: { base: '#fafafa', _light: '#0a0a0a' } },
-            muted: { value: { base: '#a1a1aa', _light: '#52525b' } },
-            faint: { value: { base: '#80808a', _light: '#6b6b75' } },
+            DEFAULT: { value: { base: '{colors.lope.50}', _light: '{colors.lope.950}' } },
+            muted: { value: { base: '{colors.lope.400}', _light: '{colors.lope.700}' } },
+            faint: { value: { base: '{colors.lope.500}', _light: '{colors.lope.600}' } },
           },
           bg: {
-            DEFAULT: { value: { base: '#0a0a0a', _light: '#fafafa' } },
-            soft: { value: { base: '#111111', _light: '#f0f0f0' } },
+            DEFAULT: { value: { base: '{colors.lope.950}', _light: '{colors.lope.50}' } },
+            soft: { value: { base: '{colors.lope.900}', _light: '{colors.lope.100}' } },
           },
           dot: { value: { base: 'rgba(255, 255, 255, 0.08)', _light: 'rgba(0, 0, 0, 0.09)' } },
           prose: {
@@ -197,12 +207,6 @@ export default defineConfig({
       textStyles,
       recipes: { chip, button, link, prose: proseExtension },
       keyframes: {
-        slideEnter: {
-          '0%': { transform: 'translateY(10px)', opacity: '0' },
-          to: { transform: 'translateY(0)', opacity: '1' },
-        },
-        shimmer: { to: { backgroundPosition: '-220% 0' } },
-        pulse: { '0%, 100%': { opacity: '0.25' }, '50%': { opacity: '1' } },
         fadePulse: { '0%, 100%': { opacity: '0.4' }, '50%': { opacity: '1' } },
       },
     },

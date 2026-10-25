@@ -12,7 +12,8 @@
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
     "format": "oxfmt",
-    "format:check": "oxfmt --check"
+    "format:check": "oxfmt --check",
+    "lint:styles": "panda cssgen --max-warnings 0 --outfile node_modules/.cache/panda-check.css"
   },
   "dependencies": {
     "@ark-ui/vue": "^5.36.2",
@@ -22,8 +23,8 @@
     "@nuxt/content": "^3.13.0",
     "@nuxt/image": "^2.1.0",
     "@nuxtjs/color-mode": "^4.0.0",
-    "@nuxtjs/sitemap": "^8.2.1",
-    "@takumi-rs/wasm": "^1.8.5",
+    "@nuxtjs/sitemap": "^9.1.0",
+    "@takumi-rs/wasm": "^2.17.1",
     "@unocss/nuxt": "^66.6.8",
     "@unocss/preset-icons": "^66.6.8",
     "@vueuse/core": "^14.3.0",
@@ -31,21 +32,23 @@
     "better-sqlite3": "^12.9.0",
     "feed": "^5.2.1",
     "nuxt": "^4.6.2",
-    "nuxt-og-image": "^6.6.0",
+    "nuxt-og-image": "^7.0.7",
     "posthog-js": "^1.386.6",
     "tegaki": "^0.18.0",
     "unocss": "^66.6.8"
   },
   "devDependencies": {
+    "@oxlint/plugins": "^1.89.0",
     "@pandacss/dev": "^2.4.0",
+    "@pandacss/eslint-plugin": "^2.4.0",
     "@pandacss/preset-base": "^2.4.0",
     "@pandacss/preset-panda": "^2.4.0",
     "@pandacss/preset-typography": "^2.4.0",
     "@pandacss/vite": "^2.4.0",
-    "@takumi-rs/core": "^1.8.5",
-    "@takumi-rs/helpers": "^1.8.5",
-    "oxfmt": "^0.54.0",
-    "oxlint": "^1.69.0",
+    "@takumi-rs/core": "^2.17.1",
+    "@takumi-rs/helpers": "^2.17.1",
+    "oxfmt": "^0.74.0",
+    "oxlint": "^1.89.0",
     "playwright": "^1.61.1"
   }
 }
