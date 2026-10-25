@@ -90,13 +90,13 @@ function formatStars(n: number) {
 
 <template>
   <ark.article class="slide-enter-content">
-    <ark.header class="text-center mb-12">
+    <ark.header class="mb-10">
       <ark.img
         src="https://github.com/Adebesin-Cell.png"
         alt="Adebesin Tolulope (Lope)"
         width="80"
         height="80"
-        class="w-20 h-20 rounded-full mx-auto mb-5 bg-ink/5 ring-1 ring-ink/10"
+        class="w-20 h-20 rounded-full mb-5 bg-ink/5 ring-1 ring-ink/10"
       />
       <ark.h1 class="text-4xl font-700 tracking-tight mb-3">
         Lope is <ark.span class="shipping text-ink-muted">Shipping…</ark.span>

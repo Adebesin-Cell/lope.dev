@@ -2,7 +2,7 @@
 // Rendered to the site-wide OG image by nuxt-og-image (Takumi renderer).
 withDefaults(defineProps<{ title?: string, subtitle?: string, host?: string }>(), {
   title: 'Adebesin Tolulope',
-  subtitle: 'Software engineer · open-source contributor',
+  subtitle: 'Design engineer · open sourcer',
   host: '',
 })
 

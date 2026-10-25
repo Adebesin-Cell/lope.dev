@@ -80,7 +80,7 @@ export default defineCachedEventHandler(async (event) => {
     headers.Authorization = `Bearer ${config.githubToken}`
 
   const q = process.env.NUXT_RELEASES_QUERY
-    || `author:${user} type:pr is:merged is:public`
+    || `author:${user} -user:${user} type:pr is:merged is:public`
 
   const search = await $fetch<{ items?: GhSearchItem[], total_count?: number }>(
     `https://api.github.com/search/issues?q=${encodeURIComponent(q)}&sort=updated&order=desc&per_page=${BATCH}`,
