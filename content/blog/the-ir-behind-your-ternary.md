@@ -14,7 +14,7 @@ part: 5
 
 *Panda internals, part 5. Start with [Build once, at build time](/blog/build-once-at-build-time) if you're new here.*
 
-Part 4 ended on a promise. With [source transforms](https://panda-css.com/docs/styling/source-transforms) on, this call:
+[Part 4](/blog/panda-never-runs-your-code) ended on a promise. With [source transforms](https://panda-css.com/docs/styling/source-transforms) on, this call:
 
 ```ts
 css({ fontSize: 'xl', color: active ? 'red.700' : 'gray.700' })
@@ -69,7 +69,7 @@ Here's the running example as a tree:
 
 ## How your code becomes branches
 
-Part 4 covered how Panda works out values without running your code. The StyleTree is where that work lands.
+[Part 4](/blog/panda-never-runs-your-code) covered how Panda works out values without running your code. The StyleTree is where that work lands.
 
 When Panda can work out a ternary's condition at build time, it picks the matching side and stores only that. No ternary ends up in the tree.
 
