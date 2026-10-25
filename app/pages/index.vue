@@ -2,8 +2,8 @@
 import { ark } from '@ark-ui/vue/factory'
 
 usePageSeo({
-  title: 'Adebesin Tolulope (Lope) — Software Engineer',
-  description: 'Software engineer and open-source maintainer — product engineer at BethelFlow, core maintainer at Chakra UI, Panda, Ark UI and Zag, working across the Chakra and IQ ecosystems.',
+  title: 'Adebesin Tolulope (Lope) — Design Engineer',
+  description: 'Design engineer and open sourcer. Core maintainer of Chakra UI, Panda, Ark UI and Zag, and product engineer at BethelFlow.',
 })
 
 const siteUrl = useSiteConfig().url.replace(/\/$/, '')
@@ -19,7 +19,7 @@ useHead({
         'alternateName': 'Lope',
         'url': siteUrl,
         'image': `${siteUrl}/lope-avatar.jpeg`,
-        'jobTitle': 'Software Engineer',
+        'jobTitle': 'Design Engineer',
         'worksFor': { '@type': 'Organization', 'name': 'IQ.AI', 'url': 'https://iqai.com/' },
         'alumniOf': { '@type': 'CollegeOrUniversity', 'name': 'Federal University of Technology, Akure' },
         'knowsAbout': ['Panda CSS', 'Chakra UI', 'Ark UI', 'Zag', 'Vue', 'Nuxt', 'React', 'TypeScript', 'Design systems', 'AI agents'],
@@ -88,9 +88,7 @@ const roleRows = [
     </ark.h1>
 
     <ark.p class="text-base text-ink-muted leading-relaxed">
-      Hey! I'm Lope, a software engineer and open-source contributor. Product engineer at
-      <Chip class="align-middle" href="https://www.bethelflow.com/" label="BethelFlow" logo="/brands/bethelflow.svg" />,
-      working across the Chakra and IQ ecosystems.
+      Hi, I'm Adebesin Tolulope, a design engineer and open sourcer.
     </ark.p>
 
     <ark.div class="space-y-3 text-sm">

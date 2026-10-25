@@ -43,7 +43,7 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'Software engineer and open-source contributor, working across the Chakra and IQ ecosystems.' },
+        { name: 'description', content: 'Design engineer and open sourcer, maintaining Chakra UI, Panda, Ark UI and Zag.' },
         { name: 'author', content: 'Adebesin Tolulope (Lope)' },
         { name: 'theme-color', content: '#0a0a0a' },
         { property: 'og:site_name', content: 'Adebesin Tolulope (Lope)' },
