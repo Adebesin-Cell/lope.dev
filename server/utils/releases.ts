@@ -1,4 +1,6 @@
-interface MergedPR {
+import type { H3Event } from 'h3'
+
+export interface MergedPR {
   org: string
   repo: string
   number: number
@@ -80,8 +82,8 @@ async function fetchStars(repos: string[], token: string) {
   return out
 }
 
-export default defineCachedEventHandler(
-  async (event) => {
+export const getReleases = defineCachedFunction(
+  async (event: H3Event): Promise<MergedPR[]> => {
     const config = useRuntimeConfig(event)
     const user = config.public.githubUser
 
@@ -123,7 +125,7 @@ export default defineCachedEventHandler(
           title: it.title ?? '',
           url: it.html_url ?? '',
           mergedAt: it.pull_request?.merged_at ?? it.closed_at ?? '',
-          orgAvatar: REPO_AVATAR[full] ?? (org ? `https://github.com/${org}.png?size=80` : ''),
+          orgAvatar: REPO_AVATAR[full] ?? (org ? `https://avatars.githubusercontent.com/${org}?s=80` : ''),
           type: commitType(it.title ?? ''),
           stars: 0,
         } satisfies MergedPR
@@ -136,10 +138,11 @@ export default defineCachedEventHandler(
       .filter(keep)
       .toSorted((a, b) => b.mergedAt.localeCompare(a.mergedAt))
 
-    return { prs, total: prs.length, fetchedAt: new Date().toISOString() }
+    return prs
   },
   {
     maxAge: 60 * 60,
     name: 'releases',
+    getKey: () => 'all',
   },
 )
