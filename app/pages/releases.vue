@@ -91,6 +91,7 @@ function formatStars(n: number) {
 <template>
   <ark.article class="slide-enter-content">
     <ark.header class="mb-10">
+      <SubNav />
       <ark.img
         src="https://github.com/Adebesin-Cell.png"
         alt="Adebesin Tolulope (Lope)"

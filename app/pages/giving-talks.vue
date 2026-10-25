@@ -8,11 +8,11 @@ usePageSeo({
 
 const info = [
   { label: 'Name', value: 'Adebesin Tolulope (Lope)' },
-  { label: 'Headshot', value: 'lope.adebesin.com/lope-headshot.jpg', href: '/lope-headshot.jpg' },
+  { label: 'Headshot', value: 'lope.adebesin.com/lope-headshot.jpg', href: '/lope-headshot.jpg', copy: 'https://lope.adebesin.com/lope-headshot.jpg' },
   { label: 'Introduction', value: "Adebesin Tolulope (Lope) is a design engineer and open sourcer. He's a core maintainer of Panda CSS, Chakra UI, Ark UI and Zag, the tools thousands of teams build their interfaces on, and he's building BethelFlow, a church operating system. He cares about the layer under our interfaces, and about making open source a warmer room for the next person who wants in." },
   { label: 'Location', value: 'Nigeria' },
   { label: 'Company', value: 'IQ Industries', href: 'https://iqindustries.com/' },
-  { label: 'Website', value: 'lope.adebesin.com', href: 'https://lope.adebesin.com' },
+  { label: 'Website', value: 'lope.adebesin.com', href: 'https://lope.adebesin.com', copy: 'https://lope.adebesin.com' },
   { label: 'GitHub', value: '@Adebesin-Cell', href: 'https://github.com/Adebesin-Cell' },
   { label: 'X', value: '@I_am_Lope', href: 'https://x.com/I_am_Lope' },
   { label: 'LinkedIn', value: 'adebesin-tolulope', href: 'https://www.linkedin.com/in/adebesin-tolulope/' },
@@ -50,12 +50,14 @@ const info = [
           {{ row.label }}
         </ark.dt>
         <ark.dd class="text-ink">
-          <ark.a v-if="row.href" :href="row.href" target="_blank" rel="noopener" class="underline decoration-ink/30 underline-offset-4 hover:decoration-ink transition-colors">
-            {{ row.value }}
-          </ark.a>
-          <template v-else>
-            {{ row.value }}
-          </template>
+          <TextCopy :text="row.copy ?? row.value">
+            <ark.a v-if="row.href" :href="row.href" target="_blank" rel="noopener" class="underline decoration-ink/30 underline-offset-4 hover:decoration-ink transition-colors">
+              {{ row.value }}
+            </ark.a>
+            <template v-else>
+              {{ row.value }}
+            </template>
+          </TextCopy>
         </ark.dd>
       </template>
     </ark.dl>

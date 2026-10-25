@@ -15,7 +15,8 @@ function fmt(d: string) {
 <template>
   <ark.article class="slide-enter-content">
     <ark.header class="mb-10">
-      <ark.h1 class="text-4xl font-700 tracking-tight mb-4">
+      <SubNav />
+      <ark.h1 class="sr-only">
         Talks
       </ark.h1>
       <NuxtLink to="/giving-talks" class="inline-flex items-center gap-1.5 text-ink-muted hover:text-ink transition-colors underline decoration-ink/30 underline-offset-4">
