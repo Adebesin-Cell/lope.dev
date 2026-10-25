@@ -98,7 +98,7 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: true,
-      routes: ['/', '/projects', '/talks', '/blog', '/feed.xml'],
+      routes: ['/', '/projects', '/talks', '/giving-talks', '/blog', '/feed.xml'],
       ignore: ['/releases'],
     },
   },
@@ -110,6 +110,7 @@ export default defineNuxtConfig({
     '/projects': { prerender: true },
     '/play': { prerender: true },
     '/talks': { prerender: true },
+    '/giving-talks': { prerender: true },
     '/blog/**': { prerender: true },
     '/feed.xml': { prerender: true },
     '/releases': { isr: 60 * 60 },

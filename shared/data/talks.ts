@@ -1,3 +1,27 @@
+export interface GivenTalk {
+  title: string
+  subtitle: string
+  event: string
+  eventUrl: string
+  date: string
+  location: string
+  watch?: string
+  pdf?: string
+}
+
+export const givenTalks: GivenTalk[] = [
+  {
+    title: 'Rebuilding Panda\'s Engine',
+    subtitle: 'Rust, WebAssembly, and 37× faster extraction',
+    event: 'SailsConf',
+    eventUrl: 'https://sailsconf.com/',
+    date: '2026-10-23',
+    location: 'Online',
+    watch: 'https://sailsconf.com/2026/talks/17347112-5f4c-4086-bd0d-013eb2d2ff77',
+    pdf: '/talks/rebuilding-pandas-engine.pdf',
+  },
+]
+
 export interface Talk {
   name: string
   angle: string
