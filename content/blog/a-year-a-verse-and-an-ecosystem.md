@@ -5,7 +5,9 @@ seoTitle: "A year in the Chakra UI ecosystem: open source lessons"
 date: 2026-08-31
 ---
 
-### A year in the chakraverse. What I built, what I threw away, and where we're headed.
+::subtitle
+A year in the chakraverse. What I built, what I threw away, and where we're headed.
+::
 
 ![A year, a verse and an ecosystem. The Panda, Chakra UI, Zag and Ark marks floating around the title on a warm cream background.](/images/blog/a-year-a-verse-and-an-ecosystem/cover.svg){loading="eager" fetchpriority="high"}
 

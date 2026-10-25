@@ -7,7 +7,9 @@ series: Panda internals
 part: 2
 ---
 
-### How Panda turns your styles into atoms, and keeps each one exactly once.
+::subtitle
+How Panda turns your styles into atoms, and keeps each one exactly once.
+::
 
 ![Every style is an atom, on a cream background with yellow and teal glows, surrounded by the Panda logo and stickers reading (prop, value, cond), d_flex and hover:c_red.300.](/images/blog/every-style-is-an-atom/cover.svg){loading="eager" fetchpriority="high"}
 

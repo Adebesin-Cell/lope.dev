@@ -23,7 +23,7 @@ export default defineEventHandler(async (event) => {
     date: m.date,
   }))
 
-  const posts = [...onSite, ...external].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  const posts = [...onSite, ...external].toSorted((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
   const feed = new Feed({
     title: 'Adebesin Tolulope (Lope) — Blog',

@@ -5,9 +5,11 @@ date: 2025-05-26
 canonical: https://iamlope.medium.com/being-heard-isnt-just-about-speaking-it-s-about-understanding-b700929c5743
 ---
 
-### From human connection to multilingual UX — using Next.js and next-intl to build user-aware, language-ready web experiences.
+::subtitle
+From human connection to multilingual UX — using Next.js and next-intl to build user-aware, language-ready web experiences.
+::
 
-![](https://cdn-images-1.medium.com/max/730/1*MlejWnprLa0VZpKGNdt9vg.png){loading="eager" fetchpriority="high"}
+![Three line-drawn faces speaking, with speech bubbles saying Hello, Marhaba in Arabic, and Hola.](https://cdn-images-1.medium.com/max/730/1*MlejWnprLa0VZpKGNdt9vg.png){loading="eager" fetchpriority="high"}
 
 I've always loved to be heard — not just in the sense of speaking, but in a way that makes me feel understood. We all do. It's human nature. But more often than not, I've found myself in conversations where I wasn't truly listened to. I was acknowledged, but not understood.
 

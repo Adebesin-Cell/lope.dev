@@ -78,7 +78,7 @@ const current = css({ color: 'ink', fontWeight: 'medium' })
   <ClientOnly>
     <ark.nav v-if="items.length" :class="['toc-nav', nav]" aria-label="On this page">
       <ark.button type="button" :class="['toc-trigger', trigger]" aria-label="On this page">
-        <ark.span :class="['i-lucide-menu', triggerIcon]" />
+        <ark.span :class="['i-lucide-menu', triggerIcon]" aria-hidden="true" />
       </ark.button>
 
       <ark.ul :class="['toc-panel', panel]">

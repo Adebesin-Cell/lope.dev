@@ -46,7 +46,7 @@ const grid = css({
   rowGap: '2',
   lineHeight: '[1.75rem]',
 })
-const term = css({ textAlign: 'end', fontWeight: 'semibold', opacity: '0.6' })
+const term = css({ textAlign: 'end', fontWeight: 'semibold', color: 'ink.muted' })
 const value = css({ color: 'ink' })
 </script>
 

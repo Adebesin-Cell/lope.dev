@@ -33,7 +33,7 @@ function toggle(event: MouseEvent) {
   transition.ready.then(() => {
     const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`]
     document.documentElement.animate(
-      { clipPath: toDark ? [...clipPath].reverse() : clipPath },
+      { clipPath: toDark ? clipPath.toReversed() : clipPath },
       {
         duration: 400,
         easing: 'ease-out',

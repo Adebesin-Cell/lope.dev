@@ -1,4 +1,4 @@
-import posthog from 'posthog-js'
+import { posthog } from 'posthog-js'
 
 export default defineNuxtPlugin((nuxtApp) => {
   const { public: config } = useRuntimeConfig()
@@ -11,6 +11,8 @@ export default defineNuxtPlugin((nuxtApp) => {
     defaults: '2026-01-30',
     capture_pageview: false,
     capture_pageleave: true,
+    disable_session_recording: true,
+    disable_surveys: true,
     loaded: (ph) => {
       if (import.meta.dev) ph.debug()
 
@@ -26,7 +28,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   if (import.meta.dev) client.opt_out_capturing()
 
   const landing = new URL(window.location.href)
-  const campaign = Object.fromEntries([...landing.searchParams].filter(([key]) => key.startsWith('utm_')))
+  const campaign = Object.fromEntries([...landing.searchParams].filter(([name]) => name.startsWith('utm_')))
   let first = true
 
   nuxtApp.hook('page:finish', () => {

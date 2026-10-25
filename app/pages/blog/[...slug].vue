@@ -14,7 +14,7 @@ if (!post.value) throw createError({ statusCode: 404, statusMessage: 'Post not f
 const postUrl = computed(() => `https://${host}${route.path}`)
 const shareTitle = computed(() => post.value?.title ?? '')
 const canonicalUrl = computed(() => post.value?.canonical || postUrl.value)
-const readingTime = computed(() => readingTimeText(post.value?.body))
+const readingTime = computed(() => post.value?.readingTime)
 
 useSeoMeta({
   title: () =>
@@ -130,7 +130,7 @@ const cdLink = css({ opacity: '0.5', transition: 'opacity', _hover: { opacity: '
 <template>
   <ark.article v-if="post" :class="['prose-article slide-enter-content']">
     <NuxtLink to="/blog" :class="back">
-      <ark.span class="i-lucide-arrow-left" />
+      <ark.span class="i-lucide-arrow-left" aria-hidden="true" />
       Back to blog
     </NuxtLink>
 

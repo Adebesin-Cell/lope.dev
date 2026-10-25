@@ -1,6 +1,7 @@
 import { fileURLToPath } from 'node:url'
 import { pandacss } from '@pandacss/vite'
 import { redirectRouteRules } from './shared/redirects'
+import { readingTimeText } from './app/utils/reading-time'
 
 export default defineNuxtConfig({
   modules: [
@@ -25,6 +26,11 @@ export default defineNuxtConfig({
         highlight: { langs: ['cpp', 'tsx', 'jsx', 'css', 'json', 'rust', 'mdx'] },
       },
       transformers: ['~~/transformers/image-size'],
+    },
+  },
+  hooks: {
+    'content:file:afterParse'({ collection, content }) {
+      if (collection.name === 'blog') content.readingTime ??= readingTimeText(content.body)
     },
   },
   fonts: {
