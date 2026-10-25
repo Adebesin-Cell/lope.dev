@@ -62,8 +62,20 @@ const link = defineRecipe({
   base: { transition: 'all' },
   variants: {
     tone: {
-      strong: { color: 'ink', textDecoration: 'underline', textDecorationColor: 'ink/30', textUnderlineOffset: '4px', _hover: { textDecorationColor: 'ink' } },
-      muted: { color: 'ink.muted', textDecoration: 'underline', textDecorationColor: 'ink/30', textUnderlineOffset: '4px', _hover: { color: 'ink' } },
+      strong: {
+        color: 'ink',
+        textDecoration: 'underline',
+        textDecorationColor: 'ink/30',
+        textUnderlineOffset: '4px',
+        _hover: { textDecorationColor: 'ink' },
+      },
+      muted: {
+        color: 'ink.muted',
+        textDecoration: 'underline',
+        textDecorationColor: 'ink/30',
+        textUnderlineOffset: '4px',
+        _hover: { color: 'ink' },
+      },
       quiet: { textDecoration: 'underline', _hover: { color: 'ink.muted' } },
       nav: { opacity: '0.7', _hover: { opacity: '1' }, '&.router-link-active': { opacity: '1', fontWeight: 'medium' } },
     },
@@ -81,7 +93,17 @@ const proseExtension = {
     '& li': { marginBlock: '[0.35rem]' },
     '& :is(h1, h2, h3, h4) a': { textDecoration: 'none', color: 'inherit' },
     '& a': { textUnderlineOffset: '4px' },
-    '& pre': { marginBlock: '5', px: '[1.1rem]', py: '4', rounded: 'lg', bg: 'ink/5', borderWidth: '1px', borderColor: 'ink/10', overflowX: 'auto', fontSize: '[0.85rem]' },
+    '& pre': {
+      marginBlock: '5',
+      px: '[1.1rem]',
+      py: '4',
+      rounded: 'lg',
+      bg: 'ink/5',
+      borderWidth: '1px',
+      borderColor: 'ink/10',
+      overflowX: 'auto',
+      fontSize: '[0.85rem]',
+    },
     '& :is(img, video)': { display: 'block', rounded: 'lg', maxW: 'full', h: 'auto' },
     '& hr': {
       border: '0',
@@ -100,7 +122,11 @@ const textStyles = defineTextStyles({
 })
 
 export default defineConfig({
-  presets: ['@pandacss/preset-base', '@pandacss/preset-panda', typographyPreset({ semanticTokens: { enabled: false } })],
+  presets: [
+    '@pandacss/preset-base',
+    '@pandacss/preset-panda',
+    typographyPreset({ semanticTokens: { enabled: false } }),
+  ],
   include: ['./app/**/*.{vue,ts}', './shared/**/*.ts'],
   exclude: ['./app/components/OgImage/**'],
   outdir: 'styled-system',

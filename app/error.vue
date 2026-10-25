@@ -13,8 +13,7 @@ const path = computed(() => {
   const raw = (props.error as NuxtError & { url?: string }).url || requestUrl.pathname
   try {
     return new URL(raw, requestUrl.origin).pathname
-  }
-  catch {
+  } catch {
     return raw
   }
 })
@@ -23,16 +22,14 @@ const is404 = computed(() => props.error.statusCode === 404)
 const code = computed(() => props.error.statusCode || 500)
 
 const heading = computed(() => {
-  if (!is404.value)
-    return 'Something broke'
+  if (!is404.value) return 'Something broke'
   return isBlog.value ? 'This post went unpublished' : 'Page not found'
 })
 
 const blurb = computed(() => {
-  if (!is404.value)
-    return props.error.statusMessage || 'An unexpected error got in the way. Try again in a moment.'
+  if (!is404.value) return props.error.statusMessage || 'An unexpected error got in the way. Try again in a moment.'
   return isBlog.value
-    ? "That piece either never made it out of drafts or moved somewhere else. The rest of the writing is still up, though."
+    ? 'That piece either never made it out of drafts or moved somewhere else. The rest of the writing is still up, though.'
     : "The page you're after doesn't exist — maybe it moved, maybe the link is stale. Let's get you back on track."
 })
 
@@ -70,10 +67,7 @@ const ghost = button()
   <NuxtLayout>
     <ark.article class="slide-enter-content">
       <ark.div :class="relative">
-        <ark.div
-          :class="codeMark"
-          aria-hidden="true"
-        >
+        <ark.div :class="codeMark" aria-hidden="true">
           {{ code }}
         </ark.div>
 
@@ -87,38 +81,21 @@ const ghost = button()
           </ark.p>
 
           <ark.div :class="actions">
-            <ark.button
-              type="button"
-              :class="solid"
-              @click="go('/')"
-            >
+            <ark.button type="button" :class="solid" @click="go('/')">
               <ark.span class="i-lucide-arrow-left" aria-hidden="true" />
               Back home
             </ark.button>
 
-            <ark.button
-              v-if="isBlog"
-              type="button"
-              :class="ghost"
-              @click="go('/blog')"
-            >
+            <ark.button v-if="isBlog" type="button" :class="ghost" @click="go('/blog')">
               <ark.span class="i-lucide-pen-line" aria-hidden="true" />
               Browse the blog
             </ark.button>
             <template v-else>
-              <ark.button
-                type="button"
-                :class="ghost"
-                @click="go('/projects')"
-              >
+              <ark.button type="button" :class="ghost" @click="go('/projects')">
                 <ark.span class="i-lucide-box" aria-hidden="true" />
                 Projects
               </ark.button>
-              <ark.button
-                type="button"
-                :class="ghost"
-                @click="go('/blog')"
-              >
+              <ark.button type="button" :class="ghost" @click="go('/blog')">
                 <ark.span class="i-lucide-pen-line" aria-hidden="true" />
                 Blog
               </ark.button>

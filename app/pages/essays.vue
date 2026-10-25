@@ -6,7 +6,8 @@ import { substackPosts, substackUrl } from '~/data/substack-posts'
 
 usePageSeo({
   title: 'Essays — Adebesin Tolulope',
-  description: 'Away from code, I try to write. Just write, and perhaps share what I think. Personal essays on Substack.',
+  description:
+    'Away from code, I try to write. Just write, and perhaps share what I think. Personal essays on Substack.',
 })
 
 function fmt(d: string) {
@@ -36,29 +37,15 @@ const date = css({ fontSize: 'sm', color: 'ink.muted', whiteSpace: 'nowrap' })
 
 <template>
   <ark.article class="slide-enter-content">
-    <ark.h1 :class="title">
-      Essays
-    </ark.h1>
+    <ark.h1 :class="title"> Essays </ark.h1>
     <ark.p :class="intro">
       Away from code, I try to write. Just write, and perhaps share what I think. It lives on
-      <ark.a
-        :href="substackUrl"
-        target="_blank"
-        rel="noopener"
-        :class="substack"
-      >
-        Substack
-      </ark.a>.
+      <ark.a :href="substackUrl" target="_blank" rel="noopener" :class="substack"> Substack </ark.a>.
     </ark.p>
 
     <ark.ul :class="list">
       <ark.li v-for="post in substackPosts" :key="post.url">
-        <ark.a
-          :href="post.url"
-          target="_blank"
-          rel="noopener"
-          :class="row"
-        >
+        <ark.a :href="post.url" target="_blank" rel="noopener" :class="row">
           <ark.span :class="titleRow">
             <ark.span :class="postTitle">{{ post.title }}</ark.span>
             <ark.span :class="['i-lucide-arrow-up-right', externalIcon]" aria-hidden="true" />

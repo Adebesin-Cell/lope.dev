@@ -21,54 +21,63 @@ function collect() {
     return
   }
 
-  const els = Array.from(
-    main.querySelectorAll<HTMLElement>('[data-toc][id], .prose-content :where(h2, h3)[id]'),
-  )
+  const els = Array.from(main.querySelectorAll<HTMLElement>('[data-toc][id], .prose-content :where(h2, h3)[id]'))
 
   items.value = els
-    .map(el => ({ id: el.id, text: el.dataset.toc || el.textContent?.trim() || '' }))
-    .filter(i => i.id && i.text)
+    .map((el) => ({ id: el.id, text: el.dataset.toc || el.textContent?.trim() || '' }))
+    .filter((i) => i.id && i.text)
 
   observer?.disconnect()
-  if (!els.length)
-    return
+  if (!els.length) return
 
   observer = new IntersectionObserver(
     (entries) => {
       for (const e of entries) {
-        if (e.isIntersecting)
-          activeId.value = (e.target as HTMLElement).id
+        if (e.isIntersecting) activeId.value = (e.target as HTMLElement).id
       }
     },
     { rootMargin: '-10% 0px -75% 0px' },
   )
-  els.forEach(el => observer!.observe(el))
+  els.forEach((el) => observer!.observe(el))
 }
 
 onMounted(() => nextTick(collect))
-watch(() => route.fullPath, () => nextTick(collect))
+watch(
+  () => route.fullPath,
+  () => nextTick(collect),
+)
 onBeforeUnmount(() => observer?.disconnect())
 
 const nav = css({ position: 'fixed', insetStart: '5', top: '24', zIndex: '40', display: { base: 'none', lg: 'block' } })
 const trigger = css({ display: 'grid', placeItems: 'center', w: '9', h: '9', color: 'ink.muted' })
 const triggerIcon = css({ fontSize: 'lg' })
-const panel = css({ position: 'absolute', insetStart: '0', top: '[100%]', minW: '48', maxW: '64', maxH: '[70vh]', overflow: 'auto', pt: '3', pe: '4' })
-const link = css({ display: 'block', truncate: true, py: '1', fontSize: 'sm', color: 'ink.faint', transition: 'colors', _hover: { color: 'ink' } })
+const panel = css({
+  position: 'absolute',
+  insetStart: '0',
+  top: '[100%]',
+  minW: '48',
+  maxW: '64',
+  maxH: '[70vh]',
+  overflow: 'auto',
+  pt: '3',
+  pe: '4',
+})
+const link = css({
+  display: 'block',
+  truncate: true,
+  py: '1',
+  fontSize: 'sm',
+  color: 'ink.faint',
+  transition: 'colors',
+  _hover: { color: 'ink' },
+})
 const current = css({ color: 'ink', fontWeight: 'medium' })
 </script>
 
 <template>
   <ClientOnly>
-    <ark.nav
-      v-if="items.length"
-      :class="['toc-nav', nav]"
-      aria-label="On this page"
-    >
-      <ark.button
-        type="button"
-        :class="['toc-trigger', trigger]"
-        aria-label="On this page"
-      >
+    <ark.nav v-if="items.length" :class="['toc-nav', nav]" aria-label="On this page">
+      <ark.button type="button" :class="['toc-trigger', trigger]" aria-label="On this page">
         <ark.span :class="['i-lucide-menu', triggerIcon]" />
       </ark.button>
 

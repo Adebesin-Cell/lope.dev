@@ -27,10 +27,7 @@ export default defineNuxtConfig({
     },
   },
   devtools: { enabled: true },
-  components: [
-    { path: '~/components/content', global: true },
-    '~/components',
-  ],
+  components: [{ path: '~/components/content', global: true }, '~/components'],
   compatibilityDate: '2024-04-03',
   css: ['~/assets/css/panda.css', '~/assets/css/main.css'],
   alias: { 'styled-system': fileURLToPath(new URL('./styled-system', import.meta.url)) },
@@ -46,9 +43,16 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'Design engineer and open sourcer, maintaining Chakra UI, Panda, Ark UI and Zag.' },
+        {
+          name: 'description',
+          content: 'Design engineer and open sourcer, maintaining Chakra UI, Panda, Ark UI and Zag.',
+        },
         { name: 'author', content: 'Adebesin Tolulope (Lope)' },
-        { name: 'keywords', content: 'Adebesin Tolulope, Lope, design engineer, frontend engineer, open source, Panda CSS, Chakra UI, Ark UI, Zag, design systems, CSS, React, Vue, Nuxt, TypeScript' },
+        {
+          name: 'keywords',
+          content:
+            'Adebesin Tolulope, Lope, design engineer, frontend engineer, open source, Panda CSS, Chakra UI, Ark UI, Zag, design systems, CSS, React, Vue, Nuxt, TypeScript',
+        },
         { name: 'theme-color', content: '#0a0a0a' },
         { property: 'og:site_name', content: 'Adebesin Tolulope (Lope)' },
         { property: 'og:locale', content: 'en_US' },
@@ -57,7 +61,10 @@ export default defineNuxtConfig({
       link: [
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&family=Caveat:wght@500;600;700&display=swap' },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&family=Caveat:wght@500;600;700&display=swap',
+        },
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
@@ -70,9 +77,9 @@ export default defineNuxtConfig({
     public: {
       githubUser: 'Adebesin-Cell',
       siteUrl:
-        process.env.NUXT_PUBLIC_SITE_URL
-        || (process.env.VERCEL_PROJECT_PRODUCTION_URL && `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`)
-        || 'https://lope.adebesin.com',
+        process.env.NUXT_PUBLIC_SITE_URL ||
+        (process.env.VERCEL_PROJECT_PRODUCTION_URL && `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`) ||
+        'https://lope.adebesin.com',
       posthogPublicKey: process.env.NUXT_PUBLIC_POSTHOG_PUBLIC_KEY || '',
       posthogHost: process.env.NUXT_PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com',
       posthogOptoutToken: process.env.NUXT_PUBLIC_POSTHOG_OPTOUT_TOKEN || '',
@@ -86,9 +93,9 @@ export default defineNuxtConfig({
   },
   site: {
     url:
-      process.env.NUXT_PUBLIC_SITE_URL
-      || (process.env.VERCEL_PROJECT_PRODUCTION_URL && `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`)
-      || 'https://lope.adebesin.com',
+      process.env.NUXT_PUBLIC_SITE_URL ||
+      (process.env.VERCEL_PROJECT_PRODUCTION_URL && `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`) ||
+      'https://lope.adebesin.com',
     name: 'Adebesin Tolulope (Lope)',
   },
   sitemap: {

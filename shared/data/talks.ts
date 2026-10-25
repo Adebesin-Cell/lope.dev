@@ -11,7 +11,7 @@ export interface GivenTalk {
 
 export const givenTalks: GivenTalk[] = [
   {
-    title: 'Rebuilding Panda\'s Engine',
+    title: "Rebuilding Panda's Engine",
     subtitle: 'Rust, WebAssembly, and 37× faster extraction',
     event: 'SailsConf',
     eventUrl: 'https://sailsconf.com/',

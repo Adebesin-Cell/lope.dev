@@ -10,32 +10,35 @@ const pageTitle = css({ textStyle: 'display', mb: '3' })
 
 usePageSeo({
   title: 'Projects: Panda CSS, Ark UI, Chakra UI — Adebesin Tolulope',
-  description: 'What Lope maintains and builds: Panda CSS, Ark UI, Chakra UI and Zag in the Chakra ecosystem, adk-ts and IQ.wiki at IQ, BethelFlow, and side projects.',
+  description:
+    'What Lope maintains and builds: Panda CSS, Ark UI, Chakra UI and Zag in the Chakra ecosystem, adk-ts and IQ.wiki at IQ, BethelFlow, and side projects.',
 })
 
 const siteUrl = useSiteConfig().url.replace(/\/$/, '')
-const items = projects.flatMap(g => g.projects).filter(p => p.href)
+const items = projects.flatMap((g) => g.projects).filter((p) => p.href)
 
 useHead({
-  script: [{
-    type: 'application/ld+json',
-    innerHTML: JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'CollectionPage',
-      'name': 'Projects',
-      'url': `${siteUrl}/projects`,
-      'author': { '@type': 'Person', 'name': 'Adebesin Tolulope', 'url': siteUrl },
-      'mainEntity': {
-        '@type': 'ItemList',
-        'itemListElement': items.map((p, i) => ({
-          '@type': 'ListItem',
-          'position': i + 1,
-          'name': p.name,
-          'url': p.href,
-        })),
-      },
-    }),
-  }],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: 'Projects',
+        url: `${siteUrl}/projects`,
+        author: { '@type': 'Person', name: 'Adebesin Tolulope', url: siteUrl },
+        mainEntity: {
+          '@type': 'ItemList',
+          itemListElement: items.map((p, i) => ({
+            '@type': 'ListItem',
+            position: i + 1,
+            name: p.name,
+            url: p.href,
+          })),
+        },
+      }),
+    },
+  ],
 })
 
 const header = css({ mb: '10' })
@@ -45,19 +48,10 @@ const actions = css({ display: 'flex', alignItems: 'center', gap: '3', mt: '6' }
 <template>
   <ark.article class="slide-enter-content">
     <ark.header :class="header">
-      <ark.h1 :class="pageTitle">
-        Projects
-      </ark.h1>
-      <ark.p :class="lead">
-        Open source I maintain, products I build at work, and things I make for fun.
-      </ark.p>
+      <ark.h1 :class="pageTitle"> Projects </ark.h1>
+      <ark.p :class="lead"> Open source I maintain, products I build at work, and things I make for fun. </ark.p>
       <ark.div :class="actions">
-        <ark.a
-          href="https://github.com/Adebesin-Cell"
-          target="_blank"
-          rel="noopener"
-          :class="ghostButton"
-        >
+        <ark.a href="https://github.com/Adebesin-Cell" target="_blank" rel="noopener" :class="ghostButton">
           <ark.span class="i-simple-icons-github" aria-hidden="true" />
           GitHub
         </ark.a>

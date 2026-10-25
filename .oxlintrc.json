@@ -1,12 +1,6 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": [
-    "typescript",
-    "unicorn",
-    "oxc",
-    "import",
-    "vue"
-  ],
+  "plugins": ["typescript", "unicorn", "oxc", "import", "vue"],
   "categories": {
     "correctness": "error",
     "suspicious": "warn"
@@ -22,20 +16,10 @@
     "@pandacss/prefer-token": [
       "warn",
       {
-        "categories": [
-          "colors"
-        ]
+        "categories": ["colors"]
       }
     ]
   },
-  "ignorePatterns": [
-    "styled-system",
-    ".nuxt",
-    ".output",
-    ".data",
-    "dist"
-  ],
-  "jsPlugins": [
-    "@pandacss/eslint-plugin/oxlint"
-  ]
+  "ignorePatterns": ["styled-system", ".nuxt", ".output", ".data", "dist"],
+  "jsPlugins": ["@pandacss/eslint-plugin/oxlint"]
 }

@@ -15,12 +15,7 @@ const done = css({ color: 'green.400' })
 <template>
   <ark.span :class="wrap">
     <slot />
-    <ark.button
-      type="button"
-      :aria-label="copied ? 'Copied' : 'Copy'"
-      :class="button"
-      @click="copy(props.text)"
-    >
+    <ark.button type="button" :aria-label="copied ? 'Copied' : 'Copy'" :class="button" @click="copy(props.text)">
       <ark.span :class="[copied ? 'i-lucide-check' : 'i-lucide-copy', icon, copied && done]" aria-hidden="true" />
     </ark.button>
   </ark.span>
