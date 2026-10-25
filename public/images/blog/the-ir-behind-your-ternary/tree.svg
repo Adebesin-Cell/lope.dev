@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="860" viewBox="0 0 1200 860" role="img" aria-labelledby="t d">
+<title id="t">One css() call, one StyleTree, two outputs</title>
+<desc id="d">The call css({ fontSize: 'xl', color: active ? 'red.700' : 'gray.700' }) becomes a StyleTree: an object with fontSize set to xl and color set to a ternary on active, with red.700 and gray.700 as branches. The tree feeds the stylesheet, which gets fs_xl, c_red.700 and c_gray.700, and the rewritten code, active ? "c_red.700 fs_xl" : "c_gray.700 fs_xl".</desc>
+<defs>
+<radialGradient id="gy" cx="50%" cy="50%"><stop offset="0%" stop-color="#ffd23f" stop-opacity=".9"/><stop offset="100%" stop-color="#ffd23f" stop-opacity="0"/></radialGradient>
+<radialGradient id="gv" cx="50%" cy="50%"><stop offset="0%" stop-color="#a78bfa" stop-opacity=".7"/><stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/></radialGradient>
+<filter id="sh" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#17171b" flood-opacity=".10"/></filter>
+<marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#63636f"/></marker>
+<style>
+.h { font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 2.4px; fill: #63636f; }
+.n { font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 20px; fill: #17171b; }
+.s { font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; font-weight: 500; font-size: 16px; fill: #63636f; }
+.m { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 18px; fill: #17171b; }
+.mw { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 18px; fill: #fafafa; }
+.k { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 16px; fill: #63636f; }
+.edge { stroke: #63636f; stroke-width: 2; fill: none; }
+</style>
+</defs>
+
+<rect width="1200" height="860" fill="#faf9f5"/>
+<ellipse cx="80" cy="60" rx="320" ry="240" fill="url(#gy)"/>
+<ellipse cx="1130" cy="820" rx="340" ry="250" fill="url(#gv)"/>
+
+<text class="h" x="600" y="56" text-anchor="middle">YOU WRITE</text>
+<g filter="url(#sh)">
+  <rect x="190" y="74" width="820" height="62" rx="14" fill="#17171b"/>
+  <text class="mw" x="600" y="112" text-anchor="middle">css({ fontSize: 'xl', color: active ? 'red.700' : 'gray.700' })</text>
+</g>
+
+<line class="edge" x1="600" y1="140" x2="600" y2="190" marker-end="url(#ar)"/>
+<text class="h" x="600" y="214" text-anchor="middle">STYLETREE</text>
+
+<path class="edge" d="M600,272 C600,300 400,300 400,330"/>
+<path class="edge" d="M600,272 C600,300 800,300 800,330"/>
+<path class="edge" d="M800,388 C800,420 690,420 690,450"/>
+<path class="edge" d="M800,388 C800,420 910,420 910,450"/>
+
+<g filter="url(#sh)">
+  <rect x="540" y="230" width="120" height="44" rx="12" fill="#ffffff"/>
+  <text class="n" x="600" y="259" text-anchor="middle">object</text>
+</g>
+<text class="k" x="455" y="312" text-anchor="end">fontSize</text>
+<text class="k" x="745" y="312">color</text>
+
+<g filter="url(#sh)">
+  <rect x="340" y="332" width="120" height="44" rx="12" fill="#ffffff"/>
+  <text class="m" x="400" y="360" text-anchor="middle">'xl'</text>
+</g>
+<g filter="url(#sh)">
+  <rect x="690" y="332" width="220" height="56" rx="14" fill="#ffd23f"/>
+  <text class="n" x="800" y="358" text-anchor="middle">ternary</text>
+  <text class="k" x="800" y="380" text-anchor="middle" style="fill:#33333a">test: active</text>
+</g>
+<text class="k" x="640" y="432" text-anchor="end">yes</text>
+<text class="k" x="960" y="432">no</text>
+<g filter="url(#sh)">
+  <rect x="610" y="452" width="160" height="44" rx="12" fill="#ffffff"/>
+  <text class="m" x="690" y="480" text-anchor="middle">'red.700'</text>
+</g>
+<g filter="url(#sh)">
+  <rect x="830" y="452" width="160" height="44" rx="12" fill="#ffffff"/>
+  <text class="m" x="910" y="480" text-anchor="middle">'gray.700'</text>
+</g>
+
+<path class="edge" d="M560,520 C480,560 330,560 330,600" marker-end="url(#ar)"/>
+<path class="edge" d="M640,520 C720,560 870,560 870,600" marker-end="url(#ar)"/>
+
+<text class="h" x="330" y="628" text-anchor="middle">THE STYLESHEET</text>
+<text class="s" x="330" y="650" text-anchor="middle">every branch emits its atoms</text>
+<g filter="url(#sh)">
+  <rect x="140" y="668" width="380" height="140" rx="16" fill="#ffffff"/>
+  <text class="m" x="170" y="710">.fs_xl</text>
+  <text class="m" x="170" y="744">.c_red\.700</text>
+  <text class="m" x="170" y="778">.c_gray\.700</text>
+</g>
+
+<text class="h" x="870" y="628" text-anchor="middle">YOUR CODE (TRANSFORM ON)</text>
+<text class="s" x="870" y="650" text-anchor="middle">the condition moves outward</text>
+<g filter="url(#sh)">
+  <rect x="640" y="668" width="460" height="140" rx="16" fill="#17171b"/>
+  <text class="mw" x="670" y="716">active</text>
+  <text class="mw" x="690" y="750">? "c_red.700 fs_xl"</text>
+  <text class="mw" x="690" y="784">: "c_gray.700 fs_xl"</text>
+</g>
+</svg>
