@@ -3,7 +3,7 @@ import { ark } from '@ark-ui/vue/factory'
 
 usePageSeo({
   title: 'Adebesin Tolulope (Lope) — Design Engineer',
-  description: 'Design engineer and open sourcer. Core maintainer of Chakra UI, Panda, Ark UI and Zag, and product engineer at BethelFlow.',
+  description: 'Adebesin Tolulope (Lope), design engineer and open sourcer. Core maintainer of Panda CSS, Chakra UI, Ark UI and Zag. Writing on design systems and CSS.',
 })
 
 const siteUrl = useSiteConfig().url.replace(/\/$/, '')
@@ -20,9 +20,10 @@ useHead({
         'url': siteUrl,
         'image': `${siteUrl}/lope-avatar.jpeg`,
         'jobTitle': 'Design Engineer',
+        'description': 'Design engineer and open sourcer. Core maintainer of Panda CSS, Chakra UI, Ark UI and Zag.',
         'worksFor': { '@type': 'Organization', 'name': 'IQ.AI', 'url': 'https://iqai.com/' },
         'alumniOf': { '@type': 'CollegeOrUniversity', 'name': 'Federal University of Technology, Akure' },
-        'knowsAbout': ['Panda CSS', 'Chakra UI', 'Ark UI', 'Zag', 'Vue', 'Nuxt', 'React', 'TypeScript', 'Design systems', 'AI agents'],
+        'knowsAbout': ['Design engineering', 'Frontend engineering', 'Design systems', 'CSS', 'Panda CSS', 'Chakra UI', 'Ark UI', 'Zag', 'React', 'Vue', 'Nuxt', 'TypeScript', 'Open source'],
         'sameAs': [
           'https://github.com/Adebesin-Cell',
           'https://www.linkedin.com/in/adebesin-tolulope/',

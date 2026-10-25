@@ -45,6 +45,7 @@ export default defineNuxtConfig({
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'description', content: 'Design engineer and open sourcer, maintaining Chakra UI, Panda, Ark UI and Zag.' },
         { name: 'author', content: 'Adebesin Tolulope (Lope)' },
+        { name: 'keywords', content: 'Adebesin Tolulope, Lope, design engineer, frontend engineer, open source, Panda CSS, Chakra UI, Ark UI, Zag, design systems, CSS, React, Vue, Nuxt, TypeScript' },
         { name: 'theme-color', content: '#0a0a0a' },
         { property: 'og:site_name', content: 'Adebesin Tolulope (Lope)' },
         { property: 'og:locale', content: 'en_US' },
