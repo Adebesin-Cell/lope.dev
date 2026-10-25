@@ -68,8 +68,8 @@ export default defineNuxtConfig({
         { name: 'twitter:site', content: '@I_am_Lope' },
       ],
       link: [
+        { rel: 'icon', href: '/favicon.ico', sizes: '32x32' },
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
         { rel: 'alternate', type: 'application/rss+xml', title: 'Adebesin Tolulope (Lope) — Blog', href: '/feed.xml' },
       ],
