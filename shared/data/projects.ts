@@ -94,6 +94,26 @@ export const projects: ProjectGroup[] = [
     title: 'At IQ',
     projects: [
       {
+        name: 'IQ AI',
+        description: 'Agent infrastructure, and the Sophia and AIDEN agents behind IQ.wiki.',
+        href: 'https://iqai.com/',
+        logo: '/brands/iq.svg',
+      },
+      {
+        name: 'KRWQ',
+        description: 'The first regulated Korean Won stablecoin, on Base.',
+        href: 'https://www.krwq.cash/',
+        icon: 'i-lucide-coins',
+        color: '#60A5FA',
+      },
+      {
+        name: 'BrainDAO',
+        description: 'The DAO that governs the IQ stack and funds new work.',
+        href: 'https://braindao.org/',
+        icon: 'i-lucide-landmark',
+        color: '#F472B6',
+      },
+      {
         name: 'adk-ts',
         description: 'TypeScript framework for building AI agents.',
         href: 'https://github.com/IQAIcom/adk-ts',
@@ -134,6 +154,13 @@ export const projects: ProjectGroup[] = [
   {
     title: 'Contributing',
     projects: [
+      {
+        name: '4Herfrika',
+        role: 'Volunteer software engineer',
+        description: 'Education and guidance for women and girls.',
+        href: 'https://4herfrika.org',
+        logo: '/brands/4herfrika.png',
+      },
       {
         name: 'npmx.dev',
         description: 'A fast, modern browser for the npm registry.',
@@ -199,12 +226,6 @@ export const projects: ProjectGroup[] = [
         href: 'https://github.com/Adebesin-Cell/EchoTrap',
         icon: 'i-lucide-radio',
         color: '#38BDF8',
-      },
-      {
-        name: '4Herfrika',
-        description: 'Education and guidance for women and girls. Volunteer.',
-        href: 'https://github.com/4HerfrikaHQ/landing-page',
-        logo: '/brands/4herfrika.png',
       },
       {
         name: 'EMF-modelling',

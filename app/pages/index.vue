@@ -120,7 +120,7 @@ const roleRows = [
       on how Panda CSS works inside, and gave my first talk at
       <Chip href="https://sailsconf.com/2026/talks/17347112-5f4c-4086-bd0d-013eb2d2ff77" label="SailsConf" icon="i-lucide-mic" />.
       I volunteer with
-      <Chip href="https://github.com/4HerfrikaHQ/landing-page" label="4Herfrika" logo="/brands/4herfrika.png" />
+      <Chip href="https://4herfrika.org" label="4Herfrika" logo="/brands/4herfrika.png" />
       because I believe in empowering women. Away from the keyboard: basketball, the gym, cooking and church.
     </ark.p>
 
