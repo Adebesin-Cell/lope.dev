@@ -107,7 +107,7 @@ const faint = css({ color: 'ink.faint' })
     <ark.ul :class="list">
       <template v-for="(post, idx) in posts" :key="post.external ?? post.path">
         <ark.li
-          v-if="idx === 0 || year(post.date) !== year(posts[idx - 1].date)"
+          v-if="idx === 0 || year(post.date) !== year(posts[idx - 1]?.date ?? '')"
           :id="`y${year(post.date)}`"
           :data-toc="year(post.date)"
           :class="yearRow"

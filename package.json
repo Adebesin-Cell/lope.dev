@@ -49,6 +49,8 @@
     "@takumi-rs/helpers": "^2.17.1",
     "oxfmt": "^0.74.0",
     "oxlint": "^1.89.0",
-    "playwright": "^1.61.1"
+    "playwright": "^1.61.1",
+    "typescript": "^6.0.3",
+    "vue-tsc": "^3.3.13"
   }
 }

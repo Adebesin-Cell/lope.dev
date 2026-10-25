@@ -23,10 +23,10 @@ const info = [
   { label: 'LinkedIn', value: 'adebesin-tolulope', href: 'https://www.linkedin.com/in/adebesin-tolulope/' },
 ]
 
-const title = css({ fontSize: '4xl', fontWeight: '700', letterSpacing: 'tight', color: 'ink', mb: '8' })
-const subhead = css({ fontSize: 'xl', fontWeight: '700', color: 'ink', pt: '4' })
-const grid = css({ display: 'grid', gridTemplateColumns: 'max-content 1fr', columnGap: '4', rowGap: '2', lineHeight: '1.75rem' })
-const term = css({ textAlign: 'end', fontWeight: '600', opacity: '0.6' })
+const title = css({ fontSize: '4xl', fontWeight: 'bold', letterSpacing: 'tight', color: 'ink', mb: '8' })
+const subhead = css({ fontSize: 'xl', fontWeight: 'bold', color: 'ink', pt: '4' })
+const grid = css({ display: 'grid', gridTemplateColumns: 'max-content 1fr', columnGap: '4', rowGap: '2', lineHeight: '[1.75rem]' })
+const term = css({ textAlign: 'end', fontWeight: 'semibold', opacity: '0.6' })
 const value = css({ color: 'ink' })
 </script>
 

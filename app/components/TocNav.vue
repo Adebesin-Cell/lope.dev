@@ -52,9 +52,9 @@ onBeforeUnmount(() => observer?.disconnect())
 const nav = css({ position: 'fixed', insetStart: '5', top: '24', zIndex: '40', display: { base: 'none', lg: 'block' } })
 const trigger = css({ display: 'grid', placeItems: 'center', w: '9', h: '9', color: 'ink.muted' })
 const triggerIcon = css({ fontSize: 'lg' })
-const panel = css({ position: 'absolute', insetStart: '0', top: 'full', minW: '48', maxW: '64', maxH: '70vh', overflow: 'auto', pt: '3', pe: '4' })
+const panel = css({ position: 'absolute', insetStart: '0', top: '[100%]', minW: '48', maxW: '64', maxH: '[70vh]', overflow: 'auto', pt: '3', pe: '4' })
 const link = css({ display: 'block', truncate: true, py: '1', fontSize: 'sm', color: 'ink.faint', transition: 'colors', _hover: { color: 'ink' } })
-const current = css({ color: 'ink', fontWeight: '500' })
+const current = css({ color: 'ink', fontWeight: 'medium' })
 </script>
 
 <template>

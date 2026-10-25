@@ -27,7 +27,7 @@ const logo = css({ position: { base: 'absolute', xl: 'fixed' }, m: '5', userSele
 const nav = css({ display: 'grid', gridTemplateColumns: 'auto max-content', alignItems: 'center', w: 'full', px: '6', py: '5', boxSizing: 'border-box' })
 const bar = css({ display: 'flex', alignItems: 'center', gap: '5', fontSize: 'sm' })
 const desktop = css({ display: { base: 'none', md: 'flex' }, alignItems: 'center', gap: '5' })
-const divider = css({ w: '1px', h: '4', bg: 'ink/10' })
+const divider = css({ w: '[1px]', h: '4', bg: 'ink/10' })
 const menuButton = cx(navLink, css({ fontSize: 'xl', display: { md: 'none' } }))
 </script>
 

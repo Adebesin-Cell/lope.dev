@@ -25,7 +25,7 @@ const linkAttrs = computed(() =>
 )
 
 const chipClass = chip()
-const mark = css({ display: 'grid', placeItems: 'center', alignSelf: 'center', w: '1.1em', h: '1.1em', flexShrink: '0' })
+const mark = css({ display: 'grid', placeItems: 'center', alignSelf: 'center', w: '[1.1em]', h: '[1.1em]', flexShrink: '0' })
 const fill = css({ w: 'full', h: 'full' })
 const iconFill = css({ w: 'full!', h: 'full!' })
 </script>

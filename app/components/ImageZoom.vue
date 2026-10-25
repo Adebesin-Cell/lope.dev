@@ -68,13 +68,13 @@ onKeyStroke('Escape', (e) => {
   }
 })
 
-const enterActive = reduceMotion ? '' : css({ transitionProperty: 'all', transitionDuration: '200ms', transitionTimingFunction: 'ease-out' })
-const leaveActive = reduceMotion ? '' : css({ transitionProperty: 'all', transitionDuration: '150ms', transitionTimingFunction: 'ease-in' })
+const enterActive = reduceMotion ? '' : css({ transitionProperty: 'all', transitionDuration: 'normal', transitionTimingFunction: 'out' })
+const leaveActive = reduceMotion ? '' : css({ transitionProperty: 'all', transitionDuration: 'fast', transitionTimingFunction: 'in' })
 const fadeFrom = reduceMotion ? '' : css({ opacity: '0', transform: 'scale(0.95)' })
 const fadeTo = reduceMotion ? '' : css({ opacity: '1', transform: 'scale(1)' })
 
-const overlay = css({ position: 'fixed', inset: '0', zIndex: '200', display: 'flex', alignItems: 'center', justifyContent: 'center', bg: 'black/80', p: '6', backdropFilter: 'blur(12px)' })
-const image = css({ maxH: '90vh', maxW: '90vw', objectFit: 'contain' })
+const overlay = css({ position: 'fixed', inset: '0', zIndex: '200', display: 'flex', alignItems: 'center', justifyContent: 'center', bg: 'black/80', p: '6', backdropFilter: '[blur(12px)]' })
+const image = css({ maxH: '[90vh]', maxW: '[90vw]', objectFit: 'contain' })
 </script>
 
 <template>

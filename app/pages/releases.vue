@@ -90,9 +90,9 @@ function formatStars(n: number) {
 }
 
 const header = css({ mb: '10' })
-const avatar = css({ w: '20', h: '20', rounded: 'full', mb: '5', bg: 'ink/5', outline: '1px solid', outlineColor: 'ink/10' })
+const avatar = css({ w: '20', h: '20', rounded: 'full', mb: '5', bg: 'ink/5', outline: '[1px solid]', outlineColor: 'ink/10' })
 const title = css({ textStyle: 'display', mb: '3' })
-const shipping = css({ color: 'ink.muted', animation: 'shipping', _motionReduce: { animation: 'none', opacity: '1' } })
+const shipping = css({ color: 'ink.muted', animation: 'shipping', _motionReduce: { animation: '[none]', opacity: '1' } })
 const lead = css({ color: 'ink.muted' })
 const empty = css({ textAlign: 'center', color: 'ink.muted', fontSize: 'sm', fontStyle: 'italic' })
 const list = css({ '& > * + *': { mt: '1' } })

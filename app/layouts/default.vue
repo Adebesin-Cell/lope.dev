@@ -21,7 +21,7 @@ const skip = css({
     px: '4',
     py: '2',
     fontSize: 'sm',
-    outline: '2px solid',
+    outline: '[2px solid]',
     outlineColor: 'ink/40',
   },
 })

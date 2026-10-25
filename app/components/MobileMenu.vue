@@ -52,14 +52,14 @@ onBeforeUnmount(() => {
 })
 
 const fade = {
-  enterActive: css({ transitionProperty: 'opacity', transitionDuration: '200ms', transitionTimingFunction: 'ease-out' }),
-  leaveActive: css({ transitionProperty: 'opacity', transitionDuration: '150ms', transitionTimingFunction: 'ease-in' }),
+  enterActive: css({ transitionProperty: 'opacity', transitionDuration: 'normal', transitionTimingFunction: 'out' }),
+  leaveActive: css({ transitionProperty: 'opacity', transitionDuration: 'fast', transitionTimingFunction: 'in' }),
   hidden: css({ opacity: '0' }),
   shown: css({ opacity: '1' }),
 }
 const slide = {
-  enterActive: css({ transitionProperty: 'transform', transitionDuration: '250ms', transitionTimingFunction: 'ease-out' }),
-  leaveActive: css({ transitionProperty: 'transform', transitionDuration: '200ms', transitionTimingFunction: 'ease-in' }),
+  enterActive: css({ transitionProperty: 'transform', transitionDuration: '[250ms]', transitionTimingFunction: 'out' }),
+  leaveActive: css({ transitionProperty: 'transform', transitionDuration: 'normal', transitionTimingFunction: 'in' }),
   out: css({ transform: 'translateX(100%)' }),
   in: css({ transform: 'translateX(0)' }),
 }
@@ -70,7 +70,7 @@ const panel = css({
   insetEnd: '0',
   zIndex: '100',
   w: '80',
-  maxW: '85vw',
+  maxW: '[85vw]',
   overflowY: 'auto',
   borderStartWidth: '1px',
   borderColor: 'ink/10',
@@ -78,7 +78,7 @@ const panel = css({
   display: { md: 'none' },
 })
 const top = css({ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottomWidth: '1px', borderColor: 'ink/10', px: '5', py: '4' })
-const title = css({ fontSize: 'sm', fontWeight: '500', color: 'ink' })
+const title = css({ fontSize: 'sm', fontWeight: 'medium', color: 'ink' })
 const closeButton = cx(navLink, css({ fontSize: 'xl' }))
 const section = css({ px: '4', py: '5' })
 const label = css({ px: '1', pb: '2', fontSize: 'xs', textTransform: 'uppercase', letterSpacing: 'wider', color: 'ink.faint' })
@@ -94,11 +94,11 @@ const item = css({
   opacity: '0.7',
   transition: 'all',
   _hover: { bg: 'ink/5', opacity: '1' },
-  '&.router-link-active': { opacity: '1', fontWeight: '500', bg: 'ink/5' },
+  '&.router-link-active': { opacity: '1', fontWeight: 'medium', bg: 'ink/5' },
 })
 const itemIcon = css({ fontSize: 'md', color: 'ink.muted' })
 const external = css({ ms: 'auto', color: 'ink.faint' })
-const rule = css({ mx: '4', h: '1px', bg: 'ink/10' })
+const rule = css({ mx: '4', h: '[1px]', bg: 'ink/10' })
 </script>
 
 <template>

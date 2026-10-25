@@ -17,7 +17,7 @@ const watermark = css({
   top: '-3',
   insetStart: { base: '-2', md: '-12' },
   fontSize: { base: '3xl', sm: '5xl', md: '6xl' },
-  fontWeight: '700',
+  fontWeight: 'bold',
   opacity: '0.05',
   userSelect: 'none',
   pointerEvents: 'none',

@@ -10,10 +10,10 @@ const mark = css({ display: 'grid', placeItems: 'center', w: '6', h: '6', mt: '0
 const logo = css({ w: 'full', h: 'full', opacity: '0.8', transition: 'opacity', _groupHover: { opacity: '1' } })
 const icon = css({ w: 'full!', h: 'full!', opacity: '0.7', transition: 'opacity', _groupHover: { opacity: '1' } })
 const body = css({ flex: '1', minW: '0' })
-const name = css({ fontSize: 'sm', fontWeight: '500', color: 'ink' })
-const role = css({ fontSize: 'xs', fontWeight: '400', color: 'ink.faint', ms: '1' })
+const name = css({ fontSize: 'sm', fontWeight: 'medium', color: 'ink' })
+const role = css({ fontSize: 'xs', fontWeight: 'normal', color: 'ink.faint', ms: '1' })
 const desc = css({ fontSize: 'xs', color: 'ink.muted', lineHeight: 'relaxed', mt: '0.5' })
-const stack = css({ display: 'flex', flexWrap: 'wrap', columnGap: '2', rowGap: '0.5', mt: '1.5', fontSize: '11px', color: 'ink.faint' })
+const stack = css({ display: 'flex', flexWrap: 'wrap', columnGap: '2', rowGap: '0.5', mt: '1.5', fontSize: '2xs', color: 'ink.faint' })
 </script>
 
 <template>

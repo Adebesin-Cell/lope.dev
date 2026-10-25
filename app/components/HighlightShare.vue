@@ -147,8 +147,8 @@ if (import.meta.client) {
   })
 }
 
-const fadeActiveIn = css({ transitionProperty: 'opacity', transitionDuration: '200ms', transitionTimingFunction: 'ease-out' })
-const fadeActiveOut = css({ transitionProperty: 'opacity', transitionDuration: '150ms', transitionTimingFunction: 'ease-in' })
+const fadeActiveIn = css({ transitionProperty: 'opacity', transitionDuration: 'normal', transitionTimingFunction: 'out' })
+const fadeActiveOut = css({ transitionProperty: 'opacity', transitionDuration: 'fast', transitionTimingFunction: 'in' })
 const hidden = css({ opacity: '0' })
 const overlay = css({
   position: 'fixed',
@@ -161,7 +161,7 @@ const overlay = css({
   gap: '5',
   bg: 'black/55',
   p: '6',
-  backdropFilter: 'blur(12px)',
+  backdropFilter: '[blur(12px)]',
   outline: 'none',
 })
 const actions = css({ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '2.5' })

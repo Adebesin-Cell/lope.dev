@@ -98,7 +98,6 @@ export default defineNuxtConfig({
   ogImage: {
     defaults: { width: 1200, height: 630, cacheMaxAgeSeconds: 60 * 60 * 24 },
     security: {
-      secret: process.env.NUXT_OG_IMAGE_SECRET,
       strict: !!process.env.NUXT_OG_IMAGE_SECRET,
     },
   },

@@ -52,8 +52,8 @@ useHead({
   ],
 })
 
-const title = css({ fontSize: '4xl', fontWeight: '700', letterSpacing: 'tight', lineHeight: 'tight', color: 'ink', mb: '8' })
-const rows = css({ lineHeight: '2.25rem', '& .chip': { me: '1' } })
+const title = css({ fontSize: '4xl', fontWeight: 'bold', letterSpacing: 'tight', lineHeight: 'tight', color: 'ink', mb: '8' })
+const rows = css({ lineHeight: '[2.25rem]', '& .chip': { me: '1' } })
 const find = css({ pt: '6', borderTopWidth: '1px', borderColor: 'ink/10' })
 const findLabel = css({ mb: '3' })
 const socialList = css({ display: 'flex', flexWrap: 'wrap', columnGap: '4', rowGap: '2' })
