@@ -20,6 +20,7 @@ interface GhSearchItem {
 }
 
 const BATCH = 100
+const MAX_PAGES = 10
 
 const REPO_AVATAR: Record<string, string> = {
   'chakra-ui/panda': '/brands/panda.png',
@@ -91,13 +92,27 @@ export default defineCachedEventHandler(
     if (config.githubToken) headers.Authorization = `Bearer ${config.githubToken}`
 
     const q = process.env.NUXT_RELEASES_QUERY || `author:${user} -user:${user} type:pr is:merged is:public`
+    const orgs = new Set(
+      (process.env.NUXT_RELEASES_ORGS ?? '')
+        .split(',')
+        .map((o) => o.trim().toLowerCase())
+        .filter(Boolean),
+    )
+    const minStars = Number(process.env.NUXT_RELEASES_MIN_STARS) || 0
+    const keep = (p: MergedPR) =>
+      (!orgs.size && !minStars) || orgs.has(p.org.toLowerCase()) || (minStars > 0 && p.stars >= minStars)
 
-    const search = await $fetch<{ items?: GhSearchItem[]; total_count?: number }>(
-      `https://api.github.com/search/issues?q=${encodeURIComponent(q)}&sort=updated&order=desc&per_page=${BATCH}`,
-      { headers, retry: 0 },
-    ).catch(() => ({ items: [], total_count: 0 }))
+    const items: GhSearchItem[] = []
+    for (let page = 1; page <= MAX_PAGES; page++) {
+      const search = await $fetch<{ items?: GhSearchItem[] }>(
+        `https://api.github.com/search/issues?q=${encodeURIComponent(q)}&per_page=${BATCH}&page=${page}`,
+        { headers, retry: 0 },
+      ).catch(() => ({ items: [] }))
+      items.push(...(search.items ?? []))
+      if ((search.items?.length ?? 0) < BATCH) break
+    }
 
-    const base = (search.items ?? [])
+    const base = items
       .map((it) => {
         const full = (it.repository_url ?? '').replace('https://api.github.com/repos/', '')
         const [org, repo] = full.split('/')
@@ -116,9 +131,12 @@ export default defineCachedEventHandler(
       .filter((p) => p.repo)
 
     const stars = await fetchStars([...new Set(base.map((p) => `${p.org}/${p.repo}`))], config.githubToken)
-    const prs = base.map((p) => ({ ...p, stars: stars.get(`${p.org}/${p.repo}`) ?? 0 }))
+    const prs = base
+      .map((p) => ({ ...p, stars: stars.get(`${p.org}/${p.repo}`) ?? 0 }))
+      .filter(keep)
+      .toSorted((a, b) => b.mergedAt.localeCompare(a.mergedAt))
 
-    return { prs, total: search.total_count ?? prs.length, fetchedAt: new Date().toISOString() }
+    return { prs, total: prs.length, fetchedAt: new Date().toISOString() }
   },
   {
     maxAge: 60 * 60,
