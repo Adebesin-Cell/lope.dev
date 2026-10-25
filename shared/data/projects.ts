@@ -55,13 +55,6 @@ export const projects: ProjectGroup[] = [
         stack: ['TypeScript', 'State machines'],
         logo: '/brands/zag.png',
       },
-      {
-        name: '@chakra-ui/codemod',
-        description: 'Codemods for moving Chakra UI codebases across versions.',
-        href: 'https://npmx.dev/package/@chakra-ui/codemod',
-        icon: 'i-simple-icons-chakraui',
-        color: '#4FD1C5',
-      },
     ],
   },
   {
