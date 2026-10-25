@@ -26,7 +26,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   if (import.meta.dev) client.opt_out_capturing()
 
   const landing = new URL(window.location.href)
-  const campaign = Object.fromEntries([...landing.searchParams].filter(([key]) => key.startsWith('utm_')))
+  const campaign = Object.fromEntries([...landing.searchParams].filter(([name]) => name.startsWith('utm_')))
   let first = true
 
   nuxtApp.hook('page:finish', () => {

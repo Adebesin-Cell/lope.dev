@@ -38,8 +38,8 @@ useSeoMeta({
   robots: 'noindex',
 })
 
-function go(path: string) {
-  clearError({ redirect: path })
+function go(to: string) {
+  clearError({ redirect: to })
 }
 
 const relative = css({ position: 'relative' })

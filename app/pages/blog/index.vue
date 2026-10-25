@@ -43,7 +43,7 @@ const posts = computed<PostItem[]>(() => {
     external: m.url,
   }))
 
-  return [...onSite, ...external].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  return [...onSite, ...external].toSorted((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 })
 
 function year(d: string) {
