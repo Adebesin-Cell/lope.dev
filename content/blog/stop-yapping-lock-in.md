@@ -5,9 +5,11 @@ date: 2025-04-25
 canonical: https://iamlope.medium.com/stop-yapping-lock-in-5e0a0673ab19
 ---
 
-#### Keep your Next action safe — we've all overshared, but now you know better. Don't cast your actions… be legendary and anon.
+::subtitle
+Keep your Next action safe — we've all overshared, but now you know better. Don't cast your actions… be legendary and anon.
+::
 
-![](https://cdn-images-1.medium.com/max/736/1*AYssJZ41GpzFIedW-rC-ig.jpeg){loading="eager" fetchpriority="high"}
+![A hooded silhouette against a grey sky, with the words Stay Locked In across the face.](https://cdn-images-1.medium.com/max/736/1*AYssJZ41GpzFIedW-rC-ig.jpeg){loading="eager" fetchpriority="high"}
 
 *stay locked in!*
 
@@ -267,11 +269,11 @@ export const ResendConfirmation = ({ email }: { email: string }) => {
 
 Now that you've seen the code and understand how **next-safe-action** helps you protect your server actions, let's take a look at how it all comes together in real life. Watch the demo below to see how it works in the frontend — from sending a verification email, handling user interactions, to receiving real-time feedback.
 
-![](https://cdn-images-1.medium.com/max/1024/1*fby0ebHnHsZIwym21s0dow.gif)
+![A sign-up confirmation screen: We have sent you a confirmation email, with a resend link and a Back to Sign In button.](https://cdn-images-1.medium.com/max/1024/1*fby0ebHnHsZIwym21s0dow.gif)
 
 *Demo showing the verification action performed*
 
-![](https://cdn-images-1.medium.com/max/1024/1*T4bYxWcbPAHn0F_d5FxzWQ.gif)
+![A Verify your Email message for a church management platform, with a Verify Email Address button.](https://cdn-images-1.medium.com/max/1024/1*T4bYxWcbPAHn0F_d5FxzWQ.gif)
 
 *Demo showing the email verification process — in user mailbox*
 

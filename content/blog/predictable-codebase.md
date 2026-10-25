@@ -5,7 +5,9 @@ seoTitle: "Predictable codebase: lessons from the IQ.wiki rewrite"
 date: 2026-09-26
 ---
 
-### Why constraints scale code. For the humans on the team, and for the agents.
+::subtitle
+Why constraints scale code. For the humans on the team, and for the agents.
+::
 
 ![Four feature folders side by side, each holding the same four files: page, loading, error and queries. The last folder is dashed and still being written, and it already matches the others.](/images/blog/predictable-codebase/cover.svg){loading="eager" fetchpriority="high"}
 

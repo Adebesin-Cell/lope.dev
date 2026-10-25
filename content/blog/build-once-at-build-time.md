@@ -7,7 +7,9 @@ series: Panda internals
 part: 1
 ---
 
-### What Panda does with your `css()` call before the browser ever sees it.
+::subtitle
+What Panda does with your `css()` call before the browser ever sees it.
+::
 
 ![Build once, at build time, on a warm cream background with yellow and coral glows, surrounded by the Panda and Chakra logos, a css() sticker and a pill that reads 3.8 MB to 2 rules.](/images/blog/build-once-at-build-time/cover.svg){loading="eager" fetchpriority="high"}
 

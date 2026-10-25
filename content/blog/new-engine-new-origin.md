@@ -6,7 +6,9 @@ readingTime: 11min
 draft: true
 ---
 
-### This started as a Chakra v4 question and ended with us rewriting Panda in Rust.
+::subtitle
+This started as a Chakra v4 question and ended with us rewriting Panda in Rust.
+::
 
 ![New engine, new origin. The Panda CSS mark between Rust and Chakra UI chips, with the install size dropping from 111 MB to 37 MB.](/images/blog/new-engine-new-origin/cover.svg){loading="eager" fetchpriority="high"}
 

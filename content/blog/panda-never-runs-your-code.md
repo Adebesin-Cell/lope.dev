@@ -7,7 +7,9 @@ series: Panda internals
 part: 4
 ---
 
-### What Panda figures out before your app runs.
+::subtitle
+What Panda figures out before your app runs.
+::
 
 ![Panda never runs your code, on a cream background with yellow and green glows, surrounded by the Panda logo and code stickers.](/images/blog/panda-never-runs-your-code/cover.svg){loading="eager" fetchpriority="high"}
 

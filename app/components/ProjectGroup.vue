@@ -27,6 +27,7 @@ const watermark = css({
   fontSize: { base: '3xl', sm: '5xl', md: '6xl' },
   fontWeight: 'bold',
   opacity: '0.05',
+  _before: { content: 'attr(data-text)' },
   userSelect: 'none',
   pointerEvents: 'none',
   textTransform: 'uppercase',
@@ -44,9 +45,7 @@ const grid = css({
 
 <template>
   <ark.section :id="slug" :data-toc="group.title" :class="section">
-    <ark.div aria-hidden="true" :class="['watermark-heading', watermark]">
-      {{ group.title }}
-    </ark.div>
+    <ark.div aria-hidden="true" :data-text="group.title" :class="['watermark-heading', watermark]" />
 
     <ark.h2 :class="srOnly">
       {{ group.title }}

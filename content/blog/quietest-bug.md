@@ -6,7 +6,9 @@ date: 2026-07-16
 readingTime: 6min
 ---
 
-### Why optional chaining hides the failure you most need to see, and the rule I keep for it.
+::subtitle
+Why optional chaining hides the failure you most need to see, and the rule I keep for it.
+::
 
 ::quiet-cover
 ::

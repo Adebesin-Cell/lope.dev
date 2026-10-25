@@ -20,7 +20,9 @@ interface PostItem {
   external?: string
 }
 
-const { data } = await useAsyncData('blog-list', () => queryCollection('blog').order('date', 'DESC').all())
+const { data } = await useAsyncData('blog-list', () =>
+  queryCollection('blog').select('title', 'date', 'lang', 'draft', 'path', 'readingTime').order('date', 'DESC').all(),
+)
 
 const posts = computed<PostItem[]>(() => {
   const onSite: PostItem[] = (data.value ?? [])
@@ -29,7 +31,7 @@ const posts = computed<PostItem[]>(() => {
       title: p.title,
       date: p.date,
       lang: p.lang,
-      readingTime: readingTimeText(p.body),
+      readingTime: p.readingTime,
       path: p.path,
     }))
 
@@ -72,6 +74,7 @@ const yearText = css({
   fontSize: { base: '6xl', sm: '7xl', md: '8xl' },
   fontWeight: 'bold',
   opacity: '0.05',
+  _before: { content: 'attr(data-text)' },
   letterSpacing: 'tight',
   lineHeight: 'none',
 })
@@ -127,9 +130,7 @@ const faint = css({ color: 'ink.faint' })
           :class="yearRow"
           aria-hidden="true"
         >
-          <ark.span :class="yearText">
-            {{ year(post.date) }}
-          </ark.span>
+          <ark.span :class="yearText" :data-text="year(post.date)" />
         </ark.li>
         <ark.li :class="['slide-enter-content', item]">
           <component
