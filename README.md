@@ -36,7 +36,7 @@ Everything is styled with Panda CSS at build time. No styling runtime ships to t
 - **OG images:** Takumi renders inline styles, not stylesheets, so the OG templates read raw values through `token()` from `styled-system/tokens`.
 - **Unused output:** `optimize.removeUnusedTokens` and `removeUnusedKeyframes` drop tokens and keyframes the site never uses.
 
-`styled-system/` is generated (`panda codegen` runs on install) and git-ignored.
+`styled-system/` is generated (`nuxt prepare && panda codegen` runs on install) and git-ignored.
 
 ### Checks
 

@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "prepare": "panda codegen",
+    "postinstall": "nuxt prepare && panda codegen",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
