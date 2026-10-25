@@ -15,7 +15,12 @@ const optimizable = computed(() => {
   return src.startsWith('/') && /\.(?:jpe?g|png)$/i.test(src)
 })
 
-const loading = computed(() => (attrs.loading as string | undefined) ?? 'lazy')
+const loading = computed(() => (attrs.loading === 'eager' ? 'eager' : 'lazy'))
+
+const priority = computed(() => {
+  const value = attrs.fetchpriority
+  return value === 'high' || value === 'low' || value === 'auto' ? value : undefined
+})
 
 const passthrough = computed(() => {
   const rest = { ...attrs }
@@ -34,7 +39,7 @@ const passthrough = computed(() => {
     :width="props.width"
     :height="props.height"
     sizes="sm:100vw md:700px"
-    :img-attrs="{ fetchpriority: attrs.fetchpriority }"
+    :img-attrs="{ fetchpriority: priority }"
     :loading="loading"
     decoding="async"
   />
@@ -45,7 +50,7 @@ const passthrough = computed(() => {
     :alt="props.alt"
     :width="props.width"
     :height="props.height"
-    :fetchpriority="attrs.fetchpriority"
+    :fetchpriority="priority"
     :loading="loading"
     decoding="async"
   >

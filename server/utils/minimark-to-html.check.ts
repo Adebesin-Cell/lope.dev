@@ -3,7 +3,9 @@ import { minimarkToHtml } from './minimark-to-html'
 
 const guide = minimarkToHtml({
   value: [
-    ['guide', { title: 'Build your own Elvon', time: '~6 hrs', team: '5 people' },
+    [
+      'guide',
+      { title: 'Build your own Elvon', time: '~6 hrs', team: '5 people' },
       ['step', { title: 'Prep the chassis', parts: '4x TT motor' }, ['p', {}, 'Motors first.']],
       ['step', { title: 'Wire the driver', gotcha: 'Common ground or nothing works.' }, ['p', {}, 'L298N.']],
     ],

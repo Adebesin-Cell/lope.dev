@@ -18,9 +18,7 @@ const grid = css({ display: 'grid', gap: '6', gridTemplateColumns: { sm: 'repeat
 <template>
   <ark.article class="slide-enter-content">
     <ark.header :class="header">
-      <ark.h1 :class="pageTitle">
-        Play
-      </ark.h1>
+      <ark.h1 :class="pageTitle"> Play </ark.h1>
       <ark.p :class="lead">
         Animated pages, scroll journeys, and little games I build for fun. Hover to preview.
       </ark.p>

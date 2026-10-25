@@ -30,36 +30,39 @@ const emit = defineEmits<{
 const route = useRoute()
 
 // Close on route change (a nav link was tapped).
-watch(() => route.fullPath, () => emit('close'))
+watch(
+  () => route.fullPath,
+  () => emit('close'),
+)
 
 // Lock body scroll while the drawer is open; restore when it closes.
-watch(() => props.open, (isOpen) => {
-  if (import.meta.client)
-    document.body.style.overflow = isOpen ? 'hidden' : ''
-})
+watch(
+  () => props.open,
+  (isOpen) => {
+    if (import.meta.client) document.body.style.overflow = isOpen ? 'hidden' : ''
+  },
+)
 
 // Close on Escape.
 function onKeydown(e: KeyboardEvent) {
-  if (e.key === 'Escape' && props.open)
-    emit('close')
+  if (e.key === 'Escape' && props.open) emit('close')
 }
 
 onMounted(() => window.addEventListener('keydown', onKeydown))
 onBeforeUnmount(() => {
   window.removeEventListener('keydown', onKeydown)
-  if (import.meta.client)
-    document.body.style.overflow = ''
+  if (import.meta.client) document.body.style.overflow = ''
 })
 
 const fade = {
-  enterActive: css({ transitionProperty: 'opacity', transitionDuration: '200ms', transitionTimingFunction: 'ease-out' }),
-  leaveActive: css({ transitionProperty: 'opacity', transitionDuration: '150ms', transitionTimingFunction: 'ease-in' }),
+  enterActive: css({ transitionProperty: 'opacity', transitionDuration: 'normal', transitionTimingFunction: 'out' }),
+  leaveActive: css({ transitionProperty: 'opacity', transitionDuration: 'fast', transitionTimingFunction: 'in' }),
   hidden: css({ opacity: '0' }),
   shown: css({ opacity: '1' }),
 }
 const slide = {
-  enterActive: css({ transitionProperty: 'transform', transitionDuration: '250ms', transitionTimingFunction: 'ease-out' }),
-  leaveActive: css({ transitionProperty: 'transform', transitionDuration: '200ms', transitionTimingFunction: 'ease-in' }),
+  enterActive: css({ transitionProperty: 'transform', transitionDuration: '[250ms]', transitionTimingFunction: 'out' }),
+  leaveActive: css({ transitionProperty: 'transform', transitionDuration: 'normal', transitionTimingFunction: 'in' }),
   out: css({ transform: 'translateX(100%)' }),
   in: css({ transform: 'translateX(0)' }),
 }
@@ -70,18 +73,33 @@ const panel = css({
   insetEnd: '0',
   zIndex: '100',
   w: '80',
-  maxW: '85vw',
+  maxW: '[85vw]',
   overflowY: 'auto',
   borderStartWidth: '1px',
   borderColor: 'ink/10',
   bg: 'bg',
   display: { md: 'none' },
 })
-const top = css({ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottomWidth: '1px', borderColor: 'ink/10', px: '5', py: '4' })
-const title = css({ fontSize: 'sm', fontWeight: '500', color: 'ink' })
+const top = css({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  borderBottomWidth: '1px',
+  borderColor: 'ink/10',
+  px: '5',
+  py: '4',
+})
+const title = css({ fontSize: 'sm', fontWeight: 'medium', color: 'ink' })
 const closeButton = cx(navLink, css({ fontSize: 'xl' }))
 const section = css({ px: '4', py: '5' })
-const label = css({ px: '1', pb: '2', fontSize: 'xs', textTransform: 'uppercase', letterSpacing: 'wider', color: 'ink.faint' })
+const label = css({
+  px: '1',
+  pb: '2',
+  fontSize: 'xs',
+  textTransform: 'uppercase',
+  letterSpacing: 'wider',
+  color: 'ink.faint',
+})
 const list = css({ display: 'flex', flexDirection: 'column', gap: '0.5' })
 const item = css({
   display: 'flex',
@@ -94,11 +112,11 @@ const item = css({
   opacity: '0.7',
   transition: 'all',
   _hover: { bg: 'ink/5', opacity: '1' },
-  '&.router-link-active': { opacity: '1', fontWeight: '500', bg: 'ink/5' },
+  '&.router-link-active': { opacity: '1', fontWeight: 'medium', bg: 'ink/5' },
 })
 const itemIcon = css({ fontSize: 'md', color: 'ink.muted' })
 const external = css({ ms: 'auto', color: 'ink.faint' })
-const rule = css({ mx: '4', h: '1px', bg: 'ink/10' })
+const rule = css({ mx: '4', h: '[1px]', bg: 'ink/10' })
 </script>
 
 <template>
@@ -112,11 +130,7 @@ const rule = css({ mx: '4', h: '1px', bg: 'ink/10' })
       :leave-from-class="fade.shown"
       :leave-to-class="fade.hidden"
     >
-      <ark.div
-        v-if="open"
-        :class="backdrop"
-        @click="emit('close')"
-      />
+      <ark.div v-if="open" :class="backdrop" @click="emit('close')" />
     </Transition>
 
     <!-- Sliding drawer panel -->
@@ -128,23 +142,11 @@ const rule = css({ mx: '4', h: '1px', bg: 'ink/10' })
       :leave-from-class="slide.in"
       :leave-to-class="slide.out"
     >
-      <ark.div
-        v-if="open"
-        id="mobile-nav"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Menu"
-        :class="panel"
-      >
+      <ark.div v-if="open" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Menu" :class="panel">
         <!-- Drawer header -->
         <ark.div :class="top">
           <ark.span :class="title">Menu</ark.span>
-          <ark.button
-            type="button"
-            :class="closeButton"
-            aria-label="Close menu"
-            @click="emit('close')"
-          >
+          <ark.button type="button" :class="closeButton" aria-label="Close menu" @click="emit('close')">
             <ark.span class="i-lucide-x" aria-hidden="true" />
           </ark.button>
         </ark.div>
@@ -153,13 +155,7 @@ const rule = css({ mx: '4', h: '1px', bg: 'ink/10' })
         <ark.div :class="section">
           <ark.p :class="label">Pages</ark.p>
           <ark.nav :class="list">
-            <NuxtLink
-              v-for="l in links"
-              :key="l.to"
-              :to="l.to"
-              :class="item"
-              @click="emit('close')"
-            >
+            <NuxtLink v-for="l in links" :key="l.to" :to="l.to" :class="item" @click="emit('close')">
               <ark.span :class="[l.icon, itemIcon]" aria-hidden="true" />
               <ark.span>{{ l.label }}</ark.span>
             </NuxtLink>

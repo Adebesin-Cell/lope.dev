@@ -6,11 +6,7 @@ const link = css({ display: 'block', userSelect: 'none', outline: 'none' })
 </script>
 
 <template>
-  <NuxtLink
-    to="/"
-    aria-label="Home — Adebesin Tolulope"
-    :class="['logo', link]"
-  >
+  <NuxtLink to="/" aria-label="Home — Adebesin Tolulope" :class="['logo', link]">
     <ClientOnly>
       <TegakiRenderer
         :font="caveat"

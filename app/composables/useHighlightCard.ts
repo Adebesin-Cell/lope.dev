@@ -22,20 +22,22 @@ export const PLUM_SEED = 41
 
 let ready: Promise<HTMLImageElement> | null = null
 function ensureAssets() {
-  if (ready)
-    return ready
+  if (ready) return ready
   ready = Promise.all([
     document.fonts.load('500 40px Newsreader'),
     document.fonts.load('italic 400 22px Newsreader'),
     document.fonts.load('600 44px Caveat'),
     document.fonts.load('600 28px Inter'),
     document.fonts.load('500 16px "JetBrains Mono"'),
-  ]).then(() => new Promise<HTMLImageElement>((resolve, reject) => {
-    const img = new Image()
-    img.onload = () => resolve(img)
-    img.onerror = reject
-    img.src = AVATAR
-  }))
+  ]).then(
+    () =>
+      new Promise<HTMLImageElement>((resolve, reject) => {
+        const img = new Image()
+        img.onload = () => resolve(img)
+        img.onerror = reject
+        img.src = AVATAR
+      }),
+  )
   return ready
 }
 
@@ -48,13 +50,11 @@ function wrap(ctx: CanvasRenderingContext2D, str: string, maxW: number): string[
     if (ctx.measureText(test).width > maxW && line) {
       lines.push(line)
       line = w
-    }
-    else {
+    } else {
       line = test
     }
   }
-  if (line)
-    lines.push(line)
+  if (line) lines.push(line)
   return lines
 }
 
@@ -62,10 +62,8 @@ function layout(ctx: CanvasRenderingContext2D, paras: string[], maxW: number, si
   ctx.font = `500 ${size}px Newsreader, serif`
   const out: string[] = []
   paras.forEach((p, i) => {
-    if (i)
-      out.push('')
-    for (const l of wrap(ctx, p, maxW))
-      out.push(l)
+    if (i) out.push('')
+    for (const l of wrap(ctx, p, maxW)) out.push(l)
   })
   return out
 }
@@ -77,7 +75,7 @@ function measure(lines: string[], size: number): number {
 
 function mulberry32(seed: number) {
   return () => {
-    let t = (seed += 0x6D2B79F5)
+    let t = (seed += 0x6d2b79f5)
     t = Math.imul(t ^ (t >>> 15), t | 1)
     t ^= t + Math.imul(t ^ (t >>> 7), t | 61)
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296
@@ -94,19 +92,15 @@ export function plumSegments(w: number, h: number, seed: number): PlumSegment[] 
   const len = w / 260
   const segs: PlumSegment[] = []
   const step = (x: number, y: number, rad: number) => {
-    if (segs.length > 6500)
-      return
+    if (segs.length > 6500) return
     const length = rand() * len
     const nx = x + Math.cos(rad) * length
     const ny = y + Math.sin(rad) * length
     segs.push([x, y, nx, ny])
-    if (nx < -60 || nx > w + 60 || ny < -60 || ny > h + 60)
-      return
+    if (nx < -60 || nx > w + 60 || ny < -60 || ny > h + 60) return
     const rate = segs.length <= 30 ? 0.8 : 0.5
-    if (rand() < rate)
-      step(nx, ny, rad + rand() * r15)
-    if (rand() < rate)
-      step(nx, ny, rad - rand() * r15)
+    if (rand() < rate) step(nx, ny, rad + rand() * r15)
+    if (rand() < rate) step(nx, ny, rad - rand() * r15)
   }
   const mid = () => 0.15 + rand() * 0.7
   step(mid() * w, -5, r90)
@@ -138,8 +132,7 @@ export function useHighlightCard() {
     canvas.width = w * dpr
     canvas.height = h * dpr
     const ctx = canvas.getContext('2d')
-    if (!ctx)
-      return
+    if (!ctx) return
     ctx.scale(dpr, dpr)
     ctx.textBaseline = 'alphabetic'
 
@@ -203,7 +196,10 @@ export function useHighlightCard() {
     ctx.font = '500 96px Newsreader, serif'
     ctx.fillText('“', P - 4, markY)
 
-    const paras = data.quote.split('\n').map(s => s.trim()).filter(Boolean)
+    const paras = data.quote
+      .split('\n')
+      .map((s) => s.trim())
+      .filter(Boolean)
     const textTop = markY + 18
     const footerBoundary = h - P - 78
     const availH = footerBoundary - textTop
@@ -216,12 +212,10 @@ export function useHighlightCard() {
       size -= 2
       lines = layout(ctx, paras, contentW, size)
     }
-    while (measure(lines, size) > availH && lines.length > 1)
-      lines.pop()
+    while (measure(lines, size) > availH && lines.length > 1) lines.pop()
     if (measure(layout(ctx, paras, contentW, size), size) > availH) {
       const last = lines[lines.length - 1]
-      if (last)
-        lines[lines.length - 1] = `${last.replace(/[\s.,;:]+$/, '')}…`
+      if (last) lines[lines.length - 1] = `${last.replace(/[\s.,;:]+$/, '')}…`
     }
 
     ctx.font = `500 ${size}px Newsreader, serif`
@@ -255,8 +249,7 @@ export function useHighlightCard() {
       let label = data.title
       const maxTw = contentW * 0.5
       if (ctx.measureText(label).width > maxTw) {
-        while (label.length > 4 && ctx.measureText(`${label}…`).width > maxTw)
-          label = label.slice(0, -1)
+        while (label.length > 4 && ctx.measureText(`${label}…`).width > maxTw) label = label.slice(0, -1)
         label = `${label.trimEnd()}…`
       }
       const tw = ctx.measureText(label).width

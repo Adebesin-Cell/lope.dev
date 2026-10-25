@@ -12,7 +12,7 @@ export const play: PlayItem[] = [
   {
     slug: 'through-the-eras',
     title: 'Through the Eras',
-    blurb: 'A hand-built scroll journey through The Weeknd\'s eras, 2011–2025 — darkness bleaching into dawn.',
+    blurb: "A hand-built scroll journey through The Weeknd's eras, 2011–2025 — darkness bleaching into dawn.",
     tags: ['GSAP', 'Nuxt', 'Scroll'],
     href: 'https://through-the-eras.vercel.app',
     poster: '/play/through-the-eras.jpg',

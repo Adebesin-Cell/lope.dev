@@ -6,9 +6,7 @@ const active = ref<HTMLImageElement>()
 const src = ref('')
 const alt = ref('')
 
-const reduceMotion = import.meta.client
-  ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  : false
+const reduceMotion = import.meta.client ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false
 
 function isZoomable(img: HTMLImageElement): boolean {
   return !!img.closest('main .prose-content')
@@ -18,25 +16,20 @@ function open(img: HTMLImageElement) {
   active.value = img
   src.value = img.currentSrc || img.src
   alt.value = img.alt || ''
-  if (import.meta.client)
-    document.body.style.overflow = 'hidden'
+  if (import.meta.client) document.body.style.overflow = 'hidden'
 }
 
 function close() {
   active.value = undefined
-  if (import.meta.client)
-    document.body.style.overflow = ''
+  if (import.meta.client) document.body.style.overflow = ''
 }
 
 function onClick(e: MouseEvent) {
   const target = e.target as HTMLElement | null
-  if (!target || target.tagName !== 'IMG')
-    return
+  if (!target || target.tagName !== 'IMG') return
   const img = target as HTMLImageElement
-  if (!isZoomable(img))
-    return
-  if (img.closest('a'))
-    return
+  if (!isZoomable(img)) return
+  if (img.closest('a')) return
   open(img)
 }
 
@@ -48,15 +41,13 @@ function markCursors() {
 }
 
 onMounted(() => {
-  if (!import.meta.client)
-    return
+  if (!import.meta.client) return
   markCursors()
   document.addEventListener('click', onClick)
 })
 
 onBeforeUnmount(() => {
-  if (!import.meta.client)
-    return
+  if (!import.meta.client) return
   document.removeEventListener('click', onClick)
   document.body.style.overflow = ''
 })
@@ -68,13 +59,27 @@ onKeyStroke('Escape', (e) => {
   }
 })
 
-const enterActive = reduceMotion ? '' : css({ transitionProperty: 'all', transitionDuration: '200ms', transitionTimingFunction: 'ease-out' })
-const leaveActive = reduceMotion ? '' : css({ transitionProperty: 'all', transitionDuration: '150ms', transitionTimingFunction: 'ease-in' })
+const enterActive = reduceMotion
+  ? ''
+  : css({ transitionProperty: 'all', transitionDuration: 'normal', transitionTimingFunction: 'out' })
+const leaveActive = reduceMotion
+  ? ''
+  : css({ transitionProperty: 'all', transitionDuration: 'fast', transitionTimingFunction: 'in' })
 const fadeFrom = reduceMotion ? '' : css({ opacity: '0', transform: 'scale(0.95)' })
 const fadeTo = reduceMotion ? '' : css({ opacity: '1', transform: 'scale(1)' })
 
-const overlay = css({ position: 'fixed', inset: '0', zIndex: '200', display: 'flex', alignItems: 'center', justifyContent: 'center', bg: 'black/80', p: '6', backdropFilter: 'blur(12px)' })
-const image = css({ maxH: '90vh', maxW: '90vw', objectFit: 'contain' })
+const overlay = css({
+  position: 'fixed',
+  inset: '0',
+  zIndex: '200',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  bg: 'black/80',
+  p: '6',
+  backdropFilter: '[blur(12px)]',
+})
+const image = css({ maxH: '[90vh]', maxW: '[90vw]', objectFit: 'contain' })
 </script>
 
 <template>
@@ -96,12 +101,7 @@ const image = css({ maxH: '90vh', maxW: '90vw', objectFit: 'contain' })
         style="cursor: zoom-out"
         @click="close"
       >
-        <img
-          :src="src"
-          :alt="alt"
-          :class="image"
-          style="cursor: zoom-out"
-        >
+        <img :src="src" :alt="alt" :class="image" style="cursor: zoom-out" />
       </ark.div>
     </Transition>
   </Teleport>

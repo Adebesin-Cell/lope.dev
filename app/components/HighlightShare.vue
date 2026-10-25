@@ -4,18 +4,21 @@ import { ark } from '@ark-ui/vue/factory'
 import { css } from 'styled-system/css'
 import { button } from 'styled-system/recipes'
 
-const props = defineProps<{ title?: string, url?: string, date?: string }>()
+const props = defineProps<{ title?: string; url?: string; date?: string }>()
 
 const { draw } = useHighlightCard()
 const track = useTrack()
 
 const year = computed(() => (props.date ? String(new Date(props.date).getFullYear()) : undefined))
 
-const slug = computed(() => (props.title ?? 'highlight')
-  .toLowerCase()
-  .replace(/[^a-z0-9]+/g, '-')
-  .replace(/^-+|-+$/g, '')
-  .slice(0, 60) || 'highlight')
+const slug = computed(
+  () =>
+    (props.title ?? 'highlight')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .slice(0, 60) || 'highlight',
+)
 
 const open = ref(false)
 const quote = ref('')
@@ -29,18 +32,14 @@ const BLOCKS = 'p, li, blockquote, h1, h2, h3, h4, pre'
 
 function paragraphs(sel: Selection, scope: Element) {
   const range = sel.getRangeAt(0)
-  const blocks = [...scope.querySelectorAll(BLOCKS)]
-    .filter(b => range.intersectsNode(b) && !b.querySelector(BLOCKS))
-  if (!blocks.length)
-    return sel.toString().replace(/\s+/g, ' ').trim()
+  const blocks = [...scope.querySelectorAll(BLOCKS)].filter((b) => range.intersectsNode(b) && !b.querySelector(BLOCKS))
+  if (!blocks.length) return sel.toString().replace(/\s+/g, ' ').trim()
   return blocks
     .map((b) => {
       const r = document.createRange()
       r.selectNodeContents(b)
-      if (r.compareBoundaryPoints(Range.START_TO_START, range) < 0)
-        r.setStart(range.startContainer, range.startOffset)
-      if (r.compareBoundaryPoints(Range.END_TO_END, range) > 0)
-        r.setEnd(range.endContainer, range.endOffset)
+      if (r.compareBoundaryPoints(Range.START_TO_START, range) < 0) r.setStart(range.startContainer, range.startOffset)
+      if (r.compareBoundaryPoints(Range.END_TO_END, range) > 0) r.setEnd(range.endContainer, range.endOffset)
       return r.toString().replace(/\s+/g, ' ').trim()
     })
     .filter(Boolean)
@@ -48,17 +47,14 @@ function paragraphs(sel: Selection, scope: Element) {
 }
 
 function onSelect() {
-  if (open.value)
-    return
+  if (open.value) return
   const sel = window.getSelection()
   const raw = sel?.toString().trim() ?? ''
-  if (!sel || sel.isCollapsed || raw.length < 12)
-    return
+  if (!sel || sel.isCollapsed || raw.length < 12) return
   const node = sel.anchorNode
   const el = node instanceof Element ? node : node?.parentElement
   const scope = el?.closest('.prose-content')
-  if (!scope)
-    return
+  if (!scope) return
   quote.value = paragraphs(sel, scope).slice(0, 600)
   sel.removeAllRanges()
   lastFocused = document.activeElement as HTMLElement | null
@@ -78,12 +74,10 @@ function close() {
 async function download(fmt: CardFormat) {
   format.value = fmt
   track('highlight_card_downloaded', { format: fmt, quote: quote.value.slice(0, 200) })
-  if (!canvasRef.value)
-    return
+  if (!canvasRef.value) return
   await draw(canvasRef.value, fmt, { quote: quote.value, title: props.title, url: props.url, year: year.value })
   canvasRef.value.toBlob((blob) => {
-    if (!blob)
-      return
+    if (!blob) return
     const a = document.createElement('a')
     a.href = URL.createObjectURL(blob)
     a.download = `${slug.value}-quote-${fmt}.png`
@@ -93,38 +87,39 @@ async function download(fmt: CardFormat) {
 }
 
 async function copyCard() {
-  if (!canvasRef.value)
-    return
-  await draw(canvasRef.value, format.value, { quote: quote.value, title: props.title, url: props.url, year: year.value })
+  if (!canvasRef.value) return
+  await draw(canvasRef.value, format.value, {
+    quote: quote.value,
+    title: props.title,
+    url: props.url,
+    year: year.value,
+  })
   canvasRef.value.toBlob(async (blob) => {
     try {
-      if (!blob)
-        throw new Error('no blob')
+      if (!blob) throw new Error('no blob')
       await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })])
-    }
-    catch {
+    } catch {
       await navigator.clipboard.writeText(quote.value)
     }
     copied.value = true
     track('highlight_card_copied', { format: format.value, quote: quote.value.slice(0, 200) })
-    setTimeout(() => { copied.value = false }, 1500)
+    setTimeout(() => {
+      copied.value = false
+    }, 1500)
   }, 'image/png')
 }
 
 function trapTab(e: KeyboardEvent) {
-  if (e.key !== 'Tab')
-    return
+  if (e.key !== 'Tab') return
   const nodes = dialogRef.value?.$el?.querySelectorAll<HTMLElement>('button:not([disabled])')
-  if (!nodes?.length)
-    return
+  if (!nodes?.length) return
   const first = nodes[0]!
   const last = nodes[nodes.length - 1]!
   const active = document.activeElement
   if (e.shiftKey && (active === first || active === dialogRef.value?.$el)) {
     last.focus()
     e.preventDefault()
-  }
-  else if (!e.shiftKey && active === last) {
+  } else if (!e.shiftKey && active === last) {
     first.focus()
     e.preventDefault()
   }
@@ -147,8 +142,12 @@ if (import.meta.client) {
   })
 }
 
-const fadeActiveIn = css({ transitionProperty: 'opacity', transitionDuration: '200ms', transitionTimingFunction: 'ease-out' })
-const fadeActiveOut = css({ transitionProperty: 'opacity', transitionDuration: '150ms', transitionTimingFunction: 'ease-in' })
+const fadeActiveIn = css({
+  transitionProperty: 'opacity',
+  transitionDuration: 'normal',
+  transitionTimingFunction: 'out',
+})
+const fadeActiveOut = css({ transitionProperty: 'opacity', transitionDuration: 'fast', transitionTimingFunction: 'in' })
 const hidden = css({ opacity: '0' })
 const overlay = css({
   position: 'fixed',
@@ -161,7 +160,7 @@ const overlay = css({
   gap: '5',
   bg: 'black/55',
   p: '6',
-  backdropFilter: 'blur(12px)',
+  backdropFilter: '[blur(12px)]',
   outline: 'none',
 })
 const actions = css({ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '2.5' })
@@ -224,24 +223,13 @@ const offscreen = css({ display: 'none' })
             >
               <ark.span class="i-lucide-arrow-down" aria-hidden="true" /> Save for X
             </ark.button>
-            <ark.button
-              type="button"
-              aria-label="Copy the card to your clipboard"
-              :class="ghost"
-              @click="copyCard"
-            >
+            <ark.button type="button" aria-label="Copy the card to your clipboard" :class="ghost" @click="copyCard">
               <ark.span :class="copied ? 'i-lucide-check' : 'i-lucide-copy'" aria-hidden="true" />
               {{ copied ? 'Copied' : 'Copy' }}
             </ark.button>
           </ark.div>
 
-          <ark.button
-            type="button"
-            aria-label="Close"
-            title="Close (Esc)"
-            :class="closeButton"
-            @click="close"
-          >
+          <ark.button type="button" aria-label="Close" title="Close (Esc)" :class="closeButton" @click="close">
             <ark.span :class="['i-lucide-x', closeIcon]" aria-hidden="true" />
           </ark.button>
 

@@ -30,13 +30,7 @@ function scrollToTop() {
 
 <template>
   <Transition name="scroll-to-top">
-    <ark.button
-      v-if="y > 400"
-      type="button"
-      aria-label="Scroll to top"
-      :class="button"
-      @click="scrollToTop"
-    >
+    <ark.button v-if="y > 400" type="button" aria-label="Scroll to top" :class="button" @click="scrollToTop">
       <span class="i-lucide-arrow-up" aria-hidden="true" />
     </ark.button>
   </Transition>
@@ -45,7 +39,9 @@ function scrollToTop() {
 <style scoped>
 .scroll-to-top-enter-active,
 .scroll-to-top-leave-active {
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
 }
 
 .scroll-to-top-enter-from,

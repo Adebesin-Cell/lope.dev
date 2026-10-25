@@ -24,10 +24,18 @@ const open = ref(false)
 
 const header = css({ position: 'relative', zIndex: '50' })
 const logo = css({ position: { base: 'absolute', xl: 'fixed' }, m: '5', userSelect: 'none', outline: 'none' })
-const nav = css({ display: 'grid', gridTemplateColumns: 'auto max-content', alignItems: 'center', w: 'full', px: '6', py: '5', boxSizing: 'border-box' })
+const nav = css({
+  display: 'grid',
+  gridTemplateColumns: 'auto max-content',
+  alignItems: 'center',
+  w: 'full',
+  px: '6',
+  py: '5',
+  boxSizing: 'border-box',
+})
 const bar = css({ display: 'flex', alignItems: 'center', gap: '5', fontSize: 'sm' })
 const desktop = css({ display: { base: 'none', md: 'flex' }, alignItems: 'center', gap: '5' })
-const divider = css({ w: '1px', h: '4', bg: 'ink/10' })
+const divider = css({ w: '[1px]', h: '4', bg: 'ink/10' })
 const menuButton = cx(navLink, css({ fontSize: 'xl', display: { md: 'none' } }))
 </script>
 
@@ -41,12 +49,7 @@ const menuButton = cx(navLink, css({ fontSize: 'xl', display: { md: 'none' } }))
 
       <ark.div :class="bar">
         <ark.div :class="desktop">
-          <NuxtLink
-            v-for="l in links"
-            :key="l.to"
-            :to="l.to"
-            :class="navLink"
-          >
+          <NuxtLink v-for="l in links" :key="l.to" :to="l.to" :class="navLink">
             {{ l.label }}
           </NuxtLink>
           <ark.span :class="divider" />
@@ -79,11 +82,6 @@ const menuButton = cx(navLink, css({ fontSize: 'xl', display: { md: 'none' } }))
     </ark.nav>
 
     <!-- Mobile slide-over drawer -->
-    <MobileMenu
-      :open="open"
-      :links="links"
-      :icons="icons"
-      @close="open = false"
-    />
+    <MobileMenu :open="open" :links="links" :icons="icons" @close="open = false" />
   </ark.header>
 </template>

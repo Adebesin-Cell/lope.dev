@@ -10,7 +10,17 @@ const tabs = [
 
 const route = useRoute()
 
-const nav = css({ mb: '8', display: 'flex', flexWrap: 'wrap', columnGap: '4', rowGap: '1', fontSize: '3xl', fontWeight: '600', letterSpacing: 'tight', userSelect: 'none' })
+const nav = css({
+  mb: '8',
+  display: 'flex',
+  flexWrap: 'wrap',
+  columnGap: '4',
+  rowGap: '1',
+  fontSize: '3xl',
+  fontWeight: 'semibold',
+  letterSpacing: 'tight',
+  userSelect: 'none',
+})
 const tab = css({ color: 'ink', transition: 'opacity' })
 const idle = css({ opacity: '0.25', _hover: { opacity: '0.6' } })
 </script>

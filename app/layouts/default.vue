@@ -21,21 +21,23 @@ const skip = css({
     px: '4',
     py: '2',
     fontSize: 'sm',
-    outline: '2px solid',
+    outline: '[2px solid]',
     outlineColor: 'ink/40',
   },
 })
-const main = css({ position: 'relative', mx: 'auto', maxW: '3xl', px: '6', pt: { base: '10', md: '16' }, pb: { base: '24', md: '32' } })
+const main = css({
+  position: 'relative',
+  mx: 'auto',
+  maxW: '3xl',
+  px: '6',
+  pt: { base: '10', md: '16' },
+  pb: { base: '24', md: '32' },
+})
 </script>
 
 <template>
   <ark.div :class="shell">
-    <ark.a
-      href="#main"
-      :class="skip"
-    >
-      Skip to content
-    </ark.a>
+    <ark.a href="#main" :class="skip"> Skip to content </ark.a>
     <DotBackground />
     <ArtPlum />
     <AppHeader />

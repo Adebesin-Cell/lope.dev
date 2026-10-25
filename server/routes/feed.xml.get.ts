@@ -6,8 +6,8 @@ export default defineEventHandler(async (event) => {
   const site = String(useRuntimeConfig(event).public.siteUrl).replace(/\/$/, '')
 
   const onSite = (await queryCollection(event, 'blog').order('date', 'DESC').all())
-    .filter(p => !p.draft)
-    .map(p => ({
+    .filter((p) => !p.draft)
+    .map((p) => ({
       title: p.title,
       link: p.canonical ?? `${site}${p.path}`,
       description: p.description ?? '',
@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
       date: p.date,
     }))
 
-  const external = mediumPosts.map(m => ({
+  const external = mediumPosts.map((m) => ({
     title: m.title,
     link: m.url,
     description: m.description ?? '',
@@ -23,12 +23,11 @@ export default defineEventHandler(async (event) => {
     date: m.date,
   }))
 
-  const posts = [...onSite, ...external]
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  const posts = [...onSite, ...external].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
   const feed = new Feed({
     title: 'Adebesin Tolulope (Lope) — Blog',
-    description: 'Notes on open source, engineering with LLMs, and projects I\'m building.',
+    description: "Notes on open source, engineering with LLMs, and projects I'm building.",
     id: `${site}/blog`,
     link: `${site}/blog`,
     language: 'en',
@@ -50,8 +49,5 @@ export default defineEventHandler(async (event) => {
   }
 
   setHeader(event, 'content-type', 'application/rss+xml; charset=utf-8')
-  return feed.rss2().replace(
-    /^<\?xml[^>]*\?>/,
-    `$&\n<?xml-stylesheet type="text/xsl" href="/feed.xsl"?>`,
-  )
+  return feed.rss2().replace(/^<\?xml[^>]*\?>/, `$&\n<?xml-stylesheet type="text/xsl" href="/feed.xsl"?>`)
 })

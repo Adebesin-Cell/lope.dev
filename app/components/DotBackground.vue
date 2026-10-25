@@ -14,8 +14,5 @@ const dots = css({
 </script>
 
 <template>
-  <ark.div
-    :class="dots"
-    aria-hidden="true"
-  />
+  <ark.div :class="dots" aria-hidden="true" />
 </template>
