@@ -172,7 +172,7 @@ badge({ tone: danger ? 'danger' : 'neutral', size: big ? 'lg' : 'sm' })
   : big ? "badge--tone_neutral badge--size_lg" : "badge--tone_neutral badge--size_sm")
 ```
 
-That gets big fast. Two conditions make four strings, five make thirty-two. So Panda caps it at 16. The comment next to the limit explains why: "Past this, the inlined string is bigger than the call it replaces." A recipe call with more combinations than that stays a runtime call.
+That gets big fast. Two conditions make four strings, five make thirty-two, and every one of them is a full class string. At some point the rewrite stops paying off: the strings Panda would inline end up bigger than the short recipe call they replace. So Panda caps it at 16 combinations. A recipe call with more than that stays a runtime call, which is the smaller option.
 
 There's also a separate cap for any single call: past 64 conditional sites, Panda doesn't rewrite it at all.
 
