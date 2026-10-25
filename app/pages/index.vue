@@ -21,7 +21,7 @@ useHead({
         'image': `${siteUrl}/lope-avatar.jpeg`,
         'jobTitle': 'Design Engineer',
         'description': 'Design engineer and open sourcer. Core maintainer of Panda CSS, Chakra UI, Ark UI and Zag.',
-        'worksFor': { '@type': 'Organization', 'name': 'IQ.AI', 'url': 'https://iqai.com/' },
+        'worksFor': { '@type': 'Organization', 'name': 'IQ Industries', 'url': 'https://iqindustries.com/' },
         'alumniOf': { '@type': 'CollegeOrUniversity', 'name': 'Federal University of Technology, Akure' },
         'knowsAbout': ['Design engineering', 'Frontend engineering', 'Design systems', 'CSS', 'Panda CSS', 'Chakra UI', 'Ark UI', 'Zag', 'React', 'Vue', 'Nuxt', 'TypeScript', 'Open source'],
         'sameAs': [
@@ -57,8 +57,7 @@ const roleRows = [
   {
     label: 'Working with',
     chips: [
-      { logo: '/brands/iq.svg', label: 'IQ.AI', href: 'https://iqai.com/' },
-      { logo: '/brands/iq.svg', label: 'IQ.wiki', href: 'https://iq.wiki/' },
+      { logo: '/brands/iq.svg', label: 'IQ Industries', href: 'https://iqindustries.com/' },
     ],
   },
   {
