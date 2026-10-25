@@ -102,36 +102,27 @@ const roleRows = [
     </ark.p>
 
     <ark.p>
-      I love building. Give me a problem, mine or someone else's, and I'll want to build my way
-      out of it. I enjoy taking a project from the first idea to shipped, and picking up new
-      approaches along the way. You won't find me idle for long. Everything I've made is on my
+      I love building, for other people's problems and my own. I enjoy taking a project from idea
+      to shipped, and I'm rarely idle for long. Everything I've made is on my
       <Chip to="/projects" label="projects" icon="i-lucide-folder-git-2" /> page.
     </ark.p>
 
     <ark.p>
-      Right now I'm building
-      <Chip href="https://www.bethelflow.com/" label="BethelFlow" logo="/brands/bethelflow.svg" />
-      to take the manual work out of running a church. Attendance is automatic, using live
-      location. People who stop coming get followed up, first timers are looked after, and event
-      planning, ticketing and reports for finance, members and weddings live in one place, so
-      churches can spend their time caring for their people.
+      Right now that's
+      <Chip href="https://www.bethelflow.com/" label="BethelFlow" logo="/brands/bethelflow.svg" />,
+      which takes the manual work out of running a church so churches can spend their time on their
+      people. For fun, I tinker with open-source tools in my
+      <Chip href="https://studio.adebesin.com" label="Montcha" logo="/brands/montcha.png" /> studio
+      and keep experiments in <Chip to="/play" label="play" icon="i-lucide-gamepad-2" />.
     </ark.p>
 
     <ark.p>
-      Most of my open-source time goes into Panda, Ark and Zag. I also run
-      <Chip href="https://studio.adebesin.com" label="Montcha" logo="/brands/montcha.png" />,
-      a studio where I tinker with open-source tools that catch my eye, and keep small experiments in
-      <Chip to="/play" label="play" icon="i-lucide-gamepad-2" />. I write a
-      <Chip to="/blog/build-once-at-build-time" label="series" icon="i-lucide-newspaper" />
-      on how Panda CSS works inside, and gave my first talk,
-      <Chip href="https://sailsconf.com/2026/talks/17347112-5f4c-4086-bd0d-013eb2d2ff77" label="Rebuilding Panda's Engine" icon="i-lucide-mic" />,
-      at SailsConf in October 2026.
-    </ark.p>
-
-    <ark.p>
-      I believe in empowering women, which is why I volunteer with
-      <Chip href="https://github.com/4HerfrikaHQ/landing-page" label="4Herfrika" logo="/brands/4herfrika.png" />.
-      Away from the keyboard, I play basketball, train at the gym and cook, and church is a big part of my life.
+      I write a <Chip to="/blog/build-once-at-build-time" label="series" icon="i-lucide-newspaper" />
+      on how Panda CSS works inside, and gave my first talk at
+      <Chip href="https://sailsconf.com/2026/talks/17347112-5f4c-4086-bd0d-013eb2d2ff77" label="SailsConf" icon="i-lucide-mic" />.
+      I volunteer with
+      <Chip href="https://github.com/4HerfrikaHQ/landing-page" label="4Herfrika" logo="/brands/4herfrika.png" />
+      because I believe in empowering women. Away from the keyboard: basketball, the gym, cooking and church.
     </ark.p>
 
     <ark.div class="pt-6 border-t border-ink/10">
