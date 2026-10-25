@@ -136,7 +136,7 @@ export default defineNuxtConfig({
     '/blog/**': { prerender: true },
     '/feed.xml': { prerender: true },
     '/releases': { isr: 60 * 60 },
-    '/api/releases': { swr: 60 * 60 },
+    '/api/releases/**': { swr: 60 * 60 },
     ...redirectRouteRules,
   },
 })

@@ -23,23 +23,25 @@ interface MergedPR {
 interface ReleasesResponse {
   prs: MergedPR[]
   total: number
+  perPage: number
 }
 
-const { data, pending } = useFetch<ReleasesResponse>('/api/releases', { lazy: true })
-
-const PER_PAGE = 20
 const route = useRoute()
 const router = useRouter()
-const allPrs = computed(() => data.value?.prs ?? [])
-const totalPages = computed(() => Math.max(1, Math.ceil(allPrs.value.length / PER_PAGE)))
 
 // Page lives in the URL (?page=) so it's shareable and back/forward navigable.
 const page = computed(() => {
   const n = Number.parseInt(String(route.query.page ?? '1'), 10)
-  if (!Number.isFinite(n) || n < 1) return 1
-  return Math.min(n, totalPages.value)
+  return Number.isFinite(n) && n > 0 ? n : 1
 })
-const pagedPrs = computed(() => allPrs.value.slice((page.value - 1) * PER_PAGE, page.value * PER_PAGE))
+
+const { data, status } = useLazyFetch<ReleasesResponse>(() => `/api/releases/${page.value}`, { server: false })
+const loading = computed(() => status.value === 'idle' || status.value === 'pending')
+const pagedPrs = computed(() => data.value?.prs ?? [])
+const totalPages = ref(1)
+watch(data, (d) => {
+  if (d) totalPages.value = Math.max(1, Math.ceil(d.total / d.perPage))
+})
 const pageItems = computed(() => {
   const keep = (p: number) => p === 1 || p === totalPages.value || Math.abs(p - page.value) <= 1
   const pages = Array.from({ length: totalPages.value }, (_, i) => i + 1).filter(keep)
@@ -135,6 +137,28 @@ const when = css({
 const merged = css({ color: 'emerald.400/70' })
 const xs = css({ fontSize: 'xs' })
 const gap = css({ px: '1', color: 'ink.faint' })
+const srOnly = css({ srOnly: true })
+const skeletonRow = css({ display: 'flex', alignItems: 'center', gap: '4', py: '3' })
+const bone = css({
+  display: 'block',
+  rounded: 'sm',
+  bg: 'ink/8',
+  animation: 'shipping',
+  _motionReduce: { animation: '[none]', opacity: '0.7' },
+})
+const boneAvatar = css({ w: '10', h: '10', rounded: 'lg', flexShrink: '0' })
+const boneLines = css({ flex: '1', minW: '0', display: 'flex', flexDirection: 'column', gap: '2' })
+const boneRepo = css({ h: '2.5' })
+const boneTitle = css({ h: '3.5' })
+const boneWhen = css({ w: '10', h: '2.5', flexShrink: '0' })
+const SKELETON_WIDTHS = [
+  [34, 78],
+  [26, 64],
+  [40, 86],
+  [30, 58],
+  [36, 72],
+  [28, 81],
+]
 const pager = css({
   mt: '10',
   display: 'flex',
@@ -166,8 +190,20 @@ const otherPage = css({ color: 'ink.muted' })
       <ark.p :class="lead"> Recent open-source pull requests I've merged, across the projects I work on. </ark.p>
     </ark.header>
 
-    <ark.p v-if="pending && !data" role="status" :class="empty">Fetching pull requests…</ark.p>
-    <ark.div v-else-if="!data?.prs?.length" :class="empty">
+    <template v-if="loading">
+      <ark.p role="status" :class="srOnly">Fetching pull requests…</ark.p>
+      <ark.ul :class="list" aria-hidden="true">
+        <ark.li v-for="([repoWidth, titleWidth], i) in SKELETON_WIDTHS" :key="i" :class="skeletonRow">
+          <ark.span :class="[bone, boneAvatar]" :style="{ animationDelay: `${i * 120}ms` }" />
+          <ark.span :class="boneLines">
+            <ark.span :class="[bone, boneRepo]" :style="{ width: `${repoWidth}%`, animationDelay: `${i * 120}ms` }" />
+            <ark.span :class="[bone, boneTitle]" :style="{ width: `${titleWidth}%`, animationDelay: `${i * 120}ms` }" />
+          </ark.span>
+          <ark.span :class="[bone, boneWhen]" :style="{ animationDelay: `${i * 120}ms` }" />
+        </ark.li>
+      </ark.ul>
+    </template>
+    <ark.div v-else-if="!pagedPrs.length" :class="empty">
       No pull requests to show yet — or GitHub is rate-limiting. Try again in a bit.
     </ark.div>
 
