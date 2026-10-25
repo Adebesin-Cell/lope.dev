@@ -10,7 +10,7 @@ usePageSeo({
 
 <template>
   <ark.article class="slide-enter-content">
-    <ark.header class="text-center mb-12">
+    <ark.header class="mb-10">
       <ark.h1 class="text-4xl font-700 tracking-tight mb-3">
         Talks
       </ark.h1>
