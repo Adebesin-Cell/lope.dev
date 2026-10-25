@@ -70,12 +70,6 @@ const roleRows = [
     ],
   },
   {
-    label: 'Author of',
-    chips: [
-      { icon: 'i-lucide-feather', color: '#34D399', label: 'Ekphrasis', to: '/projects#own-projects' },
-    ],
-  },
-  {
     label: 'Currently building',
     chips: [{ logo: '/brands/bethelflow.svg', label: 'BethelFlow', href: 'https://www.bethelflow.com/' }],
   },
