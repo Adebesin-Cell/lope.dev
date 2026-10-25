@@ -31,7 +31,7 @@ const hook = computed(() => {
   >
     <div :style="{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }">
       <img
-        src="/lope-avatar.jpeg"
+        src="/lope-avatar-square.jpg"
         width="72"
         height="72"
         :style="{ width: '72px', height: '72px', borderRadius: '999px' }"

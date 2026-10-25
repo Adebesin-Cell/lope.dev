@@ -26,7 +26,7 @@ const tags = ['Chakra UI', 'Panda', 'Zag', 'Ark UI', 'IQ Industries', 'npmx']
   >
     <div :style="{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }">
       <img
-        src="/lope-avatar.jpeg"
+        src="/lope-avatar-square.jpg"
         width="76"
         height="76"
         :style="{ width: '76px', height: '76px', borderRadius: '999px' }"
