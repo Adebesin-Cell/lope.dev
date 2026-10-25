@@ -9,7 +9,7 @@ usePageSeo({
 const info = [
   { label: 'Name', value: 'Adebesin Tolulope (Lope)' },
   { label: 'Headshot', value: 'lope.adebesin.com/lope-headshot.jpg', href: '/lope-headshot.jpg' },
-  { label: 'Introduction', value: 'Adebesin Tolulope (Lope) is an open-source engineer from Nigeria. He works on Chakra UI, Panda CSS, and Ark UI, where he co-led the latest Panda CSS and now leads Ark UI v6. He also contributes to Zag.js and is building BethelFlow, a church operating system. He cares about the layer under our interfaces and about making open source a warmer room for the next person who wants in.' },
+  { label: 'Introduction', value: 'Adebesin Tolulope (Lope) is a design engineer and open sourcer. He is a core maintainer of Panda CSS, Chakra UI, Ark UI and Zag, where he co-led Panda CSS v2 and now leads Ark UI v6. He is also building BethelFlow, a church operating system. He cares about the layer under our interfaces, and about making open source a warmer room for the next person who wants in.' },
   { label: 'Location', value: 'Nigeria' },
   { label: 'Company', value: 'IQ Industries', href: 'https://iqindustries.com/' },
   { label: 'Website', value: 'lope.adebesin.com', href: 'https://lope.adebesin.com' },
