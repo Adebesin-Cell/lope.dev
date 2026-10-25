@@ -21,6 +21,7 @@ const DIRECTION = { right: 0, down: Math.PI / 2, left: Math.PI, up: -Math.PI / 2
 
 const el = ref<HTMLCanvasElement | null>(null)
 const { random } = Math
+const randomMiddle = () => random() * SEED_SPAN.size + SEED_SPAN.start
 const size = reactive(useWindowSize())
 
 function initCanvas(canvas: HTMLCanvasElement, width: number, height: number) {
@@ -99,8 +100,6 @@ onMounted(() => {
   }
 
   const controls = useRafFn(frame, { immediate: false })
-  const randomMiddle = () => random() * SEED_SPAN.size + SEED_SPAN.start
-
   ctx.clearRect(0, 0, width, height)
   ctx.lineWidth = 1
   ctx.strokeStyle = STROKE_COLOR
