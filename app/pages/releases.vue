@@ -25,7 +25,7 @@ interface ReleasesResponse {
   total: number
 }
 
-const { data } = await useFetch<ReleasesResponse>('/api/releases')
+const { data, pending } = useFetch<ReleasesResponse>('/api/releases', { lazy: true })
 
 const PER_PAGE = 20
 const route = useRoute()
@@ -166,7 +166,8 @@ const otherPage = css({ color: 'ink.muted' })
       <ark.p :class="lead"> Recent open-source pull requests I've merged, across the projects I work on. </ark.p>
     </ark.header>
 
-    <ark.div v-if="!data?.prs?.length" :class="empty">
+    <ark.p v-if="pending && !data" role="status" :class="empty">Fetching pull requests…</ark.p>
+    <ark.div v-else-if="!data?.prs?.length" :class="empty">
       No pull requests to show yet — or GitHub is rate-limiting. Try again in a bit.
     </ark.div>
 
