@@ -57,7 +57,8 @@ function fmt(d: string) {
 
 <template>
   <ark.article class="slide-enter-content">
-    <ark.h1 class="text-4xl font-700 tracking-tight mb-3">
+    <SubNav />
+    <ark.h1 class="sr-only">
       Blog
     </ark.h1>
     <ark.p class="text-ink-muted mb-10">

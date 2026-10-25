@@ -185,6 +185,13 @@ function fmt(d?: string) {
         Join the conversation on Medium →
       </ark.a>
     </ark.footer>
+
+    <ark.p class="mt-10 font-mono text-sm">
+      <ark.span class="op-50">&gt; </ark.span>
+      <NuxtLink to="/blog" class="op-50 hover:op-75 transition-opacity">
+        cd ..
+      </NuxtLink>
+    </ark.p>
   </ark.article>
 </template>
 
