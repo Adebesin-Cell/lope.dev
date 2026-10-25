@@ -3,8 +3,7 @@ import posthog from 'posthog-js'
 export default defineNuxtPlugin((nuxtApp) => {
   const { public: config } = useRuntimeConfig()
   const key = config.posthogPublicKey as string
-  if (!key)
-    return
+  if (!key) return
 
   const client = posthog.init(key, {
     api_host: '/ingest',
@@ -13,22 +12,18 @@ export default defineNuxtPlugin((nuxtApp) => {
     capture_pageview: false,
     capture_pageleave: true,
     loaded: (ph) => {
-      if (import.meta.dev)
-        ph.debug()
+      if (import.meta.dev) ph.debug()
 
       const token = config.posthogOptoutToken as string
       if (token) {
         const optout = new URLSearchParams(window.location.search).get('ph_optout')
-        if (optout === token)
-          ph.opt_out_capturing()
-        else if (optout === 'reset')
-          ph.opt_in_capturing()
+        if (optout === token) ph.opt_out_capturing()
+        else if (optout === 'reset') ph.opt_in_capturing()
       }
     },
   })
 
-  if (import.meta.dev)
-    client.opt_out_capturing()
+  if (import.meta.dev) client.opt_out_capturing()
 
   const landing = new URL(window.location.href)
   const campaign = Object.fromEntries([...landing.searchParams].filter(([key]) => key.startsWith('utm_')))

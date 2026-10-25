@@ -33,11 +33,11 @@
   height: auto;
   border-radius: 12px;
 }
-.bg { fill: rgb(var(--bg)); }
-.dot { fill: rgb(var(--ink) / 0.05); }
-.ink { fill: rgb(var(--ink)); }
-.muted { fill: rgb(var(--ink-muted)); }
-.faint { fill: rgb(var(--ink-faint)); }
+.bg { fill: var(--colors-bg); }
+.dot { fill: color-mix(in srgb, var(--colors-ink) 5%, transparent); }
+.ink { fill: var(--colors-ink); }
+.muted { fill: var(--colors-ink-muted); }
+.faint { fill: var(--colors-ink-faint); }
 .op { fill: #e0a05e; }
 .code {
   font-family: ui-monospace, 'SF Mono', Menlo, monospace;

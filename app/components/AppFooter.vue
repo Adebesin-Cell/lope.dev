@@ -1,33 +1,28 @@
 <script setup lang="ts">
 import { ark } from '@ark-ui/vue/factory'
+import { css } from 'styled-system/css'
 
 const year = new Date().getFullYear()
+
+const footer = css({
+  position: 'relative',
+  mx: 'auto',
+  maxW: '3xl',
+  px: '6',
+  pb: '12',
+  fontSize: 'xs',
+  color: 'ink.faint',
+})
+const link = css({ textDecoration: 'underline', transition: 'colors', _hover: { color: 'ink.muted' } })
 </script>
 
 <template>
-  <ark.footer class="relative mx-auto max-w-3xl px-6 pb-12 text-xs text-ink-faint leading-relaxed">
-    <ark.div>
-      <ark.a
-        href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
-        target="_blank"
-        rel="noopener"
-        class="underline hover:text-ink-muted transition-colors"
-      >
-        CC BY-NC-SA 4.0
-      </ark.a>
-      2026-PRESENT © Adebesin Tolulope (Lope)
-      <ark.span class="op-50">· {{ year }}</ark.span>
-    </ark.div>
-    <ark.div class="mt-1">
-      Design inspired by
-      <ark.a
-        href="https://antfu.me"
-        target="_blank"
-        rel="noopener"
-        class="underline hover:text-ink-muted transition-colors"
-      >
-        antfu
-      </ark.a>
-    </ark.div>
+  <ark.footer :class="footer">
+    © {{ year }} Adebesin Tolulope ·
+    <ark.a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener" :class="link">
+      CC BY-NC-SA 4.0
+    </ark.a>
+    · Inspired by
+    <ark.a href="https://antfu.me" target="_blank" rel="noopener" :class="link"> antfu </ark.a>
   </ark.footer>
 </template>

@@ -1,8 +1,36 @@
 <script setup lang="ts">
 import { ark } from '@ark-ui/vue/factory'
+import { css } from 'styled-system/css'
 import type { Project } from '~~/shared/data/projects'
 
 defineProps<{ project: Project }>()
+
+const card = css({
+  display: 'flex',
+  alignItems: 'flex-start',
+  gap: '3',
+  p: '3',
+  mx: '-3',
+  rounded: 'lg',
+  transition: 'colors',
+  _hover: { bg: 'ink/3' },
+})
+const mark = css({ display: 'grid', placeItems: 'center', w: '6', h: '6', mt: '0.5', flexShrink: '0' })
+const logo = css({ w: 'full', h: 'full', opacity: '0.8', transition: 'opacity', _groupHover: { opacity: '1' } })
+const icon = css({ w: 'full!', h: 'full!', opacity: '0.7', transition: 'opacity', _groupHover: { opacity: '1' } })
+const body = css({ flex: '1', minW: '0' })
+const name = css({ fontSize: 'sm', fontWeight: 'medium', color: 'ink' })
+const role = css({ fontSize: 'xs', fontWeight: 'normal', color: 'ink.faint', ms: '1' })
+const desc = css({ fontSize: 'xs', color: 'ink.muted', lineHeight: 'relaxed', mt: '0.5' })
+const stack = css({
+  display: 'flex',
+  flexWrap: 'wrap',
+  columnGap: '2',
+  rowGap: '0.5',
+  mt: '1.5',
+  fontSize: '2xs',
+  color: 'ink.faint',
+})
 </script>
 
 <template>
@@ -11,32 +39,25 @@ defineProps<{ project: Project }>()
     :href="project.href"
     :target="project.href ? '_blank' : undefined"
     :rel="project.href ? 'noopener' : undefined"
-    class="card group flex items-start gap-3 p-3 -mx-3 rounded-lg hover:bg-ink/3 transition-colors"
+    :class="['card group', card]"
   >
-    <ark.div class="grid place-items-center w-6 h-6 mt-0.5 shrink-0" aria-hidden="true">
-      <BrandLogo
-        v-if="project.logo"
-        :src="project.logo"
-        :light="project.logoLight"
-        :alt="project.name"
-        class="w-full h-full op-80 group-hover:op-100 transition-opacity"
-      />
+    <ark.div :class="mark" aria-hidden="true">
+      <BrandLogo v-if="project.logo" :src="project.logo" :light="project.logoLight" :alt="project.name" :class="logo" />
       <ark.span
         v-else-if="project.icon"
-        :class="project.icon"
-        class="w-full! h-full! op-70 group-hover:op-100 transition-opacity"
+        :class="[project.icon, icon]"
         :style="project.color ? { color: project.color } : undefined"
       />
     </ark.div>
-    <ark.div class="flex-1 min-w-0">
-      <ark.h3 class="text-sm font-500 text-ink">
+    <ark.div :class="body">
+      <ark.h3 :class="name">
         {{ project.name }}
-        <ark.span v-if="project.role" class="text-xs font-400 text-ink-faint ms-1">· {{ project.role }}</ark.span>
+        <ark.span v-if="project.role" :class="role">· {{ project.role }}</ark.span>
       </ark.h3>
-      <ark.p class="text-xs text-ink-muted leading-relaxed mt-0.5">
+      <ark.p :class="desc">
         {{ project.description }}
       </ark.p>
-      <ark.ul v-if="project.stack?.length" class="flex flex-wrap gap-x-2 gap-y-0.5 mt-1.5 text-[11px] text-ink-faint" aria-label="Stack">
+      <ark.ul v-if="project.stack?.length" :class="stack" aria-label="Stack">
         <ark.li v-for="t in project.stack" :key="t">
           {{ t }}
         </ark.li>

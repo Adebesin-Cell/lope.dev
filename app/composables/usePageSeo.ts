@@ -1,4 +1,4 @@
-export function usePageSeo(opts: { title: string, description: string }) {
+export function usePageSeo(opts: { title: string; description: string }) {
   const { url } = useSiteConfig()
   const route = useRoute()
   const canonical = `${url.replace(/\/$/, '')}${route.path}`

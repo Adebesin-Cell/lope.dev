@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { NuxtError } from '#app'
 import { ark } from '@ark-ui/vue/factory'
+import { css } from 'styled-system/css'
+import { button } from 'styled-system/recipes'
 
 const props = defineProps<{ error: NuxtError }>()
 
@@ -11,8 +13,7 @@ const path = computed(() => {
   const raw = (props.error as NuxtError & { url?: string }).url || requestUrl.pathname
   try {
     return new URL(raw, requestUrl.origin).pathname
-  }
-  catch {
+  } catch {
     return raw
   }
 })
@@ -21,16 +22,14 @@ const is404 = computed(() => props.error.statusCode === 404)
 const code = computed(() => props.error.statusCode || 500)
 
 const heading = computed(() => {
-  if (!is404.value)
-    return 'Something broke'
+  if (!is404.value) return 'Something broke'
   return isBlog.value ? 'This post went unpublished' : 'Page not found'
 })
 
 const blurb = computed(() => {
-  if (!is404.value)
-    return props.error.statusMessage || 'An unexpected error got in the way. Try again in a moment.'
+  if (!is404.value) return props.error.statusMessage || 'An unexpected error got in the way. Try again in a moment.'
   return isBlog.value
-    ? "That piece either never made it out of drafts or moved somewhere else. The rest of the writing is still up, though."
+    ? 'That piece either never made it out of drafts or moved somewhere else. The rest of the writing is still up, though.'
     : "The page you're after doesn't exist — maybe it moved, maybe the link is stale. Let's get you back on track."
 })
 
@@ -42,61 +41,61 @@ useSeoMeta({
 function go(path: string) {
   clearError({ redirect: path })
 }
+
+const relative = css({ position: 'relative' })
+const codeMark = css({
+  position: 'absolute',
+  top: { base: '-10', md: '-16' },
+  insetStart: { base: '-2', md: '-6' },
+  fontSize: { base: '[7rem]', sm: '[10rem]', md: '[13rem]' },
+  fontWeight: 'bold',
+  opacity: '0.05',
+  userSelect: 'none',
+  pointerEvents: 'none',
+  letterSpacing: 'tight',
+  lineHeight: 'none',
+})
+const body = css({ position: 'relative', pt: { base: '20', md: '28' }, '& > * + *': { mt: '5' } })
+const title = css({ fontSize: { base: '3xl', md: '4xl' }, fontWeight: 'bold', letterSpacing: 'tight' })
+const blurbStyle = css({ fontSize: 'md', color: 'ink.muted', lineHeight: 'relaxed', maxW: 'prose' })
+const actions = css({ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '3', pt: '2' })
+const solid = button({ variant: 'solid' })
+const ghost = button()
 </script>
 
 <template>
   <NuxtLayout>
     <ark.article class="slide-enter-content">
-      <ark.div class="relative">
-        <ark.div
-          class="absolute -top-10 md:-top-16 -start-2 md:-start-6 text-[7rem] sm:text-[10rem] md:text-[13rem] font-700 op-5 select-none pointer-events-none tracking-tight leading-none"
-          aria-hidden="true"
-        >
+      <ark.div :class="relative">
+        <ark.div :class="codeMark" aria-hidden="true">
           {{ code }}
         </ark.div>
 
-        <ark.div class="relative pt-20 md:pt-28 space-y-5">
-          <ark.h1 class="text-3xl md:text-4xl font-700 tracking-tight">
+        <ark.div :class="body">
+          <ark.h1 :class="title">
             {{ heading }}
           </ark.h1>
 
-          <ark.p class="text-base text-ink-muted leading-relaxed max-w-prose">
+          <ark.p :class="blurbStyle">
             {{ blurb }}
           </ark.p>
 
-          <ark.div class="flex flex-wrap items-center gap-3 pt-2">
-            <ark.button
-              type="button"
-              class="btn btn-solid inline-flex items-center gap-1.5 rounded-md px-4 py-2 text-sm font-500 transition"
-              @click="go('/')"
-            >
+          <ark.div :class="actions">
+            <ark.button type="button" :class="solid" @click="go('/')">
               <ark.span class="i-lucide-arrow-left" aria-hidden="true" />
               Back home
             </ark.button>
 
-            <ark.button
-              v-if="isBlog"
-              type="button"
-              class="btn btn-ghost inline-flex items-center gap-1.5 rounded-md px-4 py-2 text-sm font-500 transition"
-              @click="go('/blog')"
-            >
+            <ark.button v-if="isBlog" type="button" :class="ghost" @click="go('/blog')">
               <ark.span class="i-lucide-pen-line" aria-hidden="true" />
               Browse the blog
             </ark.button>
             <template v-else>
-              <ark.button
-                type="button"
-                class="btn btn-ghost inline-flex items-center gap-1.5 rounded-md px-4 py-2 text-sm font-500 transition"
-                @click="go('/projects')"
-              >
+              <ark.button type="button" :class="ghost" @click="go('/projects')">
                 <ark.span class="i-lucide-box" aria-hidden="true" />
                 Projects
               </ark.button>
-              <ark.button
-                type="button"
-                class="btn btn-ghost inline-flex items-center gap-1.5 rounded-md px-4 py-2 text-sm font-500 transition"
-                @click="go('/blog')"
-              >
+              <ark.button type="button" :class="ghost" @click="go('/blog')">
                 <ark.span class="i-lucide-pen-line" aria-hidden="true" />
                 Blog
               </ark.button>

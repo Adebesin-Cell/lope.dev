@@ -3,6 +3,8 @@ title: Build once, at build time
 description: "What Panda CSS actually does with your css() call at build time, step by step, and why doing that work before the browser matters."
 seoTitle: "Build once, at build time: how Panda CSS compiles css()"
 date: 2026-10-16
+series: Panda internals
+part: 1
 ---
 
 ### What Panda does with your `css()` call before the browser ever sees it.

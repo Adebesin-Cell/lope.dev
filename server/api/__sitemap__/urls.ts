@@ -2,12 +2,13 @@ import { queryCollection } from '@nuxt/content/server'
 
 export default defineSitemapEventHandler(async (event) => {
   const posts = await queryCollection(event, 'blog').all()
-  const original = posts.filter(p => !p.draft && !p.canonical)
+  const original = posts.filter((p) => !p.draft && !p.canonical)
 
   return [
     { loc: '/' },
     { loc: '/projects' },
     { loc: '/talks' },
+    { loc: '/giving-talks' },
     { loc: '/play' },
     { loc: '/essays' },
     { loc: '/blog' },

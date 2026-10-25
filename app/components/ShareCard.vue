@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { CardFormat } from '~/composables/useHighlightCard'
 import { ark } from '@ark-ui/vue/factory'
+import { css } from 'styled-system/css'
 import caveat from 'tegaki/fonts/caveat'
 import { DIMENSIONS, PLUM_SEED, plumSegments } from '~/composables/useHighlightCard'
 
@@ -19,20 +20,25 @@ const branches = computed(() => {
     .join('')
   return { w, h, d }
 })
-const paras = computed(() => props.quote.split('\n').map(s => s.trim()).filter(Boolean))
+const paras = computed(() =>
+  props.quote
+    .split('\n')
+    .map((s) => s.trim())
+    .filter(Boolean),
+)
 const cleanUrl = computed(() => props.url?.replace(/^https?:\/\//, '') ?? '')
 
 const quoteStyle = computed(() => {
   const cqw = Math.min(5.2, Math.max(2.4, 5.4 - props.quote.length * 0.006))
   return { fontSize: `${cqw.toFixed(2)}cqw` }
 })
+
+const squareWidth = css({ w: '[clamp(320px, 72vw, 560px)]' })
+const wideWidth = css({ w: '[clamp(360px, 86vw, 860px)]' })
 </script>
 
 <template>
-  <ark.figure
-    class="share-card"
-    :class="format === 'ig' ? 'w-[clamp(320px,72vw,560px)]' : 'w-[clamp(360px,86vw,860px)]'"
-  >
+  <ark.figure class="share-card" :class="format === 'ig' ? squareWidth : wideWidth">
     <ark.div class="dots" aria-hidden="true" />
     <ark.span v-if="year" class="watermark" aria-hidden="true">{{ year }}</ark.span>
 
@@ -52,7 +58,12 @@ const quoteStyle = computed(() => {
         <ark.span class="alias">(Lope)</ark.span>
       </ark.div>
       <ClientOnly>
-        <TegakiRenderer :font="caveat" text="at" :time="{ mode: 'uncontrolled', loop: true, speed: 0.6 }" class="stamp" />
+        <TegakiRenderer
+          :font="caveat"
+          text="at"
+          :time="{ mode: 'uncontrolled', loop: true, speed: 0.6 }"
+          class="stamp"
+        />
         <template #fallback>
           <ark.span class="stamp">at</ark.span>
         </template>
@@ -69,7 +80,12 @@ const quoteStyle = computed(() => {
     <ark.footer class="foot">
       <ark.div class="sign-col">
         <ClientOnly>
-          <TegakiRenderer :font="caveat" text="— Lope" :time="{ mode: 'uncontrolled', loop: false, speed: 0.9 }" class="sign" />
+          <TegakiRenderer
+            :font="caveat"
+            text="— Lope"
+            :time="{ mode: 'uncontrolled', loop: false, speed: 0.9 }"
+            class="sign"
+          />
           <template #fallback>
             <ark.span class="sign">— Lope</ark.span>
           </template>
@@ -193,8 +209,12 @@ const quoteStyle = computed(() => {
   line-height: 1.42;
   overflow: hidden;
 }
-.quote p { margin: 0 0 0.55em; }
-.quote p:last-child { margin-bottom: 0; }
+.quote p {
+  margin: 0 0 0.55em;
+}
+.quote p:last-child {
+  margin-bottom: 0;
+}
 
 .foot {
   position: relative;

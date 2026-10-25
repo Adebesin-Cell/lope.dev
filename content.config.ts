@@ -18,6 +18,8 @@ export default defineContentConfig({
         lang: z.string().optional(),
         draft: z.boolean().optional(),
         canonical: z.string().optional(),
+        series: z.string().optional(),
+        part: z.number().optional(),
       }),
     }),
   },

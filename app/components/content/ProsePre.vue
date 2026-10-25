@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ark } from '@ark-ui/vue/factory'
+import { css } from 'styled-system/css'
 
 const props = defineProps<{
   code?: string
@@ -19,16 +20,19 @@ async function copy() {
   copied.value = true
   setTimeout(() => { copied.value = false }, 1500)
 }
+
+const wrap = css({ position: 'relative' })
+const copyButton = css({ position: 'absolute', right: '2', top: '2', display: 'inline-flex', alignItems: 'center', rounded: 'md', p: '1.5', color: 'ink.muted', transition: 'all', _hover: { color: 'ink' } })
 </script>
 
 <template>
-  <ark.div class="group relative">
+  <ark.div :class="['group', wrap]">
     <pre :class="props.class"><slot /></pre>
     <ark.button
       v-if="props.code"
       type="button"
       :aria-label="copied ? 'Copied' : 'Copy code'"
-      class="copy-code absolute right-2 top-2 inline-flex items-center rounded-md p-1.5 text-ink-muted transition hover:text-ink"
+      :class="['copy-code', copyButton]"
       @click="copy"
     >
       <ark.span :class="copied ? 'i-lucide-check' : 'i-lucide-copy'" aria-hidden="true" />

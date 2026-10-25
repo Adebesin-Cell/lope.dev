@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ark } from '@ark-ui/vue/factory'
+import { css } from 'styled-system/css'
 
 const props = defineProps<{
   src: string
@@ -10,16 +11,11 @@ const props = defineProps<{
 // Swap to the light-mode asset when the page is in light mode (some brand
 // marks are tuned per background, e.g. npmx).
 const colorMode = useColorMode()
-const resolved = computed(() =>
-  colorMode.value === 'light' && props.light ? props.light : props.src,
-)
+const resolved = computed(() => (colorMode.value === 'light' && props.light ? props.light : props.src))
+
+const img = css({ objectFit: 'contain' })
 </script>
 
 <template>
-  <ark.img
-    :src="resolved"
-    :alt="alt ?? ''"
-    loading="lazy"
-    class="object-contain"
-  />
+  <ark.img :src="resolved" :alt="alt ?? ''" loading="lazy" :class="img" />
 </template>

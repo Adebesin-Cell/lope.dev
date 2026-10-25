@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import { css } from 'styled-system/css'
+
 const props = defineProps<{
   handle: string
   name?: string
 }>()
 
 const label = computed(() => props.name ?? props.handle)
+const upper = css({ textTransform: 'uppercase' })
 </script>
 
 <template>
@@ -20,7 +23,7 @@ const label = computed(() => props.name ?? props.handle)
       loading="lazy"
       class="mention-avatar"
     >
-    <span :class="{ 'uppercase': !name }">{{ label }}</span>
+    <span :class="!name && upper">{{ label }}</span>
   </a>
 </template>
 
@@ -37,13 +40,13 @@ const label = computed(() => props.name ?? props.handle)
   line-height: 1;
   white-space: nowrap;
   text-decoration: none !important;
-  background: rgb(var(--ink) / 0.1);
-  color: rgb(var(--ink-muted)) !important;
+  background: color-mix(in srgb, var(--colors-ink) 10%, transparent);
+  color: var(--colors-ink-muted) !important;
   transition: background-color 0.2s, color 0.2s;
 }
 .mention:hover {
-  background: rgb(var(--ink) / 0.16);
-  color: rgb(var(--ink)) !important;
+  background: color-mix(in srgb, var(--colors-ink) 16%, transparent);
+  color: var(--colors-ink) !important;
 }
 .mention-avatar {
   height: 1.5em;

@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import caveat from 'tegaki/fonts/caveat'
+import { css } from 'styled-system/css'
+
+const link = css({ display: 'block', userSelect: 'none', outline: 'none' })
 </script>
 
 <template>
-  <NuxtLink
-    to="/"
-    aria-label="Home — Adebesin Tolulope"
-    class="logo block select-none outline-none"
-  >
+  <NuxtLink to="/" aria-label="Home — Adebesin Tolulope" :class="['logo', link]">
     <ClientOnly>
       <TegakiRenderer
         :font="caveat"

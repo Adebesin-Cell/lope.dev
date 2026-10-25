@@ -9,6 +9,12 @@ A living list of where this site is headed — and a few things I'm holding myse
 - [ ] **Fill the blog** — write real bodies for the two draft posts (Ekphrasis motivation, LLMs in engineering) and import the rest of the Medium pieces.
 - [ ] **GitHub stars on project cards** — show repo stars / last-release like the releases page, so the work has weight.
 - [ ] **Command palette (⌘K)** — quick jump to pages, projects, posts.
+- [ ] **Ask about Lope.** An "Ask" mode in the command palette, answering questions about me from one long `lope.md` encyclopedia.
+  - **Content first:** `lope.md` covers work, projects, talks, stack, how I work, BethelFlow, Panda and life away from the keyboard, in clear sections. I write or approve every fact.
+  - **Search is the base:** the palette searches `lope.md`, pages and posts with no AI, so it works in every browser and links to the matching section.
+  - **On-device answers when available:** in Chrome 148+ desktop, Chrome's built-in model (Prompt API, Gemini Nano) answers from the best-matching sections only, says when it doesn't know, and shows its sources. Other browsers fall back to search results. `@browser-ai/core` wraps it for the AI SDK.
+  - **Later, if wanted:** an opt-in "load a local model" button with WebLLM (`@mlc-ai/web-llm`, a few hundred MB download) for other browsers, or a server model through Vercel AI Gateway with rate limits.
+  - Inspiration: small models in the browser, like [gpu-lexer](https://shud.in/thoughts/ideas-behind-gpu-lexer).
 
 ## AFK — the personal section
 
@@ -65,7 +71,7 @@ Pure data + existing components. No APIs.
 ## Someday / maybe
 
 - [ ] **Animated OG** — Takumi keyframe variant for contexts that actually play it (GitHub, direct links).
-- [ ] **Real talks section** — replace the wishlist once I've actually given one.
+- [ ] **Real talks section.** I've given one now (SailsConf, *Rebuilding Panda's Engine*). Add a "Given" list above the wishlist, with the event, date, slides and recording.
 - [ ] **Signature logo** — trace a real handwritten "at" to refine the tegaki mark.
 
 ## Done
@@ -91,4 +97,37 @@ Pure data + existing components. No APIs.
 
 Less site, more me. The honest list:
 
-- [ ] **Give the talk.** React Conf is the dream — but start with a meetup. Submit one CFP this quarter.
+- [x] **Give the talk.** First one done: *Rebuilding Panda's Engine* at SailsConf (Oct 2026).
+- [ ] **Give the second one.** Submit two CFPs this quarter. React Conf is still the dream.
+
+## Portfolio: ideas from corbincrutchley.com
+
+What to borrow, not copy:
+
+- [ ] **A framing line per section.** One sentence that says what you believe before the list. For example, open source: "A library is part of someone else's working day."
+- [ ] **Work history with numbers.** Role, dates, one line of scope, then the outcomes in bold: 37× faster cold extraction, 1,000 files rechecked in 122 ms instead of 13.5 s, and so on. Collapse older roles.
+- [ ] **Talks as proof, not wishes.** Given talks with event and recording first, the wishlist after.
+- [ ] **One clear call to action.** "Get in touch" for talks, roles or consulting, in the nav and at the end of the home page.
+
+## Staff-level frontend (personal)
+
+Staff isn't more code. It's scope, judgment and other people getting better because you're there. These are things I can start now:
+
+### Habits
+
+- [ ] **Write decisions down.** One short design doc or RFC per real decision (BethelFlow or Panda): the problem, the options, what I picked and why. Link the public ones from the site.
+- [ ] **Measure before and after.** Every perf or DX change gets a number, like the runtime post. Keep a running "impact log" to feed the work-history section.
+  - *Predictable codebase*: a BethelFlow teammate picked up the conventions from the post and uses them in their own projects.
+- [ ] **Own a cross-cutting area.** Pick one at BethelFlow (perf budget, accessibility or the design system) and be the person who sets the standard, reviews against it and reports on it.
+- [ ] **Review more than I write.** Do thoughtful PR reviews on Panda, Ark and Zag every week, and help first-time contributors land their PR.
+- [ ] **Teach in public.** Keep the Panda series going, give one talk a quarter, and mentor one engineer.
+- [ ] **Say no well.** Write up the requests I turn down and why, the way the SailsConf talk did.
+
+### Courses and reading
+
+- [ ] **The Staff Engineer's Path** (Tanya Reilly, book). The best single guide to what the role actually is.
+- [ ] **Staff Engineer** (Will Larson, book and staffeng.com). Stories from staff engineers about how they got there.
+- [ ] **Web performance.** Frontend Masters' web performance courses, plus web.dev's Core Web Vitals guides.
+- [ ] **Accessibility.** web.dev's free *Learn Accessibility*, then test BethelFlow with a real screen reader.
+- [ ] **Motion and craft.** Emil Kowalski's *animations.dev* or Josh Comeau's *Whimsical Animations*. This is the design engineer half.
+- [ ] **CSS depth.** Josh Comeau's *CSS for JavaScript Developers*, if any of the layout or cascade parts feel shaky.
