@@ -49,7 +49,7 @@ export default defineEventHandler(async (event) => {
       link: p.link,
       description: p.description,
       content: p.content || undefined,
-      image: p.image && { url: p.image, type: p.image.endsWith('.svg') ? 'image/svg+xml' : undefined },
+      image: p.image?.endsWith('.svg') ? { url: p.image, type: 'image/svg+xml' } : p.image,
       date: new Date(p.date),
     })
   }
