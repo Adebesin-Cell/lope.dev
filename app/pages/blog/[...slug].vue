@@ -124,9 +124,6 @@ const share = css({
 const shareLink = css({ display: 'inline-flex', alignItems: 'center', transition: 'colors', _hover: { color: 'ink' } })
 const footer = css({ mt: '8', fontSize: 'sm', color: 'ink.muted' })
 const discuss = css({ color: 'ink', textDecoration: 'underline', _hover: { color: 'ink.muted' } })
-const cdUp = css({ mt: '10', fontFamily: 'mono', fontSize: 'sm' })
-const dim = css({ opacity: '0.5' })
-const cdLink = css({ opacity: '0.5', transition: 'opacity', _hover: { opacity: '0.75' } })
 </script>
 
 <template>
@@ -204,10 +201,5 @@ const cdLink = css({ opacity: '0.5', transition: 'opacity', _hover: { opacity: '
         Join the conversation on Medium →
       </ark.a>
     </ark.footer>
-
-    <ark.p :class="cdUp">
-      <ark.span :class="dim">&gt; </ark.span>
-      <NuxtLink to="/blog" :class="cdLink"> cd .. </NuxtLink>
-    </ark.p>
   </ark.article>
 </template>
