@@ -7,19 +7,24 @@ export default defineEventHandler(async (event) => {
 
   const onSite = (await queryCollection(event, 'blog').order('date', 'DESC').all())
     .filter((p) => !p.draft)
-    .map((p) => ({
-      title: p.title,
-      link: p.canonical ?? `${site}${p.path}`,
-      description: p.description ?? '',
-      content: p.canonical ? '' : minimarkToHtml(p.body).replace(/(src|href)="\//g, `$1="${site}/`),
-      date: p.date,
-    }))
+    .map((p) => {
+      const content = p.canonical ? '' : minimarkToHtml(p.body).replace(/(src|href)="\//g, `$1="${site}/`)
+      return {
+        title: p.title,
+        link: p.canonical ?? `${site}${p.path}`,
+        description: p.description ?? '',
+        content,
+        image: content.match(/<img[^>]+src="([^"]+)"/)?.[1],
+        date: p.date,
+      }
+    })
 
   const external = mediumPosts.map((m) => ({
     title: m.title,
     link: m.url,
     description: m.description ?? '',
     content: '',
+    image: undefined,
     date: m.date,
   }))
 
@@ -44,6 +49,7 @@ export default defineEventHandler(async (event) => {
       link: p.link,
       description: p.description,
       content: p.content || undefined,
+      image: p.image && { url: p.image, type: p.image.endsWith('.svg') ? 'image/svg+xml' : undefined },
       date: new Date(p.date),
     })
   }

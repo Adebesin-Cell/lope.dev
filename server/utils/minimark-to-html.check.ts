@@ -35,7 +35,11 @@ assert.match(clip, /<video src="\/videos\/a\.mp4" poster="\/videos\/a\.webp"/)
 assert.match(clip, /<a href="\/videos\/a\.mp4">A robot reversing<\/a>/)
 assert.doesNotMatch(clip, /<clip/, 'no raw clip tag reaches the feed')
 
+const subtitle = minimarkToHtml({ value: [['subtitle', {}, ['p', {}, 'What Panda figures out.']]] })
+
+assert.strictEqual(subtitle, '<p>What Panda figures out.</p>')
+
 assert.strictEqual(minimarkToHtml(null), '')
 assert.strictEqual(minimarkToHtml({}), '')
 
-console.log('ok, guide + step + clip serialize')
+console.log('ok, guide + step + clip + subtitle serialize')
