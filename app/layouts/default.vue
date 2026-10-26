@@ -44,6 +44,7 @@ const main = css({
     <TocNav />
     <ark.main id="main" :class="main">
       <slot />
+      <CdUp />
     </ark.main>
     <AppFooter />
     <ScrollToTop />
