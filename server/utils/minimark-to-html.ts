@@ -33,6 +33,8 @@ function attr(props: Record<string, unknown> | undefined, key: string) {
 // MDC components have no HTML equivalent, so without a mapping here they
 // serialize as their own tag name and render as nothing in a feed reader.
 function componentToHtml(tag: string, props: Record<string, unknown> | undefined, body: string) {
+  if (tag === 'subtitle') return body
+
   if (tag === 'guide') {
     const meta = [attr(props, 'time'), attr(props, 'team')].filter(Boolean).join(' &#183; ')
     return [`<h3>${attr(props, 'title')}</h3>`, meta && `<p>${meta}</p>`, `<ol>${body}</ol>`].filter(Boolean).join('')
