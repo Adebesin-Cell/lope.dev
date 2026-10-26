@@ -20,7 +20,7 @@ On January 1, 2023, I opened an issue on this repo called "Upgrade to v2". I clo
 
 In the end I went with something like [antfu.me](https://antfu.me). [Anthony Fu](https://github.com/antfu) is one of the people I look up to in open source, and I love his taste in design. A lot of this site borrows from his, even the handwritten logo. What's mine is the green, what's on the pages, and what it's built with.
 
-So I didn't want to redesign again. I kept the look and changed what it's built with.
+So I didn't want to redesign again. I kept the look and changed the stack underneath.
 
 ## Practice what you preach
 
