@@ -2,6 +2,15 @@ import { queryCollection } from '@nuxt/content/server'
 import { Feed } from 'feed'
 import { mediumPosts } from '~/data/medium-posts'
 
+const IMAGE_TYPES: Record<string, string> = {
+  svg: 'image/svg+xml',
+  png: 'image/png',
+  jpg: 'image/jpeg',
+  jpeg: 'image/jpeg',
+  webp: 'image/webp',
+  gif: 'image/gif',
+}
+
 export default defineEventHandler(async (event) => {
   const site = String(useRuntimeConfig(event).public.siteUrl).replace(/\/$/, '')
 
@@ -49,7 +58,7 @@ export default defineEventHandler(async (event) => {
       link: p.link,
       description: p.description,
       content: p.content || undefined,
-      image: p.image?.endsWith('.svg') ? { url: p.image, type: 'image/svg+xml' } : p.image,
+      image: p.image && { url: p.image, type: IMAGE_TYPES[p.image.split('.').pop() ?? ''] },
       date: new Date(p.date),
     })
   }
