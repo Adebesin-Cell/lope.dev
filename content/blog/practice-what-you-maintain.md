@@ -18,7 +18,7 @@ I bookmarked it and told myself I'd redesign my site. Then I remembered how long
 
 On January 1, 2023, I opened an issue on this repo called "Upgrade to v2". I closed it in June this year. Most of that time I just couldn't decide what my site should look like.
 
-In the end I went with something like [antfu.me](https://antfu.me). [Anthony Fu](https://github.com/antfu) is one of the people I look up to in open source, and this design is 100% inspired by his site. It's simple, and I love it.
+In the end I went with something like [antfu.me](https://antfu.me). [Anthony Fu](https://github.com/antfu) is one of the people I look up to in open source, and I love his taste in design. A lot of this site borrows from his, even the handwritten logo. What's mine is the green, what's on the pages, and what it's built with.
 
 So I didn't want to redesign again. I kept the look and changed what it's built with.
 
