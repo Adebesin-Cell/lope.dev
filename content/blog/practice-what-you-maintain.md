@@ -8,7 +8,7 @@ readingTime: 4min
 
 ### Why my portfolio now runs on the libraries I help maintain, and what else changed over one tired weekend.
 
-Last week [Zara Zhang](https://x.com/zarazhangrui) posted one line, and it went everywhere:
+Last week [Zara Zhang](https://x.com/zarazhangrui) posted [one line](https://x.com/zarazhangrui/status/2113148949842534482), and it went everywhere:
 
 > Your personal website is the new resume
 
