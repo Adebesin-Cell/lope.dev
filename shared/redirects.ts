@@ -4,6 +4,7 @@ export const redirects: Record<string, string> = {
   '/resume': '/',
   '/contact': '/',
   '/blog/oss-in-a-year': '/blog/a-year-a-verse-and-an-ecosystem',
+  '/blog/series': '/blog',
 }
 
 export const redirectRouteRules = Object.fromEntries(
