@@ -26,7 +26,7 @@ So I didn't want to redesign again. I kept the look and changed the stack.
 
 The site moved to Nuxt in June, mostly because I'd started liking Nuxt. Also, the green matched my avatar. Maybe that's why I love Zag too 😅
 
-The styling was [UnoCSS](https://unocss.dev), which is also Anthony's work, and it served the site well. But I maintain Panda CSS and Ark UI, and I'm in the middle of a whole [series on Panda's internals](/blog/build-once-at-build-time). It made sense for my own site to use what I maintain. So over the weekend I moved it to Panda CSS v2, with Ark UI underneath the components.
+The styling was [UnoCSS](https://unocss.dev), which is also Anthony's work, and it served the site well. But I maintain Panda CSS and Ark UI, and I'm in the middle of a whole :series-link[series on Panda's internals]{name="Panda internals"}. It made sense for my own site to use what I maintain. So over the weekend I moved it to Panda CSS v2, with Ark UI underneath the components.
 
 Using it on my own site shows me where Panda can improve, and I learn better patterns I can take back to the Panda ecosystem. For example, turning on `strictTokens` flagged every value I'd hardcoded, so I swapped them for design tokens. Panda's style lint now runs in CI on every pull request, next to formatting, linting and types.
 
