@@ -11,7 +11,8 @@ part: 4
 What Panda figures out before your app runs.
 ::
 
-![Panda never runs your code, on a cream background with yellow and green glows, surrounded by the Panda logo and code stickers.](/images/blog/panda-never-runs-your-code/cover.svg){loading="eager" fetchpriority="high"}
+::post-cover
+::
 
 *Panda internals, part 4. Start with [Build once, at build time](/blog/build-once-at-build-time) if you're new here.*
 

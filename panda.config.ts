@@ -190,6 +190,9 @@ export default defineConfig({
             900: { value: '#111111' },
             950: { value: '#0a0a0a' },
           },
+          panda: {
+            yellow: { value: '#f6e458' },
+          },
         },
         animations: {
           shipping: { value: 'fadePulse 2.4s ease-in-out infinite' },

@@ -11,7 +11,8 @@ part: 3
 Why calling `css()` on every render stays cheap.
 ::
 
-![Look it up once, on a cream background with yellow and purple glows, surrounded by the Panda logo and stickers reading memo(css), WeakMap and hash, trie, string.](/images/blog/look-it-up-once/cover.svg){loading="eager" fetchpriority="high"}
+::post-cover
+::
 
 *Panda internals, part 3. Part 1: [Build once, at build time](/blog/build-once-at-build-time). Part 2: [Every style is an atom](/blog/every-style-is-an-atom).*
 
