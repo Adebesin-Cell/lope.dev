@@ -2,12 +2,10 @@
 import { ark } from '@ark-ui/vue/factory'
 import { HoverCard } from '@ark-ui/vue/hover-card'
 import { css } from 'styled-system/css'
+import { seriesPath } from '~/utils/series'
 
-const props = defineProps<{ name: string }>()
+defineProps<{ name: string }>()
 
-const { data: first } = await useAsyncData(`series-first-${props.name}`, () =>
-  queryCollection('blog').where('series', '=', props.name).order('part', 'ASC').select('path').first(),
-)
 
 const trigger = css({
   textDecorationLine: 'underline',
@@ -34,7 +32,7 @@ const content = css({
 <template>
   <HoverCard.Root :open-delay="250" :close-delay="200" :positioning="{ placement: 'top', gutter: 10 }">
     <HoverCard.Trigger as-child>
-      <NuxtLink :to="first?.path ?? '/blog'" :class="trigger"><slot mdc-unwrap="p" /></NuxtLink>
+      <NuxtLink :to="seriesPath(name)" :class="trigger"><slot mdc-unwrap="p" /></NuxtLink>
     </HoverCard.Trigger>
     <Teleport to="body">
       <HoverCard.Positioner>
