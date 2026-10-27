@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ark } from '@ark-ui/vue/factory'
 import { css, cx } from 'styled-system/css'
+import { seriesPath } from '~/utils/series'
 
-const props = defineProps<{ name: string; compact?: boolean }>()
+const props = defineProps<{ name: string; compact?: boolean; full?: boolean }>()
 
 const WINDOW = 5
 const FILTER_FROM = 10
@@ -42,7 +43,7 @@ const parts = computed(() =>
 type Part = (typeof parts.value)[number]
 type Row = { kind: 'part'; part: Part } | { kind: 'more'; hidden: number }
 
-const expanded = ref(false)
+const expanded = ref(props.full)
 const query = ref('')
 
 const collapsed = computed<Row[]>(() => {
@@ -106,6 +107,7 @@ const label = css({
   textTransform: 'uppercase',
   color: 'ink.muted',
 })
+const labelLink = css({ transition: 'colors', _hover: { color: 'ink' } })
 const rule = css({ flex: '1', h: '[1px]', bg: 'ink/10' })
 const count = css({ fontFamily: 'mono', fontSize: 'xs', color: 'ink.faint' })
 const filter = css({
@@ -116,7 +118,7 @@ const filter = css({
   borderBottomWidth: '[1px]',
   borderColor: 'ink/10',
   fontFamily: 'mono',
-  fontSize: 'sm',
+  fontSize: { base: 'md', md: 'sm' },
   color: 'ink',
   outline: 'none',
   _placeholder: { color: 'ink.faint' },
@@ -178,6 +180,7 @@ const desc = css({
   lineClamp: '2',
   '[data-compact] &': { display: 'none' },
   '@media (hover: hover) and (pointer: fine)': { display: 'none' },
+  '[data-full] &': { display: '-webkit-box' },
 })
 const more = css({
   w: 'full',
@@ -217,10 +220,12 @@ const preview = css({
     v-if="parts.length"
     :class="root"
     :data-compact="compact ? '' : undefined"
+    :data-full="full ? '' : undefined"
     :aria-label="`${name} series`"
   >
     <ark.div :class="head">
-      <ark.span :class="label">{{ name }}</ark.span>
+      <ark.span v-if="full" :class="label">{{ name }}</ark.span>
+      <NuxtLink v-else :to="seriesPath(name)" :class="cx(label, labelLink)">{{ name }}</NuxtLink>
       <ark.span :class="rule" aria-hidden="true" />
       <ark.span :class="count">{{ parts.length }} parts</ark.span>
     </ark.div>
@@ -234,7 +239,7 @@ const preview = css({
       :aria-label="`Filter ${name} parts`"
     />
 
-    <ark.div ref="scroller" :class="scroll" :data-expanded="expanded ? '' : undefined">
+    <ark.div ref="scroller" :class="scroll" :data-expanded="expanded && !full ? '' : undefined">
       <ark.ol :class="list" @pointerleave="active = undefined">
         <ark.li v-for="(r, i) in rows" :key="r.kind === 'part' ? r.part.path : `more-${i}`" :class="item">
           <NuxtLink

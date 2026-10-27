@@ -1,9 +1,9 @@
-// Legacy routes from the old React portfolio, kept alive as 301s so their SEO carries over.
 export const redirects: Record<string, string> = {
   '/work': '/projects',
   '/resume': '/',
   '/contact': '/',
   '/blog/oss-in-a-year': '/blog/a-year-a-verse-and-an-ecosystem',
+  '/blog/series': '/blog',
 }
 
 export const redirectRouteRules = Object.fromEntries(
