@@ -49,3 +49,6 @@ I'm not doing that yet. I like Nuxt, so I'm sticking with it for now. Maybe late
 Oh, and it's official now. I'm a maintainer at [Zag](https://zagjs.com) 👼
 
 If you want to see how Panda works under the hood, start with [part 1 of the series](/blog/build-once-at-build-time).
+
+::series-card{name="Panda internals"}
+::
