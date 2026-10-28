@@ -14,7 +14,7 @@ if (!post.value) throw createError({ statusCode: 404, statusMessage: 'Post not f
 const postUrl = computed(() => `https://${host}${route.path}`)
 const shareTitle = computed(() => post.value?.title ?? '')
 const canonicalUrl = computed(() => post.value?.canonical || postUrl.value)
-const readingTime = computed(() => readingTimeText(post.value?.body))
+const readingTime = computed(() => post.value?.readingTime)
 
 useSeoMeta({
   title: () =>
@@ -34,6 +34,15 @@ useSeoMeta({
   twitterCreator: '@I_am_Lope',
 })
 
+const [ogImagePath] = defineOgImage('BlogPost.takumi', {
+  title: post.value?.title,
+  description: post.value?.description,
+  series: post.value?.series,
+  part: post.value?.part,
+  host,
+})
+const ogImage = useState(`og-image:${route.path}`, () => (ogImagePath ? `https://${host}${ogImagePath}` : undefined))
+
 useHead(() => ({
   link: [{ rel: 'canonical', href: canonicalUrl.value }],
   script: [
@@ -48,6 +57,7 @@ useHead(() => ({
         datePublished: post.value?.date,
         dateModified: post.value?.updated ?? post.value?.date,
         inLanguage: 'en',
+        image: ogImage.value,
         author: { '@type': 'Person', name: 'Adebesin Tolulope', alternateName: 'Lope', url: `https://${host}` },
         publisher: { '@type': 'Person', name: 'Adebesin Tolulope', url: `https://${host}` },
         mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl.value },
@@ -55,14 +65,6 @@ useHead(() => ({
     },
   ],
 }))
-
-defineOgImage('BlogPost.takumi', {
-  title: post.value?.title,
-  description: post.value?.description,
-  series: post.value?.series,
-  part: post.value?.part,
-  host,
-})
 
 const shareXUrl = computed(
   () =>
@@ -122,15 +124,12 @@ const share = css({
 const shareLink = css({ display: 'inline-flex', alignItems: 'center', transition: 'colors', _hover: { color: 'ink' } })
 const footer = css({ mt: '8', fontSize: 'sm', color: 'ink.muted' })
 const discuss = css({ color: 'ink', textDecoration: 'underline', _hover: { color: 'ink.muted' } })
-const cdUp = css({ mt: '10', fontFamily: 'mono', fontSize: 'sm' })
-const dim = css({ opacity: '0.5' })
-const cdLink = css({ opacity: '0.5', transition: 'opacity', _hover: { opacity: '0.75' } })
 </script>
 
 <template>
   <ark.article v-if="post" :class="['prose-article slide-enter-content']">
     <NuxtLink to="/blog" :class="back">
-      <ark.span class="i-lucide-arrow-left" />
+      <ark.span class="i-lucide-arrow-left" aria-hidden="true" />
       Back to blog
     </NuxtLink>
 
@@ -202,10 +201,5 @@ const cdLink = css({ opacity: '0.5', transition: 'opacity', _hover: { opacity: '
         Join the conversation on Medium →
       </ark.a>
     </ark.footer>
-
-    <ark.p :class="cdUp">
-      <ark.span :class="dim">&gt; </ark.span>
-      <NuxtLink to="/blog" :class="cdLink"> cd .. </NuxtLink>
-    </ark.p>
   </ark.article>
 </template>

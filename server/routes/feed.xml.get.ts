@@ -2,28 +2,42 @@ import { queryCollection } from '@nuxt/content/server'
 import { Feed } from 'feed'
 import { mediumPosts } from '~/data/medium-posts'
 
+const IMAGE_TYPES: Record<string, string> = {
+  svg: 'image/svg+xml',
+  png: 'image/png',
+  jpg: 'image/jpeg',
+  jpeg: 'image/jpeg',
+  webp: 'image/webp',
+  gif: 'image/gif',
+}
+
 export default defineEventHandler(async (event) => {
   const site = String(useRuntimeConfig(event).public.siteUrl).replace(/\/$/, '')
 
   const onSite = (await queryCollection(event, 'blog').order('date', 'DESC').all())
     .filter((p) => !p.draft)
-    .map((p) => ({
-      title: p.title,
-      link: p.canonical ?? `${site}${p.path}`,
-      description: p.description ?? '',
-      content: p.canonical ? '' : minimarkToHtml(p.body).replace(/(src|href)="\//g, `$1="${site}/`),
-      date: p.date,
-    }))
+    .map((p) => {
+      const content = p.canonical ? '' : minimarkToHtml(p.body).replace(/(src|href)="\//g, `$1="${site}/`)
+      return {
+        title: p.title,
+        link: p.canonical ?? `${site}${p.path}`,
+        description: p.description ?? '',
+        content,
+        image: content.match(/<img[^>]+src="([^"]+)"/)?.[1],
+        date: p.date,
+      }
+    })
 
   const external = mediumPosts.map((m) => ({
     title: m.title,
     link: m.url,
     description: m.description ?? '',
     content: '',
+    image: undefined,
     date: m.date,
   }))
 
-  const posts = [...onSite, ...external].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  const posts = [...onSite, ...external].toSorted((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
   const feed = new Feed({
     title: 'Adebesin Tolulope (Lope) — Blog',
@@ -44,6 +58,7 @@ export default defineEventHandler(async (event) => {
       link: p.link,
       description: p.description,
       content: p.content || undefined,
+      image: p.image && { url: p.image, type: IMAGE_TYPES[p.image.split('.').pop() ?? ''] },
       date: new Date(p.date),
     })
   }

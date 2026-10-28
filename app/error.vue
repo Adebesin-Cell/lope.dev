@@ -38,8 +38,8 @@ useSeoMeta({
   robots: 'noindex',
 })
 
-function go(path: string) {
-  clearError({ redirect: path })
+function go(to: string) {
+  clearError({ redirect: to })
 }
 
 const relative = css({ position: 'relative' })
@@ -50,6 +50,7 @@ const codeMark = css({
   fontSize: { base: '[7rem]', sm: '[10rem]', md: '[13rem]' },
   fontWeight: 'bold',
   opacity: '0.05',
+  _before: { content: 'attr(data-text)' },
   userSelect: 'none',
   pointerEvents: 'none',
   letterSpacing: 'tight',
@@ -67,9 +68,7 @@ const ghost = button()
   <NuxtLayout>
     <ark.article class="slide-enter-content">
       <ark.div :class="relative">
-        <ark.div :class="codeMark" aria-hidden="true">
-          {{ code }}
-        </ark.div>
+        <ark.div :class="codeMark" :data-text="code" aria-hidden="true" />
 
         <ark.div :class="body">
           <ark.h1 :class="title">

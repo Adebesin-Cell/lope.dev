@@ -6,7 +6,9 @@ date: 2026-08-09
 readingTime: 9min
 ---
 
-### A campaign for the lines that stuck. What I designed, what broke, what the numbers said, and where it landed.
+::subtitle
+A campaign for the lines that stuck. What I designed, what broke, what the numbers said, and where it landed.
+::
 
 ![The My Pastor Once Said landing page, a wall of quote cards fanning out around the words "My Pastor Once Said…" in BethelFlow blue.](/images/blog/my-pastor-once-said/hero.png){loading="eager" fetchpriority="high"}
 

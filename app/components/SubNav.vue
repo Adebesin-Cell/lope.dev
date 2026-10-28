@@ -21,8 +21,8 @@ const nav = css({
   letterSpacing: 'tight',
   userSelect: 'none',
 })
-const tab = css({ color: 'ink', transition: 'opacity' })
-const idle = css({ opacity: '0.25', _hover: { opacity: '0.6' } })
+const active = css({ color: 'ink' })
+const idle = css({ color: 'ink.faint', transition: 'colors', _hover: { color: 'ink.muted' } })
 </script>
 
 <template>
@@ -32,7 +32,7 @@ const idle = css({ opacity: '0.25', _hover: { opacity: '0.6' } })
       :key="t.to"
       :to="t.to"
       :aria-current="route.path === t.to ? 'page' : undefined"
-      :class="[tab, route.path !== t.to && idle]"
+      :class="route.path === t.to ? active : idle"
     >
       {{ t.label }}
     </NuxtLink>

@@ -5,9 +5,11 @@ date: 2025-02-17
 canonical: https://iamlope.medium.com/nuqs-because-urls-should-do-more-5d5d86e873c1
 ---
 
-### Move beyond local state — Go beyond, plus ultra.
+::subtitle
+Move beyond local state — Go beyond, plus ultra.
+::
 
-![](https://cdn-images-1.medium.com/max/665/1*KUe2LG5cA3cR80GodnXW8A.jpeg){loading="eager" fetchpriority="high"}
+![The words Plus Ultra in large letters filled with My Hero Academia manga panels.](https://cdn-images-1.medium.com/max/665/1*KUe2LG5cA3cR80GodnXW8A.jpeg){loading="eager" fetchpriority="high"}
 
 Valentine's Day. I had planned it down to perfection. The right place, the right atmosphere, the right seat — because ambiance matters, and I wanted this night to be unforgettable. I took my time picking the best spot, ensuring that when we arrived, everything would be set.
 
@@ -214,7 +216,7 @@ export default function BasicCounterDemoPage() {
 - Clicking Reset removes the state from the URL.
 - Even if the user refreshes the page or shares the link, the counter value remains intact.
 
-![](https://cdn-images-1.medium.com/max/1024/1*-7t31FDkCiVe9_fFN723tQ.gif)
+![An interactive counter at localhost:3000/nuqs?counter=1, with the count kept in the URL.](https://cdn-images-1.medium.com/max/1024/1*-7t31FDkCiVe9_fFN723tQ.gif)
 *Nuqs Counter Demo*
 
 It's like saving your seat and coming back to find it exactly where you left it. No mix-ups. No "Sorry, we gave it away." Just seamless, reliable state persistence.

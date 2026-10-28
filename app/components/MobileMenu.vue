@@ -35,11 +35,24 @@ watch(
   () => emit('close'),
 )
 
-// Lock body scroll while the drawer is open; restore when it closes.
+const panelRef = ref<{ $el: HTMLElement }>()
+let lastFocused: HTMLElement | null = null
+
+// Lock scroll and make the page inert while open, so focus stays in the drawer; restore focus on close.
 watch(
   () => props.open,
-  (isOpen) => {
-    if (import.meta.client) document.body.style.overflow = isOpen ? 'hidden' : ''
+  async (isOpen) => {
+    if (!import.meta.client) return
+    document.body.style.overflow = isOpen ? 'hidden' : ''
+    const root = document.getElementById('__nuxt')
+    if (root) root.inert = isOpen
+    if (isOpen) {
+      lastFocused = document.activeElement as HTMLElement | null
+      await nextTick()
+      panelRef.value?.$el.querySelector<HTMLElement>('button')?.focus()
+    } else {
+      lastFocused?.focus()
+    }
   },
 )
 
@@ -52,6 +65,8 @@ onMounted(() => window.addEventListener('keydown', onKeydown))
 onBeforeUnmount(() => {
   window.removeEventListener('keydown', onKeydown)
   if (import.meta.client) document.body.style.overflow = ''
+  const root = import.meta.client ? document.getElementById('__nuxt') : null
+  if (root) root.inert = false
 })
 
 const fade = {
@@ -142,7 +157,15 @@ const rule = css({ mx: '4', h: '[1px]', bg: 'ink/10' })
       :leave-from-class="slide.in"
       :leave-to-class="slide.out"
     >
-      <ark.div v-if="open" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Menu" :class="panel">
+      <ark.div
+        v-if="open"
+        id="mobile-nav"
+        ref="panelRef"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu"
+        :class="panel"
+      >
         <!-- Drawer header -->
         <ark.div :class="top">
           <ark.span :class="title">Menu</ark.span>

@@ -190,9 +190,14 @@ export default defineConfig({
             900: { value: '#111111' },
             950: { value: '#0a0a0a' },
           },
+          panda: {
+            yellow: { value: '#f6e458' },
+          },
         },
         animations: {
           shipping: { value: 'fadePulse 2.4s ease-in-out infinite' },
+          draw: { value: 'draw 5s ease-in-out infinite' },
+          drawCrossbar: { value: 'drawCrossbar 5s ease-in-out infinite' },
         },
       },
       semanticTokens: {
@@ -233,6 +238,16 @@ export default defineConfig({
       textStyles,
       recipes: { chip, button, link, prose: proseExtension },
       keyframes: {
+        draw: {
+          '0%': { strokeDashoffset: '1' },
+          '28%, 88%': { strokeDashoffset: '0' },
+          '100%': { strokeDashoffset: '1' },
+        },
+        drawCrossbar: {
+          '0%, 28%': { strokeDashoffset: '1' },
+          '36%, 88%': { strokeDashoffset: '0' },
+          '100%': { strokeDashoffset: '1' },
+        },
         fadePulse: { '0%, 100%': { opacity: '0.4' }, '50%': { opacity: '1' } },
       },
     },

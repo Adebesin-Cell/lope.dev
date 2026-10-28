@@ -6,7 +6,9 @@ date: 2026-08-07
 readingTime: 7min
 ---
 
-### Most of my users lived on a phone. I built the whole thing on a laptop. Here's what that cost, and the rule I keep now.
+::subtitle
+Most of my users lived on a phone. I built the whole thing on a laptop. Here's what that cost, and the rule I keep now.
+::
 
 ![A download button pressed over and over, each tap rippling out into nothing, with a counter reading times twenty.](/images/blog/the-button-that-did-nothing/cover.svg){loading="eager" fetchpriority="high"}
 

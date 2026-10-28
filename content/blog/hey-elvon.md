@@ -6,7 +6,9 @@ date: 2026-09-10
 readingTime: 12min
 ---
 
-### How a random group assignment became the best team I've worked with, and a robot that actually moves.
+::subtitle
+How a random group assignment became the best team I've worked with, and a robot that actually moves.
+::
 
 ![Elvon, the autonomous trash collector, on the lab table with its bin, wheels and exposed wiring](/images/blog/hey-elvon/cover.jpg){loading="eager" fetchpriority="high"}
 

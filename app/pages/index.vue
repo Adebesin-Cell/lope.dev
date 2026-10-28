@@ -15,6 +15,8 @@ usePageSeo({
 
 const siteUrl = useSiteConfig().url.replace(/\/$/, '')
 
+defineOgImage('Default.takumi', { title: 'Adebesin Tolulope (Lope)', host: siteUrl.replace(/^https?:\/\//, '') })
+
 useHead({
   script: [
     {
