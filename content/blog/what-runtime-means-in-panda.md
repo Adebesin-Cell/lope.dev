@@ -136,12 +136,14 @@ export default {
 
 Run `panda --watch` (or `panda cssgen` before a build) and import `styled-system/styles.css` in your root layout.
 
-On Next.js 16.4.3 with Panda 2.4.0, a plain `next build` gives HTML with the final class names in it, and the `css()` runtime is gone from the client chunks. Leave out the `as: '*.tsx'` option you'll see in older loader examples. On 16.4 it renames files to `card.tsx.tsx` and the build fails.
+On Next.js 16.4.3 with Panda 2.4.0, a plain `next build` gives HTML with the final class names in it, and the `css()` runtime is gone from the client chunks. `next dev` gives the same result, and hot reload works: change a style and the new class name shows up without a page reload, with component state intact.
+
+Leave out the `as: '*.tsx'` option you'll see in older loader examples. On 16.4 it renames files to `card.tsx.tsx` and the build fails.
 
 It's unofficial, so know the limits:
 
 - **`cx` brings the runtime back.** When a call mixes in a dynamic class name, the loader leaves `import { cx } from '../styled-system/css'`. That file also sets up `css()`, so the whole runtime ships again. The same component built with the Vite plugin ships without it.
-- **Only builds were tested.** Dev mode and hot reload weren't.
+- **Hot reload needs `panda --watch`.** The loader updates the class name on every save, but the rule behind it only exists once the CLI rewrites the stylesheet. Without the watcher, a new value gives you a class name with no CSS.
 - **Each build worker starts its own Panda.** Next runs several, and each one loads the compiler.
 
 ## The numbers
@@ -164,7 +166,7 @@ A few things stand out:
 2. **The saving is fixed.** About 6.4 kB goes with one component, and about the same with forty. That's the runtime leaving.
 3. **With transforms on, Panda costs almost nothing in JS.** One component adds 0.2 kB over plain Preact. That's the class strings.
 4. **Objects compress well.** Going from 1 to 40 components adds 1.2 kB either way. The strings that replace the objects compress about as well as the objects did.
-4. **Neither build injects CSS.** No `insertRule`, no `<style>` element, with transforms on or off.
+5. **Neither build injects CSS.** No `insertRule`, no `<style>` element, with transforms on or off.
 
 The ternary is worth a look too. `color: active ? 'red.700' : 'gray.700'` didn't stay a runtime call. It became a ternary between two finished strings:
 
