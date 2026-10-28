@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ark } from '@ark-ui/vue/factory'
 import { css, cx } from 'styled-system/css'
-import { seriesPath } from '~/utils/series'
+import { isMainPart, partNumber, seriesPath } from '~/utils/series'
 
 const props = defineProps<{ name: string; compact?: boolean; full?: boolean }>()
 
@@ -33,7 +33,7 @@ const parts = computed(() =>
       title: p.title,
       description: p.description,
       part: p.part ?? 0,
-      number: String(p.part).padStart(2, '0'),
+      number: partNumber(p.part),
       date: shortDate(p.date),
       fullDate: shortDate(p.date, true),
       current: p.path === route.path,
@@ -227,7 +227,7 @@ const preview = css({
       <ark.span v-if="full" :class="label">{{ name }}</ark.span>
       <NuxtLink v-else :to="seriesPath(name)" :class="cx(label, labelLink)">{{ name }}</NuxtLink>
       <ark.span :class="rule" aria-hidden="true" />
-      <ark.span :class="count">{{ parts.length }} parts</ark.span>
+      <ark.span :class="count">{{ parts.filter((p) => isMainPart(p.part)).length }} parts</ark.span>
     </ark.div>
 
     <ark.input

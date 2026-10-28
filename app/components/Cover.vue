@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { token } from 'styled-system/tokens'
+import { isMainPart, partNumber } from '~/utils/series'
 
 const props = defineProps<{ series: string; part: number; total: number }>()
 
 const LOGOS: Record<string, string> = { 'Panda internals': '/brands/panda.png' }
 
-const pad = (n: number) => String(n).padStart(2, '0')
 const u = (px: number) => `${(px / 12).toFixed(3)}cqw`
 const mono = 'ui-monospace, SFMono-Regular, Menlo, monospace'
 const yellow = token('colors.panda.yellow')
@@ -45,11 +45,12 @@ const logo = computed(() => LOGOS[props.series])
             fontVariantNumeric: 'tabular-nums',
           }"
         >
-          {{ pad(part) }}
+          {{ partNumber(part) }}
         </span>
-        <span :style="{ ...label, color: faint }">
-          Part <span :style="{ color: token('colors.lope.50') }">{{ pad(part) }}</span> / {{ pad(total) }}
+        <span v-if="isMainPart(part)" :style="{ ...label, color: faint }">
+          Part <span :style="{ color: token('colors.lope.50') }">{{ partNumber(part) }}</span> / {{ partNumber(total) }}
         </span>
+        <span v-else :style="{ ...label, color: faint }">Interlude</span>
       </div>
     </div>
   </div>

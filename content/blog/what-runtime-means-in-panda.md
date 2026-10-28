@@ -2,14 +2,17 @@
 title: What "runtime" means in Panda
 description: "Does Panda CSS have a runtime? Yes, a small one, and it never creates CSS. What ships to the browser by default, what it does there, and how source transforms remove it."
 seoTitle: "Does Panda CSS have a runtime? What ships to the browser, and how to remove it"
-date: 2026-10-27
-draft: true
+date: 2026-10-28
 series: Panda internals
+part: 4.5
 ---
 
-### What actually ships to the browser when you use Panda.
+::subtitle
+What actually ships to the browser when you use Panda.
+::
 
-![What "runtime" means in Panda, on Panda yellow, with the Panda logo and two code stickers: css({ color: 'red.300' }) with an arrow down to "c_red.300".](/images/blog/what-runtime-means-in-panda/cover.svg){loading="eager" fetchpriority="high"}
+::post-cover
+::
 
 *An interlude in the Panda internals series, between [part 4](/blog/panda-never-runs-your-code) and part 5. Call it the series' OVA. I've had to explain what "runtime" means in Panda more than once, so this one clears it up before we go deeper.*
 
