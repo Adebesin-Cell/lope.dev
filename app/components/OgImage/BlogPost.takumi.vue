@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { token } from 'styled-system/tokens'
+import { isMainPart } from '~/utils/series'
 
 // Per-post OG image (Takumi renderer) — the title is the hero.
 const props = defineProps<{ title?: string; description?: string; series?: string; part?: number; host?: string }>()
@@ -7,7 +8,11 @@ const props = defineProps<{ title?: string; description?: string; series?: strin
 const HOOK_MAX_LENGTH = 140
 
 const kicker = computed(() =>
-  props.series ? [props.series, props.part ? `Part ${props.part}` : ''].filter(Boolean).join(' · ') : '',
+  props.series
+    ? [props.series, props.part ? (isMainPart(props.part) ? `Part ${props.part}` : 'OVA') : '']
+        .filter(Boolean)
+        .join(' · ')
+    : '',
 )
 
 const hook = computed(() => {
