@@ -8,9 +8,12 @@ series: Panda internals
 part: 5
 ---
 
-### What Panda builds from your style before it writes a single class.
+::subtitle
+What Panda builds from your style before it writes a single class.
+::
 
-![The IR behind your ternary, on a cream background with yellow and violet glows, surrounded by the Panda logo and code stickers.](/images/blog/the-ir-behind-your-ternary/cover.svg){loading="eager" fetchpriority="high"}
+::post-cover
+::
 
 *Panda internals, part 5. Start with [Build once, at build time](/blog/build-once-at-build-time) if you're new here.*
 
