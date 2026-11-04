@@ -2,8 +2,7 @@
 title: The IR behind your ternary
 description: "Before Panda CSS writes a single class, it turns your style into a tree. How that tree feeds both the stylesheet and the rewritten code, and when a call can't be rewritten."
 seoTitle: "The IR behind your ternary: how Panda CSS turns styles into a StyleTree"
-date: 2026-10-31
-draft: true
+date: 2026-11-04
 series: Panda internals
 part: 5
 ---
