@@ -118,7 +118,7 @@ const metaRow = css({
   flexWrap: 'wrap',
 })
 const meta = css({ fontSize: 'sm', color: 'ink.muted' })
-const topLinks = css({ display: 'flex', alignItems: 'center', gap: '4', fontSize: 'sm', color: 'ink.muted' })
+const topLinks = css({ display: 'flex', alignItems: 'center', gap: '3.5', fontSize: 'xs', color: 'ink.muted' })
 const faint = css({ color: 'ink.faint' })
 const metaLink = css({ textDecoration: 'underline', _hover: { color: 'ink' } })
 const mediumLink = css({ color: 'ink.faint', textDecoration: 'underline', _hover: { color: 'ink.muted' } })
