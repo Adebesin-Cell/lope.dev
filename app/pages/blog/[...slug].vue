@@ -83,10 +83,10 @@ const profiles = [
 ]
 const track = useTrack()
 const copied = ref(false)
-async function copyLink(from: 'top' | 'footer') {
+async function copyLink() {
   if (!import.meta.client) return
   await navigator.clipboard.writeText(postUrl.value)
-  track('post_shared', { network: 'copy_link', from })
+  track('post_shared', { network: 'copy_link' })
   copied.value = true
   setTimeout(() => {
     copied.value = false
@@ -118,16 +118,7 @@ const metaRow = css({
   flexWrap: 'wrap',
 })
 const meta = css({ fontSize: 'sm', color: 'ink.muted' })
-const topAction = css({
-  display: 'inline-flex',
-  alignItems: 'center',
-  gap: '1.5',
-  fontSize: 'sm',
-  color: 'ink.muted',
-  cursor: 'pointer',
-  transition: 'colors',
-  _hover: { color: 'ink' },
-})
+const topLinks = css({ display: 'flex', alignItems: 'center', gap: '4', fontSize: 'sm', color: 'ink.muted' })
 const faint = css({ color: 'ink.faint' })
 const metaLink = css({ textDecoration: 'underline', _hover: { color: 'ink' } })
 const mediumLink = css({ color: 'ink.faint', textDecoration: 'underline', _hover: { color: 'ink.muted' } })
@@ -175,10 +166,28 @@ const discuss = css({ color: 'ink', textDecoration: 'underline', _hover: { color
             · originally on Medium
           </ark.a>
         </ark.p>
-        <ark.button type="button" :class="topAction" @click="copyLink('top')">
-          <ark.span :class="copied ? 'i-lucide-check' : 'i-lucide-link'" aria-hidden="true" />
-          <ark.span aria-live="polite">{{ copied ? 'Copied' : 'Copy link' }}</ark.span>
-        </ark.button>
+        <ark.div :class="topLinks">
+          <ark.a
+            v-for="p in profiles"
+            :key="p.network"
+            :href="p.href"
+            target="_blank"
+            rel="noopener"
+            :aria-label="p.label"
+            @click="track('profile_clicked', { network: p.network, from: 'top' })"
+            :class="shareLink"
+          >
+            <ark.span :class="p.icon" aria-hidden="true" />
+          </ark.a>
+          <ark.a
+            href="/feed.xml"
+            aria-label="Subscribe via RSS"
+            @click="track('rss_clicked', { from: 'post' })"
+            :class="shareLink"
+          >
+            <ark.span class="i-lucide-rss" aria-hidden="true" />
+          </ark.a>
+        </ark.div>
       </ark.div>
     </ark.header>
 
@@ -200,12 +209,7 @@ const discuss = css({ color: 'ink', textDecoration: 'underline', _hover: { color
       >
         <ark.span :class="p.icon" aria-hidden="true" />
       </ark.a>
-      <ark.button
-        type="button"
-        :aria-label="copied ? 'Link copied' : 'Copy link'"
-        :class="shareLink"
-        @click="copyLink('footer')"
-      >
+      <ark.button type="button" :aria-label="copied ? 'Link copied' : 'Copy link'" :class="shareLink" @click="copyLink">
         <ark.span :class="copied ? 'i-lucide-check' : 'i-lucide-link'" aria-hidden="true" />
       </ark.button>
     </ark.div>
