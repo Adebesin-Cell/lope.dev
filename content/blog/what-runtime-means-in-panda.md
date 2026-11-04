@@ -14,7 +14,7 @@ What actually ships to the browser when you use Panda.
 ::post-cover
 ::
 
-*An interlude in the Panda internals series, between [part 4](/blog/panda-never-runs-your-code) and part 5. Call it the series' OVA. I've had to explain what "runtime" means in Panda more than once, so this one clears it up before we go deeper.*
+*An interlude in the Panda internals series, between [part 4](/blog/panda-never-runs-your-code) and [part 5](/blog/the-ir-behind-your-ternary). Call it the series' OVA. I've had to explain what "runtime" means in Panda more than once, so this one clears it up before we go deeper.*
 
 The question comes up every time Panda is compared to another styling library: does it have a runtime?
 

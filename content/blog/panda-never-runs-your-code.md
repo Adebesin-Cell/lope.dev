@@ -223,4 +223,4 @@ Now every color is in the source, so every color gets CSS, and the runtime only 
 
 That's the pattern behind everything in this post. Panda can work out a lot more than people expect: imports, enums, tokens, helpers, both sides of a ternary. When it can't, move the values into a shape it can read, like a recipe, or list them in [`staticCss`](https://panda-css.com/docs/styling/static) so Panda generates them anyway.
 
-*Next in the series: how Panda rewrites those ternaries straight into your code. If you missed the earlier parts: [Build once, at build time](/blog/build-once-at-build-time), [Every style is an atom](/blog/every-style-is-an-atom), [Look it up once](/blog/look-it-up-once).*
+*Next in the series: [how Panda rewrites those ternaries straight into your code](/blog/the-ir-behind-your-ternary). If you missed the earlier parts: [Build once, at build time](/blog/build-once-at-build-time), [Every style is an atom](/blog/every-style-is-an-atom), [Look it up once](/blog/look-it-up-once).*

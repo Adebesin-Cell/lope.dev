@@ -66,16 +66,21 @@ useHead(() => ({
   ],
 }))
 
-const shareXUrl = computed(
-  () =>
-    `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareTitle.value)}&url=${encodeURIComponent(postUrl.value)}`,
-)
-const shareBlueskyUrl = computed(
-  () => `https://bsky.app/intent/compose?text=${encodeURIComponent(`${shareTitle.value} ${postUrl.value}`)}`,
-)
-const shareLinkedInUrl = computed(
-  () => `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl.value)}`,
-)
+const profiles = [
+  { network: 'x', href: 'https://x.com/I_am_Lope', label: 'Lope on X', icon: 'i-simple-icons-x' },
+  {
+    network: 'bluesky',
+    href: 'https://bsky.app/profile/lopeadebesin.bsky.social',
+    label: 'Lope on Bluesky',
+    icon: 'i-simple-icons-bluesky',
+  },
+  {
+    network: 'linkedin',
+    href: 'https://www.linkedin.com/in/adebesin-tolulope/',
+    label: 'Lope on LinkedIn',
+    icon: 'i-simple-icons-linkedin',
+  },
+]
 const track = useTrack()
 const copied = ref(false)
 async function copyLink() {
@@ -105,7 +110,15 @@ const back = css({
 })
 const header = css({ mb: '10' })
 const title = css({ textStyle: 'display', mb: '3' })
+const metaRow = css({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  gap: '4',
+  flexWrap: 'wrap',
+})
 const meta = css({ fontSize: 'sm', color: 'ink.muted' })
+const topLinks = css({ display: 'flex', alignItems: 'center', gap: '3', fontSize: 'xs', color: 'ink.muted' })
 const faint = css({ color: 'ink.faint' })
 const metaLink = css({ textDecoration: 'underline', _hover: { color: 'ink' } })
 const mediumLink = css({ color: 'ink.faint', textDecoration: 'underline', _hover: { color: 'ink.muted' } })
@@ -117,11 +130,21 @@ const share = css({
   borderColor: 'ink/10',
   display: 'flex',
   alignItems: 'center',
+  flexWrap: 'wrap',
   gap: '4',
   fontSize: 'sm',
   color: 'ink.muted',
 })
 const shareLink = css({ display: 'inline-flex', alignItems: 'center', transition: 'colors', _hover: { color: 'ink' } })
+const copyButton = css({
+  ml: 'auto',
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: '1.5',
+  cursor: 'pointer',
+  transition: 'colors',
+  _hover: { color: 'ink' },
+})
 const footer = css({ mt: '8', fontSize: 'sm', color: 'ink.muted' })
 const discuss = css({ color: 'ink', textDecoration: 'underline', _hover: { color: 'ink.muted' } })
 </script>
@@ -137,21 +160,45 @@ const discuss = css({ color: 'ink', textDecoration: 'underline', _hover: { color
       <ark.h1 :class="title">
         {{ post.title }}
       </ark.h1>
-      <ark.p :class="meta">
-        {{ fmt(post.date) }}
-        <ark.span v-if="post.duration"> · {{ post.duration }}</ark.span>
-        <ark.span v-else-if="readingTime"> · {{ readingTime }}</ark.span>
-        <template v-if="post.place">
-          <ark.span :class="faint"> · at </ark.span>
-          <ark.a v-if="post.placeLink" :href="post.placeLink" target="_blank" rel="noopener" :class="metaLink">
-            {{ post.place }}
+      <ark.div :class="metaRow">
+        <ark.p :class="meta">
+          {{ fmt(post.date) }}
+          <ark.span v-if="post.duration"> · {{ post.duration }}</ark.span>
+          <ark.span v-else-if="readingTime"> · {{ readingTime }}</ark.span>
+          <template v-if="post.place">
+            <ark.span :class="faint"> · at </ark.span>
+            <ark.a v-if="post.placeLink" :href="post.placeLink" target="_blank" rel="noopener" :class="metaLink">
+              {{ post.place }}
+            </ark.a>
+            <ark.span v-else>{{ post.place }}</ark.span>
+          </template>
+          <ark.a v-if="post.canonical" :href="post.canonical" target="_blank" rel="noopener" :class="mediumLink">
+            · originally on Medium
           </ark.a>
-          <ark.span v-else>{{ post.place }}</ark.span>
-        </template>
-        <ark.a v-if="post.canonical" :href="post.canonical" target="_blank" rel="noopener" :class="mediumLink">
-          · originally on Medium
-        </ark.a>
-      </ark.p>
+        </ark.p>
+        <ark.div :class="topLinks">
+          <ark.a
+            v-for="p in profiles"
+            :key="p.network"
+            :href="p.href"
+            target="_blank"
+            rel="noopener"
+            :aria-label="p.label"
+            @click="track('profile_clicked', { network: p.network, from: 'top' })"
+            :class="shareLink"
+          >
+            <ark.span :class="p.icon" aria-hidden="true" />
+          </ark.a>
+          <ark.a
+            href="/feed.xml"
+            aria-label="Subscribe via RSS"
+            @click="track('rss_clicked', { from: 'post' })"
+            :class="shareLink"
+          >
+            <ark.span class="i-simple-icons-rss" aria-hidden="true" />
+          </ark.a>
+        </ark.div>
+      </ark.div>
     </ark.header>
 
     <ContentRenderer :value="post" :class="['prose-content', proseClass]" />
@@ -159,39 +206,22 @@ const discuss = css({ color: 'ink', textDecoration: 'underline', _hover: { color
     <HighlightShare :title="shareTitle" :url="postUrl" :date="post.date" />
 
     <ark.div :class="share">
-      <ark.span>Share</ark.span>
+      <ark.span>Find me on</ark.span>
       <ark.a
-        :href="shareXUrl"
+        v-for="p in profiles"
+        :key="p.network"
+        :href="p.href"
         target="_blank"
         rel="noopener"
-        aria-label="Share on X"
-        @click="track('post_shared', { network: 'x' })"
+        :aria-label="p.label"
+        @click="track('profile_clicked', { network: p.network, from: 'post' })"
         :class="shareLink"
       >
-        <ark.span class="i-simple-icons-x" aria-hidden="true" />
+        <ark.span :class="p.icon" aria-hidden="true" />
       </ark.a>
-      <ark.a
-        :href="shareBlueskyUrl"
-        target="_blank"
-        rel="noopener"
-        aria-label="Share on Bluesky"
-        @click="track('post_shared', { network: 'bluesky' })"
-        :class="shareLink"
-      >
-        <ark.span class="i-simple-icons-bluesky" aria-hidden="true" />
-      </ark.a>
-      <ark.a
-        :href="shareLinkedInUrl"
-        target="_blank"
-        rel="noopener"
-        aria-label="Share on LinkedIn"
-        @click="track('post_shared', { network: 'linkedin' })"
-        :class="shareLink"
-      >
-        <ark.span class="i-simple-icons-linkedin" aria-hidden="true" />
-      </ark.a>
-      <ark.button type="button" :aria-label="copied ? 'Link copied' : 'Copy link'" :class="shareLink" @click="copyLink">
+      <ark.button type="button" :class="copyButton" @click="copyLink">
         <ark.span :class="copied ? 'i-lucide-check' : 'i-lucide-link'" aria-hidden="true" />
+        <ark.span aria-live="polite">{{ copied ? 'Link copied' : 'Copy link to this post' }}</ark.span>
       </ark.button>
     </ark.div>
 
