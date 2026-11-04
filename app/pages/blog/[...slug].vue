@@ -130,11 +130,21 @@ const share = css({
   borderColor: 'ink/10',
   display: 'flex',
   alignItems: 'center',
+  flexWrap: 'wrap',
   gap: '4',
   fontSize: 'sm',
   color: 'ink.muted',
 })
 const shareLink = css({ display: 'inline-flex', alignItems: 'center', transition: 'colors', _hover: { color: 'ink' } })
+const copyButton = css({
+  ml: 'auto',
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: '1.5',
+  cursor: 'pointer',
+  transition: 'colors',
+  _hover: { color: 'ink' },
+})
 const footer = css({ mt: '8', fontSize: 'sm', color: 'ink.muted' })
 const discuss = css({ color: 'ink', textDecoration: 'underline', _hover: { color: 'ink.muted' } })
 </script>
@@ -185,7 +195,7 @@ const discuss = css({ color: 'ink', textDecoration: 'underline', _hover: { color
             @click="track('rss_clicked', { from: 'post' })"
             :class="shareLink"
           >
-            <ark.span class="i-lucide-rss" aria-hidden="true" />
+            <ark.span class="i-simple-icons-rss" aria-hidden="true" />
           </ark.a>
         </ark.div>
       </ark.div>
@@ -209,8 +219,9 @@ const discuss = css({ color: 'ink', textDecoration: 'underline', _hover: { color
       >
         <ark.span :class="p.icon" aria-hidden="true" />
       </ark.a>
-      <ark.button type="button" :aria-label="copied ? 'Link copied' : 'Copy link'" :class="shareLink" @click="copyLink">
+      <ark.button type="button" :class="copyButton" @click="copyLink">
         <ark.span :class="copied ? 'i-lucide-check' : 'i-lucide-link'" aria-hidden="true" />
+        <ark.span aria-live="polite">{{ copied ? 'Link copied' : 'Copy link to this post' }}</ark.span>
       </ark.button>
     </ark.div>
 
