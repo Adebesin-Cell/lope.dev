@@ -2,28 +2,21 @@
 <title id="t">One css() call, one StyleTree, two outputs</title>
 <desc id="d">The call css({ fontSize: 'xl', color: active ? 'red.700' : 'gray.700' }) becomes a StyleTree: an object with fontSize set to xl and color set to a ternary on active, with red.700 and gray.700 as branches. The tree feeds the stylesheet, which gets fs_xl, c_red.700 and c_gray.700, and the rewritten code, active ? "c_red.700 fs_xl" : "c_gray.700 fs_xl".</desc>
 <defs>
-<radialGradient id="gy" cx="50%" cy="50%"><stop offset="0%" stop-color="#ffd23f" stop-opacity=".9"/><stop offset="100%" stop-color="#ffd23f" stop-opacity="0"/></radialGradient>
-<radialGradient id="gv" cx="50%" cy="50%"><stop offset="0%" stop-color="#a78bfa" stop-opacity=".7"/><stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/></radialGradient>
-<filter id="sh" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#17171b" flood-opacity=".10"/></filter>
-<marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="arh" d="M0,0 L10,5 L0,10 z" fill="#63636f"/></marker>
+<filter id="sh" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#17171b" flood-opacity="0"/></filter>
+<marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="arh" d="M0,0 L10,5 L0,10 z" fill="#52525b"/></marker>
 <style>
-.h { font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 2.4px; fill: #63636f; }
-.n { font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 20px; fill: #17171b; }
-.s { font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; font-weight: 500; font-size: 16px; fill: #63636f; }
-.m { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 18px; fill: #17171b; }
+.h { font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 2.4px; fill: #a1a1aa; }
+.n { font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 20px; fill: #fafafa; }
+.s { font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; font-weight: 500; font-size: 16px; fill: #a1a1aa; }
+.m { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 18px; fill: #fafafa; }
 .mw { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 18px; fill: #fafafa; }
-.k { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 16px; fill: #63636f; }
-.edge { stroke: #63636f; stroke-width: 2; fill: none; }
-@media (prefers-color-scheme: dark) {
-.bg { fill: #17171b; } .card { fill: #23232b; stroke: #3a3a42; } .code { fill: #0f0f12; stroke: #3a3a42; }
-.n, .m { fill: #f5f2e9; } .h, .s, .k { fill: #b7b1a3; } .edge { stroke: #b7b1a3; } .arh { fill: #b7b1a3; }
-}
+.k { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 16px; fill: #a1a1aa; }
+.card { fill: #111111; stroke: #27272a; } .code { fill: #0a0a0a; stroke: #27272a; }
+.edge { stroke: #52525b; stroke-width: 2; fill: none; }
 </style>
 </defs>
 
-<rect class="bg" width="1200" height="860" fill="#faf9f5"/>
-<ellipse cx="80" cy="60" rx="320" ry="240" fill="url(#gy)"/>
-<ellipse cx="1130" cy="820" rx="340" ry="250" fill="url(#gv)"/>
+<rect class="bg" width="1200" height="860" fill="#0a0a0a"/>
 
 <text class="h" x="600" y="56" text-anchor="middle">YOU WRITE</text>
 <g filter="url(#sh)">
@@ -51,7 +44,7 @@
   <text class="m" x="400" y="360" text-anchor="middle">'xl'</text>
 </g>
 <g filter="url(#sh)">
-  <rect x="690" y="332" width="220" height="56" rx="14" fill="#ffd23f"/>
+  <rect x="690" y="332" width="220" height="56" rx="14" fill="#f6e458"/>
   <text class="n" x="800" y="358" text-anchor="middle" style="fill:#17171b">ternary</text>
   <text class="k" x="800" y="380" text-anchor="middle" style="fill:#33333a">test: active</text>
 </g>
