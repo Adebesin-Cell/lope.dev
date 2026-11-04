@@ -66,16 +66,11 @@ useHead(() => ({
   ],
 }))
 
-const shareXUrl = computed(
-  () =>
-    `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareTitle.value)}&url=${encodeURIComponent(postUrl.value)}`,
-)
-const shareBlueskyUrl = computed(
-  () => `https://bsky.app/intent/compose?text=${encodeURIComponent(`${shareTitle.value} ${postUrl.value}`)}`,
-)
-const shareLinkedInUrl = computed(
-  () => `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl.value)}`,
-)
+const profiles = [
+  { network: 'x', href: 'https://x.com/I_am_Lope', label: 'Lope on X', icon: 'i-simple-icons-x' },
+  { network: 'bluesky', href: 'https://bsky.app/profile/lopeadebesin.bsky.social', label: 'Lope on Bluesky', icon: 'i-simple-icons-bluesky' },
+  { network: 'linkedin', href: 'https://www.linkedin.com/in/adebesin-tolulope/', label: 'Lope on LinkedIn', icon: 'i-simple-icons-linkedin' },
+]
 const track = useTrack()
 const copied = ref(false)
 async function copyLink() {
@@ -159,36 +154,18 @@ const discuss = css({ color: 'ink', textDecoration: 'underline', _hover: { color
     <HighlightShare :title="shareTitle" :url="postUrl" :date="post.date" />
 
     <ark.div :class="share">
-      <ark.span>Share</ark.span>
+      <ark.span>Find me on</ark.span>
       <ark.a
-        :href="shareXUrl"
+        v-for="p in profiles"
+        :key="p.network"
+        :href="p.href"
         target="_blank"
         rel="noopener"
-        aria-label="Share on X"
-        @click="track('post_shared', { network: 'x' })"
+        :aria-label="p.label"
+        @click="track('profile_clicked', { network: p.network, from: 'post' })"
         :class="shareLink"
       >
-        <ark.span class="i-simple-icons-x" aria-hidden="true" />
-      </ark.a>
-      <ark.a
-        :href="shareBlueskyUrl"
-        target="_blank"
-        rel="noopener"
-        aria-label="Share on Bluesky"
-        @click="track('post_shared', { network: 'bluesky' })"
-        :class="shareLink"
-      >
-        <ark.span class="i-simple-icons-bluesky" aria-hidden="true" />
-      </ark.a>
-      <ark.a
-        :href="shareLinkedInUrl"
-        target="_blank"
-        rel="noopener"
-        aria-label="Share on LinkedIn"
-        @click="track('post_shared', { network: 'linkedin' })"
-        :class="shareLink"
-      >
-        <ark.span class="i-simple-icons-linkedin" aria-hidden="true" />
+        <ark.span :class="p.icon" aria-hidden="true" />
       </ark.a>
       <ark.button type="button" :aria-label="copied ? 'Link copied' : 'Copy link'" :class="shareLink" @click="copyLink">
         <ark.span :class="copied ? 'i-lucide-check' : 'i-lucide-link'" aria-hidden="true" />
