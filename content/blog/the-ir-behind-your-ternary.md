@@ -32,6 +32,8 @@ Two finished class strings and the condition you wrote. No `css()` call left.
 
 To get there, Panda doesn't go straight from your code to class names. It builds something in between first.
 
+*Just want the habits? Skip to [what this means for your code](#what-this-means-for-your-code).*
+
 ## Something in between
 
 Compilers rarely turn their input straight into output. They first turn it into a model of the program that's easier to work with, then generate output from that model. The model is called an intermediate representation, or IR.
@@ -50,16 +52,18 @@ type StyleTree =
   | { token: string }
   | { [key: string]: StyleTree }
   | StyleTree[]
+  | { branches: StyleTree[] }
   | { ternary: Source, consequent: StyleTree, alternate: StyleTree }
   | { and: Source, value: StyleTree }
   | { open: true }
   | { open: true, fallback: StyleTree }
 ```
 
-Most of it is plain values. The interesting shapes are the last four:
+Most of it is plain values. The interesting shapes are the last five:
 
 - **Ternary** keeps both sides. The condition itself isn't stored as a value. Panda keeps a pointer to where it sits in your source, so it can copy it out later.
 - **And** is `condition && value`.
+- **Branches** holds alternatives with no condition to point at, like a conditional value imported from another file.
 - **Open** means Panda can't know this value at build time.
 - **Open with a fallback** means Panda can't know the value, but it knows what to fall back to.
 
@@ -108,15 +112,7 @@ This is the same for every Panda project, with or without source transforms.
 
 With source transforms on, the bundler plugin walks the same tree and rewrites the call.
 
-It looks for each place in the tree that holds a condition. Then it moves the condition outward, to the edge of the whole call. Each branch gets the static styles plus its own value, and becomes a complete class string:
-
-```js
-// you write
-css({ fontSize: 'xl', color: active ? 'red.700' : 'gray.700' })
-
-// your bundle ships
-active ? "c_red.700 fs_xl" : "c_gray.700 fs_xl"
-```
+It looks for each place in the tree that holds a condition. Then it moves the condition outward, to the edge of the whole call. Each branch gets the static styles plus its own value, and becomes a complete class string. That's how the opening call became `active ? "c_red.700 fs_xl" : "c_gray.700 fs_xl"`.
 
 `fs_xl` appears in both strings, because each one has to be complete on its own.
 
@@ -162,7 +158,7 @@ That works because each atom is independent. `color` doesn't care what `padding`
 
 ## When it does multiply
 
-Recipes are different. A recipe's default variants and compound variants depend on the whole selection, not one variant at a time. So for recipes, Panda builds every combination as a decision tree:
+Recipes are different, and so are patterns with default values. A recipe's default variants and compound variants depend on the whole selection, not one variant at a time. So for these, Panda builds every combination as a decision tree:
 
 ```js
 // you write
@@ -223,8 +219,6 @@ None of these are required. A call that can't be rewritten still works, it just 
 
 ## One tree, two outputs
 
-So here's the whole trip for the running example. Panda reads your call and builds a tree: an object with `fontSize` set to `'xl'` and `color` set to a ternary. The stylesheet walks that tree and emits every atom any branch could need. The transform walks the same tree, moves the condition outward, and writes two finished class strings.
-
 Both outputs come from one model of your style, so they always agree.
 
-*Next in the series: how Panda makes variants fast, and what `cva` and `sva` do with the same combination logic. If you missed the earlier parts: [Build once, at build time](/blog/build-once-at-build-time), [Every style is an atom](/blog/every-style-is-an-atom), [Look it up once](/blog/look-it-up-once), [Panda never runs your code](/blog/panda-never-runs-your-code).*
+*Next in the series: how Panda makes variants fast, and what `cva` and `sva` do with the same combination logic. If you missed the earlier parts: [Build once, at build time](/blog/build-once-at-build-time), [Every style is an atom](/blog/every-style-is-an-atom), [Look it up once](/blog/look-it-up-once), [Panda never runs your code](/blog/panda-never-runs-your-code), [What runtime means in Panda](/blog/what-runtime-means-in-panda).*
