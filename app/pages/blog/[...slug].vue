@@ -68,15 +68,25 @@ useHead(() => ({
 
 const profiles = [
   { network: 'x', href: 'https://x.com/I_am_Lope', label: 'Lope on X', icon: 'i-simple-icons-x' },
-  { network: 'bluesky', href: 'https://bsky.app/profile/lopeadebesin.bsky.social', label: 'Lope on Bluesky', icon: 'i-simple-icons-bluesky' },
-  { network: 'linkedin', href: 'https://www.linkedin.com/in/adebesin-tolulope/', label: 'Lope on LinkedIn', icon: 'i-simple-icons-linkedin' },
+  {
+    network: 'bluesky',
+    href: 'https://bsky.app/profile/lopeadebesin.bsky.social',
+    label: 'Lope on Bluesky',
+    icon: 'i-simple-icons-bluesky',
+  },
+  {
+    network: 'linkedin',
+    href: 'https://www.linkedin.com/in/adebesin-tolulope/',
+    label: 'Lope on LinkedIn',
+    icon: 'i-simple-icons-linkedin',
+  },
 ]
 const track = useTrack()
 const copied = ref(false)
-async function copyLink() {
+async function copyLink(from: 'top' | 'footer') {
   if (!import.meta.client) return
   await navigator.clipboard.writeText(postUrl.value)
-  track('post_shared', { network: 'copy_link' })
+  track('post_shared', { network: 'copy_link', from })
   copied.value = true
   setTimeout(() => {
     copied.value = false
@@ -100,7 +110,24 @@ const back = css({
 })
 const header = css({ mb: '10' })
 const title = css({ textStyle: 'display', mb: '3' })
+const metaRow = css({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  gap: '4',
+  flexWrap: 'wrap',
+})
 const meta = css({ fontSize: 'sm', color: 'ink.muted' })
+const topAction = css({
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: '1.5',
+  fontSize: 'sm',
+  color: 'ink.muted',
+  cursor: 'pointer',
+  transition: 'colors',
+  _hover: { color: 'ink' },
+})
 const faint = css({ color: 'ink.faint' })
 const metaLink = css({ textDecoration: 'underline', _hover: { color: 'ink' } })
 const mediumLink = css({ color: 'ink.faint', textDecoration: 'underline', _hover: { color: 'ink.muted' } })
@@ -132,21 +159,27 @@ const discuss = css({ color: 'ink', textDecoration: 'underline', _hover: { color
       <ark.h1 :class="title">
         {{ post.title }}
       </ark.h1>
-      <ark.p :class="meta">
-        {{ fmt(post.date) }}
-        <ark.span v-if="post.duration"> · {{ post.duration }}</ark.span>
-        <ark.span v-else-if="readingTime"> · {{ readingTime }}</ark.span>
-        <template v-if="post.place">
-          <ark.span :class="faint"> · at </ark.span>
-          <ark.a v-if="post.placeLink" :href="post.placeLink" target="_blank" rel="noopener" :class="metaLink">
-            {{ post.place }}
+      <ark.div :class="metaRow">
+        <ark.p :class="meta">
+          {{ fmt(post.date) }}
+          <ark.span v-if="post.duration"> · {{ post.duration }}</ark.span>
+          <ark.span v-else-if="readingTime"> · {{ readingTime }}</ark.span>
+          <template v-if="post.place">
+            <ark.span :class="faint"> · at </ark.span>
+            <ark.a v-if="post.placeLink" :href="post.placeLink" target="_blank" rel="noopener" :class="metaLink">
+              {{ post.place }}
+            </ark.a>
+            <ark.span v-else>{{ post.place }}</ark.span>
+          </template>
+          <ark.a v-if="post.canonical" :href="post.canonical" target="_blank" rel="noopener" :class="mediumLink">
+            · originally on Medium
           </ark.a>
-          <ark.span v-else>{{ post.place }}</ark.span>
-        </template>
-        <ark.a v-if="post.canonical" :href="post.canonical" target="_blank" rel="noopener" :class="mediumLink">
-          · originally on Medium
-        </ark.a>
-      </ark.p>
+        </ark.p>
+        <ark.button type="button" :class="topAction" @click="copyLink('top')">
+          <ark.span :class="copied ? 'i-lucide-check' : 'i-lucide-link'" aria-hidden="true" />
+          <ark.span aria-live="polite">{{ copied ? 'Copied' : 'Copy link' }}</ark.span>
+        </ark.button>
+      </ark.div>
     </ark.header>
 
     <ContentRenderer :value="post" :class="['prose-content', proseClass]" />
@@ -167,7 +200,12 @@ const discuss = css({ color: 'ink', textDecoration: 'underline', _hover: { color
       >
         <ark.span :class="p.icon" aria-hidden="true" />
       </ark.a>
-      <ark.button type="button" :aria-label="copied ? 'Link copied' : 'Copy link'" :class="shareLink" @click="copyLink">
+      <ark.button
+        type="button"
+        :aria-label="copied ? 'Link copied' : 'Copy link'"
+        :class="shareLink"
+        @click="copyLink('footer')"
+      >
         <ark.span :class="copied ? 'i-lucide-check' : 'i-lucide-link'" aria-hidden="true" />
       </ark.button>
     </ark.div>
