@@ -83,6 +83,11 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     githubToken: process.env.GITHUB_TOKEN || '',
+    pdsUrl: '',
+    pdsHandle: '',
+    pdsAppPassword: '',
+    amaSecret: '',
+    amaAdminPassword: '',
     public: {
       githubUser: 'Adebesin-Cell',
       siteUrl:
@@ -128,6 +133,8 @@ export default defineNuxtConfig({
     // Graduation guestbook — a separate Vercel/Nuxt app mounted under this path.
     '/lope-is-graduating': { proxy: 'https://guestbook-lopes-projects-7fdc62e5.vercel.app/lope-is-graduating/' },
     '/lope-is-graduating/**': { proxy: 'https://guestbook-lopes-projects-7fdc62e5.vercel.app/lope-is-graduating/**' },
+    '/ama': { headers: { 'x-robots-tag': 'noindex, nofollow' } },
+    '/ama/**': { headers: { 'x-robots-tag': 'noindex, nofollow', 'cache-control': 'no-store' } },
     '/': { prerender: true },
     '/projects': { prerender: true },
     '/play': { prerender: true },
