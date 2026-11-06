@@ -16,7 +16,8 @@ useSeoMeta({ title: 'AMA inbox', robots: 'noindex, nofollow' })
 const pass = ref('')
 const key = ref('')
 const questions = ref<Question[] | null>(null)
-const status = ref<'locked' | 'loading' | 'error' | 'limited' | 'empty' | 'offline'>('locked')
+const status = ref<'checking' | 'locked' | 'loading' | 'error' | 'limited' | 'empty' | 'offline'>('checking')
+const restoring = ref(false)
 const active = ref<number | null>(null)
 const current = computed(() => (active.value === null ? null : questions.value?.[active.value]))
 
@@ -95,7 +96,14 @@ onMounted(() => {
   try {
     saved = sessionStorage.getItem(STORAGE_KEY)
   } catch {}
-  if (saved) unlock(saved)
+  if (!saved) {
+    status.value = 'locked'
+    return
+  }
+  restoring.value = true
+  unlock(saved).finally(() => {
+    restoring.value = false
+  })
 })
 
 function fmt(iso: string) {
@@ -116,6 +124,7 @@ const header = css({ mb: '10' })
 const pageTitle = css({ textStyle: 'display', mb: '3' })
 const lead = css({ color: 'ink.muted' })
 const lockWrap = css({ maxW: '[400px]' })
+const opening = css({ color: 'ink.faint', fontSize: 'sm' })
 const lockTag = css({ display: 'inline-flex', alignItems: 'center', gap: '1.5' })
 const fieldWrap = css({ display: 'grid', gap: '2', mt: '6' })
 const fieldLabel = css({ fontSize: 'sm', fontWeight: 'medium', color: '[#cfcfcf]' })
@@ -167,6 +176,8 @@ const spacer = css({ flex: '1' })
         </ark.li>
       </ark.ul>
     </template>
+
+    <ark.p v-else-if="status === 'checking' || restoring" :class="opening" aria-live="polite"> Opening inbox… </ark.p>
 
     <ark.div v-else :class="lockWrap">
       <AmaCard as="form" dim novalidate @submit.prevent="unlock()">
