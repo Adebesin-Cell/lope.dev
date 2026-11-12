@@ -26,7 +26,7 @@ A lot of styling code is now written by agents, and an agent learns your design 
 
 **It reads your code first.** Claude Code's [best practices](https://code.claude.com/docs/en/best-practices) put it plainly: "Claude starts every task by reading your code", and it picks up "your conventions" and "how existing components are built". To an agent, a `#6366f1` sitting in a component looks like a convention. The next component it writes gets one too.
 
-**It reads your theme as a list of options.** Panda's [MCP server](https://panda-css.com/docs/get-started/mcp-server) gives agents `get_tokens`, which returns every token in your config. Not the ones your app uses, all of them. A token nobody has touched in a year looks just as valid as `brand.500`, unless you've deprecated it. The same goes for recipe variants. If `size.sm` is defined, an agent has every reason to use it.
+**It reads your theme as a list of options.** Whether an agent opens your `panda.config.ts` or asks Panda's [MCP server](https://panda-css.com/docs/get-started/mcp-server) for your tokens, it sees every token you've defined. Not the ones your app uses, all of them. A token nobody has touched in a year looks just as valid as `brand.500`, unless you've deprecated it. The same goes for recipe variants. If `size.sm` is defined, an agent has every reason to use it.
 
 The same Claude Code page suggests writing down "an old pattern that's everywhere but that new code must not copy". That works, but the cleaner fix is to not have the old pattern. Every unused token you remove and every hard-coded value you replace is one less wrong example for the next agent, and for the next person.
 
@@ -34,7 +34,7 @@ The same Claude Code page suggests writing down "an old pattern that's everywher
 
 ## The example app
 
-One file with a heading, a paragraph and two buttons:
+Say we have an app with a heading, a paragraph and two buttons:
 
 ```tsx
 export function App() {
@@ -215,22 +215,15 @@ Studio counts only what your source files use, so its numbers are smaller than t
 
 ## Let your agent run it
 
-The Panda MCP server has the same analysis as a tool, `get_usage_report`. Add the server to your AI client's MCP config:
+Cleanup is a good task to hand off, and an agent doesn't need anything special to do it. It can run the same command you would:
 
-```json
-{
-  "mcpServers": {
-    "panda": {
-      "command": "npx",
-      "args": ["-y", "@pandacss/mcp"]
-    }
-  }
-}
+```bash
+panda analyze --json
 ```
 
-Then ask things like "Which tokens aren't used in this project?" or "Where do we use the stack pattern?" The agent calls `get_usage_report`, which scans the files in your `include` on every call and returns the same counts, source locations, raw values and suggested tokens you saw above.
+The JSON has the counts, the unused names, the raw values with their suggested tokens, and the file and line of every use. That's enough for an agent to replace each hard-coded value with its token, or to check that a token is unused before deleting it. It gets the same answer you'd get, so it doesn't have to guess.
 
-That turns cleanup into a task you can hand off. Ask the agent to find the hard-coded values and replace each one with its suggested token. Or ask it to check whether a token is still used before it deletes it. It gets the same answer you'd get from the terminal, and it doesn't have to guess.
+If you already use Panda's [MCP server](https://panda-css.com/docs/get-started/mcp-server), the same analysis is there as a tool, `get_usage_report`. Ask "Which tokens aren't used in this project?" and the agent calls it instead of the CLI. Either way works.
 
 ## Things to keep in mind
 
@@ -248,7 +241,7 @@ That turns cleanup into a task you can hand off. Ask the agent to find the hard-
 - **To find where something is used:** filter `usages` in the JSON.
 - **For a cleanup PR:** use `--unused`.
 - **When a style is missing:** check whether analyze sees it. If it doesn't, the build doesn't either.
-- **To hand cleanup to an agent:** add the Panda MCP server. `get_usage_report` gives it the same answers.
+- **To hand cleanup to an agent:** have it run `panda analyze --json`, or use `get_usage_report` if you have the Panda MCP server.
 
 Full reference in the [Panda docs](https://panda-css.com/docs/design-systems/analyze).
 
