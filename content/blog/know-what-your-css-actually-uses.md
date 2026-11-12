@@ -225,6 +225,39 @@ The JSON has the counts, the unused names, the raw values with their suggested t
 
 If you already use Panda's [MCP server](https://panda-css.com/docs/get-started/mcp-server), the same analysis is there as a tool, `get_usage_report`. Ask "Which tokens aren't used in this project?" and the agent calls it instead of the CLI. Either way works.
 
+## Make it a habit
+
+`panda analyze` tells you what's already there. Two more tools stop the mess from coming back.
+
+**Lint while you write.** [`@pandacss/eslint-plugin`](https://panda-css.com/docs/get-started/linting) runs on Panda's own compiler, so it knows your actual theme. It works with ESLint and Oxlint. This site runs it through Oxlint:
+
+```json
+{
+  "jsPlugins": ["@pandacss/eslint-plugin/oxlint"],
+  "rules": {
+    "@pandacss/no-invalid-token-paths": "error",
+    "@pandacss/prefer-token": ["warn", { "categories": ["colors"] }],
+    "@pandacss/no-deprecated": "warn"
+  }
+}
+```
+
+Each of those rules matches something in this guide:
+
+- **`prefer-token`** flags a raw value when your theme has a token for it. It's the raw values list, caught while you type, so `#6366f1` never lands.
+- **`no-invalid-token-paths`** flags token references that don't exist, like `{colors.ghost}` in a border or `token(sizes.ghost)` in a `calc()`. The compiler doesn't error on those either.
+- **`no-deprecated`** warns on deprecated tokens, recipes, utilities and patterns. Pair it with deprecating before you delete, and every app sees the warning before the token goes.
+
+Lint runs for agents too. An agent that runs your lint before it finishes gets the same warnings you do.
+
+**Give your agent a skill.** Panda ships [official agent skills](https://panda-css.com/docs/get-started/agent-skills) that teach agents to write Panda correctly, including which values Panda can and can't read:
+
+```bash
+npx skills add chakra-ui/panda
+```
+
+For the cleanup in this guide, I wrote a small skill you can drop in: [panda-usage-cleanup/SKILL.md](/resources/panda-usage-cleanup/SKILL.md). It tells the agent to run `panda analyze --json` before removing or renaming anything, how to replace raw values with their suggested tokens, when to deprecate instead of delete, and what the report can't see. Save it as `.claude/skills/panda-usage-cleanup/SKILL.md`, or wherever your agent loads skills from.
+
 ## Things to keep in mind
 
 "Unused" means unused in what analyze scanned. That's narrower than "nobody uses it":
@@ -242,6 +275,7 @@ If you already use Panda's [MCP server](https://panda-css.com/docs/get-started/m
 - **For a cleanup PR:** use `--unused`.
 - **When a style is missing:** check whether analyze sees it. If it doesn't, the build doesn't either.
 - **To hand cleanup to an agent:** have it run `panda analyze --json`, or use `get_usage_report` if you have the Panda MCP server.
+- **To keep it clean:** turn on the Panda lint rules, and give your agent the [cleanup skill](/resources/panda-usage-cleanup/SKILL.md).
 
 Full reference in the [Panda docs](https://panda-css.com/docs/design-systems/analyze).
 
