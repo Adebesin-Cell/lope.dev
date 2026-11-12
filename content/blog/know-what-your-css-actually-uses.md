@@ -14,11 +14,11 @@ A guide to `panda analyze`, for teams who want to clean up their Panda setup wit
 ::post-cover
 ::
 
-*An interlude in the Panda internals series, between [part 6](/blog/how-panda-makes-cva-fast) and part 7. Another OVA. The parts so far explain how Panda works. This one is about a tool that helps your team use it well.*
+*An interlude in the Panda internals series, between [part 6](/blog/how-panda-makes-cva-fast) and part 7. A side episode: the parts so far explain how Panda works, and this one is about a tool that helps your team use it well. There's a kit at the end to take with you: an agent skill, rules for your `AGENTS.md`, prompts, and a CI check.*
 
 Every Panda project grows a little extra over time. A token nobody uses anymore. A recipe variant from a redesign. A keyframe someone added for one animation and then removed the animation. A hex code that should have been a token.
 
-None of that breaks the build. So it stays, and nobody notices. Deleting things is no safer: remove a token your app still uses and the build won't fail either. Panda writes the reference as a literal value, and the page quietly loses its color.
+None of that breaks the build. So it stays, and nobody notices. Deleting things is no safer: remove a token your app still uses and the build won't fail either. Panda writes `color: brand\.500` into the CSS as-is, the browser ignores it, and the page quietly loses its color.
 
 ## Why it matters more now
 
@@ -93,6 +93,8 @@ animations   1/4 (25.00%)    spin (1)                                       0   
 fontSizes    1/14 (7.14%)    xl (1)                                         0            1
 ```
 
+If you're counting along, the app only writes `brand.500` and spacing `4` once each, and never writes `transparent`. The other uses come from the `button` recipe's own styles: its base uses `brand.500` and `px: '4'`, and the `ghost` tone uses `transparent`. Analyze counts the bodies of recipes your app uses, once per recipe.
+
 Two things to look at.
 
 **The percentage.** 3 of 292 colors is a small app on a big preset, which is expected. In a real design system, a category at 12% used is a palette you can shrink.
@@ -103,12 +105,12 @@ Two things to look at.
 globalCss: { body: { color: 'gray.900' } }
 ```
 
-Analyze counts your config as well as your source files. `globalCss` and `staticCss` count, and so do the bodies of recipes your app uses. So a token that only appears in `globalCss` won't show up as unused, and you won't delete it by mistake.
+Analyze counts your config as well as your source files. `globalCss` and `staticCss` count, and so do the bodies of recipes your app uses, like the `button` recipe above. So a token that only appears in `globalCss` won't show up as unused, and you won't delete it by mistake.
 
 Once a name shows zero uses, the next step depends on how many apps use your theme:
 
 - **Zero uses in every app:** remove it.
-- **Any uses anywhere:** [deprecate it](https://panda-css.com/docs/design-systems/deprecations) first, so those apps get a warning before it disappears.
+- **Still used somewhere, but you want it gone?** [Deprecate it](https://panda-css.com/docs/design-systems/deprecations) first, so those apps get a warning before it disappears.
 
 ## "Which recipe variants does anyone use?"
 
@@ -142,7 +144,7 @@ A raw value only makes the list when Panda finds a matching token. A one-off `13
 
 ## "Where is this used?"
 
-The JSON has a flat `usages` list with the file, line and column of every use in your source:
+The JSON has a flat `usages` list with the file, line and column of every use in your source. Names in `usages` carry their category, so `brand.500` from the table is `colors.brand.500` here:
 
 ```bash
 panda analyze --json | jq -r '.usages[] | select(.name == "colors.brand.500") | "\(.file):\(.line)"'
@@ -189,10 +191,10 @@ Analyze reads your files the same way the build does. It finds your Panda calls 
 Say a component does this:
 
 ```tsx
-<button className={button({ size: 'sm', tone })} />
+<button className={button({ size: 'lg', tone })} />
 ```
 
-`size.sm` counts. `tone` comes from a prop, so Panda can't know which tone it is, and nothing counts for it. If one of the tones has no CSS in your stylesheet, this is why. [Panda never runs your code](/blog/panda-never-runs-your-code) covers what Panda can and can't follow, and how to write values it can see.
+`size.lg` counts. `tone` comes from a prop, so Panda can't know which tone it is, and nothing counts for it. If one of the tones has no CSS in your stylesheet, this is why. [Panda never runs your code](/blog/panda-never-runs-your-code) covers what Panda can and can't follow, and how to write values it can see.
 
 A quick check: if a name you know you wrote is missing from `usages`, Panda didn't see it.
 
@@ -201,7 +203,7 @@ A quick check: if a name you know you wrote is missing from `usages`, Panda didn
 For a visual version, open the Usage page in [Panda Studio](https://panda-css.com/docs/theming/studio). There are two ways in:
 
 - **`panda studio`** runs a local server that rescans as you save.
-- **Studio's Usage page** can open a `report.json` you made with `--outfile`.
+- **Studio's Usage page** can open a `report.json` you made with `--outfile`. Same data, no server.
 
 Here's the example app in `panda studio`. Every square is a token, and the lit ones are the ones your files use:
 
@@ -211,7 +213,7 @@ Further down are the most used tokens, with a swatch for colors, and the hard-co
 
 ![Studio's most used tokens list, with spacing 4 and 6, the spin animation, brand.500 with its indigo swatch and fontSize xl, next to an Issues list showing #6366f1 suggested as brand.500 and 16px suggested as spacing 4.](/images/blog/know-what-your-css-actually-uses/studio-issues.webp)
 
-Studio counts only what your source files use, so its numbers are smaller than the terminal's. `gray.900` from `globalCss` doesn't light up here. It also flags token names that don't exist in your theme, like a typo such as `bleu.500`, as Unknown.
+Either way, Studio shows only the uses in your source files. The report has the config uses too, but Studio doesn't draw them, so its numbers are smaller than the terminal's. `gray.900` from `globalCss` and the `button` recipe's own styles don't light up here. It also flags token names that don't exist in your theme, like a typo such as `bleu.500`, as Unknown.
 
 ## Let your agent run it
 
@@ -227,7 +229,7 @@ If you already use Panda's [MCP server](https://panda-css.com/docs/get-started/m
 
 ## Make it a habit
 
-`panda analyze` tells you what's already there. Two more tools stop the mess from coming back.
+`panda analyze` tells you what's already there. Lint stops the mess from coming back.
 
 **Lint while you write.** [`@pandacss/eslint-plugin`](https://panda-css.com/docs/get-started/linting) runs on Panda's own compiler, so it knows your actual theme. It works with ESLint and Oxlint. This site runs it through Oxlint:
 
@@ -250,14 +252,6 @@ Each of those rules matches something in this guide:
 
 Lint runs for agents too. An agent that runs your lint before it finishes gets the same warnings you do.
 
-**Give your agent a skill.** Panda ships [official agent skills](https://panda-css.com/docs/get-started/agent-skills) that teach agents to write Panda correctly, including which values Panda can and can't read:
-
-```bash
-npx skills add chakra-ui/panda
-```
-
-For the cleanup in this guide, I wrote a small skill you can drop in: [panda-usage-cleanup/SKILL.md](/resources/panda-usage-cleanup/SKILL.md). It tells the agent to run `panda analyze --json` before removing or renaming anything, how to replace raw values with their suggested tokens, when to deprecate instead of delete, and what the report can't see. Save it as `.claude/skills/panda-usage-cleanup/SKILL.md`, or wherever your agent loads skills from.
-
 ## Things to keep in mind
 
 "Unused" means unused in what analyze scanned. That's narrower than "nobody uses it":
@@ -273,10 +267,61 @@ For the cleanup in this guide, I wrote a small skill you can drop in: [panda-usa
 - **To find hard-coded values:** check the raw values. Each one comes with the token it should be.
 - **To find where something is used:** filter `usages` in the JSON.
 - **For a cleanup PR:** use `--unused`.
-- **When a style is missing:** check whether analyze sees it. If it doesn't, the build doesn't either.
+- **When a style is missing:** if a name you know you wrote is missing from `usages`, Panda didn't see it, and the build didn't either.
 - **To hand cleanup to an agent:** have it run `panda analyze --json`, or use `get_usage_report` if you have the Panda MCP server.
-- **To keep it clean:** turn on the Panda lint rules, and give your agent the [cleanup skill](/resources/panda-usage-cleanup/SKILL.md).
+- **To keep it clean:** turn on the Panda lint rules, and grab the kit below.
 
 Full reference in the [Panda docs](https://panda-css.com/docs/design-systems/analyze).
+
+::takeaway{title="Take this with you"}
+**1. A cleanup skill for your agent.** [Download SKILL.md](/resources/panda-usage-cleanup/SKILL.md) and save it as `.claude/skills/panda-usage-cleanup/SKILL.md`, or wherever your agent loads skills from. It makes the agent run `panda analyze --json` before it removes or renames anything, replace raw values with their suggested tokens, deprecate instead of delete when a theme is shared, and stop to ask about values it can't see.
+
+**2. Panda's official skills.** They teach agents to write Panda that Panda can read, so the style reaches the stylesheet in the first place:
+
+```bash
+npx skills add chakra-ui/panda
+```
+
+**3. Rules for your `AGENTS.md` or `CLAUDE.md`.** Agents read these every session:
+
+```md
+## Styling (Panda CSS)
+
+- Use theme tokens. Never hard-code a color, spacing or font size the theme already has.
+- Before removing or renaming a token, recipe variant, keyframe or pattern, run
+  `npx panda analyze --json` and check `usages` for it. Names there carry their
+  category, like `colors.brand.500`.
+- After styling changes, run `npx panda analyze --scope tokens` and make sure
+  no new raw values showed up.
+- Run lint before you finish.
+```
+
+**4. Prompts to try.**
+
+```txt
+Run `npx panda analyze --json`. For every raw value that has a suggested token,
+replace it with that token in the file it's used in. List the ones with no suggestion.
+```
+
+```txt
+Run `npx panda analyze --scope keyframes --unused` and remove the keyframes nobody uses,
+one commit each. Rerun analyze after each removal and stop if anything new shows up.
+```
+
+```txt
+Is `colors.brand.300` still used anywhere? Check `panda analyze --json` usages and the
+config uses before answering.
+```
+
+**5. A CI check for new hard-coded values.** `--unused` never fails a build, so make your own gate. This fails when the raw values with a matching token go above a number you pick:
+
+```bash
+max=0
+count=$(npx panda analyze --json | jq '[.views.tokens.categories[].rawValues[].uses] | add // 0')
+[ "$count" -le "$max" ] || { echo "$count hard-coded values have a token"; exit 1; }
+```
+
+Start `max` at today's count, and lower it as you clean up.
+::
 
 *Back to the internals next: part 7, cold vs warm, and how Panda's watch mode got fast. If you want to know why some values never show up in analyze, read [Panda never runs your code](/blog/panda-never-runs-your-code).*
