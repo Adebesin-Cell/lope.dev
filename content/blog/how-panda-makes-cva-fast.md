@@ -193,16 +193,41 @@ When a recipe is only ever called in its own file, Panda knows nothing else will
 Panda doesn't compile a recipe when:
 
 - **The config isn't static.** If Panda can't read the whole recipe at build time, there's nothing to compile. [Part 4](/blog/panda-never-runs-your-code) covers what it can read.
-- **A compound selects a prop that isn't a variant.** The cache table only knows declared variants, so a compound like `{ size: 'sm', loading: true }` with no `loading` variant would make the table give wrong answers.
+- **A compound checks a prop that isn't a variant.** This is about the recipe definition, not the props you pass. The cache table only has slots for declared variants, so `{ size: 'sm', loading: true }` and `{ size: 'sm' }` would share a slot and get the same classes.
 - **Hashed class names are on.** Panda leaves recipes alone, and warns once per file for the ones it would have compiled.
 
 In all of those cases you get the runtime `cva` from the start of this post. It still works. It does more work per new combination.
+
+The compound one is easy to hit without noticing. This recipe stays at runtime, because `loading` only exists inside the compound:
+
+```ts
+export const button = cva({
+  variants: {
+    size: { sm: { fontSize: '12px' }, lg: { fontSize: '16px' } },
+  },
+  compoundVariants: [{ size: 'sm', loading: true, css: { opacity: 0.5 } }],
+})
+```
+
+Declare `loading` as a variant, even with no styles, and it compiles:
+
+```ts
+export const button = cva({
+  variants: {
+    size: { sm: { fontSize: '12px' }, lg: { fontSize: '16px' } },
+    loading: { true: {} },
+  },
+  compoundVariants: [{ size: 'sm', loading: true, css: { opacity: 0.5 } }],
+})
+```
+
+The call is the same either way: `button({ size: 'sm', loading: true })`. Only the first stays on the runtime `cva`.
 
 ## What this means for your code
 
 - **Turn on source transforms.** Everything in this post needs it.
 - **Keep recipe configs static.** Build them from literals and imports Panda can follow, not from functions that run at runtime.
-- **Declare every prop a compound uses as a variant.** Otherwise the whole recipe stays at runtime.
+- **Declare every prop your compounds check as a variant.** A compound on `loading` with no `loading` variant keeps the whole recipe at runtime. Add `loading: { true: {} }`.
 - **Put recipes in their own files.** Static calls from other files fold to plain strings.
 - **Pass booleans for boolean variants.** `true`, not `'true'`. With compounds, they aren't the same thing.
 - **Fewer, wider variants beat many booleans.** Every variant multiplies the table. One `tone` with four values grows it less than four boolean flags.
