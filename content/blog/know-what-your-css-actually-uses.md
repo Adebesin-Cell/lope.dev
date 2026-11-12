@@ -1,6 +1,6 @@
 ---
 title: Know what your CSS actually uses
-description: "A practical guide to panda analyze. Find the tokens, recipe variants and keyframes nobody uses, track down hard-coded values, and check what Panda can see before you delete anything."
+description: "A practical guide to panda analyze. Find the tokens, recipe variants and keyframes nobody uses, track down hard-coded values, and why a clean theme matters more now that agents write your styles."
 seoTitle: "Know what your CSS actually uses: a guide to panda analyze in Panda CSS"
 date: 2026-11-12
 series: Panda internals
@@ -18,7 +18,17 @@ A guide to `panda analyze`, for teams who want to clean up their Panda setup wit
 
 Every Panda project grows a little extra over time. A token nobody uses anymore. A recipe variant from a redesign. A keyframe someone added for one animation and then removed the animation. A hex code that should have been a token.
 
-None of that breaks the build, and that's the problem. Delete a token your app still uses and the build won't fail either. Panda writes the reference as a literal value, and the page quietly loses its color.
+None of that breaks the build. So it stays, and nobody notices. Deleting things is no safer: remove a token your app still uses and the build won't fail either. Panda writes the reference as a literal value, and the page quietly loses its color.
+
+## Why it matters more now
+
+A lot of styling code is now written by agents, and an agent learns your design system from what's already there.
+
+**It reads your code first.** Claude Code's [best practices](https://code.claude.com/docs/en/best-practices) put it plainly: "Claude starts every task by reading your code", and it picks up "your conventions" and "how existing components are built". To an agent, a `#6366f1` sitting in a component looks like a convention. The next component it writes gets one too.
+
+**It reads your theme as a list of options.** Panda's [MCP server](https://panda-css.com/docs/get-started/mcp-server) gives agents `get_tokens`, which returns every token in your config. Not the ones your app uses, all of them. A token nobody has touched in a year looks just as valid as `brand.500`, unless you've deprecated it. The same goes for recipe variants. If `size.sm` is defined, an agent has every reason to use it.
+
+The same Claude Code page suggests writing down "an old pattern that's everywhere but that new code must not copy". That works, but the cleaner fix is to not have the old pattern. Every unused token you remove and every hard-coded value you replace is one less wrong example for the next agent, and for the next person.
 
 `panda analyze` tells you what your app actually uses. This post walks through the questions it answers, with real output from a small app.
 
@@ -203,6 +213,25 @@ Further down are the most used tokens, with a swatch for colors, and the hard-co
 
 Studio counts only what your source files use, so its numbers are smaller than the terminal's. `gray.900` from `globalCss` doesn't light up here. It also flags token names that don't exist in your theme, like a typo such as `bleu.500`, as Unknown.
 
+## Let your agent run it
+
+The Panda MCP server has the same analysis as a tool, `get_usage_report`. Add the server to your AI client's MCP config:
+
+```json
+{
+  "mcpServers": {
+    "panda": {
+      "command": "npx",
+      "args": ["-y", "@pandacss/mcp"]
+    }
+  }
+}
+```
+
+Then ask things like "Which tokens aren't used in this project?" or "Where do we use the stack pattern?" The agent calls `get_usage_report`, which scans the files in your `include` on every call and returns the same counts, source locations, raw values and suggested tokens you saw above.
+
+That turns cleanup into a task you can hand off. Ask the agent to find the hard-coded values and replace each one with its suggested token. Or ask it to check whether a token is still used before it deletes it. It gets the same answer you'd get from the terminal, and it doesn't have to guess.
+
 ## Things to keep in mind
 
 "Unused" means unused in what analyze scanned. That's narrower than "nobody uses it":
@@ -219,6 +248,7 @@ Studio counts only what your source files use, so its numbers are smaller than t
 - **To find where something is used:** filter `usages` in the JSON.
 - **For a cleanup PR:** use `--unused`.
 - **When a style is missing:** check whether analyze sees it. If it doesn't, the build doesn't either.
+- **To hand cleanup to an agent:** add the Panda MCP server. `get_usage_report` gives it the same answers.
 
 Full reference in the [Panda docs](https://panda-css.com/docs/design-systems/analyze).
 
