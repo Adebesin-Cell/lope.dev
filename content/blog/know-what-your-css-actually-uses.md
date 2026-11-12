@@ -193,7 +193,15 @@ For a visual version, open the Usage page in [Panda Studio](https://panda-css.co
 - **`panda studio`** runs a local server that rescans as you save.
 - **Studio's Usage page** can open a `report.json` you made with `--outfile`.
 
-It shows token coverage per category, the most used tokens, and the hard-coded values with their suggested tokens. It also flags token names that don't exist in your theme, like a typo such as `bleu.500`, as Unknown.
+Here's the example app in `panda studio`. Every square is a token, and the lit ones are the ones your files use:
+
+![Panda Studio's Usage page for the example app. A project scan with 5 of 515 tokens used, 1% coverage, 0 unknown and 2 hard-coded values, above a grid of every token category with the used tokens lit up.](/images/blog/know-what-your-css-actually-uses/studio-scan.webp)
+
+Further down are the most used tokens, with a swatch for colors, and the hard-coded values, each next to the token it should be:
+
+![Studio's most used tokens list, with spacing 4 and 6, the spin animation, brand.500 with its indigo swatch and fontSize xl, next to an Issues list showing #6366f1 suggested as brand.500 and 16px suggested as spacing 4.](/images/blog/know-what-your-css-actually-uses/studio-issues.webp)
+
+Studio counts only what your source files use, so its numbers are smaller than the terminal's. `gray.900` from `globalCss` doesn't light up here. It also flags token names that don't exist in your theme, like a typo such as `bleu.500`, as Unknown.
 
 ## Things to keep in mind
 
