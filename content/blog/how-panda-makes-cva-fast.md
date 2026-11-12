@@ -94,15 +94,15 @@ So Panda gives each prop a small number:
 
 - `0` for `undefined`
 - `1`, `2`, ... for each declared option
-- three more for `true`, `false` and `null`
+- up to three more for `true`, `false` and `null`, when they aren't already options
 
 Then it combines those numbers into one index, the same way digits combine into a number. For a recipe with `size: sm | md` and `visual: solid | outline`, each prop has 6 possible states, so there are 6 × 6 = 36 combinations. `{ size: 'md', visual: 'solid' }` lands in one exact slot of a 36-slot array. No string keys, no hashing. A cache hit is a few multiplications and an array read.
 
-That only works while the table stays small. Every new prop multiplies the size, so the table is capped at 256 slots. Past that, Panda switches to a short list of the last 16 prop combinations, compared value by value.
+That only works while the table stays small. Every new prop multiplies the size, so the table is capped at 256 slots. Past that, Panda switches to a short list of the last 16 prop combinations, compared value by value. That's a different 16 from the cap in [part 5](/blog/the-ir-behind-your-ternary). That one limits how many class strings Panda inlines at a call site. This one is a cache that lives in the browser.
 
 Some calls skip the cache entirely:
 
-- A string that isn't a declared option, like a typo, is resolved without caching.
+- In the table, a string that isn't a declared option, like a typo, is resolved without caching. It has no slot to go in.
 - Objects and functions are never cached.
 
 ## Why `true` and `'true'` get two slots
@@ -113,7 +113,25 @@ Compound variants break that. A compound compiled to `v1 === true` matches `true
 
 ## sva: one string per slot
 
-A slot recipe compiles the same way, with one selection shared by every slot:
+A slot recipe compiles the same way, with one selection shared by every slot. This one:
+
+```ts
+const tabs = sva({
+  slots: ['root', 'trigger'],
+  className: 'tabs',
+  base: { root: { display: 'flex' }, trigger: { cursor: 'pointer' } },
+  variants: {
+    size: {
+      sm: { root: { gap: '4px' } },
+      lg: { root: { gap: '8px' }, trigger: { fontSize: '16px' } },
+    },
+  },
+  defaultVariants: { size: 'sm' },
+  compoundVariants: [{ size: 'lg', css: { trigger: { fontWeight: 'bold' } } }],
+})
+```
+
+ships as this:
 
 ```js
 const tabs = __pm((p = {}) => {
@@ -168,7 +186,7 @@ A call in the same file as the `cva` is different. It stays a call, even with st
 
 Not every recipe needs the full `cva` surface. When a recipe is exported or passed around as a value, other code might call `.raw()`, `.merge()`, `getVariantProps()` or `splitVariantProps()` on it. Those recipes get wrapped in `attachRecipe` (`__pr` above), which adds those methods at runtime from the config.
 
-When a recipe is only ever called in its own file, Panda knows nothing else will touch it. It gets the bare memoized function (`__pm`) and none of the extra methods.
+When a recipe is only ever called in its own file, Panda knows nothing else will touch it. It gets the bare memoized function (`__pm`) and none of the extra methods. A recipe with no variants doesn't even get the memo, since there's nothing to choose between.
 
 ## When Panda keeps the runtime cva
 
@@ -176,7 +194,7 @@ Panda doesn't compile a recipe when:
 
 - **The config isn't static.** If Panda can't read the whole recipe at build time, there's nothing to compile. [Part 4](/blog/panda-never-runs-your-code) covers what it can read.
 - **A compound selects a prop that isn't a variant.** The cache table only knows declared variants, so a compound like `{ size: 'sm', loading: true }` with no `loading` variant would make the table give wrong answers.
-- **Hashed class names are on.** Panda warns once per file and leaves recipes alone.
+- **Hashed class names are on.** Panda leaves recipes alone, and warns once per file for the ones it would have compiled.
 
 In all of those cases you get the runtime `cva` from the start of this post. It still works. It does more work per new combination.
 

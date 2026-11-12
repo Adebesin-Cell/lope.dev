@@ -36,7 +36,13 @@ export function App() {
 }
 ```
 
-And a `button` recipe in the config, with `size: sm | md | lg` and `tone: solid | ghost`.
+A second file turns the `button` recipe into a component:
+
+```tsx
+export const Button = styled('button', button)
+```
+
+And the recipe lives in the config, with `size: sm | md | lg` and `tone: solid | ghost`.
 
 ## Same reader as the build
 
@@ -63,7 +69,7 @@ keyframes      1 uses, 1 unique
 compositions   0 uses, 0 unique
 ```
 
-Then one section for each. Tokens are grouped by category:
+Then one section for each. Tokens are grouped by category (trimmed to four rows):
 
 ```txt
 Category     Used            Top tokens                                     Raw values   Files
@@ -80,7 +86,7 @@ Recipe   Variants       Top variants                                  Used in   
 button   3/5 (60.00%)   size.md (2), tone.ghost (1), tone.solid (1)   2 files   jsx 67%, fn 33%
 ```
 
-`size.sm` and `size.lg` never show up. Every button in the app is `md`.
+`size.sm` and `size.lg` never show up. Every button in the app is `md`. "Used as" splits the two files: the `<Button>` tags count as JSX, and the `styled('button', button)` line counts as a function call.
 
 Utilities, patterns, keyframes and compositions (text styles, layer styles, animation styles) each get a table too, and each ends with the list you act on:
 
@@ -99,7 +105,7 @@ Look at `gray.900` in the colors row. No file in the app uses it. It's used by `
 globalCss: { body: { color: 'gray.900' } }
 ```
 
-A use is anywhere a name is written: a source file, or a place in your config. `globalCss`, `staticCss` and recipe bodies all count. The "Used in" column lists them next to the files, like `1 file, globalCss, recipes.button`.
+A use is anywhere a name is written: a source file, or a place in your config. `globalCss` and `staticCss` count, and so do the bodies of recipes your app uses. A recipe that's only defined, never used, doesn't count. The "Used in" column lists them next to the files, like `1 file, globalCss, recipes.button`.
 
 Some names are only used through something else. The app never wrote `spin` as a keyframe. It wrote `animation: 'spin'`, which is the `spin` animation token, and that token points at the `spin` keyframe. So the keyframe reads `via animations.spin`. If it didn't, you could delete the keyframe and break the token without any warning.
 
@@ -113,9 +119,13 @@ A few more rules decide what counts as one name:
 
 The paragraph in the example has two values that aren't tokens: `#6366f1` and `16px`. That's the `Raw values` column. With `--json` you can see what Panda found:
 
-```json
-{ "prop": "color", "value": "#6366f1", "suggestions": [{ "token": "brand.500" }] }
-{ "prop": "padding", "value": "16px", "suggestions": [{ "token": "4" }] }
+```bash
+panda analyze --json | jq -c '.views.tokens.categories[].rawValues[]'
+```
+
+```txt
+{"prop":"color","value":"#6366f1","uses":1,"files":1,"suggestions":[{"token":"brand.500","semantic":false,"conditional":false}]}
+{"prop":"padding","value":"16px","uses":1,"files":1,"suggestions":[{"token":"4","semantic":false,"conditional":false}]}
 ```
 
 Panda compares each raw value with your tokens. `#6366f1` is exactly `brand.500`, and `16px` is spacing `4`. Those are two places where someone wrote a value the theme already had a name for.
@@ -156,7 +166,7 @@ For anything else, there's JSON:
 - **`--outfile report.json`** writes it to a file and still prints the tables.
 - **`--json`** prints it instead of the tables.
 
-The JSON has the summary, the per-category tables, and a flat `usages` list with the file, line and column of every use, so `jq` can answer "where is `brand.500` used?"
+The JSON has the summary, the per-category tables, and a flat `usages` list with the file, line and column of every use in your source, so `jq` can answer "where is `brand.500` used?" Uses from your config, like `gray.900` in `globalCss`, sit on each name's entry in the tables instead.
 
 ## Seeing it
 
