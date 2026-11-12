@@ -3,11 +3,18 @@ title: Know what your CSS actually uses
 description: "A practical guide to panda analyze. Find the tokens, recipe variants and keyframes nobody uses, track down hard-coded values, and check what Panda can see before you delete anything."
 seoTitle: "Know what your CSS actually uses: a guide to panda analyze in Panda CSS"
 date: 2026-11-12
+series: Panda internals
+part: 6.5
 ---
 
 ::subtitle
 A guide to `panda analyze`, for teams who want to clean up their Panda setup without breaking anything.
 ::
+
+::post-cover
+::
+
+*An interlude in the Panda internals series, between [part 6](/blog/how-panda-makes-cva-fast) and part 7. Another OVA. The parts so far explain how Panda works. This one is about a tool that helps your team use it well.*
 
 Every Panda project grows a little extra over time. A token nobody uses anymore. A recipe variant from a redesign. A keyframe someone added for one animation and then removed the animation. A hex code that should have been a token.
 
@@ -206,3 +213,5 @@ It shows token coverage per category, the most used tokens, and the hard-coded v
 - **When a style is missing:** check whether analyze sees it. If it doesn't, the build doesn't either.
 
 Full reference in the [Panda docs](https://panda-css.com/docs/design-systems/analyze).
+
+*Back to the internals next: part 7, cold vs warm, and how Panda's watch mode got fast. If you want to know why some values never show up in analyze, read [Panda never runs your code](/blog/panda-never-runs-your-code).*
