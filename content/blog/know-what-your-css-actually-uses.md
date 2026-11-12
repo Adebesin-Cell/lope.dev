@@ -1,26 +1,23 @@
 ---
 title: Know what your CSS actually uses
-description: "How panda analyze finds the tokens, recipes, utilities and keyframes your Panda CSS app uses, and the ones nobody does. What counts as a use, and what it can't see."
-seoTitle: "Know what your CSS actually uses: how panda analyze reports Panda CSS usage"
+description: "A practical guide to panda analyze. Find the tokens, recipe variants and keyframes nobody uses, track down hard-coded values, and check what Panda can see before you delete anything."
+seoTitle: "Know what your CSS actually uses: a guide to panda analyze in Panda CSS"
 date: 2026-11-12
-series: Panda internals
-part: 7
 ---
 
 ::subtitle
-How Panda finds what your app uses, and what nobody does.
+A guide to `panda analyze`, for teams who want to clean up their Panda setup without breaking anything.
 ::
 
-::post-cover
-::
+Every Panda project grows a little extra over time. A token nobody uses anymore. A recipe variant from a redesign. A keyframe someone added for one animation and then removed the animation. A hex code that should have been a token.
 
-*Panda internals, part 7. Start with [Build once, at build time](/blog/build-once-at-build-time) if you're new here.*
+None of that breaks the build, and that's the problem. Delete a token your app still uses and the build won't fail either. Panda writes the reference as a literal value, and the page quietly loses its color.
 
-Delete a token your app still uses and the build won't fail. Panda writes the reference as a literal value, and the page quietly loses its color.
+`panda analyze` tells you what your app actually uses. This post walks through the questions it answers, with real output from a small app.
 
-So before you remove anything from a theme, you want to know who uses it. That's what `panda analyze` answers.
+## The example app
 
-Here's a small app. One file with a heading, a paragraph and two buttons:
+One file with a heading, a paragraph and two buttons:
 
 ```tsx
 export function App() {
@@ -42,17 +39,11 @@ A second file turns the `button` recipe into a component:
 export const Button = styled('button', button)
 ```
 
-And the recipe lives in the config, with `size: sm | md | lg` and `tone: solid | ghost`.
+The recipe lives in the config, with `size: sm | md | lg` and `tone: solid | ghost`. There's also a `brand` color palette, a `spinSlow` keyframe, and one line of `globalCss`.
 
-## Same reader as the build
+## Start with the summary
 
-[Part 1](/blog/build-once-at-build-time) walked through how Panda reads your files: find the Panda calls, work out their values without running anything, and turn them into styles. `panda analyze` uses the same reader. It scans the files your config `include`s and asks the compiler what each one uses.
-
-It doesn't generate any CSS or write `styled-system`. It only reads and counts.
-
-That means the rules from [part 4](/blog/panda-never-runs-your-code) apply here too. If Panda can see a value at build time, analyze counts it. If it can't, analyze doesn't either.
-
-## What it prints
+Run it in the app:
 
 ```bash
 panda analyze --limit 5
@@ -69,7 +60,13 @@ keyframes      1 uses, 1 unique
 compositions   0 uses, 0 unique
 ```
 
-Then one section for each. Tokens are grouped by category (trimmed to four rows):
+Then you get one table per section: tokens, recipes, utilities, patterns, keyframes, and compositions (text styles, layer styles, animation styles). `--limit` caps how many rows each table shows. `--scope tokens` (or `recipes`, `keyframes`, and so on) prints just one section.
+
+The rest of this post is the questions you'd actually bring to it.
+
+## "Is this token safe to delete?"
+
+Tokens are grouped by category (trimmed to four rows):
 
 ```txt
 Category     Used            Top tokens                                     Raw values   Files
@@ -79,45 +76,37 @@ animations   1/4 (25.00%)    spin (1)                                       0   
 fontSizes    1/14 (7.14%)    xl (1)                                         0            1
 ```
 
-Recipes show which variant values get used:
+Two things to look at.
+
+**The percentage.** 3 of 292 colors is a small app on a big preset, which is expected. In a real design system, a category at 12% used is a palette you can shrink.
+
+**`gray.900`.** No file in the app uses it. It's used by `globalCss`:
+
+```ts
+globalCss: { body: { color: 'gray.900' } }
+```
+
+Analyze counts your config as well as your source files. `globalCss` and `staticCss` count, and so do the bodies of recipes your app uses. So a token that only appears in `globalCss` won't show up as unused, and you won't delete it by mistake.
+
+Once a name shows zero uses, the next step depends on how many apps use your theme:
+
+- **Zero uses in every app:** remove it.
+- **Any uses anywhere:** [deprecate it](https://panda-css.com/docs/design-systems/deprecations) first, so those apps get a warning before it disappears.
+
+## "Which recipe variants does anyone use?"
 
 ```txt
 Recipe   Variants       Top variants                                  Used in   Used as
 button   3/5 (60.00%)   size.md (2), tone.ghost (1), tone.solid (1)   2 files   jsx 67%, fn 33%
 ```
 
-`size.sm` and `size.lg` never show up. Every button in the app is `md`. "Used as" splits the two files: the `<Button>` tags count as JSX, and the `styled('button', button)` line counts as a function call.
+`size.sm` and `size.lg` never show up. Every button in the app is `md`. If that holds across your apps, those two variants are dead weight in the recipe.
 
-Utilities, patterns, keyframes and compositions (text styles, layer styles, animation styles) each get a table too, and each ends with the list you act on:
+"Used as" splits the two files: the `<Button>` tags count as JSX, and the `styled('button', button)` line counts as a function call.
 
-```txt
-Keyframes   1/5 used (20.00%)
-Keyframe   Uses   Used in
-spin       1      via animations.spin
-Unused (4): bounce, ping, pulse, spinSlow
-```
+## "Where did this hard-coded value come from?"
 
-## Your config counts too
-
-Look at `gray.900` in the colors row. No file in the app uses it. It's used by `globalCss`:
-
-```ts
-globalCss: { body: { color: 'gray.900' } }
-```
-
-A use is anywhere a name is written: a source file, or a place in your config. `globalCss` and `staticCss` count, and so do the bodies of recipes your app uses. A recipe that's only defined, never used, doesn't count. The "Used in" column lists them next to the files, like `1 file, globalCss, recipes.button`.
-
-Some names are only used through something else. The app never wrote `spin` as a keyframe. It wrote `animation: 'spin'`, which is the `spin` animation token, and that token points at the `spin` keyframe. So the keyframe reads `via animations.spin`. If it didn't, you could delete the keyframe and break the token without any warning.
-
-A few more rules decide what counts as one name:
-
-- **Shorthands count as their longhand.** `p` and `padding` are one row.
-- **Properties a utility writes for you aren't uses.** `truncate` sets `textOverflow`, but that doesn't count as you using `textOverflow`.
-- **Tokens Panda derives count as their source.** Using `colorPalette.500` or negative spacing like `-4` counts as using the token they came from.
-
-## Raw values
-
-The paragraph in the example has two values that aren't tokens: `#6366f1` and `16px`. That's the `Raw values` column. With `--json` you can see what Panda found:
+The paragraph has two values that aren't tokens: `#6366f1` and `16px`. That's the `Raw values` column in the tokens table. The JSON report shows what Panda matched them to:
 
 ```bash
 panda analyze --json | jq -c '.views.tokens.categories[].rawValues[]'
@@ -128,23 +117,36 @@ panda analyze --json | jq -c '.views.tokens.categories[].rawValues[]'
 {"prop":"padding","value":"16px","uses":1,"files":1,"suggestions":[{"token":"4","semantic":false,"conditional":false}]}
 ```
 
-Panda compares each raw value with your tokens. `#6366f1` is exactly `brand.500`, and `16px` is spacing `4`. Those are two places where someone wrote a value the theme already had a name for.
+`#6366f1` is exactly `brand.500`, and `16px` is spacing `4`. Someone wrote a value the theme already had a name for. When the brand color changes, the token updates and this paragraph doesn't. That's the kind of bug that's easy to ship and annoying to find later.
+
+Treat this list as a to-do list. Each entry already has the token it should be.
 
 A raw value only makes the list when Panda finds a matching token. A one-off `13px` with no matching token isn't flagged.
 
-## Unused, in what you scanned
+## "Where is this used?"
 
-"Unused" means no scanned file and no part of your config uses the name. That's narrower than "nobody uses it", in three ways:
+The JSON has a flat `usages` list with the file, line and column of every use in your source:
 
-- **Other apps.** If three apps share one design system, each app sees only its own code. Run it in every app before you remove something.
-- **Files outside `include`.** Analyze reads what your config tells it to read.
-- **Values Panda can't see.** `button({ size })`, where `size` comes from a prop, uses some size. Panda can't know which one, so none of them count.
+```bash
+panda analyze --json | jq -r '.usages[] | select(.name == "colors.brand.500") | "\(.file):\(.line)"'
+```
 
-For the same reason, run it in the app, not the design-system package. The app is where the tokens get used.
+That's the question you ask before renaming a token, or when you want to know which screens a change will touch. Uses from your config, like `gray.900` in `globalCss`, aren't in `usages`. They're listed on each name's entry in the tables instead.
 
-When the counts say zero, the next step depends on how many apps you have. Zero uses everywhere: remove it. Any uses at all: [deprecate it](https://panda-css.com/docs/design-systems/deprecations) first, so apps get warned before it disappears.
+## "Why is this keyframe still here?"
 
-## Lists you can act on
+```txt
+Keyframes   1/5 used (20.00%)
+Keyframe   Uses   Used in
+spin       1      via animations.spin
+Unused (4): bounce, ping, pulse, spinSlow
+```
+
+The app never wrote `spin` as a keyframe. It wrote `animation: 'spin'`, which is the `spin` animation token, and that token points at the `spin` keyframe. So the keyframe shows `via animations.spin`. Delete it and the animation token breaks, even though no file names it directly.
+
+`spinSlow` is the one this app added and then stopped using. That's the one to remove.
+
+## "Give me the list for the PR"
 
 `--unused` skips the tables and prints only the names nobody uses, one per line, with no cap:
 
@@ -159,34 +161,48 @@ pulse
 spinSlow
 ```
 
-That's the list for a deprecation PR, or something to diff between two runs.
+Paste that into a cleanup PR, or save it and diff it against next month's run to see what's become unused since.
 
-For anything else, there's JSON:
+For anything you want to keep or script, `--outfile report.json` writes the full report and still prints the tables. `--json` prints the report instead of the tables.
 
-- **`--outfile report.json`** writes it to a file and still prints the tables.
-- **`--json`** prints it instead of the tables.
+## "Why is my style missing?"
 
-The JSON has the summary, the per-category tables, and a flat `usages` list with the file, line and column of every use in your source, so `jq` can answer "where is `brand.500` used?" Uses from your config, like `gray.900` in `globalCss`, sit on each name's entry in the tables instead.
+Analyze reads your files the same way the build does. It finds your Panda calls and works out their values without running your code. So if analyze can't see a value, the build couldn't either, and there's no CSS for it.
 
-## Seeing it
+Say a component does this:
 
-`panda analyze` used to ship its own HTML report and a local server. In v2 that moved out of the CLI and into [Panda Studio](https://panda-css.com/docs/theming/studio), on its Usage page. You can open it two ways:
+```tsx
+<button className={button({ size: 'sm', tone })} />
+```
+
+`size.sm` counts. `tone` comes from a prop, so Panda can't know which tone it is, and nothing counts for it. If one of the tones has no CSS in your stylesheet, this is why. [Panda never runs your code](/blog/panda-never-runs-your-code) covers what Panda can and can't follow, and how to write values it can see.
+
+A quick check: if a name you know you wrote is missing from `usages`, Panda didn't see it.
+
+## Seeing it all at once
+
+For a visual version, open the Usage page in [Panda Studio](https://panda-css.com/docs/theming/studio). There are two ways in:
 
 - **`panda studio`** runs a local server that rescans as you save.
 - **Studio's Usage page** can open a `report.json` you made with `--outfile`.
 
-It shows token coverage per category, the most used tokens, and the raw values with their suggested tokens next to your code.
+It shows token coverage per category, the most used tokens, and the hard-coded values with their suggested tokens. It also flags token names that don't exist in your theme, like a typo such as `bleu.500`, as Unknown.
 
-## What this means for your code
+## Things to keep in mind
 
-- **Run it in each app, not the design-system package.** That's where the uses are.
-- **Read "unused" as "unused in what I scanned".** Check every app that consumes the theme.
-- **Prefer values Panda can see.** Every value Panda can read at build time is also a value analyze can count. A variant passed through a variable counts as nothing.
-- **Use the raw values list as a to-do list.** Each one has a token waiting for it.
-- **Deprecate before you delete.** A zero in one app isn't a zero everywhere.
+"Unused" means unused in what analyze scanned. That's narrower than "nobody uses it":
 
-## The same reading, a different question
+- **Run it in the app, not the design-system package.** The app is where the tokens get used.
+- **Run it in every app.** If three apps share one design system, each one sees only its own code.
+- **Only files in your config's `include` are scanned.** Code outside it doesn't count.
+- **Values Panda can't see don't count.** A variant passed through a variable counts as nothing.
 
-Panda already reads every file to build your CSS. Analyze reads them the same way and asks a different question: which parts of your theme does anything actually use?
+## The short version
 
-*Next in the series: cold vs warm, and how Panda's watch mode got fast. If you missed the earlier parts: [Build once, at build time](/blog/build-once-at-build-time), [Every style is an atom](/blog/every-style-is-an-atom), [Look it up once](/blog/look-it-up-once), [Panda never runs your code](/blog/panda-never-runs-your-code), [What runtime means in Panda](/blog/what-runtime-means-in-panda), [The IR behind your ternary](/blog/the-ir-behind-your-ternary), [How Panda makes cva fast](/blog/how-panda-makes-cva-fast).*
+- **Before deleting a token, variant or keyframe:** run `panda analyze` in every app that uses the theme.
+- **To find hard-coded values:** check the raw values. Each one comes with the token it should be.
+- **To find where something is used:** filter `usages` in the JSON.
+- **For a cleanup PR:** use `--unused`.
+- **When a style is missing:** check whether analyze sees it. If it doesn't, the build doesn't either.
+
+Full reference in the [Panda docs](https://panda-css.com/docs/design-systems/analyze).
