@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ark } from '@ark-ui/vue/factory'
 import { css } from 'styled-system/css'
-import { isMainPart, seriesPath } from '~/utils/series'
 
 usePageSeo({
   title: 'Blog — Adebesin Tolulope',
@@ -10,23 +9,11 @@ usePageSeo({
 })
 
 const { data } = await useAsyncData('blog-list', () =>
-  queryCollection('blog')
-    .select('title', 'description', 'date', 'lang', 'draft', 'path', 'readingTime', 'series', 'part')
-    .order('date', 'DESC')
-    .all(),
+  queryCollection('blog').select('title', 'date', 'lang', 'draft', 'path', 'readingTime').order('date', 'DESC').all(),
 )
 
+const { isRead } = useReads()
 const posts = computed(() => (data.value ?? []).filter((p) => !p.draft))
-
-const latest = computed(() => posts.value[0])
-
-const seriesList = computed(() => {
-  const counts = new Map<string, number>()
-  for (const p of posts.value) {
-    if (p.series && isMainPart(p.part)) counts.set(p.series, (counts.get(p.series) ?? 0) + 1)
-  }
-  return [...counts].map(([name, total]) => ({ name, total, path: seriesPath(name) }))
-})
 
 function year(d: string) {
   return new Date(d).getUTCFullYear()
@@ -92,36 +79,7 @@ const date = css({
   whiteSpace: 'nowrap',
 })
 const faint = css({ color: 'ink.faint' })
-const featured = css({ display: 'grid', gap: '3', mb: '12' })
-const featuredLabel = css({
-  fontFamily: 'mono',
-  fontSize: 'xs',
-  color: 'ink.faint',
-  textTransform: 'uppercase',
-  letterSpacing: 'wider',
-})
-const featuredCard = css({
-  display: 'block',
-  p: '4',
-  rounded: 'lg',
-  borderWidth: '1px',
-  borderColor: 'ink/10',
-  transition: 'colors',
-  _hover: { borderColor: 'ink/25' },
-})
-const featuredTitle = css({ display: 'block', fontSize: 'lg', fontWeight: 'medium', lineHeight: 'snug' })
-const featuredDesc = css({ mt: '1.5', fontSize: 'sm', color: 'ink.muted', lineHeight: 'relaxed' })
-const featuredMeta = css({ display: 'block', mt: '2', fontSize: 'xs', color: 'ink.faint' })
-const seriesLink = css({
-  display: 'inline-flex',
-  alignItems: 'center',
-  gap: '1.5',
-  fontSize: 'sm',
-  color: 'ink.muted',
-  w: 'fit',
-  transition: 'colors',
-  _hover: { color: 'ink' },
-})
+const readMark = css({ fontSize: 'sm', color: 'ink.faint', alignSelf: 'center' })
 </script>
 
 <template>
@@ -129,22 +87,6 @@ const seriesLink = css({
     <SubNav />
     <ark.h1 :class="srOnly"> Blog </ark.h1>
     <ark.p :class="intro"> Notes on open source, engineering with LLMs, and projects I'm building. </ark.p>
-
-    <ark.section v-if="latest" :class="featured" aria-labelledby="blog-start-here">
-      <ark.h2 id="blog-start-here" :class="featuredLabel"> Start here </ark.h2>
-      <NuxtLink :to="latest.path" :class="featuredCard">
-        <ark.span :class="featuredTitle">{{ latest.title }}</ark.span>
-        <ark.p v-if="latest.description" :class="featuredDesc">{{ latest.description }}</ark.p>
-        <ark.span :class="featuredMeta">
-          {{ fmt(latest.date) }}<template v-if="latest.readingTime"> · {{ latest.readingTime }}</template>
-          <template v-if="latest.series"> · {{ latest.series }}</template>
-        </ark.span>
-      </NuxtLink>
-      <NuxtLink v-for="s in seriesList" :key="s.path" :to="s.path" :class="seriesLink">
-        Read the {{ s.name }} series · {{ s.total }} {{ s.total === 1 ? 'part' : 'parts' }}
-        <ark.span class="i-lucide-arrow-right" aria-hidden="true" />
-      </NuxtLink>
-    </ark.section>
 
     <ark.div v-if="!posts.length" :class="empty"> No posts yet — drafts in flight. </ark.div>
 
@@ -166,6 +108,8 @@ const seriesLink = css({
                 {{ post.lang }}
               </ark.span>
               <ark.span :class="postTitle">{{ post.title }}</ark.span>
+              <ark.span v-if="isRead(post.path)" :class="['i-lucide-check', readMark]" title="Read" />
+              <ark.span v-if="isRead(post.path)" :class="srOnly">(read)</ark.span>
             </ark.span>
             <ark.span :class="date">
               <ark.span>{{ fmt(post.date) }}</ark.span>

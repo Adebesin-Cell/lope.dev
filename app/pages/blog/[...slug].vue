@@ -82,6 +82,13 @@ const profiles = [
   },
 ]
 const track = useTrack()
+const { markRead } = useReads()
+const endEl = ref<HTMLElement>()
+useIntersectionObserver(endEl, ([entry]) => {
+  if (entry?.isIntersecting && post.value && !post.value.draft && markRead(route.path)) {
+    track('post_finished', { series: post.value.series ?? '' })
+  }
+})
 const copied = ref(false)
 async function copyLink() {
   if (!import.meta.client) return
@@ -202,6 +209,7 @@ const discuss = css({ color: 'ink', textDecoration: 'underline', _hover: { color
     </ark.header>
 
     <ContentRenderer :value="post" :class="['prose-content', proseClass]" />
+    <span ref="endEl" aria-hidden="true" />
 
     <HighlightShare :title="shareTitle" :url="postUrl" :date="post.date" />
 

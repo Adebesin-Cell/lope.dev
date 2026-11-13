@@ -25,6 +25,8 @@ const skip = css({
     outlineColor: 'ink/40',
   },
 })
+const route = useRoute()
+const showInstants = computed(() => route.path === '/' || route.path === '/blog')
 const main = css({
   position: 'relative',
   mx: 'auto',
@@ -48,6 +50,7 @@ const main = css({
     </ark.main>
     <AppFooter />
     <ScrollToTop />
+    <BlogInstants v-if="showInstants" />
     <ImageZoom />
   </ark.div>
 </template>

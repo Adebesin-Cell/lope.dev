@@ -77,7 +77,29 @@ const title = css({
   color: 'ink',
   mb: '8',
 })
-const rows = css({ lineHeight: '[2.25rem]', '& .chip': { me: '1' } })
+const rows = css({
+  display: 'grid',
+  gridTemplateColumns: { base: '1fr', sm: '[max-content 1fr]' },
+  columnGap: '6',
+  rowGap: { base: '2', sm: '3' },
+  alignItems: 'baseline',
+})
+const rowLabel = css({
+  fontFamily: { base: 'mono', sm: 'inherit' },
+  fontSize: { base: 'xs', sm: 'inherit' },
+  letterSpacing: { base: 'widest', sm: 'normal' },
+  textTransform: { base: 'uppercase', sm: 'none' },
+  color: { base: 'ink.faint', sm: 'ink.muted' },
+  lineHeight: { base: 'normal', sm: 'inherit' },
+})
+const rowChips = css({
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: '1.5',
+  m: '0',
+  mb: { base: '3', sm: '0' },
+  lineHeight: 'normal',
+})
 const find = css({ pt: '6', borderTopWidth: '1px', borderColor: 'ink/10' })
 const findLabel = css({ mb: '3' })
 const socialList = css({ display: 'flex', flexWrap: 'wrap', columnGap: '4', rowGap: '2' })
@@ -129,13 +151,14 @@ const roleRows = [
 
     <ark.p> Hi, I'm Adebesin Tolulope, a design engineer and open sourcer. </ark.p>
 
-    <ark.p :class="rows">
-      <template v-for="row in roleRows" :key="row.label">
-        {{ row.label }}
-        <Chip v-for="c in row.chips" :key="c.label" v-bind="c" />
-        <br />
+    <ark.dl :class="rows">
+      <template v-for="r in roleRows" :key="r.label">
+        <ark.dt :class="rowLabel">{{ r.label }}</ark.dt>
+        <ark.dd :class="rowChips">
+          <Chip v-for="c in r.chips" :key="c.label" v-bind="c" />
+        </ark.dd>
       </template>
-    </ark.p>
+    </ark.dl>
 
     <ark.p>
       I love building, for other people's problems and my own. I enjoy taking a project from idea to shipped, and I'm
