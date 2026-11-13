@@ -2,6 +2,7 @@
 import { ark } from '@ark-ui/vue/factory'
 import { css } from 'styled-system/css'
 import { token } from 'styled-system/tokens'
+import { isMainPart } from '~/utils/series'
 
 type Mood = 'happy' | 'wow'
 type Spot = 'home' | 'blog' | 'post' | 'projects' | 'play' | 'talks' | 'other'
@@ -24,6 +25,7 @@ interface Run {
 const HIDDEN_KEY = 'lope:panda-hidden'
 const GREETED_KEY = 'lope:panda-greeted'
 const SAY_EVENT = 'lope:panda-say'
+const CHEERED_KEY = 'lope:panda-cheered'
 const BUBBLE_MS = 4000
 const MAX_BUBBLE_MS = 9000
 const MAX_QUEUE = 4
@@ -113,6 +115,43 @@ const GREETINGS: Record<Spot, string> = {
 const route = useRoute()
 const track = useTrack()
 const { reads } = useReads()
+const { data: seriesPosts } = useAsyncData('panda-series', () =>
+  queryCollection('blog').select('path', 'series', 'part', 'draft').all(),
+)
+
+const finishedSeries = computed(() => {
+  const parts = new Map<string, string[]>()
+  for (const p of seriesPosts.value ?? []) {
+    if (p.draft || !p.series || !isMainPart(p.part)) continue
+    parts.set(p.series, [...(parts.get(p.series) ?? []), p.path])
+  }
+  const done = new Set(reads.value)
+  return [...parts].filter(([, paths]) => paths.every((path) => done.has(path))).map(([name]) => name)
+})
+
+function cheerLine(series: string) {
+  return series === 'Panda internals'
+    ? 'You finished Panda internals! Certified panda nerd. 🐼'
+    : `You finished ${series}! Every single part. Respect.`
+}
+
+function cheerFinished() {
+  if (!ready.value || hidden.value) return
+  let cheered: string[] = []
+  try {
+    const saved: unknown = JSON.parse(localStorage.getItem(CHEERED_KEY) ?? '[]')
+    if (Array.isArray(saved)) cheered = saved.filter((n): n is string => typeof n === 'string')
+  } catch {}
+  const fresh = finishedSeries.value.filter((name) => !cheered.includes(name))
+  if (!fresh.length) return
+  for (const name of fresh) {
+    say(cheerLine(name), 'wow', true)
+    track('series_cheered', { series: name })
+  }
+  try {
+    localStorage.setItem(CHEERED_KEY, JSON.stringify([...cheered, ...fresh]))
+  } catch {}
+}
 
 const ready = ref(false)
 const hidden = ref(false)
@@ -356,6 +395,11 @@ onMounted(() => {
     } catch {}
     say(greeting(), 'happy')
   }, 2000)
+})
+
+watch(finishedSeries, cheerFinished)
+watch(hidden, (isHidden) => {
+  if (!isHidden) later(cheerFinished, 1500)
 })
 
 watch(reduceMotion, (reduce) => {
@@ -604,7 +648,8 @@ const hideButton = css({
   position: absolute;
   inset-block-end: 0;
   inset-inline-start: 0;
-  width: 100%;
+  width: max-content;
+  max-width: min(16rem, calc(100vw - 2rem));
   transition:
     opacity 0.18s ease,
     transform 0.18s ease;
