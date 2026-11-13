@@ -167,8 +167,6 @@ const stack = css({
   cursor: 'pointer',
 })
 const stackHotStyles = css.raw({ bg: 'accent', borderColor: 'accent', color: 'accent.fg' })
-const stackCard = css(stackCardStyles)
-const stackCardHot = css(stackCardStyles, stackHotStyles)
 const bubble = css({
   display: { base: 'none', md: 'block' },
   position: 'absolute',
@@ -224,6 +222,8 @@ const stackCardStyles = css.raw({
   _first: { bg: 'ink/8' },
   color: 'ink.muted',
 })
+const stackCard = css(stackCardStyles)
+const stackCardHot = css(stackCardStyles, stackHotStyles)
 const stackMark = css({
   fontSize: 'md',
   fontWeight: 'black',
