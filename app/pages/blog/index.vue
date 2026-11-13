@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { ark } from '@ark-ui/vue/factory'
 import { css } from 'styled-system/css'
-import { mediumPosts } from '~/data/medium-posts'
-
-const NuxtLink = resolveComponent('NuxtLink')
+import { isMainPart, seriesPath } from '~/utils/series'
 
 usePageSeo({
   title: 'Blog — Adebesin Tolulope',
@@ -11,47 +9,31 @@ usePageSeo({
     'Adebesin Tolulope on Panda CSS internals, design systems, open source in the Chakra ecosystem, engineering with LLMs, and building BethelFlow.',
 })
 
-interface PostItem {
-  title: string
-  date: string
-  lang?: string
-  readingTime?: string
-  path?: string
-  external?: string
-}
-
 const { data } = await useAsyncData('blog-list', () =>
-  queryCollection('blog').select('title', 'date', 'lang', 'draft', 'path', 'readingTime').order('date', 'DESC').all(),
+  queryCollection('blog')
+    .select('title', 'description', 'date', 'lang', 'draft', 'path', 'readingTime', 'series', 'part')
+    .order('date', 'DESC')
+    .all(),
 )
 
-const posts = computed<PostItem[]>(() => {
-  const onSite: PostItem[] = (data.value ?? [])
-    .filter((p) => !p.draft)
-    .map((p) => ({
-      title: p.title,
-      date: p.date,
-      lang: p.lang,
-      readingTime: p.readingTime,
-      path: p.path,
-    }))
+const posts = computed(() => (data.value ?? []).filter((p) => !p.draft))
 
-  const external: PostItem[] = mediumPosts.map((m) => ({
-    title: m.title,
-    date: m.date,
-    lang: m.lang,
-    readingTime: m.readingTime,
-    external: m.url,
-  }))
+const latest = computed(() => posts.value[0])
 
-  return [...onSite, ...external].toSorted((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+const seriesList = computed(() => {
+  const counts = new Map<string, number>()
+  for (const p of posts.value) {
+    if (p.series && isMainPart(p.part)) counts.set(p.series, (counts.get(p.series) ?? 0) + 1)
+  }
+  return [...counts].map(([name, total]) => ({ name, total, path: seriesPath(name) }))
 })
 
 function year(d: string) {
-  return new Date(d).getFullYear()
+  return new Date(d).getUTCFullYear()
 }
 
 function fmt(d: string) {
-  return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+  return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' })
 }
 
 const srOnly = css({ srOnly: true })
@@ -101,7 +83,6 @@ const langTag = css({
   alignSelf: 'center',
 })
 const postTitle = css({ fontSize: 'md', lineHeight: 'snug' })
-const externalIcon = css({ fontSize: 'xs', color: 'ink.faint', alignSelf: 'center' })
 const date = css({
   display: 'flex',
   alignItems: 'center',
@@ -111,6 +92,36 @@ const date = css({
   whiteSpace: 'nowrap',
 })
 const faint = css({ color: 'ink.faint' })
+const featured = css({ display: 'grid', gap: '3', mb: '12' })
+const featuredLabel = css({
+  fontFamily: 'mono',
+  fontSize: 'xs',
+  color: 'ink.faint',
+  textTransform: 'uppercase',
+  letterSpacing: 'wider',
+})
+const featuredCard = css({
+  display: 'block',
+  p: '4',
+  rounded: 'lg',
+  borderWidth: '1px',
+  borderColor: 'ink/10',
+  transition: 'colors',
+  _hover: { borderColor: 'ink/25' },
+})
+const featuredTitle = css({ display: 'block', fontSize: 'lg', fontWeight: 'medium', lineHeight: 'snug' })
+const featuredDesc = css({ mt: '1.5', fontSize: 'sm', color: 'ink.muted', lineHeight: 'relaxed' })
+const featuredMeta = css({ display: 'block', mt: '2', fontSize: 'xs', color: 'ink.faint' })
+const seriesLink = css({
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: '1.5',
+  fontSize: 'sm',
+  color: 'ink.muted',
+  w: 'fit',
+  transition: 'colors',
+  _hover: { color: 'ink' },
+})
 </script>
 
 <template>
@@ -119,10 +130,26 @@ const faint = css({ color: 'ink.faint' })
     <ark.h1 :class="srOnly"> Blog </ark.h1>
     <ark.p :class="intro"> Notes on open source, engineering with LLMs, and projects I'm building. </ark.p>
 
+    <ark.section v-if="latest" :class="featured" aria-labelledby="blog-start-here">
+      <ark.h2 id="blog-start-here" :class="featuredLabel"> Start here </ark.h2>
+      <NuxtLink :to="latest.path" :class="featuredCard">
+        <ark.span :class="featuredTitle">{{ latest.title }}</ark.span>
+        <ark.p v-if="latest.description" :class="featuredDesc">{{ latest.description }}</ark.p>
+        <ark.span :class="featuredMeta">
+          {{ fmt(latest.date) }}<template v-if="latest.readingTime"> · {{ latest.readingTime }}</template>
+          <template v-if="latest.series"> · {{ latest.series }}</template>
+        </ark.span>
+      </NuxtLink>
+      <NuxtLink v-for="s in seriesList" :key="s.path" :to="s.path" :class="seriesLink">
+        Read the {{ s.name }} series · {{ s.total }} {{ s.total === 1 ? 'part' : 'parts' }}
+        <ark.span class="i-lucide-arrow-right" aria-hidden="true" />
+      </NuxtLink>
+    </ark.section>
+
     <ark.div v-if="!posts.length" :class="empty"> No posts yet — drafts in flight. </ark.div>
 
     <ark.ul :class="list">
-      <template v-for="(post, idx) in posts" :key="post.external ?? post.path">
+      <template v-for="(post, idx) in posts" :key="post.path">
         <ark.li
           v-if="idx === 0 || year(post.date) !== year(posts[idx - 1]?.date ?? '')"
           :id="`y${year(post.date)}`"
@@ -133,23 +160,18 @@ const faint = css({ color: 'ink.faint' })
           <ark.span :class="yearText" :data-text="year(post.date)" />
         </ark.li>
         <ark.li :class="['slide-enter-content', item]">
-          <component
-            :is="post.external ? 'a' : NuxtLink"
-            v-bind="post.external ? { href: post.external, target: '_blank', rel: 'noopener' } : { to: post.path }"
-            :class="row"
-          >
+          <NuxtLink :to="post.path" :class="row">
             <ark.span :class="titleRow">
               <ark.span v-if="post.lang" :class="langTag">
                 {{ post.lang }}
               </ark.span>
               <ark.span :class="postTitle">{{ post.title }}</ark.span>
-              <ark.span v-if="post.external" :class="['i-lucide-arrow-up-right', externalIcon]" aria-hidden="true" />
             </ark.span>
             <ark.span :class="date">
               <ark.span>{{ fmt(post.date) }}</ark.span>
               <ark.span v-if="post.readingTime" :class="faint">· {{ post.readingTime }}</ark.span>
             </ark.span>
-          </component>
+          </NuxtLink>
         </ark.li>
       </template>
     </ark.ul>
