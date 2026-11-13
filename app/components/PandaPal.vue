@@ -254,7 +254,10 @@ function stopTimers() {
   gapTimer = undefined
 }
 
-function hide() {
+const peekEl = ref<HTMLButtonElement>()
+const spriteEl = ref<HTMLButtonElement>()
+
+async function hide() {
   stopTimers()
   hidden.value = true
   message.value = null
@@ -262,6 +265,24 @@ function hide() {
   try {
     localStorage.setItem(HIDDEN_KEY, '1')
   } catch {}
+  track('panda_hidden', { route: route.path })
+  blinkLoop()
+  await nextTick()
+  peekEl.value?.focus()
+}
+
+async function unhide() {
+  stopTimers()
+  hidden.value = false
+  try {
+    localStorage.removeItem(HIDDEN_KEY)
+  } catch {}
+  track('panda_back', { route: route.path })
+  blinkLoop()
+  fidgetLoop()
+  await nextTick()
+  spriteEl.value?.focus()
+  say("I'm back. Missed me?", 'wow')
 }
 
 function isSayDetail(value: unknown): value is { text: string; mood?: Mood } {
@@ -319,9 +340,9 @@ onMounted(() => {
     hidden.value = localStorage.getItem(HIDDEN_KEY) === '1'
   } catch {}
   ready.value = true
+  blinkLoop()
   if (hidden.value) return
 
-  blinkLoop()
   fidgetLoop()
 
   let greeted = false
@@ -403,6 +424,20 @@ const bubble = css({
     bg: 'ink',
   },
 })
+const peek = css({
+  position: 'fixed',
+  zIndex: '40',
+  bottom: { base: '[-22px]', sm: '[-34px]' },
+  insetStart: { base: '2', sm: '6' },
+  w: { base: '10', sm: '[60px]' },
+  h: { base: '10', sm: '[60px]' },
+  cursor: 'pointer',
+  color: 'ink',
+  transition: '[transform 0.35s cubic-bezier(0.3, 1.6, 0.5, 1)]',
+  _hover: { transform: '[translateY(-10px)]' },
+  _focusVisible: { transform: '[translateY(-10px)]' },
+  _motionReduce: { transition: '[none]' },
+})
 const hideButton = css({
   position: 'absolute',
   top: '0',
@@ -444,7 +479,7 @@ const hideButton = css({
           <ark.p v-if="message" :key="message.id" :class="[bubble, 'panda-bubble']">{{ message.text }}</ark.p>
         </Transition>
       </ark.div>
-      <ark.button type="button" :class="sprite" aria-label="Panda, say something" @click="poke">
+      <button ref="spriteEl" type="button" :class="sprite" aria-label="Panda, say something" @click="poke">
         <ark.span
           :class="['panda-jump', action && `is-${action}`]"
           @animationend="action = null"
@@ -463,11 +498,27 @@ const hideButton = css({
             </template>
           </svg>
         </ark.span>
-      </ark.button>
+      </button>
       <ark.button type="button" :class="hideButton" aria-label="Hide the panda" @click="hide">
         <ark.span class="i-lucide-x" aria-hidden="true" />
       </ark.button>
     </ark.div>
+    <button
+      v-else-if="ready"
+      ref="peekEl"
+      type="button"
+      :class="peek"
+      aria-label="Bring the panda back"
+      title="Bring the panda back"
+      @click="unhide"
+    >
+      <svg :class="art" viewBox="-1 -1 20 20" shape-rendering="crispEdges" aria-hidden="true" focusable="false">
+        <rect v-for="r in runs" :key="`${r.x}-${r.y}`" :x="r.x" :y="r.y" :width="r.w" height="1" :fill="r.fill" />
+        <template v-if="!blinking">
+          <rect v-for="g in GLINTS" :key="g.x" :x="g.x" :y="g.y" width="1" height="1" :fill="FILLS.w" />
+        </template>
+      </svg>
+    </button>
   </ClientOnly>
 </template>
 

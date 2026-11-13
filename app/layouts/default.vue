@@ -52,5 +52,8 @@ const main = css({
     <ScrollToTop />
     <BlogInstants v-if="showInstants" />
     <ImageZoom />
+    <SecretMode />
+    <TalkingCursor />
+    <PandaPal />
   </ark.div>
 </template>
