@@ -77,7 +77,29 @@ const title = css({
   color: 'ink',
   mb: '8',
 })
-const rows = css({ lineHeight: '[2.25rem]', '& .chip': { me: '1' } })
+const rows = css({
+  display: 'grid',
+  gridTemplateColumns: { base: '1fr', sm: '[max-content 1fr]' },
+  columnGap: '6',
+  rowGap: { base: '2', sm: '3' },
+  alignItems: 'baseline',
+})
+const rowLabel = css({
+  fontFamily: { base: 'mono', sm: 'inherit' },
+  fontSize: { base: 'xs', sm: 'inherit' },
+  letterSpacing: { base: 'widest', sm: 'normal' },
+  textTransform: { base: 'uppercase', sm: 'none' },
+  color: { base: 'ink.faint', sm: 'ink.muted' },
+  lineHeight: { base: 'normal', sm: 'inherit' },
+})
+const rowChips = css({
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: '1.5',
+  m: '0',
+  mb: { base: '3', sm: '0' },
+  lineHeight: 'normal',
+})
 const find = css({ pt: '6', borderTopWidth: '1px', borderColor: 'ink/10' })
 const findLabel = css({ mb: '3' })
 const socialList = css({ display: 'flex', flexWrap: 'wrap', columnGap: '4', rowGap: '2' })
@@ -94,7 +116,14 @@ const socials = [
 const roleRows = [
   {
     label: 'Working with',
-    chips: [{ logo: '/brands/iq.svg', label: 'IQ Industries', href: 'https://iqindustries.com/' }],
+    chips: [
+      {
+        logo: '/brands/iq.svg',
+        label: 'IQ Industries',
+        href: 'https://iqindustries.com/',
+        note: "the team I'm working with",
+      },
+    ],
   },
   {
     label: 'Core maintainer at',
@@ -104,21 +133,50 @@ const roleRows = [
         color: '#4FD1C5',
         label: 'Chakra UI',
         href: 'https://github.com/chakra-ui/chakra-ui',
+        note: 'core maintainer · say hi to Chakra',
       },
-      { icon: 'i-logos-pandacss-icon', label: 'Panda', href: 'https://github.com/chakra-ui/panda' },
-      { logo: '/brands/ark.png', label: 'Ark UI', href: 'https://github.com/chakra-ui/ark' },
-      { logo: '/brands/zag.png', label: 'Zag', href: 'https://github.com/chakra-ui/zag' },
+      {
+        icon: 'i-logos-pandacss-icon',
+        label: 'Panda',
+        href: 'https://github.com/chakra-ui/panda',
+        note: 'core maintainer · writes the internals series',
+      },
+      {
+        logo: '/brands/ark.png',
+        label: 'Ark UI',
+        href: 'https://github.com/chakra-ui/ark',
+        note: 'core maintainer · Ark UI too',
+      },
+      {
+        logo: '/brands/zag.png',
+        label: 'Zag',
+        href: 'https://github.com/chakra-ui/zag',
+        note: 'core maintainer · Zag as well',
+      },
     ],
   },
   {
     label: 'Contributing to',
     chips: [
-      { logo: '/brands/npmx.svg', logoLight: '/brands/npmx-light.svg', label: 'npmx.dev', href: 'https://npmx.dev' },
+      {
+        logo: '/brands/npmx.svg',
+        logoLight: '/brands/npmx-light.svg',
+        label: 'npmx.dev',
+        href: 'https://npmx.dev',
+        note: 'contributing here',
+      },
     ],
   },
   {
     label: 'Currently building',
-    chips: [{ logo: '/brands/bethelflow.svg', label: 'BethelFlow', href: 'https://www.bethelflow.com/' }],
+    chips: [
+      {
+        logo: '/brands/bethelflow.svg',
+        label: 'BethelFlow',
+        href: 'https://www.bethelflow.com/',
+        note: "what I'm building right now",
+      },
+    ],
   },
 ]
 </script>
@@ -129,38 +187,61 @@ const roleRows = [
 
     <ark.p> Hi, I'm Adebesin Tolulope, a design engineer and open sourcer. </ark.p>
 
-    <ark.p :class="rows">
-      <template v-for="row in roleRows" :key="row.label">
-        {{ row.label }}
-        <Chip v-for="c in row.chips" :key="c.label" v-bind="c" />
-        <br />
+    <ark.dl :class="rows">
+      <template v-for="r in roleRows" :key="r.label">
+        <ark.dt :class="rowLabel">{{ r.label }}</ark.dt>
+        <ark.dd :class="rowChips">
+          <Chip v-for="c in r.chips" :key="c.label" v-bind="c" />
+        </ark.dd>
       </template>
-    </ark.p>
+    </ark.dl>
 
     <ark.p>
       I love building, for other people's problems and my own. I enjoy taking a project from idea to shipped, and I'm
       rarely idle for long. Everything I've made is on my
-      <Chip to="/projects" label="projects" icon="i-lucide-folder-git-2" /> page.
+      <Chip to="/projects" label="projects" icon="i-lucide-folder-git-2" note="everything I've made" /> page.
     </ark.p>
 
     <ark.p>
       Right now that's
-      <Chip href="https://www.bethelflow.com/" label="BethelFlow" logo="/brands/bethelflow.svg" />, which takes the
-      manual work out of running a church so churches can spend their time on their people. For fun, I tinker with
-      open-source tools in my
-      <Chip href="https://studio.adebesin.com" label="Montcha" logo="/brands/montcha.png" /> studio and keep experiments
-      in <Chip to="/play" label="play" icon="i-lucide-gamepad-2" />.
+      <Chip
+        href="https://www.bethelflow.com/"
+        label="BethelFlow"
+        logo="/brands/bethelflow.svg"
+        note="less church admin, more people time"
+      />, which takes the manual work out of running a church so churches can spend their time on their people. For fun,
+      I tinker with open-source tools in my
+      <Chip
+        href="https://studio.adebesin.com"
+        label="Montcha"
+        logo="/brands/montcha.png"
+        note="open-source tinkering, for fun"
+      />
+      studio and keep experiments in
+      <Chip to="/play" label="play" icon="i-lucide-gamepad-2" note="experiments live here" />.
     </ark.p>
 
     <ark.p>
-      I write a <Chip to="/blog/build-once-at-build-time" label="series" icon="i-lucide-newspaper" />
+      I write a
+      <Chip
+        to="/blog/build-once-at-build-time"
+        label="series"
+        icon="i-lucide-newspaper"
+        note="how Panda CSS works inside"
+      />
       on how Panda CSS works inside, and gave my first talk at
       <Chip
         href="https://sailsconf.com/2026/talks/17347112-5f4c-4086-bd0d-013eb2d2ff77"
         label="SailsConf"
         icon="i-lucide-mic"
+        note="my first talk!"
       />. I volunteer with
-      <Chip href="https://4herfrika.org" label="4Herfrika" logo="/brands/4herfrika.png" />
+      <Chip
+        href="https://4herfrika.org"
+        label="4Herfrika"
+        logo="/brands/4herfrika.png"
+        note="volunteering · empowering women"
+      />
       because I believe in empowering women. Away from the keyboard: basketball, the gym, cooking and church.
     </ark.p>
 

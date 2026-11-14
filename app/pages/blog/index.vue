@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import { ark } from '@ark-ui/vue/factory'
 import { css } from 'styled-system/css'
-import { mediumPosts } from '~/data/medium-posts'
-
-const NuxtLink = resolveComponent('NuxtLink')
 
 usePageSeo({
   title: 'Blog — Adebesin Tolulope',
@@ -11,47 +8,19 @@ usePageSeo({
     'Adebesin Tolulope on Panda CSS internals, design systems, open source in the Chakra ecosystem, engineering with LLMs, and building BethelFlow.',
 })
 
-interface PostItem {
-  title: string
-  date: string
-  lang?: string
-  readingTime?: string
-  path?: string
-  external?: string
-}
-
 const { data } = await useAsyncData('blog-list', () =>
   queryCollection('blog').select('title', 'date', 'lang', 'draft', 'path', 'readingTime').order('date', 'DESC').all(),
 )
 
-const posts = computed<PostItem[]>(() => {
-  const onSite: PostItem[] = (data.value ?? [])
-    .filter((p) => !p.draft)
-    .map((p) => ({
-      title: p.title,
-      date: p.date,
-      lang: p.lang,
-      readingTime: p.readingTime,
-      path: p.path,
-    }))
-
-  const external: PostItem[] = mediumPosts.map((m) => ({
-    title: m.title,
-    date: m.date,
-    lang: m.lang,
-    readingTime: m.readingTime,
-    external: m.url,
-  }))
-
-  return [...onSite, ...external].toSorted((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-})
+const { isRead } = useReads()
+const posts = computed(() => (data.value ?? []).filter((p) => !p.draft))
 
 function year(d: string) {
-  return new Date(d).getFullYear()
+  return new Date(d).getUTCFullYear()
 }
 
 function fmt(d: string) {
-  return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+  return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' })
 }
 
 const srOnly = css({ srOnly: true })
@@ -101,7 +70,6 @@ const langTag = css({
   alignSelf: 'center',
 })
 const postTitle = css({ fontSize: 'md', lineHeight: 'snug' })
-const externalIcon = css({ fontSize: 'xs', color: 'ink.faint', alignSelf: 'center' })
 const date = css({
   display: 'flex',
   alignItems: 'center',
@@ -111,6 +79,7 @@ const date = css({
   whiteSpace: 'nowrap',
 })
 const faint = css({ color: 'ink.faint' })
+const readMark = css({ fontSize: 'sm', color: 'ink.faint', alignSelf: 'center' })
 </script>
 
 <template>
@@ -122,7 +91,7 @@ const faint = css({ color: 'ink.faint' })
     <ark.div v-if="!posts.length" :class="empty"> No posts yet — drafts in flight. </ark.div>
 
     <ark.ul :class="list">
-      <template v-for="(post, idx) in posts" :key="post.external ?? post.path">
+      <template v-for="(post, idx) in posts" :key="post.path">
         <ark.li
           v-if="idx === 0 || year(post.date) !== year(posts[idx - 1]?.date ?? '')"
           :id="`y${year(post.date)}`"
@@ -133,23 +102,20 @@ const faint = css({ color: 'ink.faint' })
           <ark.span :class="yearText" :data-text="year(post.date)" />
         </ark.li>
         <ark.li :class="['slide-enter-content', item]">
-          <component
-            :is="post.external ? 'a' : NuxtLink"
-            v-bind="post.external ? { href: post.external, target: '_blank', rel: 'noopener' } : { to: post.path }"
-            :class="row"
-          >
+          <NuxtLink :to="post.path" :class="row">
             <ark.span :class="titleRow">
               <ark.span v-if="post.lang" :class="langTag">
                 {{ post.lang }}
               </ark.span>
               <ark.span :class="postTitle">{{ post.title }}</ark.span>
-              <ark.span v-if="post.external" :class="['i-lucide-arrow-up-right', externalIcon]" aria-hidden="true" />
+              <ark.span v-if="isRead(post.path)" :class="['i-lucide-check', readMark]" title="Read" />
+              <ark.span v-if="isRead(post.path)" :class="srOnly">(read)</ark.span>
             </ark.span>
             <ark.span :class="date">
               <ark.span>{{ fmt(post.date) }}</ark.span>
               <ark.span v-if="post.readingTime" :class="faint">· {{ post.readingTime }}</ark.span>
             </ark.span>
-          </component>
+          </NuxtLink>
         </ark.li>
       </template>
     </ark.ul>
