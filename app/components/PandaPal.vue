@@ -298,6 +298,7 @@ const spriteEl = ref<HTMLButtonElement>()
 
 async function hide() {
   stopTimers()
+  hovering.value = false
   hidden.value = true
   message.value = null
   queue.length = 0
@@ -312,6 +313,7 @@ async function hide() {
 
 async function unhide() {
   stopTimers()
+  hovering.value = false
   hidden.value = false
   try {
     localStorage.removeItem(HIDDEN_KEY)

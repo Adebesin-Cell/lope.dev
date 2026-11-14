@@ -123,6 +123,14 @@ async function expand() {
   panelEl.value?.focus()
 }
 
+const route = useRoute()
+watch(
+  () => route.path,
+  () => {
+    open.value = false
+  },
+)
+
 onBeforeUnmount(() => {
   open.value = false
 })
@@ -160,7 +168,7 @@ const panel = css({
 const stack = css({
   position: 'fixed',
   zIndex: '40',
-  bottom: { base: '20', md: '10' },
+  bottom: { base: '20', md: '24' },
   insetEnd: { base: '-7', md: '10' },
   w: { base: '20', md: '24' },
   h: { base: '24', md: '28' },

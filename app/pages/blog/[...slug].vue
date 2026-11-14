@@ -84,11 +84,24 @@ const profiles = [
 const track = useTrack()
 const { markRead } = useReads()
 const endEl = ref<HTMLElement>()
-useIntersectionObserver(endEl, ([entry]) => {
-  if (entry?.isIntersecting && post.value && !post.value.draft && markRead(route.path)) {
-    track('post_finished', { series: post.value.series ?? '' })
+const MIN_READ_MS = 20000
+const openedAt = import.meta.client ? Date.now() : 0
+let atEnd = false
+let readTimer: ReturnType<typeof setTimeout> | undefined
+function finish() {
+  if (!atEnd || !post.value || post.value.draft) return
+  if (window.scrollY < 120 && Date.now() - openedAt < MIN_READ_MS) {
+    clearTimeout(readTimer)
+    readTimer = setTimeout(finish, MIN_READ_MS - (Date.now() - openedAt))
+    return
   }
+  if (markRead(route.path)) track('post_finished', { series: post.value.series ?? '' })
+}
+useIntersectionObserver(endEl, ([entry]) => {
+  atEnd = !!entry?.isIntersecting
+  if (atEnd) finish()
 })
+onBeforeUnmount(() => clearTimeout(readTimer))
 const copied = ref(false)
 async function copyLink() {
   if (!import.meta.client) return
