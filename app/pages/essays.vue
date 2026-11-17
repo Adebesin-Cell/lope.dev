@@ -10,6 +10,8 @@ usePageSeo({
     'Away from code, I try to write. Just write, and perhaps share what I think. Personal essays on Substack.',
 })
 
+useSeoMeta({ robots: 'noindex, nofollow' })
+
 function fmt(d: string) {
   return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
 }
