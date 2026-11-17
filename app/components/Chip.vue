@@ -36,7 +36,7 @@ const iconFill = css({ w: 'full!', h: 'full!' })
 <template>
   <component :is="tag" v-bind="linkAttrs" :class="chipClass">
     <ark.span v-if="logo || icon" :class="mark" aria-hidden="true">
-      <BrandLogo v-if="logo" :src="logo" :light="logoLight" :alt="label" :class="fill" />
+      <BrandLogo v-if="logo" :src="logo" :light="logoLight" :class="fill" />
       <ark.span v-else :class="[icon, iconFill]" :style="color ? { color } : undefined" />
     </ark.span>
     <ark.span>{{ label }}</ark.span>

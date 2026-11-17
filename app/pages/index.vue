@@ -132,7 +132,7 @@ const roleRows = [
     <ark.p :class="rows">
       <template v-for="row in roleRows" :key="row.label">
         {{ row.label }}
-        <Chip v-for="c in row.chips" :key="c.label" v-bind="c" />
+        <template v-for="c in row.chips" :key="c.label"><Chip v-bind="c" />{{ ' ' }}</template>
         <br />
       </template>
     </ark.p>
