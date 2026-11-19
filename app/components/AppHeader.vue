@@ -42,7 +42,7 @@ const menuButton = cx(navLink, css({ fontSize: 'xl', display: { md: 'none' } }))
 <template>
   <ark.header :class="header">
     <!-- Pinned separately from the nav, so it stays put on wide screens. -->
-    <Logo :class="logo" />
+    <Logo :class="logo" data-secret-trigger />
 
     <ark.nav :class="nav">
       <ark.div />
