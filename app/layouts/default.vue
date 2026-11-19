@@ -26,7 +26,7 @@ const skip = css({
   },
 })
 const route = useRoute()
-const showInstants = computed(() => route.path === '/' || route.path === '/blog')
+const showInstants = computed(() => ['/', '/blog'].includes(route.path.replace(/(.)\/$/, '$1')))
 const main = css({
   position: 'relative',
   mx: 'auto',
