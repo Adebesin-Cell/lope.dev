@@ -22,7 +22,9 @@ Then Sage raised the question that ended up mattering most: if Chakra ships its 
 
 That's why we decided to work our way up the chain to Chakra v4, and right at the bottom of that chain was Panda.
 
-![Working up the chain: Panda v2 first, then Zag v2, then Ark v6, then Chakra UI v4. Each one builds on the one before it.](/images/blog/new-engine-new-origin/up-the-chain.svg)
+![Panda v2, then Zag v2, then Ark v6, then Chakra UI v4.](/images/blog/new-engine-new-origin/up-the-chain.svg)
+
+*Up the chain: Panda v2, Zag v2, Ark v6, then Chakra UI v4. The ones on top can't really move till the ones under them do.*
 
 ## "Rust it"
 
