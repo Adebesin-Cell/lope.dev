@@ -47,7 +47,7 @@ I started strong, with a 4.8 GPA in my first semester and about 4.6 in the secon
 
 At some point my laptop battery died, and for a few months the laptop only worked plugged in. I saved my pocket money and bought a new battery. Then it was alive again. I spent that time working on a few projects and met several people I got the chance to work with briefly.
 
-Then in 2022, ASUU went on strike, and I went back to Zealarax. It wasn't the full house anymore, but it still gave me room to work. I spent most of those months gathering more resources, and I sat for my first interviews. I failed them. Partly the network, partly that I was still very early. I don't remember the company names. One was in Budapest. The other was looking for a junior Angular developer. When I asked him what I did wrong, he remarked that I was persistent. He could also tell I was new to interviews.
+Then in 2022, ASUU, the union of lecturers at Nigeria's public universities, went on strike for months, and I went back to Zealarax. It wasn't the full house anymore, but it still gave me room to work. I spent most of those months gathering more resources, and I sat for my first interviews. I failed them. Partly the network, partly that I was still very early. I don't remember the company names. One was in Budapest. The other was looking for a junior Angular developer. When I asked him what I did wrong, he remarked that I was persistent. He could also tell I was new to interviews.
 
 It was humbling. I think I was about to give up on tech and look for whatever came next.
 
@@ -71,7 +71,7 @@ I joined the Chakraverse a year and some months ago. Most of that story is alrea
 
 Zag changed how I build UI. I learned what I'd call composition UI: breaking a UI into states that are predictable and readable. An error shows an error, loading shows loading, and there aren't many gymnastics to render the UI. It makes the UI very performant and very easy to reason about.
 
-Gymnastics is Sage's favorite word, from what I can tell 😅. He pushes back on the weird patterns I sometimes come up with.
+Sage (Segun Adebayo), who created Chakra UI, pushes back on the weird patterns I sometimes come up with. Gymnastics is his favorite word, from what I can tell 😅.
 
 Building UI in states has been a game changer. Every series of events becomes a state you can name: on hover something happens, you click a button and something fires, and the reaction has to work. It's a good way to think, because a machine has a fixed return. In third year, a course in school reminded me of state machines, though I had already heard about them from a colleague by then. They're somewhat different, but the base idea is the same.
 

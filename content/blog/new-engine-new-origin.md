@@ -10,13 +10,13 @@ draft: true
 This started as a Chakra v4 question and ended with us rewriting Panda in Rust.
 ::
 
-![New engine, new origin. The Panda CSS mark between Rust and Chakra UI chips, with the install size dropping from 111 MB to 37 MB.](/images/blog/new-engine-new-origin/cover.svg){loading="eager" fetchpriority="high"}
+![New engine, new origin. Panda CSS v2, with the install size down from 111 MB to 37 MB.](/images/blog/new-engine-new-origin/cover.svg){loading="eager" fetchpriority="high"}
 
-Between January and March, after I finished the codemod for Chakra v3, Sage (Segun Adebayo) and I started talking about Chakra v4. We wanted v4 to be smooth, so we had a lot of conversations about it.
+Between January and March, after I finished [the codemod for Chakra v3](/blog/a-year-a-verse-and-an-ecosystem), Sage (Segun Adebayo) and I started talking about Chakra v4. We wanted v4 to be smooth, so we had a lot of conversations about it.
 
 During those conversations, the idea came up of moving Chakra to [Panda CSS](https://panda-css.com) and swapping out the Emotion layer. We couldn't do it yet, though. Chakra worked in ways that got in the way, and so did Panda at the time.
 
-This is the story of how that turned into Panda v2.
+This is the story of how that turned into Panda v2. If you'd rather watch, I told most of it in my SailsConf talk, [Rebuilding Panda's Engine](https://sailsconf.com/2026/talks/17347112-5f4c-4086-bd0d-013eb2d2ff77), and the [slides](/slides/rebuilding-pandas-engine.pdf) are up too.
 
 ## A lot of questions
 
@@ -143,6 +143,8 @@ Honestly, I was okay with closing it, since I'd be the one rebuilding that work 
 
 Sage started the base work on the Rust foundation while I kept working on the design system features. On May 15 the first Rust workspace landed on the `v2` branch, and from there it was a lot of commits: an Oxc-based extractor, bindings for Node and WASM, codegen, the stylesheet engine. By June the old v1 Node pipeline was gone completely, over 226k lines deleted in one PR.
 
+If you want to know how that engine works inside, I've been writing it up in the [Panda internals](/blog/series/panda-internals) series, starting with [what Panda does with your `css()` call at build time](/blog/build-once-at-build-time).
+
 My side was the question from the POC, answered properly this time. I rebuilt the design system work on the new engine, the same idea from the closed PR, this time without v1 underneath it. In v2, a design system package runs `panda lib`, and an app points at it with one field:
 
 ```ts
@@ -162,7 +164,7 @@ Going back to that list, here's what made it:
 - The Rust/Oxc compiler, replacing the ts-morph pipeline.
 - `designSystem` and `panda lib` for publishing and consuming design systems, with nested design systems and version-skew checks.
 - `optimize.treeshakeDesignSystem`, plus bundler plugins for Vite, webpack, Rollup and Bun.
-- `optimize.removeUnusedTokens` and `removeUnusedKeyframes`.
+- `optimize.removeUnusedTokens` and `removeUnusedKeyframes`. I wrote about finding what your theme doesn't use in [Know what your CSS actually uses](/blog/know-what-your-css-actually-uses).
 - A design system spec, `design-system.json`, with every token, recipe and pattern.
 - `@pandacss/eslint-plugin` with an oxlint entry, including a `no-primitive-token` rule for the public vs private token question.
 - Native CSS keywords under `strictTokens` for categories you haven't defined tokens for.
@@ -225,6 +227,8 @@ Panda v2 is out, after around 160 merged PRs and a lot more commits straight ont
 Thank you to Sage, for the answers, the Rust foundation, and the patience. And thank you to everyone who tested the betas and sent repros and debug dumps.
 
 But for me this was always step one. It started as a Chakra v4 question: how do we make Chakra static without breaking everyone? Panda v2 is the engine for that, [and now we get to build v4 on top of it](https://github.com/chakra-ui/chakra-ui/discussions/10959).
+
+If you want to see where that's going, the experiment lives on Chakra's [`v4` branch](https://github.com/chakra-ui/chakra-ui/tree/v4). The [design notes](https://github.com/chakra-ui/chakra-ui/tree/v4/design-notes) explain the styling engine, the opt-in Emotion layer and the Panda v2 gaps we found along the way, and the `panda-preset` package has a sandbox you can run. Try it and tell us what you think in the discussion.
 
 The job isn't done yet.
 
