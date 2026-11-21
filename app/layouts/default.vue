@@ -25,6 +25,8 @@ const skip = css({
     outlineColor: 'ink/40',
   },
 })
+const route = useRoute()
+const showInstants = computed(() => ['/', '/blog'].includes(route.path.replace(/(.)\/$/, '$1')))
 const main = css({
   position: 'relative',
   mx: 'auto',
@@ -48,6 +50,10 @@ const main = css({
     </ark.main>
     <AppFooter />
     <ScrollToTop />
+    <BlogInstants v-if="showInstants" />
     <ImageZoom />
+    <SecretMode />
+    <TalkingCursor />
+    <PandaPal />
   </ark.div>
 </template>
