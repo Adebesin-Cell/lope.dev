@@ -93,7 +93,7 @@ Pain can be a feature too, though. There are moments where a user should feel so
 
 I've been building the best experience I can across everything 4Herfrika does online, and making the best use of agentic systems to get there.
 
-It's been going well. On 27 November I'll be at the Stride conference to talk about year 2, and yes, somehow do some big reveals hehe.
+It's been going well. On 27 November I'll be at the Stride conference for 4Herfrika's year 2, and yes, there will be some big reveals hehe. I'm not speaking, but I'll be there, and I'll probably talk about BethelFlow.
 
 ## BethelFlow
 
