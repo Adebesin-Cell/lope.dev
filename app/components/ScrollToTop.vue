@@ -3,6 +3,7 @@ import { ark } from '@ark-ui/vue/factory'
 import { css } from 'styled-system/css'
 
 const { y } = useWindowScroll()
+const instantsOpen = useState('instants-open', () => false)
 
 const button = css({
   position: 'fixed',
@@ -30,7 +31,13 @@ function scrollToTop() {
 
 <template>
   <Transition name="scroll-to-top">
-    <ark.button v-if="y > 400" type="button" aria-label="Scroll to top" :class="button" @click="scrollToTop">
+    <ark.button
+      v-if="y > 400 && !instantsOpen"
+      type="button"
+      aria-label="Scroll to top"
+      :class="button"
+      @click="scrollToTop"
+    >
       <span class="i-lucide-arrow-up" aria-hidden="true" />
     </ark.button>
   </Transition>

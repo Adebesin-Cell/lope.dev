@@ -212,6 +212,10 @@ export default defineConfig({
             soft: { value: { base: '{colors.lope.900}', _light: '{colors.lope.100}' } },
           },
           dot: { value: { base: 'rgba(255, 255, 255, 0.08)', _light: 'rgba(0, 0, 0, 0.09)' } },
+          accent: {
+            DEFAULT: { value: '#F6E458' },
+            fg: { value: '#141414' },
+          },
           prose: {
             body: { value: 'color-mix(in srgb, {colors.ink} 78%, transparent)' },
             heading: { value: '{colors.ink}' },

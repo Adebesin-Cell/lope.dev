@@ -1,6 +1,5 @@
 import { queryCollection } from '@nuxt/content/server'
 import { Feed } from 'feed'
-import { mediumPosts } from '~/data/medium-posts'
 
 const IMAGE_TYPES: Record<string, string> = {
   svg: 'image/svg+xml',
@@ -14,7 +13,7 @@ const IMAGE_TYPES: Record<string, string> = {
 export default defineEventHandler(async (event) => {
   const site = String(useRuntimeConfig(event).public.siteUrl).replace(/\/$/, '')
 
-  const onSite = (await queryCollection(event, 'blog').order('date', 'DESC').all())
+  const posts = (await queryCollection(event, 'blog').order('date', 'DESC').all())
     .filter((p) => !p.draft)
     .map((p) => {
       const content = p.canonical ? '' : minimarkToHtml(p.body).replace(/(src|href)="\//g, `$1="${site}/`)
@@ -27,17 +26,6 @@ export default defineEventHandler(async (event) => {
         date: p.date,
       }
     })
-
-  const external = mediumPosts.map((m) => ({
-    title: m.title,
-    link: m.url,
-    description: m.description ?? '',
-    content: '',
-    image: undefined,
-    date: m.date,
-  }))
-
-  const posts = [...onSite, ...external].toSorted((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
   const feed = new Feed({
     title: 'Adebesin Tolulope (Lope) — Blog',
