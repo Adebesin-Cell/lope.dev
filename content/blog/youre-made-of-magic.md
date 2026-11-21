@@ -139,8 +139,6 @@ In 400 level, CPE 415 was a [mathematical modelling project](https://github.com/
 
 In most school projects I ended up as the team lead 😅. It largely taught me patience. Groups are dicey. With Elvon, I wrote that it was one of the best teams I've worked with. In other groups, getting everyone involved was harder.
 
-<!-- Lope: what "you're made of magic" means now, after everything. -->
-
 ## What's next
 
 What I'm looking for next is quite dynamic.
@@ -154,3 +152,11 @@ I'd also love to lead engineering teams as an engineering manager, or do design 
 I'm open to companies of every size, big or small. Big companies like HubSpot, Netlify and the Eclipse Foundation are a few I admire. Most of all, I'd want to be a founding product engineer at a small startup or a Series A company. I want to help build a product from the start and own a real part of it.
 
 If any of that sounds like your team, reach out on [Twitter](https://x.com/I_am_Lope) or [LinkedIn](https://www.linkedin.com/in/adebesin-tolulope). My email and resume are available on request.
+
+## Made of magic
+
+When I say magic, I mean the magic in people. There's magic in everyone, small or huge, and the potential to do amazing things. Whenever I say it, I remember Black Clover, an anime I've been watching since high school.
+
+Magic is in you. Show it to the world. And even when you feel you're out, strive to be magical!
+
+Magic is beautiful. It's art, and it's how you express yourself. I want to meet more amazing people. I want to see my friends in amazing places, and my colleagues too. 😇
