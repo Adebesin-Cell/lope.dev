@@ -2,7 +2,7 @@
 title: New engine, new origin
 description: How a Chakra v4 conversation turned into Panda CSS v2, and the day we said "Rust it".
 date: 2026-09-29
-readingTime: 3min
+readingTime: 4min
 draft: true
 ---
 
@@ -14,9 +14,15 @@ This started as a Chakra v4 question and ended with us rewriting Panda in Rust.
 
 Between January and March, after I finished [the codemod for Chakra v3](/blog/a-year-a-verse-and-an-ecosystem), Sage (Segun Adebayo) and I started talking about Chakra v4. The idea came up of moving Chakra to [Panda CSS](https://panda-css.com) and swapping out the Emotion layer.
 
-I came back to Sage with a long list of questions, and Sage answered every single one. Then I built a small POC that turned style props into static classes. It worked, but the test theme alone came out to roughly 3.8MB of CSS 😅, and it raised the question that mattered most: how do you ship a design system built with Panda that other apps can build on? Panda didn't really support that yet.
+I came back to Sage with a long list of questions, and Sage answered every single one. Then I built a small POC that turned style props into static classes. It worked, but the test theme alone came out to roughly 3.8MB of CSS 😅.
+
+I invited Sage to the repo, then disappeared for a week, because I was still in final year and had exams. Sage's first comment was to drop my custom script and use the Panda package directly, so users could choose what gets generated.
+
+Then Sage raised the question that ended up mattering most: if Chakra ships its own styled-system and the user runs codegen, how does their output override ours? My answer was tsconfig paths. That worked for a POC, but it was a workaround for something Panda didn't really support: shipping a design system that other apps build on.
 
 So we decided to work our way up the chain to Chakra v4, and right at the bottom of that chain was Panda.
+
+![Working up the chain: Panda v2 first, then Zag v2, then Ark v6, then Chakra UI v4. Each one builds on the one before it.](/images/blog/new-engine-new-origin/up-the-chain.svg)
 
 ## "Rust it"
 
@@ -26,7 +32,13 @@ So we decided to tear down what we knew of Panda v1, and said:
 
 "Rust it."
 
-I closed my design system PR. 🙂‍↔️ Sage started the Rust foundation, and I rebuilt the design system work on the new engine. In v2, an app points at a design system with one field:
+I closed my design system PR. 🙂‍↔️
+
+Honestly, I was okay with closing it, since I'd be the one rebuilding that work on the new engine anyway.
+
+Sage started the Rust foundation while I kept working on the design system features. On May 15 the first Rust workspace landed on the `v2` branch, and by June the old v1 pipeline was gone completely, over 226k lines deleted in one PR.
+
+Then I rebuilt the design system work on the new engine. In v2, an app points at a design system with one field:
 
 ```ts
 export default defineConfig({
