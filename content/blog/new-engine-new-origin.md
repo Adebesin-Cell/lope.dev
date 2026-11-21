@@ -20,7 +20,7 @@ I invited Sage to the repo, then disappeared for a week, because I was still in 
 
 Then Sage raised the question that ended up mattering most: if Chakra ships its own styled-system and the user runs codegen, how does their output override ours? My answer was tsconfig paths. That worked for a POC, but it was a workaround for something Panda didn't really support: shipping a design system that other apps build on.
 
-So we decided to work our way up the chain to Chakra v4, and right at the bottom of that chain was Panda.
+That's why we decided to work our way up the chain to Chakra v4, and right at the bottom of that chain was Panda.
 
 ![Working up the chain: Panda v2 first, then Zag v2, then Ark v6, then Chakra UI v4. Each one builds on the one before it.](/images/blog/new-engine-new-origin/up-the-chain.svg)
 
