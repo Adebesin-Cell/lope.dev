@@ -10,13 +10,13 @@ draft: true
 This started as a Chakra v4 question and ended with us rewriting Panda in Rust.
 ::
 
-![New engine, new origin. The Panda CSS mark between Rust and Chakra UI chips, with the install size dropping from 111 MB to 37 MB.](/images/blog/new-engine-new-origin/cover.svg){loading="eager" fetchpriority="high"}
+![New engine, new origin. Panda CSS v2, with the install size down from 111 MB to 37 MB.](/images/blog/new-engine-new-origin/cover.svg){loading="eager" fetchpriority="high"}
 
-In January to March, after I was done with the codemod for Chakra v3, Sage (Segun Adebayo) and I started talking about Chakra v4. We wanted v4 to be smooth, so we had a lot of conversations about it.
+Between January and March, after I finished [the codemod for Chakra v3](/blog/a-year-a-verse-and-an-ecosystem), Sage (Segun Adebayo) and I started talking about Chakra v4. We wanted v4 to be smooth, so we had a lot of conversations about it.
 
-During those conversations, the idea came up of moving Chakra to [Panda CSS](https://panda-css.com) and swapping out the Emotion layer. We couldn't do that yet though, because of some limits in how Chakra works today and how Panda worked at the time.
+During those conversations, the idea came up of moving Chakra to [Panda CSS](https://panda-css.com) and swapping out the Emotion layer. We couldn't do it yet, though. Chakra worked in ways that got in the way, and so did Panda at the time.
 
-This is the story of how that turned into Panda v2, which shipped today.
+This is the story of how that turned into Panda v2. If you'd rather watch, I told most of it in my SailsConf talk, [Rebuilding Panda's Engine](https://sailsconf.com/2026/talks/17347112-5f4c-4086-bd0d-013eb2d2ff77), and the [slides](/slides/rebuilding-pandas-engine.pdf) are up too.
 
 ## A lot of questions
 
@@ -30,15 +30,15 @@ Those answers set the direction for everything after. Style props stay, but they
 <Box p="4" bg="red.500" />
 ```
 
-we need `.p_4` and `.bg_red.500` generated ahead of time. Chakra's theming API already matches Panda about 80 to 90% of the time, because that was a big focus of v3. Multi-part components move to slot recipes (`sva`). And there'd be no arbitrary values at the start, so if you really need one, you use the `style` attribute or turn on static extraction.
+we need `.p_4` and `.bg_red_500` generated ahead of time. Chakra's theming API already matches Panda about 80 to 90% of the time, because that was a big focus of v3. Multi-part components move to slot recipes (`sva`). Arbitrary values wouldn't be there at the start. If you really need one, you use the `style` attribute or turn on static extraction.
 
 The goal was zero runtime CSS first, then ease of migration, because static CSS can't be the reason we break the ecosystem.
 
-Sage laid out two ways to get there. The first was using the Panda compiler fully, which works but is a drastic change that might irritate the community, since everyone would need a `panda.config.ts`. The second, and the one Sage recommended, was using Panda's internal packages plus a Chakra CLI to pregenerate the utility and recipe CSS ahead of time. Kinda like Mantine, where you import a CSS file per component, or Vanilla Extract, which pregenerates sprinkles and the types that match them.
+Sage laid out two ways to get there. The first was to use the Panda compiler fully. That works, but it's a drastic change that might irritate the community, since everyone would need a `panda.config.ts`. The second, and the one Sage recommended, was to use Panda's internal packages plus a Chakra CLI to pregenerate the utility and recipe CSS. Kinda like Mantine, where you import a CSS file per component, or Vanilla Extract, which pregenerates sprinkles and their matching types.
 
 ## The POC
 
-So I built a small one, a generator that reads theme tokens and writes a `utilities.css` with CSS variables and atomic classes, plus a tiny runtime that maps style props to those classes:
+So I built a small one: a generator that reads theme tokens and writes a `utilities.css` with CSS variables and atomic classes, plus a tiny runtime that maps style props to those classes:
 
 ```tsx
 <Box p="4" bg="red.500" rounded="md">Hello</Box>
@@ -46,13 +46,13 @@ So I built a small one, a generator that reads theme tokens and writes a `utilit
 <div class="p_4 bg_red_500 rounded_md">Hello</div>
 ```
 
-There was no style computation in the browser at all. But the test theme had about 396 tokens, and generating every utility for them came out to about 62k rules, roughly 3.8MB of raw CSS. 😅
+There was no style computation in the browser at all. But the test theme had 396 tokens, and generating every utility for them came out to about 62k rules. That's roughly 3.8MB of raw CSS. 😅
 
 I invited Sage to the repo, then disappeared for a week, because I was still in final year and had exams.
 
-Sage's first comment was to drop my custom script and use the Panda package directly, so users could choose what gets pregenerated with `staticCss`. The CSS is too big to ship all of it, and that's exactly the kind of control Panda already has.
+Sage's first comment was to drop my custom script and use the Panda package directly, so users could choose what gets pregenerated with `staticCss`. The CSS was too big to ship whole, and choosing what to generate is exactly the kind of control Panda already has.
 
-The POC grew into two packages, `panda-preset` (tokens, recipes, the design system bits) and `react-next` (components plus the Panda runtime), with four components working: accordion, badge, carousel and dialog. No pre-built CSS ships. You install it, add our preset to your `panda.config.ts`, run codegen, import the CSS, and customize with `theme.extend`.
+The POC grew into two packages: `panda-preset` (tokens, recipes, the design system bits) and `react-next` (components plus the Panda runtime), with four components working: accordion, badge, carousel and dialog. No pre-built CSS ships. You install it, add our preset to your `panda.config.ts`, run codegen, import the CSS, and customize with `theme.extend`.
 
 Then Sage raised the question that ended up mattering most. If the styled-system moves into its own `@chakra-ui/styled-system` package, and the user runs codegen, how does their output override ours? My answer was tsconfig paths, mapping `@chakra-ui/styled-system/*` to the user's local `./styled-system/*`, set up for you by a `chakra init` command, like `tailwind init` or `panda init`.
 
@@ -64,13 +64,13 @@ I also asked Sage a bit of a personal question: why static CSS now, and what del
 
 Sage explained that v3 already had a lot on its plate. Chakra's design system needed a redesign, it needed new components from Ark and Zag to be on par with Mantine, Ant Design and MUI, and the component props and APIs needed streamlining. Doing all of that and landing static CSS at the same time would have been a very big breaking change. So we went gradually, component parity and system alignment first, static CSS after.
 
-So we said, let's work our way up the chain to prepare for Chakra v4. That meant major releases underneath Chakra first, and those are coming along pretty nicely ([Ark in v6](https://github.com/chakra-ui/ark/discussions/3997) with render props, [Zag in v2](https://v2.zagjs.com/) with a new machine API). And right at the bottom of that chain was Panda.
+We decided to work our way up the chain to prepare for Chakra v4. That meant major releases underneath Chakra first, and those are coming along pretty nicely ([Ark in v6](https://github.com/chakra-ui/ark/discussions/3997) with render props, [Zag in v2](https://v2.zagjs.com/) with a new machine API). And right at the bottom of that chain was Panda.
 
 ![Working up the chain: Panda v2 first, then Zag v2, then Ark v6, then Chakra UI v4. Each one builds on the one before it.](/images/blog/new-engine-new-origin/up-the-chain.svg)
 
 ## What Panda v1 couldn't carry
 
-Now, Panda v1 was good, but it had real drawbacks when building large systems. The first was speed. Others were some limited APIs, some APIs that needed to go, and some packages that wouldn't make it into the next version.
+Panda v1 was good, but it had real drawbacks for large systems. Speed was the first. Then there were APIs that didn't go far enough, APIs that needed to go, and packages that wouldn't make it into the next version.
 
 On speed, v1 ran extraction and evaluation through `ts-morph` and `ts-evaluator` in Node, so a whole TypeScript program sat in the hot path. That was fine for one app, but on a big monorepo every build and every rebuild paid for it.
 
@@ -94,7 +94,7 @@ export default defineConfig({
 })
 ```
 
-The library side wasn't better. Authors ran three commands (`panda codegen && panda ship && panda emit-pkg`) and still hand-wrote a manifest on top, and if one design system extended another, it had to import its parent's preset straight out of `node_modules`. The same problem I'd hit in the Chakra POC, other teams had been living with for a while.
+The library side wasn't better. Authors ran three commands (`panda codegen && panda ship && panda emit-pkg`) and still hand-wrote a manifest on top, and if one design system extended another, it had to import its parent's preset straight out of `node_modules`. Other teams had been living for a while with the same problem I hit in the Chakra POC.
 
 So before we started building, we asked the ecosystem what they wanted from v2.
 
@@ -129,7 +129,7 @@ Then in May I started on design system support: one `designSystem` field for app
 
 It worked, but it was all sitting on the v1 pipeline.
 
-So we had to take a pause, because we could see we'd be hacking if we kept going that route. Every feature on the list was getting bolted onto an engine that was already the slow part. Around the same time the community gave us a few motivations too ([pnpm moving to Rust](https://pnpm.io/blog/releases/12.0) and [Bun rewriting itself in Rust](https://github.com/oven-sh/bun/pull/30412)).
+So we paused. If we kept going that way, we'd just be hacking around the engine. Every feature on the list was getting bolted onto an engine that was already the slow part. Around the same time, the wider ecosystem gave us some push too ([pnpm moving to Rust](https://pnpm.io/blog/releases/12.0) and [Bun rewriting itself in Rust](https://github.com/oven-sh/bun/pull/30412)).
 
 So we decided to tear down what we knew of Panda v1, and said:
 
@@ -139,9 +139,11 @@ So we decided to tear down what we knew of Panda v1, and said:
 
 I closed my design system PR. 🙂‍↔️
 
-Honestly, closing it was okay with me, since I'd be the one building the new design on the new engine anyway.
+Honestly, I was okay with closing it, since I'd be the one rebuilding that work on the new engine anyway.
 
 Sage started the base work on the Rust foundation while I kept working on the design system features. On May 15 the first Rust workspace landed on the `v2` branch, and from there it was a lot of commits: an Oxc-based extractor, bindings for Node and WASM, codegen, the stylesheet engine. By June the old v1 Node pipeline was gone completely, over 226k lines deleted in one PR.
+
+If you want to know how that engine works inside, I've been writing it up in the [Panda internals](/blog/series/panda-internals) series, starting with [what Panda does with your `css()` call at build time](/blog/build-once-at-build-time).
 
 My side was the question from the POC, answered properly this time. I rebuilt the design system work on the new engine, the same idea from the closed PR, this time without v1 underneath it. In v2, a design system package runs `panda lib`, and an app points at it with one field:
 
@@ -162,7 +164,7 @@ Going back to that list, here's what made it:
 - The Rust/Oxc compiler, replacing the ts-morph pipeline.
 - `designSystem` and `panda lib` for publishing and consuming design systems, with nested design systems and version-skew checks.
 - `optimize.treeshakeDesignSystem`, plus bundler plugins for Vite, webpack, Rollup and Bun.
-- `optimize.removeUnusedTokens` and `removeUnusedKeyframes`.
+- `optimize.removeUnusedTokens` and `removeUnusedKeyframes`. I wrote about finding what your theme doesn't use in [Know what your CSS actually uses](/blog/know-what-your-css-actually-uses).
 - A design system spec, `design-system.json`, with every token, recipe and pattern.
 - `@pandacss/eslint-plugin` with an oxlint entry, including a `no-primitive-token` rule for the public vs private token question.
 - Native CSS keywords under `strictTokens` for categories you haven't defined tokens for.
@@ -175,7 +177,7 @@ Going back to that list, here's what made it:
 
 That was just the list people sent us. Once the new engine was in, a lot more came with it.
 
-The part I like most is watch mode. When you save a file, Panda now re-parses it with Oxc in under 2 microseconds, where v1 took about 650, so roughly 360× faster. `staticCss` got the same kind of jump, a 29,000-rule config went from 25.7 seconds to about 0.3.
+The part I like most is watch mode. When you save a file, Panda now re-parses it with Oxc in under 2 microseconds, where v1 took about 650, so roughly 360× faster. `staticCss` got the same kind of jump: a 29,000-rule config went from 25.7 seconds to about 0.3.
 
 ![In v1 the build, playground, and editor each parsed your files separately and drifted apart; in v2 one Oxc parse feeds all three.](/images/blog/new-engine-new-origin/one-parse.svg)
 
@@ -220,11 +222,13 @@ Not everything on the list made it. There's no built-in `light-dark()` token out
 
 ## Step one
 
-Panda v2 is out today, around 160 merged PRs and a lot more commits straight onto the branch.
+Panda v2 is out, after around 160 merged PRs and a lot more commits straight onto the branch.
 
 Thank you to Sage, for the answers, the Rust foundation, and the patience. And thank you to everyone who tested the betas and sent repros and debug dumps.
 
 But for me this was always step one. It started as a Chakra v4 question: how do we make Chakra static without breaking everyone? Panda v2 is the engine for that, [and now we get to build v4 on top of it](https://github.com/chakra-ui/chakra-ui/discussions/10959).
+
+If you want to see where that's going, the experiment lives on Chakra's [`v4` branch](https://github.com/chakra-ui/chakra-ui/tree/v4). The [design notes](https://github.com/chakra-ui/chakra-ui/tree/v4/design-notes) explain the styling engine, the opt-in Emotion layer and the Panda v2 gaps we found along the way, and the `panda-preset` package has a sandbox you can run. Try it and tell us what you think in the discussion.
 
 The job isn't done yet.
 
