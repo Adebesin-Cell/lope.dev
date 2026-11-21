@@ -21,7 +21,7 @@ I think the very first moment was thinking about what I wanted to do as a high s
 
 I wanted to keep busy. I didn't want to learn the usual Excel and Word. I felt those were skills I already had.
 
-Then I recalled that I had learnt some HTML in junior high. I picked it back up and tried a few PDFs. I also joined multiple Slack channels and asked if they had a discount for a student who would pay them back. The fees were incredibly expensive and I had no money, but I knew: bet on me, and see.
+Then I recalled that I had learned some HTML in junior high. I picked it back up and learned from a few PDFs. I also joined multiple Slack channels and asked if they had a discount for a student who would pay them back. The fees were incredibly expensive and I had no money, but I knew: bet on me, and see.
 
 I took the weird route. I saw a hub in my area and messaged them for a volunteer internship. I had nothing in my portfolio 🤣, so I told them I'd be back in 3 months with something, at least.
 
@@ -41,13 +41,13 @@ I started at the Federal University of Technology, Akure, in October 2021, to st
 
 Year one was me trying to adjust. I have a very shy personality, and I still do. It takes a lot out of me to approach someone. My shyness is a strange one, though. I can be extremely confident and shy at the same time. And I live a lot in my head.
 
-So my friends mostly found me. In 100 level, my friend Mayowa found me to teach Sets to the whole CPE class, and somehow I tagged along with him. He introduced me to his friend group. They became my friends, the people I graduated with, and they are some of the most amazing guys ever. Everyone else I met the usual way: your friends bring in their friends 😅.
+So my friends mostly found me. In 100 level, my friend Mayowa found me and asked me to teach Sets to the whole CPE class. After that, somehow I tagged along with him. He introduced me to his friend group. They became my friends, the people I graduated with, and they are some of the most amazing guys ever. Everyone else I met the usual way: your friends bring in their friends 😅.
 
 I started strong, with a 4.8 GPA in my first semester and about 4.6 in the second. Then my grades crashed in 200 level. Work had become difficult. I was sponsoring my own schooling, and as a first child, I had to support at home in some ways 😅. School took the hit, though I tried to balance it out.
 
 At some point my laptop battery died, and for a few months the laptop only worked plugged in. I saved my pocket money and bought a new battery. Then it was alive again. I spent that time working on a few projects and met several people I got the chance to work with briefly.
 
-Then in 2022, ASUU went on strike, and I went back to Zealarax. It wasn't the full house anymore, but it still gave me room to work. I spent most of those months gathering more resources, and I sat for my first interviews. I failed them. Partly the network, partly that I was still very early. I don't remember the company names. One was in Budapest. The other was looking for a junior Angular developer. When I asked him what I did wrong, he said I was persistent. He could tell I was new to interviews.
+Then in 2022, ASUU went on strike, and I went back to Zealarax. It wasn't the full house anymore, but it still gave me room to work. I spent most of those months gathering more resources, and I sat for my first interviews. I failed them. Partly the network, partly that I was still very early. I don't remember the company names. One was in Budapest. The other was looking for a junior Angular developer. When I asked him what I did wrong, he remarked that I was persistent. He could also tell I was new to interviews.
 
 It was humbling. I think I was about to give up on tech and look for whatever came next.
 
@@ -69,9 +69,9 @@ The IQ.wiki rewrite, and the harsh reviews that came with it, is its own story. 
 
 I joined the Chakraverse a year and some months ago. Most of that story is already written in [A year, a verse and an ecosystem](/blog/a-year-a-verse-and-an-ecosystem), so I won't tell it twice here.
 
-Zag changed how I build UI. I learnt what I'd call composition UI: breaking a UI into states that are predictable and readable. An error shows an error, loading shows loading, and there aren't many gymnastics to render the UI. It makes the UI very performant and very easy to reason about.
+Zag changed how I build UI. I learned what I'd call composition UI: breaking a UI into states that are predictable and readable. An error shows an error, loading shows loading, and there aren't many gymnastics to render the UI. It makes the UI very performant and very easy to reason about.
 
-Gymnastics is Sage's favorite word, from what I can find 😅. He pushes back on the weird patterns I sometimes come up with.
+Gymnastics is Sage's favorite word, from what I can tell 😅. He pushes back on the weird patterns I sometimes come up with.
 
 Building UI in states has been a game changer. Every series of events becomes a state you can name: on hover something happens, you click a button and something fires, and the reaction has to work. It's a good way to think, because a machine has a fixed return. In third year, a course in school reminded me of state machines, though I had already heard about them from a colleague by then. They're somewhat different, but the base idea is the same.
 
@@ -93,7 +93,7 @@ Pain can be a feature too, though. There are moments where a user should feel so
 
 I've been building the best experience I can across everything 4Herfrika does online, and making the best use of agentic systems to get there.
 
-It's been going well. Next week I'll be at the Stride conference to talk about year 2, and yes, somehow do some big reveals hehe.
+It's been going well. On 27 November I'll be at the Stride conference to talk about year 2, and yes, somehow do some big reveals hehe.
 
 ## BethelFlow
 
@@ -101,7 +101,7 @@ It started after a contract project Drey and I worked on together. When it ended
 
 We built it with a small team. I led the frontend, Drey worked on mobile, and a few more people joined to help maintain the backend. It was a very small team, and we started building. Combining it with school was one thing 😅. I took on more than I could carry, but I kept going.
 
-I brought the practices I learnt at IQ.wiki, the ones from [Predictable codebase](/blog/predictable-codebase), to the team. We had rough days, but we kept building. Our first church was [RCCG Amazing Grace Chapel](https://rccgamazinggracechapel.org/about/index.php), and they have been with us for more than a year.
+I brought the practices I learned at IQ.wiki, the ones from [Predictable codebase](/blog/predictable-codebase), to the team. We had rough days, but we kept building. Our first church was [RCCG Amazing Grace Chapel](https://rccgamazinggracechapel.org/about/index.php), and they have been with us for more than a year.
 
 ### Why church software
 
@@ -113,13 +113,13 @@ We had so many ideas about becoming the operating system for churches, and we ar
 
 ### What building it taught me
 
-This is the second year of building, and we launched a year ago. It's one of the best and most challenging things I have done so far. I realised that what I do shapes the organisation, so I have to do more, be better and learn as quickly as I can. There was less time to feel sorry for myself. I make mistakes, and I learn from them.
+This is the second year of building, and we launched a year ago. It's one of the best and most challenging things I have done so far. I realized that what I do shapes the organization, so I have to do more, be better and learn as quickly as I can. There was less time to feel sorry for myself. I make mistakes, and I learn from them.
 
-When you co-found a software project, you automatically divide the roles, CEO and CTO 😂. Drey became CEO and I became CTO. I do my best to lead and to keep the team moving in the direction of the organisation.
+When you co-found a software project, you automatically divide the roles, CEO and CTO 😂. Drey became CEO and I became CTO. I do my best to lead and to keep the team moving in the direction of the organization.
 
 Being CTO is actually very difficult, though it's not that much different from what I did before. It's more of a headspace haha. You have to hire people who have the same drive for the product as you, make sure that drive stays there, and make sure people are learning properly.
 
-Recently, I've been trying to be a better lead and to get involved across the whole project, even marketing, which I had never done before. I bring what I've learnt from open source to the team, and we've made our security stronger. I've also been contributing to the backend to help our backend developer, so we can move faster and answer what users ask for 😄.
+Recently, I've been trying to be a better lead and to get involved across the whole project, even marketing, which I had never done before. I bring what I've learned from open source to the team, and we've made our security stronger. I've also been contributing to the backend to help our backend developer, so we can move faster and answer what users ask for 😄.
 
 Speed is poison, sometimes 😄. In the AI age you can move fast, but you have to do what is right. Some things you look at and say "uh uh, we are not going in that direction", or they feel too complex for a very small need. What is right eventually turns out best, and the best way to find it is to listen to the people who use your product. That's where trust is built, and over time it compounds.
 
@@ -129,19 +129,21 @@ I have a lot more to say about building BethelFlow. It's my baby, and I want to 
 
 ## Engr. Lope
 
-I graduated with a Second Class Upper. Part of me feels I could have done more, and maybe pushed myself further than I did.
-
-At my convocation, my mum was there, with my younger sister, my mum's younger sister, my cousin, and a family member near FUTA who has made sure I'm well every month since I got here.
-
 School projects gave me a few stories too. [Hey Elvon!](/blog/hey-elvon) was the autonomous trash collector five of us built. [Almost got got](/blog/almost-got-got) started as a security near-miss and became our CPE 510 policy project. Campus Shelter is a student housing marketplace for FUTA.
 
 In 400 level, CPE 415 was a [mathematical modelling project](https://github.com/Adebesin-Cell/futa-cpe415-emf-modelling) on the electromagnetic exposure around a cell mast near campus.
 
 In most school projects I ended up as the team lead 😅. It largely taught me patience. Groups are dicey. With Elvon, I wrote that it was one of the best teams I've worked with. In other groups, getting everyone involved was harder.
 
+I graduated with a Second Class Upper. Part of me feels I could have done more, and maybe pushed myself further than I did.
+
+At my convocation, my mum was there, with my younger sister, my mum's younger sister, my cousin, and a family member near FUTA who has made sure I'm well every month since I got here.
+
 ## What's next
 
-What I'm looking for next is quite dynamic.
+What I want most next is to be a founding product engineer at a small startup or a Series A company. I want to help build a product from the start and own a real part of it.
+
+Beyond that, what I'm open to is quite dynamic.
 
 If I keep going in software, I want more senior roles, up to Staff and Principal level. I'd love to see things through that lens, and I don't want to be shy about it.
 
@@ -149,7 +151,7 @@ If I try something new, I'd take a junior AI engineer role with a lead's mentali
 
 I'd also love to lead engineering teams as an engineering manager, or do design engineering, where my love for design and frontend meet 😇.
 
-I'm open to companies of every size, big or small. Big companies like HubSpot, Netlify and the Eclipse Foundation are a few I admire. Most of all, I'd want to be a founding product engineer at a small startup or a Series A company. I want to help build a product from the start and own a real part of it.
+I'm open to companies of every size, big or small. Big companies like HubSpot, Netlify and the Eclipse Foundation are a few I admire.
 
 If any of that sounds like your team, reach out on [Twitter](https://x.com/I_am_Lope) or [LinkedIn](https://www.linkedin.com/in/adebesin-tolulope). My email and resume are available on request.
 
