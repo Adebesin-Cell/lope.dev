@@ -3,7 +3,6 @@ title: OCX Africa, Day 1
 description: "I joined a random Google Meet, signed up for OCX Africa, and spent a day in Lagos learning about makers, sandboxed agents, LLMs and first pull requests. Then I forgot my food."
 seoTitle: "OCX Africa 2026, Day 1: makers, agents, LLMs and first pull requests"
 date: 2026-11-22
-draft: true
 ---
 
 [![The OCX Africa stage and rows of empty chairs at The Zone, Lagos, before the first session](https://live.staticflickr.com/65535/55623356955_7c46e87c04_b.jpg){loading="eager" fetchpriority="high"}](https://www.flickr.com/photos/108559379@N08/55623356955/)
