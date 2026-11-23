@@ -1,6 +1,4 @@
-import type { PostHog } from 'posthog-js'
-
 export function useTrack() {
-  const { $posthog } = useNuxtApp() as { $posthog?: () => PostHog }
-  return (event: string, properties?: Record<string, string | number>) => $posthog?.().capture(event, properties)
+  const { $track } = useNuxtApp() as { $track?: (event: string, properties?: Record<string, string | number>) => void }
+  return (event: string, properties?: Record<string, string | number>) => $track?.(event, properties)
 }

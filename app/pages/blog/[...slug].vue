@@ -170,7 +170,7 @@ const discuss = css({ color: 'ink', textDecoration: 'underline', _hover: { color
 </script>
 
 <template>
-  <ark.article v-if="post" :class="['prose-article slide-enter-content']">
+  <ark.article v-if="post" class="prose-article">
     <NuxtLink to="/blog" :class="back">
       <ark.span class="i-lucide-arrow-left" aria-hidden="true" />
       Back to blog
