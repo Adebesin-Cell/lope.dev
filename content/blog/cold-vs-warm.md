@@ -77,11 +77,11 @@ to this:
 css({ color: 'blue' })
 ```
 
-In watch mode, Panda adds `color: blue` to the file's bucket and leaves `color: red` where it is. The dev stylesheet gains a class and loses nothing, so a class another module still points at mid-edit never disappears from under it.
+In watch mode, Panda adds `color: blue` to the file's bucket and leaves `color: red` where it is. The dev stylesheet gains a class and loses nothing.
 
-On a full parse, like `panda` or a fresh dev server start, the file's old bucket is dropped before the new one goes in. `color: red` is gone. So dev CSS can carry a few extra classes while you work, and the build you ship has only what your code uses.
+That's deliberate. During development, your stylesheet and your code don't update in the same instant. The CSS can be rebuilt while the browser is still running the old version of a component. And because files can fold values from each other ([more on that below](#when-the-file-you-saved-is-imported)), one save can refresh several files, one after another. If a save could take classes away, something still on screen could lose its styles halfway through an update. Only adding means a class never disappears while you work.
 
-<!-- Lope: the commit that added this (89040816a) gives the reason as "keeping cross-file resolution stable in watch mode". The mid-edit sentence above is my plain reading of that. Confirm or swap in your own explanation. -->
+The cost is a dev stylesheet that grows a little over a session. Deleting a file still removes its classes, and a full parse, like `panda` or a fresh dev server start, drops each file's old bucket before the new one goes in. `color: red` is gone, and the build you ship has only what your code uses.
 
 ### A count for every atom
 
