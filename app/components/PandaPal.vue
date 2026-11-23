@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { isListed } from '~~/shared/utils/published'
 import { ark } from '@ark-ui/vue/factory'
 import { css } from 'styled-system/css'
 import { token } from 'styled-system/tokens'
@@ -116,13 +117,13 @@ const route = useRoute()
 const track = useTrack()
 const { reads } = useReads()
 const { data: seriesPosts } = useAsyncData('panda-series', () =>
-  queryCollection('blog').select('path', 'series', 'part', 'draft').all(),
+  queryCollection('blog').select('path', 'series', 'part', 'draft', 'date').all(),
 )
 
 const finishedSeries = computed(() => {
   const parts = new Map<string, string[]>()
   for (const p of seriesPosts.value ?? []) {
-    if (p.draft || !p.series || !isMainPart(p.part)) continue
+    if (!isListed(p) || !p.series || !isMainPart(p.part)) continue
     parts.set(p.series, [...(parts.get(p.series) ?? []), p.path])
   }
   const done = new Set(reads.value)

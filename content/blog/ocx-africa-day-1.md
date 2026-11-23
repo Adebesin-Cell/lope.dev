@@ -3,6 +3,8 @@ title: OCX Africa, Day 1
 description: "I joined a random Google Meet, signed up for OCX Africa, and spent a day in Lagos learning about makers, sandboxed agents, LLMs and first pull requests. Then I forgot my food."
 seoTitle: "OCX Africa 2026, Day 1: makers, agents, LLMs and first pull requests"
 date: 2026-11-22
+series: OCX Africa
+part: 1
 ---
 
 [![The OCX Africa stage and rows of empty chairs at The Zone, Lagos, before the first session](https://live.staticflickr.com/65535/55623356955_7c46e87c04_b.jpg){loading="eager" fetchpriority="high"}](https://www.flickr.com/photos/108559379@N08/55623356955/)
@@ -101,7 +103,7 @@ That second step is where I got stuck. The next morning, on my way back for day 
 
 [![Babáṣílé at the podium with the quiz screen full of player names behind him](https://live.staticflickr.com/65535/55623123894_375ec4393f_b.jpg)](https://www.flickr.com/photos/108559379@N08/55623123894/)
 
-😭 You know when you walk into a room full of confidence and trip on your face? Yeah, that was me with the quiz. I did pretty well early on, but I was too slow on some questions, partly the network and partly me overthinking my answers. The quiz itself was truly amazing, though. Wait till you hear what happened on day two.
+😭 You know when you walk into a room full of confidence and trip on your face? Yeah, that was me with the quiz. I did pretty well early on, but I was too slow on some questions, partly the network and partly me overthinking my answers. The quiz itself was truly amazing, though. Wait till you hear what happened on [day two](/blog/ocx-africa-day-2).
 
 ### Networking reception
 
@@ -110,5 +112,10 @@ That second step is where I got stuck. The next morning, on my way back for day 
 After that we [had some drinks](https://x.com/I_am_Lope/status/2116268751528051139). Classic me: the conversations were so good I didn't want to go home. When I finally packed my bags and got home, I realised I'd left behind the food I had kept safely for dinner. You should have seen how hurt I was. I searched my bags frantically, like five times, thinking I was dreaming. I almost passed out from heat exhaustion too, since the traffic had already stressed me out 🥲
 
 That night I [tweeted](https://x.com/I_am_Lope/status/2116238887593066970): "Conversations so good I forgot my food 😭"
+
+Day two had a quiz app, a quiz that broke my heart, and a danfo on a chip. [Read day two](/blog/ocx-africa-day-2).
+
+::series-card{name="OCX Africa"}
+::
 
 *Event photos link to the Eclipse Foundation's [OCX Africa 2026 album](https://www.flickr.com/photos/108559379@N08/albums/72177720336439234/) on Flickr. The drink is mine.*

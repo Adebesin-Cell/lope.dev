@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { isListed } from '~~/shared/utils/published'
 import { ark } from '@ark-ui/vue/factory'
 import { css } from 'styled-system/css'
 import { isMainPart, seriesSlug } from '~/utils/series'
@@ -8,7 +9,7 @@ const slug = String(route.params.slug)
 
 const { data } = await useAsyncData(`series-page-${slug}`, async () => {
   const posts = await queryCollection('blog').select('series', 'date', 'draft', 'part').all()
-  const inSeries = posts.filter((p) => !p.draft && p.series && seriesSlug(p.series) === slug)
+  const inSeries = posts.filter((p) => isListed(p) && p.series && seriesSlug(p.series) === slug)
   if (!inSeries.length) return null
   const first = inSeries.map((p) => p.date).toSorted()[0]
   return { name: inSeries[0]!.series!, total: inSeries.filter((p) => isMainPart(p.part)).length, started: first! }
@@ -17,6 +18,7 @@ const { data } = await useAsyncData(`series-page-${slug}`, async () => {
 if (!data.value) throw createError({ statusCode: 404, statusMessage: 'Series not found', fatal: true })
 
 const series = data.value
+const partsLabel = `${series.total} ${series.total === 1 ? 'part' : 'parts'}`
 const started = new Date(series.started).toLocaleDateString('en-US', {
   month: 'short',
   day: 'numeric',
@@ -26,7 +28,7 @@ const started = new Date(series.started).toLocaleDateString('en-US', {
 
 usePageSeo({
   title: `${series.name} — Adebesin Tolulope`,
-  description: `Every part of ${series.name}, a series by Adebesin Tolulope (Lope). ${series.total} parts so far.`,
+  description: `Every part of ${series.name}, a series by Adebesin Tolulope (Lope). ${partsLabel} so far.`,
 })
 
 const header = css({ mb: '10' })
@@ -51,7 +53,7 @@ const lead = css({ mt: '3', fontFamily: 'mono', fontSize: 'sm', color: 'ink.fain
         Back to blog
       </NuxtLink>
       <ark.h1 :class="title">{{ series.name }}</ark.h1>
-      <ark.p :class="lead">{{ series.total }} parts · started {{ started }}</ark.p>
+      <ark.p :class="lead">{{ partsLabel }} · started {{ started }}</ark.p>
     </ark.header>
 
     <SeriesCard :name="series.name" full />
