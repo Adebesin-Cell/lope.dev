@@ -17,6 +17,7 @@ const { data } = await useAsyncData(`series-page-${slug}`, async () => {
 if (!data.value) throw createError({ statusCode: 404, statusMessage: 'Series not found', fatal: true })
 
 const series = data.value
+const partsLabel = `${series.total} ${series.total === 1 ? 'part' : 'parts'}`
 const started = new Date(series.started).toLocaleDateString('en-US', {
   month: 'short',
   day: 'numeric',
@@ -26,7 +27,7 @@ const started = new Date(series.started).toLocaleDateString('en-US', {
 
 usePageSeo({
   title: `${series.name} — Adebesin Tolulope`,
-  description: `Every part of ${series.name}, a series by Adebesin Tolulope (Lope). ${series.total} ${series.total === 1 ? 'part' : 'parts'} so far.`,
+  description: `Every part of ${series.name}, a series by Adebesin Tolulope (Lope). ${partsLabel} so far.`,
 })
 
 const header = css({ mb: '10' })
@@ -51,7 +52,7 @@ const lead = css({ mt: '3', fontFamily: 'mono', fontSize: 'sm', color: 'ink.fain
         Back to blog
       </NuxtLink>
       <ark.h1 :class="title">{{ series.name }}</ark.h1>
-      <ark.p :class="lead">{{ series.total }} {{ series.total === 1 ? 'part' : 'parts' }} · started {{ started }}</ark.p>
+      <ark.p :class="lead">{{ partsLabel }} · started {{ started }}</ark.p>
     </ark.header>
 
     <SeriesCard :name="series.name" full />
