@@ -156,7 +156,7 @@ slides:
 
 When the next one finally came, I picked the right answer, then panicked, doubted myself, and switched to the wrong one. My village people were clearly at work 😭 (Nigerian for the unseen forces that show up exactly when you're winning.)
 
-I kept going, hoping to hang on to a spot in the top 8. On question 19, the power went out, and all I could think was: please, let it end here 😂 I was red, stressed, cold and hot at the same time. (I wished I had a headset to shut everything out 😖)
+I kept going, hoping to hang on to a spot in the top 8. On question 19, the power went out, and all I could think was: please, let it end here 😂 I was red, stressed, cold and hot at the same time. (And the prize I really wanted was a headset. I don't have one, and I like listening to music on my own, at the gym or when I don't want to use speakers 😖)
 
 The results came out: 8th 🫠 My friends still laugh about it.
 
@@ -210,7 +210,7 @@ The programme ended with a networking reception, which basically meant: have fun
 
 And before you ask: no, I didn't forget my food this time 😂 After [day one](/blog/ocx-africa-day-1), I packed it and carried it with me everywhere I went, from session to session. Lesson learned.
 
-That was day two: a quiz app built in a morning, a question that never loaded, a danfo on a chip, a book picked by crowd vote, and my food safely home with me 🍱 I came to OCX looking for a break from work, and I left with new friends, a badge I wrote myself, and a lot to think about. That night I [posted my last OCX tweet](https://x.com/I_am_Lope/status/2116634971263627507) and slept like a baby 😴
+That was day two: a quiz app built in a morning, a question that never loaded, a danfo on a chip, a book picked by crowd vote, and my food safely home with me 🍱 I came to OCX looking for a break from work, and I left with new friends, a badge I wrote myself, and a lot to think about. That night I [posted my last OCX tweet](https://x.com/I_am_Lope/status/2116634971263627507)
 
 See you at the next one, OCX 💙
 

@@ -146,6 +146,7 @@ export default defineConfig({
       scrollBehavior: 'smooth',
       scrollPaddingTop: '20',
       overflowX: 'hidden',
+      scrollbarGutter: 'stable',
       _motionReduce: { scrollBehavior: 'auto' },
     },
     'html.light': { colorScheme: 'light' },
