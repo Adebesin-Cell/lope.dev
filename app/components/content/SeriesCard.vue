@@ -213,6 +213,7 @@ const preview = css({
   '@media (hover: none)': { display: 'none' },
   _motionReduce: { transitionDuration: '[0s]' },
 })
+const mainCount = computed(() => parts.value.filter((p) => isMainPart(p.part)).length)
 </script>
 
 <template>
@@ -227,7 +228,7 @@ const preview = css({
       <ark.span v-if="full" :class="label">{{ name }}</ark.span>
       <NuxtLink v-else :to="seriesPath(name)" :class="cx(label, labelLink)">{{ name }}</NuxtLink>
       <ark.span :class="rule" aria-hidden="true" />
-      <ark.span :class="count">{{ parts.filter((p) => isMainPart(p.part)).length }} parts</ark.span>
+      <ark.span :class="count">{{ mainCount }} {{ mainCount === 1 ? 'part' : 'parts' }}</ark.span>
     </ark.div>
 
     <ark.input
