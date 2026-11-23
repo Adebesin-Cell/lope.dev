@@ -1,0 +1,31 @@
+name: Publish scheduled posts
+
+on:
+  schedule:
+    - cron: '0 5 * * *'
+  workflow_dispatch:
+
+jobs:
+  redeploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Find posts dated today
+        id: due
+        run: |
+          today=$(date -u +%F)
+          posts=$(grep -lE "^date: ['\"]?${today}['\"]?$" content/blog/*.md || true)
+          echo "today=$today" >> "$GITHUB_OUTPUT"
+          if [ -n "$posts" ]; then
+            echo "Due today:"; echo "$posts"
+            echo "found=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Nothing scheduled for $today"
+          fi
+
+      - name: Redeploy so they appear in lists and feeds
+        if: steps.due.outputs.found == 'true' || github.event_name == 'workflow_dispatch'
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: curl -fsS -X POST "$HOOK" > /dev/null && echo "Redeploy triggered for ${{ steps.due.outputs.today }}"
