@@ -17,13 +17,11 @@ What Panda does when you start it, and what it does when you hit save.
 
 *Panda internals, part 7. Start with [Build once, at build time](/blog/build-once-at-build-time) if you're new here.*
 
-This part was supposed to go out last week.
+This was supposed to have been out last week, but a lot happened and it still feels like a dream (a complete one).
 
-Last week I got the news that my friend, Asunlewon Babalola, had passed away. At the same time I was preparing for my final year convocation and induction. Between the two, and paying my respects to him, I couldn't function properly, so the post waited.
+I lost someone I knew, right as I was getting ready for my final year convocation and induction. It's still heavy, heavier than I can put into a post like this, and writing had to wait.
 
-Olumide Dickson Sosanya wrote about him in [The point of life is not to die](https://dicksonsosanya.substack.com/p/the-point-of-life-is-not-to-die). If you want to know who he was, start there.
-
----
+I'm back now, so let's get into it.
 
 When I was experimenting with Chakra v4 on Panda v1, running it on the whole design system froze my PC. That was after the [3.8 MB generator](/blog/build-once-at-build-time) from part 1, when we moved the experiment onto Panda itself.
 
