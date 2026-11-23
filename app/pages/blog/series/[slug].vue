@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { isListed } from '~~/shared/utils/published'
 import { ark } from '@ark-ui/vue/factory'
 import { css } from 'styled-system/css'
 import { isMainPart, seriesSlug } from '~/utils/series'
@@ -8,7 +9,7 @@ const slug = String(route.params.slug)
 
 const { data } = await useAsyncData(`series-page-${slug}`, async () => {
   const posts = await queryCollection('blog').select('series', 'date', 'draft', 'part').all()
-  const inSeries = posts.filter((p) => !p.draft && p.series && seriesSlug(p.series) === slug)
+  const inSeries = posts.filter((p) => isListed(p) && p.series && seriesSlug(p.series) === slug)
   if (!inSeries.length) return null
   const first = inSeries.map((p) => p.date).toSorted()[0]
   return { name: inSeries[0]!.series!, total: inSeries.filter((p) => isMainPart(p.part)).length, started: first! }

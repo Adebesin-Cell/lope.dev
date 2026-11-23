@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { isListed } from '~~/shared/utils/published'
 import { ark } from '@ark-ui/vue/factory'
 import { css } from 'styled-system/css'
 
@@ -13,7 +14,7 @@ const { data } = await useAsyncData('blog-list', () =>
 )
 
 const { isRead } = useReads()
-const posts = computed(() => (data.value ?? []).filter((p) => !p.draft))
+const posts = computed(() => (data.value ?? []).filter(isListed))
 
 function year(d: string) {
   return new Date(d).getUTCFullYear()

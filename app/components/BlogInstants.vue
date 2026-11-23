@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { isListed } from '~~/shared/utils/published'
 import { ark } from '@ark-ui/vue/factory'
 import { css, cx } from 'styled-system/css'
 import { button } from 'styled-system/recipes'
@@ -27,7 +28,7 @@ const { data } = await useAsyncData('instants', () =>
 )
 
 const slides = computed<Slide[]>(() => {
-  const posts = (data.value ?? []).filter((p) => !p.draft)
+  const posts = (data.value ?? []).filter(isListed)
   const [latest, second] = posts
   if (!latest) return []
 

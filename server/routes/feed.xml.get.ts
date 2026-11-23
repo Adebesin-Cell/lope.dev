@@ -1,3 +1,4 @@
+import { isListed } from '#shared/utils/published'
 import { queryCollection } from '@nuxt/content/server'
 import { Feed } from 'feed'
 
@@ -13,19 +14,17 @@ const IMAGE_TYPES: Record<string, string> = {
 export default defineEventHandler(async (event) => {
   const site = String(useRuntimeConfig(event).public.siteUrl).replace(/\/$/, '')
 
-  const posts = (await queryCollection(event, 'blog').order('date', 'DESC').all())
-    .filter((p) => !p.draft)
-    .map((p) => {
-      const content = p.canonical ? '' : minimarkToHtml(p.body).replace(/(src|href)="\//g, `$1="${site}/`)
-      return {
-        title: p.title,
-        link: p.canonical ?? `${site}${p.path}`,
-        description: p.description ?? '',
-        content,
-        image: content.match(/<img[^>]+src="([^"]+)"/)?.[1],
-        date: p.date,
-      }
-    })
+  const posts = (await queryCollection(event, 'blog').order('date', 'DESC').all()).filter(isListed).map((p) => {
+    const content = p.canonical ? '' : minimarkToHtml(p.body).replace(/(src|href)="\//g, `$1="${site}/`)
+    return {
+      title: p.title,
+      link: p.canonical ?? `${site}${p.path}`,
+      description: p.description ?? '',
+      content,
+      image: content.match(/<img[^>]+src="([^"]+)"/)?.[1],
+      date: p.date,
+    }
+  })
 
   const feed = new Feed({
     title: 'Adebesin Tolulope (Lope) — Blog',

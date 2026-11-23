@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { isListed } from '~~/shared/utils/published'
 import { css } from 'styled-system/css'
 import { isMainPart } from '~/utils/series'
 
@@ -6,8 +7,8 @@ const route = useRoute()
 const { data } = await useAsyncData(`cover-${route.path}`, async () => {
   const post = await queryCollection('blog').path(route.path).select('series', 'part').first()
   if (!post?.series) return null
-  const all = await queryCollection('blog').where('series', '=', post.series).select('draft', 'part').all()
-  return { series: post.series, part: post.part ?? 0, total: all.filter((p) => !p.draft && isMainPart(p.part)).length }
+  const all = await queryCollection('blog').where('series', '=', post.series).select('draft', 'part', 'date').all()
+  return { series: post.series, part: post.part ?? 0, total: all.filter((p) => isListed(p) && isMainPart(p.part)).length }
 })
 
 const frame = css({ my: '8', rounded: 'lg', overflow: 'hidden', borderWidth: '1px', borderColor: 'ink/10' })

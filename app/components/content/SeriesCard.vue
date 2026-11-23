@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { isListed } from '~~/shared/utils/published'
 import { ark } from '@ark-ui/vue/factory'
 import { css, cx } from 'styled-system/css'
 import { isMainPart, partNumber, seriesPath } from '~/utils/series'
@@ -27,7 +28,7 @@ const shortDate = (d: string, year = false) =>
 
 const parts = computed(() =>
   (posts.value ?? [])
-    .filter((p) => !p.draft)
+    .filter(isListed)
     .map((p) => ({
       path: p.path,
       title: p.title,
