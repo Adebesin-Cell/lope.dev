@@ -52,13 +52,13 @@ const btn = css({
   width: '9',
   height: '9',
   rounded: 'full',
-  bg: 'rgba(0, 0, 0, 0.55)',
+  bg: '[rgba(0, 0, 0, 0.55)]',
   color: 'white',
   cursor: 'pointer',
-  backdropFilter: 'blur(4px)',
-  transition: 'background 0.15s',
-  _hover: { bg: 'rgba(0, 0, 0, 0.75)' },
-  _focusVisible: { outline: '2px solid white', outlineOffset: '2px' },
+  backdropFilter: '[blur(4px)]',
+  transition: '[background 0.15s]',
+  _hover: { bg: '[rgba(0, 0, 0, 0.75)]' },
+  _focusVisible: { outline: '[2px solid white]', outlineOffset: '[2px]' },
 })
 </script>
 

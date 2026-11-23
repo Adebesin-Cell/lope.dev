@@ -8,7 +8,7 @@ const props = defineProps<{
 
 const box = css({
   my: '10',
-  borderWidth: '1px',
+  borderWidth: '[1px]',
   borderColor: 'ink/10',
   rounded: 'xl',
   bg: 'ink/5',
@@ -27,16 +27,16 @@ const trigger = css({
   color: 'ink.muted',
   cursor: 'pointer',
   rounded: 'xl',
-  transition: 'color 0.15s',
+  transition: '[color 0.15s]',
   _hover: { color: 'ink' },
-  _focusVisible: { outline: '2px solid', outlineColor: 'ink', outlineOffset: '2px' },
+  _focusVisible: { outline: '[2px solid]', outlineColor: 'ink', outlineOffset: '[2px]' },
 })
 
 const indicator = css({
   display: 'inline-flex',
-  transition: 'transform 0.2s ease',
-  _open: { transform: 'rotate(90deg)' },
-  _motionReduce: { transition: 'none' },
+  transition: '[transform 0.2s ease]',
+  _open: { transform: '[rotate(90deg)]' },
+  _motionReduce: { transition: '[none]' },
 })
 
 const content = css({

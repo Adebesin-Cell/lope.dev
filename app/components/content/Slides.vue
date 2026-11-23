@@ -85,8 +85,8 @@ const hasCaptions = computed(() => props.slides.some(s => s.caption))
 const frame = css({
   '--w': 'min(720px, 86vw)',
   '--gap': '16px',
-  width: '100vw',
-  ml: 'calc(50% - 50vw)',
+  width: '[100vw]',
+  ml: '[calc(50% - 50vw)]',
   my: '10',
 })
 
@@ -94,12 +94,12 @@ const strip = css({
   display: 'flex',
   gap: 'var(--gap)',
   overflowX: 'auto',
-  scrollSnapType: 'x mandatory',
+  scrollSnapType: '[x mandatory]',
   scrollbarWidth: 'none',
-  px: 'calc(50vw - var(--w) / 2)',
+  px: '[calc(50vw - var(--w) / 2)]',
   outline: 'none',
   '&::-webkit-scrollbar': { display: 'none' },
-  _focusVisible: { '& [data-active=true]': { outline: '2px solid', outlineColor: 'ink', outlineOffset: '3px' } },
+  _focusVisible: { '& [data-active=true]': { outline: '[2px solid]', outlineColor: 'ink', outlineOffset: '[3px]' } },
 })
 
 const slide = css({
@@ -110,15 +110,15 @@ const slide = css({
   rounded: 'xl',
   overflow: 'hidden',
   bg: 'ink/5',
-  transition: 'opacity 0.3s ease',
+  transition: '[opacity 0.3s ease]',
   '&[data-active=false]': { opacity: 0.4 },
-  _motionReduce: { transition: 'none' },
-  '& img': { width: '100%', height: '100%', objectFit: 'cover', display: 'block', m: '0' },
+  _motionReduce: { transition: '[none]' },
+  '& img': { width: 'full', height: 'full', objectFit: 'cover', display: 'block', m: '0' },
 })
 
 const bar = css({
   display: 'grid',
-  gridTemplateColumns: 'auto 4rem auto',
+  gridTemplateColumns: '[auto 4rem auto]',
   justifyContent: 'center',
   alignItems: 'center',
   columnGap: '4',
@@ -133,13 +133,13 @@ const btn = css({
   width: '10',
   height: '10',
   rounded: 'full',
-  borderWidth: '1px',
+  borderWidth: '[1px]',
   borderColor: 'ink/15',
   color: 'ink',
   cursor: 'pointer',
-  transition: 'background 0.15s',
+  transition: '[background 0.15s]',
   _hover: { bg: 'ink/5' },
-  _focusVisible: { outline: '2px solid', outlineColor: 'ink', outlineOffset: '2px' },
+  _focusVisible: { outline: '[2px solid]', outlineColor: 'ink', outlineOffset: '[2px]' },
   '&[aria-disabled=true]': { opacity: 0.35, cursor: 'not-allowed' },
 })
 
@@ -152,10 +152,10 @@ const count = css({
 })
 
 const caption = css({
-  gridColumn: '1 / -1',
+  gridColumn: '[1 / -1]',
   justifySelf: 'center',
-  width: 'min(100%, 32rem)',
-  minHeight: { base: '3lh', sm: '2lh' },
+  width: '[min(100%, 32rem)]',
+  minHeight: { base: '[3lh]', sm: '[2lh]' },
   textAlign: 'center',
   fontSize: 'sm',
   lineHeight: 'snug',
