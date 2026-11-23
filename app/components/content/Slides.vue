@@ -198,7 +198,7 @@ const sr = css({ srOnly: true })
         <ark.span class="i-lucide-arrow-right" aria-hidden="true" />
       </ark.button>
       <ark.p :class="hasCaptions ? caption : sr" aria-live="polite">
-        <ark.span :class="sr">Slide {{ active + 1 }} of {{ props.slides.length }}: </ark.span>{{ current?.caption }}
+        <ark.span :class="sr">Slide {{ active + 1 }} of {{ props.slides.length }}: </ark.span>{{ current?.caption ?? current?.alt }}
       </ark.p>
     </ark.figcaption>
   </ark.figure>

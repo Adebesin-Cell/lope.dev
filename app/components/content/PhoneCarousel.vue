@@ -234,7 +234,7 @@ const caption = css({
         <ark.span class="i-lucide-arrow-right" aria-hidden="true" />
       </ark.button>
       <ark.p :class="caption" aria-live="polite">
-        <ark.span :class="sr">Screen {{ active + 1 }} of {{ props.slides.length }}: </ark.span>{{ current?.caption }}
+        <ark.span :class="sr">Screen {{ active + 1 }} of {{ props.slides.length }}: </ark.span>{{ current?.caption ?? current?.alt }}
       </ark.p>
     </ark.figcaption>
   </ark.figure>

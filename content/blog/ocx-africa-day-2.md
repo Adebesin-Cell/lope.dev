@@ -144,13 +144,13 @@ width: 960
 height: 540
 slides:
   - src: /images/blog/ocx-africa-day-2/haikyuu/01.webp
-    alt: "Haikyuu: a character clutches his head in silence"
+    alt: "Haikyuu. Silence. A boy in glasses grips his head with both hands, eyes wide, sweating."
   - src: /images/blog/ocx-africa-day-2/haikyuu/02.webp
-    alt: "Still clutching his head: \"This is reality.\""
+    alt: "Same face, same panic. He whispers: \"This is reality.\""
   - src: /images/blog/ocx-africa-day-2/haikyuu/03.webp
-    alt: "\"I need to accept it and think rationally.\""
+    alt: "Still gripping his head: \"I need to accept it and think rationally.\""
   - src: /images/blog/ocx-africa-day-2/haikyuu/04.webp
-    alt: "Slumped over a desk: \"It'll be okay.\""
+    alt: "Later, slumped over his desk, one hand on his forehead, lying to himself: \"It'll be okay.\""
 ---
 ::
 
