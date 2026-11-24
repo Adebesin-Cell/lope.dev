@@ -1,10 +1,11 @@
 import { queryCollection } from '@nuxt/content/server'
 import { seriesPath } from '../../../app/utils/series'
+import { isListed } from '#shared/utils/published'
 
 export default defineSitemapEventHandler(async (event) => {
   const posts = await queryCollection(event, 'blog').all()
-  const original = posts.filter((p) => !p.draft && !p.canonical)
-  const series = [...new Set(posts.filter((p) => !p.draft && p.series).map((p) => seriesPath(p.series!)))]
+  const original = posts.filter((p) => isListed(p) && !p.canonical)
+  const series = [...new Set(posts.filter((p) => isListed(p) && p.series).map((p) => seriesPath(p.series!)))]
 
   return [
     { loc: '/' },

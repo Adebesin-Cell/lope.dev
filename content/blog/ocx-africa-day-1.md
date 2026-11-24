@@ -103,7 +103,7 @@ That second step is where I got stuck. The next morning, on my way back for day 
 
 [![Babáṣílé at the podium with the quiz screen full of player names behind him](https://live.staticflickr.com/65535/55623123894_375ec4393f_b.jpg)](https://www.flickr.com/photos/108559379@N08/55623123894/)
 
-😭 You know when you walk into a room full of confidence and trip on your face? Yeah, that was me with the quiz. I did pretty well early on, but I was too slow on some questions, partly the network and partly me overthinking my answers. The quiz itself was truly amazing, though. Wait till you hear what happened on [day two](/blog/ocx-africa-day-2).
+😭 You know when you walk into a room full of confidence and trip on your face? Yeah, that was me with the quiz. I did pretty well early on, but I was too slow on some questions, partly the network and partly me overthinking my answers. The quiz itself was truly amazing, though. Wait till you hear what happened on day two.
 
 ### Networking reception
 
@@ -113,7 +113,7 @@ After that we [had some drinks](https://x.com/I_am_Lope/status/21162687515280511
 
 That night I [tweeted](https://x.com/I_am_Lope/status/2116238887593066970): "Conversations so good I forgot my food 😭"
 
-Day two had a quiz app, a quiz that broke my heart, and a danfo on a chip. [Read day two](/blog/ocx-africa-day-2).
+Day two had a quiz app, a quiz that broke my heart, and a danfo on a chip. Coming soon.
 
 ::series-card{name="OCX Africa"}
 ::
