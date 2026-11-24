@@ -180,7 +180,7 @@ Moses came to the rescue and lent me his cable 🙌 I'm really grateful, because
 
 [Frédéric Desbiens](https://www.linkedin.com/in/fredericdesbiens) led this one. The MXChip AZ3166 is a little circuit board about the size of a bank card, with a tiny screen, two buttons, a few lights, and sensors that can feel heat, humidity, air pressure and movement. It runs [Eclipse ThreadX](https://threadx.io/), a tiny operating system made for small devices like this. You write code on your laptop, turn it into something the board understands, and copy it over, and the workshop gave us [sample projects](https://github.com/eclipse-threadx/samplex/tree/main/MXChip/AZ3166) to start from.
 
-While I was still cable-less, I got my laptop ready, so the moment the board was plugged in, I could put code on it. Then I went off script and built a badge. The problems this time were small and funny, like my own name not fitting on the screen 😂 Yes, really. Here's how:
+While I was still cable-less, I got my laptop ready, so the moment the board was plugged in, I could put code on it. Then I went off script and built a badge. The problems this time were small and funny, like my own name not fitting on the screen 😂
 
 ::collapse{title="Why my own name didn't fit on the screen (and the other small fail) 😅"}
 - **Garbled serial output.** The board's logs came back as noise. macOS resets the serial port's speed when the port closes, so I was reading at the wrong baud rate.
