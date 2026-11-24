@@ -137,7 +137,7 @@ After day one, I wanted this quiz badly, and I came prepared. Thomas ran it, and
 
 Then came question 13 of 20. Thomas had just shown the leaderboard, me in first with the fastest times, and the next question didn't load.
 
-Here's how that felt:
+My reaction, in slides 👇
 
 ::slides
 ---
