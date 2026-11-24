@@ -11,19 +11,19 @@ part: 2
 
 I got there early this time. Thankfully, I ignored the voice telling me to leave my laptop at home, or I'd have missed a ton of good work. Good Lord, always bring your laptop to tech events, especially the small ones 🙏
 
-If you missed it, [day one is here](/blog/ocx-africa-day-1).
+If you missed it, [day one is here](/blog/ocx-africa-day-1). OCX Africa was the first [Open Community Experience](https://ocxconf.org/ocx-africa/) in Africa, run by the Eclipse Foundation with OSCA.
 
 ## Day 2
 
 ### From LLMs to Agents: Build and understand your own AI coding environment
 
-Getting there early meant a good seat and time to set up before Thomas started. I was in my black jacket, "Jensen style", as Moses called it 😅. I love jackets (I should seriously own more).
+Getting there early meant a good seat and time to set up before Thomas started. I was in my black jacket, "Jensen style", as [Moses](https://www.linkedin.com/in/adebayomos) from day one's GreenLab talk called it 😅. I love jackets (I should seriously own more).
 
 [Thomas Froment](https://www.linkedin.com/in/tfroment) ran this one, a two-hour workshop. He started with [Theia AI](https://theia-ide.org/), the AI layer in Eclipse Theia, and how much of it you can customize: the agents, the prompts, the models behind them. Then he let us build our own setups.
 
 That's where I got stuck. Theia wanted a paid key for Claude, the AI model I wanted to use, and my account had $0 on it. I already pay for Claude every month, so I asked the obvious question: can't I just connect the Claude I already use, like I do in my usual editor?
 
-You can. It just took me five errors and about twenty minutes before it finally answered my "Hi" 😅 Small win, big relief 🎉 If you're curious what those five errors were, I've tucked them in here:
+You can. It just took me five errors and about twenty minutes before it finally answered my "Hi" 😅
 
 ::collapse{title='The five errors between me and that "Hi" 👀'}
 Theia has a Claude Code provider, but getting it running went like this:
@@ -41,7 +41,7 @@ There was a starter project we could build on, but I wanted to push myself. I wa
 
 Java does the real work, like marking your answers and running the timer, and the page you see just shows it. Your browser never gets the right answers before you submit, so nobody can cheat by peeking 👀
 
-And there I went. Things broke, as they do: Java couldn't be found, my own impatience broke my build, and dark mode made every card look like it was glowing 😂 Want to know how each of those happened? Open this:
+Things broke, as they do: Java couldn't be found, my own impatience broke my build, and dark mode made every card look like it was glowing 😂
 
 ::collapse{title="How Java went missing, my build broke and dark mode started glowing 🔧"}
 - **"Unable to locate a Java Runtime."** I had Java 21 from Homebrew, but it wasn't linked, so nothing could find it. Pointing `JAVA_HOME` at it directly fixed it.
@@ -115,17 +115,17 @@ I didn't follow every step, since I came in late, but she did great 👏
 
 [![The panel on stage, from left: Adeyinka Oresanya, Ruth Ikegah, Samson Goddy and Thabang Mashologu](https://live.staticflickr.com/65535/55629330421_a11cf88ee4_b.jpg)](https://www.flickr.com/photos/108559379@N08/55629330421/)
 
-The big one! [Thabang Mashologu](https://www.linkedin.com/in/thabang-mash/) from the Eclipse Foundation asked the questions, and [Adeyinka Oresanya](https://podcast.chaoss.community/guests/adeyinka-oresanya) from CHAOSS, [Ruth Ikegah](https://www.linkedin.com/in/ruth-ikegah) and [Samson Goddy](https://www.linkedin.com/in/samsongoddy) told us how they got into open source.
+[Thabang Mashologu](https://www.linkedin.com/in/thabang-mash/) from the Eclipse Foundation asked the questions, and [Adeyinka Oresanya](https://podcast.chaoss.community/guests/adeyinka-oresanya) from CHAOSS, [Ruth Ikegah](https://www.linkedin.com/in/ruth-ikegah) and [Samson Goddy](https://www.linkedin.com/in/samsongoddy) told us how they got into open source.
 
-It turned out to be a circle. Adeyinka said Ruth introduced her to open source. Ruth said it was Samson who introduced her. And they were sitting in exactly that order: Adeyinka, then Ruth, then Samson. Even the seat arrangement made sense 😂
+It turned out to be a circle. Adeyinka said Ruth introduced her to open source. Ruth said it was Samson who introduced her. And they were sitting in exactly that order: Adeyinka, then Ruth, then Samson 😂
 
 Then Samson told his. It started long before [Open Source Community Africa](https://www.linkedin.com/company/oscafrica) (OSCA), which he co-founded, and it started with games. He wanted to play what everyone else was playing, but his computer couldn't run the popular games. While trying to find a way around it, he worked out why: his machine ran Linux, not Windows. That was his way in. (He tells a longer version in [this interview](https://www.opensourcestories.org/stories/2021/samson-goddy/).)
 
 Ruth's start was a conversation. Someone explained it to her on a call: open source is like volunteering, just with software or hardware, and it isn't limited to code. Organising meetups counts too.
 
-Hearing those stories from the people who lived them, and how they turned OSCA into a community that keeps growing across Africa, is something I'm glad I saw with my own eyes. They talked about the good parts of open source and the hard parts too.
+I'm glad I got to hear those stories in person, from the people who lived them, and how they turned OSCA into a community that keeps growing across Africa. They talked about the good parts of open source and the hard parts too.
 
-Ruth was clear about one misconception: going into open source expecting to get paid. Not every project gets enough funding (we all know this), so it doesn't always pay. But that doesn't make open source less worth it. The world runs on open source and will keep running on it. Think of it like volunteering.
+Ruth was clear about one misconception: going into open source expecting to get paid. Not every project gets enough funding (we all know this), so it doesn't always pay. But that doesn't make open source less worth it. The world runs on open source and will keep running on it.
 
 That matches what I've seen. Most people's first contribution starts the same way: you're using something, you hit friction, and you put in the time to fix it.
 
@@ -133,9 +133,11 @@ That matches what I've seen. Most people's first contribution starts the same wa
 
 I don't know, man 😂 I had some of the worst luck here.
 
-After day one, my heart was pounding for this quiz, and I came prepared. Thomas ran it, and I was speedrunning: every answer loaded the moment I tapped it. Whenever the leaderboard came up, there I was at the top, as Lope. I was already picturing the prize 😂
+After day one, I wanted this quiz badly, and I came prepared. Thomas ran it, and I was speedrunning: every answer went in the moment I tapped it. Each time the leaderboard came up, my name sat at the top. I was already picturing the prize (the headset) 😂
 
-Then, on question 13 of 20, right after Thomas pulled up the leaderboard with me on top and the fastest times, the next question didn't load.
+Then came question 13 of 20. Thomas had just shown the leaderboard, me in first with the fastest times, and the next question didn't load.
+
+My reaction, in slides 👇
 
 ::slides
 ---
@@ -156,7 +158,7 @@ slides:
 
 When the next one finally came, I picked the right answer, then panicked, doubted myself, and switched to the wrong one. My village people were clearly at work 😭 (Nigerian for the unseen forces that show up exactly when you're winning.)
 
-I kept going, hoping to hang on to a spot in the top 8. On question 19, the power went out, and all I could think was: please, let it end here 😂 I was red, stressed, cold and hot at the same time. (And the prize I really wanted was a headset. I don't have one, and I like listening to music on my own, at the gym or when I don't want to use speakers 😖)
+I kept going, hoping to hang on to a spot in the top 8. On question 19, the power went out, and all I could think was: please, let it end here 😂 I was red, stressed, cold and hot at the same time. (I don't have a headset, and I like listening to music on my own, at the gym or when I don't want to use speakers 😖)
 
 The results came out: 8th 🫠 My friends still laugh about it.
 
@@ -166,7 +168,7 @@ There were two prizes to pick from, an OCX bag or a book. I wanted to see what w
 
 I met more people that day. My friend and our class rep from school were at a game event nearby, so I slipped out to catch up with them. It's been a month since I left school, and I've missed them.
 
-Back at the venue, I met [Olabode Lawal-Shittabey](https://github.com/babblebey), a maintainer of [semantic-release](https://github.com/semantic-release/semantic-release). We talked about OIDC and how we could use it in [Chakra UI](https://chakra-ui.com/). He'd been following our work there and liked the approach we take, and he said we should do more livestreams and give more talks. (I'd just put up my [talks page](/talks), so I took that personally 😇)
+Back at the venue, I met [Olabode Lawal-Shittabey](https://github.com/babblebey), a maintainer of [semantic-release](https://github.com/semantic-release/semantic-release). We talked about OIDC and how we could use it in [Chakra UI](https://chakra-ui.com/). He'd been following our work there and liked the approach we take, and he said we should do more livestreams and give more talks. (I'd just put up my [talks page](/talks), and a [speaker page](/giving-talks) if you want me at your event, so I took that personally 😇)
 
 We took more pictures, though not nearly enough. I really need to take more pictures, but I was shy, man 😂
 
@@ -178,29 +180,38 @@ Moses came to the rescue and lent me his cable 🙌 I'm really grateful, because
 
 [Frédéric Desbiens](https://www.linkedin.com/in/fredericdesbiens) led this one. The MXChip AZ3166 is a little circuit board about the size of a bank card, with a tiny screen, two buttons, a few lights, and sensors that can feel heat, humidity, air pressure and movement. It runs [Eclipse ThreadX](https://threadx.io/), a tiny operating system made for small devices like this. You write code on your laptop, turn it into something the board understands, and copy it over, and the workshop gave us [sample projects](https://github.com/eclipse-threadx/samplex/tree/main/MXChip/AZ3166) to start from.
 
-While I was still cable-less, I got my laptop ready, so the moment the board was plugged in, I could put code on it. Then I went off script and built a badge. The problems this time were small and funny, like my own name not fitting on the screen 😂 Yes, really. Here's how:
+While I was still cable-less, I got my laptop ready, so the moment the board was plugged in, I could put code on it. Then I went off script and built a badge. The problems this time were small and funny, like my own name not fitting on the screen 😂
 
 ::collapse{title="Why my own name didn't fit on the screen (and the other small fail) 😅"}
 - **Garbled serial output.** The board's logs came back as noise. macOS resets the serial port's speed when the port closes, so I was reading at the wrong baud rate.
 - **My own name didn't fit.** The screen is 128 pixels wide and only two fonts are built in. The bigger one fits 11 characters, and "Hi, I'm Lope" is 12, so the "e" got chopped off. "Wait for green" on the reaction screen had the same problem.
 ::
 
-By the end, the badge had nine screens. Button A flips between them, and button B does something different on each one:
+By the end, the badge had nine screens:
 
-- **Badge.** "OCX AFRICA" across the top and "Hi, I'm Lope" underneath, because a badge should say who you are. B makes the light flash like a party.
+- **Badge.** "OCX AFRICA" across the top and "Hi, I'm Lope" underneath, because a badge should say who you are.
 - **Climate.** Live temperature, humidity and air pressure from the board's sensors. It read 32.3 °C in the hall, which tells you everything about Lagos in October.
 - **E hot o!** It works out how hot it actually feels, the way weather apps do, then gives its verdict in Pidgin, from "E dey warm small" up to "Lagos heat no joke" and "Who off the AC?!". The LED turns from blue to red as it gets hotter. Breathe on the board and the humidity jumps by more than ten points in a second or two, so it catches you: "Who dey breathe?!" (It reads a few degrees high, because the chip warms the sensor next to it.)
 - **Spirit level.** A bubble that slides as you tilt the board, like a carpenter's level. Lay it flat and it says FLAT.
-- **Seismograph.** A wave of vibration scrolling across the screen. Tap the table, stomp, or drop a pen near it, and the wave spikes and the LED flashes red. It remembers the strongest shake until you press B.
-- **Step counter.** Put it in your pocket and walk. It counts your steps and works out how far you went. B resets it.
-- **Floor counter.** The air gets a tiny bit thinner with every floor you climb, and the board can feel it. Press B on the ground floor, take the stairs, and it counts the floors.
+- **Seismograph.** A wave of vibration scrolling across the screen. Tap the table, stomp, or drop a pen near it, and the wave spikes and the LED flashes red. It also keeps the strongest shake.
+- **Step counter.** Put it in your pocket and walk. It counts your steps and works out how far you went.
+- **Floor counter.** The air gets a tiny bit thinner with every floor you climb, and the board can feel it, so it counts the floors as you take the stairs.
 - **Danfo Dash.** A Lagos traffic game. You're the danfo at the bottom of the road, and you tilt the board like a steering wheel to dodge okadas (thin and fast) and kekes (wide and slow). Every vehicle you get past is a point, and the traffic speeds up the longer you last. Crash and the screen shouts "OSHODI! You don jam!"
-- **Reaction game.** Press B, wait for the LED to turn green, then press B again as fast as you can. Go too early and it tells you "Too soon!". It keeps your best time. Mine was 263 ms.
+- **Reaction game.** Wait for the LED to turn green, then press as fast as you can. Go too early and it tells you "Too soon!". It keeps your best time. Mine was 263 ms.
 
 ::clip{src="/videos/blog/ocx-africa-day-2/mxchip-badge.mp4" poster="/videos/blog/ocx-africa-day-2/mxchip-badge.poster.webp" alt="The MXChip badge in my hand, cycling through the spirit level, the reaction game, Danfo Dash and the E hot o! heat meter" width="640" height="640"}
 ::
 
 All nine screens together use only a tiny slice of the board's memory, so there's plenty of room left. It took me back to [Elvon](/blog/hey-elvon), except this time nothing caught fire 😅
+
+### Want to get into the Eclipse Foundation?
+
+If OCX made you curious, here's where I'd start:
+
+- **[Find a project.](https://projects.eclipse.org/)** There are hundreds, from [Theia](https://theia-ide.org/), the IDE from the morning workshop, to [ThreadX](https://threadx.io/), the one running my badge.
+- **[Read how to contribute.](https://www.eclipse.org/contribute/)** It covers code, docs, testing and helping in the forums.
+- **[Create an Eclipse account](https://accounts.eclipse.org/user/register) and sign the [Eclipse Contributor Agreement](https://www.eclipse.org/legal/eca/).** You need both before your first pull request can be merged. (That's the sign-up form from [day one](/blog/ocx-africa-day-1).)
+- **[Come to the next OCX.](https://ocxconf.org/)**
 
 ### Networking reception
 
@@ -208,9 +219,13 @@ The programme ended with a networking reception, which basically meant: have fun
 
 ![Two Juicers drinks in my hand, a red one and a yellow one](/images/blog/ocx-africa-day-2/juicers.webp)
 
-And before you ask: no, I didn't forget my food this time 😂 After [day one](/blog/ocx-africa-day-1), I packed it and carried it with me everywhere I went, from session to session. Lesson learned.
+And before you ask: no, I didn't forget my food this time 😂 After [day one](/blog/ocx-africa-day-1), I packed it and carried it with me everywhere I went, from session to session.
 
 That was day two: a quiz app built in a morning, a question that never loaded, a danfo on a chip, a book picked by crowd vote, and my food safely home with me 🍱 I came to OCX looking for a break from work, and I left with new friends, a badge I wrote myself, and a lot to think about. That night I [posted my last OCX tweet](https://x.com/I_am_Lope/status/2116634971263627507)
+
+[Thabang](https://www.linkedin.com/in/thabang-mash/) wrote about why OCX Africa mattered to the Eclipse Foundation: [Africa is shaping the future of open source](https://blogs.eclipse.org/post/thabang-mashologu/africa-shaping-future-open-source).
+
+Thank you to the Eclipse Foundation, OSCA and everyone who made OCX Africa happen.
 
 See you at the next one, OCX 💙
 
