@@ -137,6 +137,8 @@ After day one, my heart was pounding for this quiz, and I came prepared. Thomas 
 
 Then, on question 13 of 20, right after Thomas pulled up the leaderboard with me on top and the fastest times, the next question didn't load.
 
+My reaction, in slides 👇
+
 ::slides
 ---
 label: How I felt when the question didn't load
