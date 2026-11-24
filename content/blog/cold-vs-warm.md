@@ -2,10 +2,9 @@
 title: Cold vs warm
 description: "Why Panda CSS watch mode got fast. A long-lived compiler, a hash check before every parse, an atom union that updates one file at a time, and imports that only retry when the file they need shows up."
 seoTitle: "Cold vs warm: how Panda CSS made watch mode fast"
-date: 2026-11-26
+date: 2026-11-24
 series: Panda internals
 part: 7
-draft: true
 ---
 
 ::subtitle

@@ -324,4 +324,4 @@ count=$(npx panda analyze --json | jq '[.views.tokens.categories[].rawValues[].u
 Start `max` at today's count, and lower it as you clean up.
 ::
 
-*Back to the internals next: part 7, cold vs warm, and how Panda's watch mode got fast. If you want to know why some values never show up in analyze, read [Panda never runs your code](/blog/panda-never-runs-your-code).*
+*Back to the internals next: part 7, [Cold vs warm](/blog/cold-vs-warm), and how Panda's watch mode got fast. If you want to know why some values never show up in analyze, read [Panda never runs your code](/blog/panda-never-runs-your-code).*
