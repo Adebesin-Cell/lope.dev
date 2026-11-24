@@ -113,6 +113,8 @@ After that we [had some drinks](https://x.com/I_am_Lope/status/21162687515280511
 
 That night I [tweeted](https://x.com/I_am_Lope/status/2116238887593066970): "Conversations so good I forgot my food 😭"
 
+[Thabang Mashologu](https://www.linkedin.com/in/thabang-mash/) wrote about why OCX Africa mattered to the Eclipse Foundation: [Africa is shaping the future of open source](https://blogs.eclipse.org/post/thabang-mashologu/africa-shaping-future-open-source).
+
 Day two had a quiz app, a quiz that broke my heart, and a danfo on a chip. Coming soon.
 
 ::series-card{name="OCX Africa"}
