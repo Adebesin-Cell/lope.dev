@@ -63,5 +63,3 @@ Thank you to Sage, and to everyone who tested the betas and sent repros.
 ## Step one
 
 For me this was always step one. Panda v2 is the engine, [and now we get to build Chakra v4 on top of it](https://github.com/chakra-ui/chakra-ui/discussions/10959).
-
-The experiment lives on Chakra's [`v4` branch](https://github.com/chakra-ui/chakra-ui/tree/v4), with [design notes](https://github.com/chakra-ui/chakra-ui/tree/v4/design-notes) and a `panda-preset` sandbox you can run. Try it and tell us what you think.
