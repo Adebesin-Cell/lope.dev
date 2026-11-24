@@ -30,7 +30,7 @@ A cache needs a key, and the key has to be cheap to build. Panda picks one of th
 2. Composed styles get looked up by the objects inside them.
 3. Everything else gets a string.
 
-## Building the key was the slow part
+## Why css() was slow on every render
 
 The first version of this cache used `JSON.stringify`. Turn the arguments into a string, use the string as the key.
 

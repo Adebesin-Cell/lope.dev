@@ -106,7 +106,7 @@ On a single file, re-parsing went from about 650 microseconds on v1.11.3 to unde
 
 ## When the file you saved is imported
 
-Part 4 showed that Panda [follows imports](/blog/panda-never-runs-your-code#imports-from-other-files) to fold values from other files:
+Part 4 showed that Panda [follows imports](/blog/panda-never-runs-your-code#can-panda-css-read-styles-from-other-files) to fold values from other files:
 
 ```ts
 // tokens.ts
@@ -129,7 +129,7 @@ When `tokens.ts` is parsed again with a new hash, Panda looks it up in that map.
 
 The hash check also keeps cold runs from doing double work. During a cold run, `button.tsx` might be parsed first. It reads `tokens.ts` and folds its current hash. When `tokens.ts` is parsed later in the same run, the hash matches, nothing is out of date, and nothing is parsed twice.
 
-Barrel files work the same way, with one more step. (Part 4 covers [which import shapes Panda follows](/blog/panda-never-runs-your-code#imports-from-other-files) at all.) An `export { brand } from './tokens'` line isn't folded into the barrel. Panda records where the name points, and a lookup goes straight to `tokens.ts`. So a barrel only depends on its own text. In a synthetic benchmark, transforming 1,000 files that import from a barrel of 1,000 re-exports took 14.7 seconds before that change. Now it takes 125 ms.
+Barrel files work the same way, with one more step. (Part 4 covers [which import shapes Panda follows](/blog/panda-never-runs-your-code#can-panda-css-read-styles-from-other-files) at all.) An `export { brand } from './tokens'` line isn't folded into the barrel. Panda records where the name points, and a lookup goes straight to `tokens.ts`. So a barrel only depends on its own text. In a synthetic benchmark, transforming 1,000 files that import from a barrel of 1,000 re-exports took 14.7 seconds before that change. Now it takes 125 ms.
 
 Two cases still don't fold: a name that two `export *` lines bring in from different modules, and `export *` from a package in `node_modules`.
 

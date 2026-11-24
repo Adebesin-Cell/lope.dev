@@ -184,7 +184,7 @@ Paste that into a cleanup PR, or save it and diff it against next month's run to
 
 For anything you want to keep or script, `--outfile report.json` writes the full report and still prints the tables. `--json` prints the report instead of the tables.
 
-## "Why is my style missing?"
+## "Why is my Panda CSS style missing?"
 
 Analyze reads your files the same way the build does. It finds your Panda calls and works out their values without running your code. So if analyze can't see a value, the build couldn't either, and there's no CSS for it.
 
