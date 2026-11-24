@@ -166,7 +166,7 @@ There were two prizes to pick from, an OCX bag or a book. I wanted to see what w
 
 I met more people that day. My friend and our class rep from school were at a game event nearby, so I slipped out to catch up with them. It's been a month since I left school, and I've missed them.
 
-Back at the venue, I met [Olabode Lawal-Shittabey](https://github.com/babblebey), a maintainer of [semantic-release](https://github.com/semantic-release/semantic-release). We talked about OIDC and how we could use it in [Chakra UI](https://chakra-ui.com/). He'd been following our work there and liked the approach we take, and he said we should do more livestreams and give more talks. (I'd just put up my [talks page](/talks), so I took that personally 😇)
+Back at the venue, I met [Olabode Lawal-Shittabey](https://github.com/babblebey), a maintainer of [semantic-release](https://github.com/semantic-release/semantic-release). We talked about OIDC and how we could use it in [Chakra UI](https://chakra-ui.com/). He'd been following our work there and liked the approach we take, and he said we should do more livestreams and give more talks. (I'd just put up my [talks page](/talks), and a [speaker page](/giving-talks) if you want me at your event, so I took that personally 😇)
 
 We took more pictures, though not nearly enough. I really need to take more pictures, but I was shy, man 😂
 
