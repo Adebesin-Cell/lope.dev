@@ -204,6 +204,15 @@ By the end, the badge had nine screens:
 
 All nine screens together use only a tiny slice of the board's memory, so there's plenty of room left. It took me back to [Elvon](/blog/hey-elvon), except this time nothing caught fire 😅
 
+### Want to get into the Eclipse Foundation?
+
+If OCX made you curious, here's where I'd start:
+
+- **[Find a project.](https://projects.eclipse.org/)** There are hundreds, from [Theia](https://theia-ide.org/), the IDE from the morning workshop, to [ThreadX](https://threadx.io/), the one running my badge.
+- **[Read how to contribute.](https://www.eclipse.org/contribute/)** It covers code, docs, testing and helping in the forums.
+- **[Create an Eclipse account](https://accounts.eclipse.org/user/register) and sign the [Eclipse Contributor Agreement](https://www.eclipse.org/legal/eca/).** You need both before your first pull request can be merged. (That's the sign-up form from [day one](/blog/ocx-africa-day-1).)
+- **[Come to the next OCX.](https://ocxconf.org/)**
+
 ### Networking reception
 
 The programme ended with a networking reception, which basically meant: have fun. So I did. Juicers was back, and I loved their drinks so much I wanted to try everything. I lost count of how many flavours I went through 😅
