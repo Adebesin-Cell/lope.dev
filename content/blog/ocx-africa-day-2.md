@@ -133,11 +133,11 @@ That matches what I've seen. Most people's first contribution starts the same wa
 
 I don't know, man 😂 I had some of the worst luck here.
 
-After day one, my heart was pounding for this quiz, and I came prepared. Thomas ran it, and I was speedrunning: every answer loaded the moment I tapped it. Whenever the leaderboard came up, there I was at the top, as Lope. I was already picturing the prize 😂
+After day one, I wanted this quiz badly, and I came prepared. Thomas ran it, and I was speedrunning: every answer went in the moment I tapped it. Each time the leaderboard came up, my name sat at the top. I was already picturing the prize 😂
 
-Then, on question 13 of 20, right after Thomas pulled up the leaderboard with me on top and the fastest times, the next question didn't load.
+Then came question 13 of 20. Thomas had just shown the leaderboard, me in first with the fastest times, and the next question didn't load.
 
-My reaction, in slides 👇
+Here's how that felt:
 
 ::slides
 ---
