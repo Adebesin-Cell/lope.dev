@@ -11,7 +11,7 @@ This started as a Chakra v4 question and ended with us rewriting Panda in Rust.
 
 ![New engine, new origin. Panda CSS v2, with the install size down from 111 MB to 37 MB.](/images/blog/new-engine-new-origin/cover.svg){loading="eager" fetchpriority="high"}
 
-Between January and March 2026, after I finished [the codemod for Chakra v3](/blog/a-year-a-verse-and-an-ecosystem), Sage (Segun Adebayo) and I started talking about Chakra v4. The idea came up of moving Chakra to [Panda CSS](https://panda-css.com) and swapping out the Emotion layer.
+Between January and March 2026, after I finished [the codemod for Chakra v3](/blog/a-year-a-verse-and-an-ecosystem), :mention{handle="segunadebayo" name="Sage (Segun Adebayo)"} and I started talking about Chakra v4. The idea came up of moving Chakra to [Panda CSS](https://panda-css.com) and swapping out the Emotion layer.
 
 I came back to Sage with a long list of questions, and Sage answered every single one. Then I built a small POC that turned style props into static classes. It worked, but the test theme alone came out to roughly 3.8MB of CSS 😅.
 
