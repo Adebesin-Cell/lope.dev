@@ -96,6 +96,6 @@ const iconFill = css({ w: 'full!', h: 'full!' })
       <ark.span v-else :class="[icon, iconFill]" :style="color ? { color } : undefined" />
     </ark.span>
     <ark.span>{{ label }}</ark.span>
-    <ark.span v-if="note" :id="noteId" hidden>{{ note }}</ark.span>
+    <ark.span v-if="note" :id="noteId" hidden data-nosnippet>{{ note }}</ark.span>
   </component>
 </template>
