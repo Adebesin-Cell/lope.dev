@@ -17,7 +17,7 @@ If you missed it, [day one is here](/blog/ocx-africa-day-1).
 
 ### From LLMs to Agents: Build and understand your own AI coding environment
 
-Getting there early meant a good seat and time to set up before Thomas started. I was in my black jacket, "Jensen style", as Moses called it 😅. I love jackets (I should seriously own more).
+Getting there early meant a good seat and time to set up before Thomas started. I was in my black jacket, "Jensen style", as [Moses](https://www.linkedin.com/in/adebayomos) (the GreenLab talk from [day one](/blog/ocx-africa-day-1)) called it 😅. I love jackets (I should seriously own more).
 
 [Thomas Froment](https://www.linkedin.com/in/tfroment) ran this one, a two-hour workshop. He started with [Theia AI](https://theia-ide.org/), the AI layer in Eclipse Theia, and how much of it you can customize: the agents, the prompts, the models behind them. Then he let us build our own setups.
 
