@@ -70,7 +70,7 @@ Panda follows `accent` back to `theme`, and works out the template to `8px`. Tem
 
 The rule for variables is that the value has to stay put. A `const` with a known value works. A `let` works too, unless something reassigns it later. Once a value can change, Panda can't know which version your code sees.
 
-## Imports from other files
+## Can Panda CSS read styles from other files?
 
 Most real styles live in more than one file. Say `tokens.ts` exports a color:
 
@@ -159,7 +159,7 @@ Same behavior, and now it's a shape Panda can read.
 
 In v1, a JavaScript evaluator did this work. In v2 there's no interpreter at all, which is why helpers have to fit these shapes.
 
-## Ternaries, `&&` and `??`
+## Conditional styles: ternaries, `&&` and `??`
 
 Panda can't know which branch of a ternary runs, so it keeps both:
 

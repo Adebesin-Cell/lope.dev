@@ -111,7 +111,7 @@ When a recipe has no compound variants, `true` and `'true'` share a slot. The lo
 
 Compound variants break that. A compound compiled to `v1 === true` matches `true` but not `'true'`. Two props that look the same can now produce different class strings. So when a recipe has compounds, Panda switches the table to strict mode: `true`, `false` and `null` each get their own slot, and numbers aren't cached at all.
 
-## sva: one string per slot
+## How sva slot recipes compile
 
 A slot recipe compiles the same way, with one selection shared by every slot. This one:
 
@@ -188,7 +188,7 @@ Not every recipe needs the full `cva` surface. When a recipe is exported or pass
 
 When a recipe is only ever called in its own file, Panda knows nothing else will touch it. It gets the bare memoized function (`__pm`) and none of the extra methods. A recipe with no variants doesn't even get the memo, since there's nothing to choose between.
 
-## When Panda keeps the runtime cva
+## Why some cva recipes don't get compiled
 
 Panda doesn't compile a recipe when:
 

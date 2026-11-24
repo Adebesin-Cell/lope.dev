@@ -3,8 +3,18 @@ import { css } from 'styled-system/css'
 import { prose } from 'styled-system/recipes'
 import { ark } from '@ark-ui/vue/factory'
 import { isScheduled } from '~~/shared/utils/published'
+import { anchorRedirects } from '~~/shared/redirects'
 
 const route = useRoute()
+
+onMounted(() => {
+  const hash = decodeURIComponent(window.location.hash.slice(1))
+  const to = anchorRedirects[route.path.replace(/\/$/, '')]?.[hash]
+  if (!to) return
+  history.replaceState(history.state, '', `#${to}`)
+  document.getElementById(to)?.scrollIntoView()
+})
+
 const { url } = useSiteConfig()
 const host = url.replace(/^https?:\/\//, '').replace(/\/$/, '')
 

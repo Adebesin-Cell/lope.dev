@@ -49,7 +49,7 @@ export function Badge({ active }: { active: boolean }) {
 }
 ```
 
-## Why not just do it in the browser
+## Why Panda CSS doesn't generate CSS in the browser
 
 Runtime CSS-in-JS makes your user's browser pay the rent. On every render, something has to turn style objects into CSS, hash a class name and inject a `<style>` tag, on the user's device.
 
@@ -149,7 +149,7 @@ No CSS created, no `<style>` tag injected. Just a string.
 
 In v2, even that can go. Turn on [source transforms](https://panda-css.com/docs/styling/source-transforms) with `transform: true` on the Vite, webpack, Rollup or Bun plugin, and the bundler replaces the call with the strings Panda already worked out. The `active` check stays, because that's still a runtime decision. It's opt-in, it doesn't work with Turbopack yet, and any call Panda couldn't resolve stays as a normal runtime call.
 
-## What build time can't see
+## What Panda CSS can't extract at build time
 
 All of this only works on what's in your source. When Sage [wrote about Panda](https://www.adebayosegun.com/blog/chakra-panda-and-ark-whats-the-plan) back in 2023, it was described as "constrained to styles that can be statically analyzed." That's the deal.
 

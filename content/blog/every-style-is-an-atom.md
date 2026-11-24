@@ -41,7 +41,7 @@ Panda counts something else. How many *different* declarations are in there?
 
 Four. That's all the CSS this code needs.
 
-## What an atom is
+## What an atomic CSS class is
 
 An atom is the smallest piece of a style that still means something. A property, a value, and the conditions it applies under.
 
@@ -121,7 +121,7 @@ Four rules for three components. Add a fiftieth component with `display: flex` a
 
 So your stylesheet grows with the number of distinct atoms you use, not the number of components you write. And since your tokens are a finite set, there are only so many atoms to make.
 
-## Order, without import order
+## How atomic CSS decides which style wins
 
 In plain CSS, when two rules have the same specificity, whichever one loaded last wins. Move an import, and your button changes color.
 

@@ -60,7 +60,7 @@ That's the line between Panda and runtime CSS-in-JS. Emotion and styled-componen
 
 There's one opt-in exception. If you use [multiple themes](https://panda-css.com/docs/theming/multiple-themes) and load one on demand, `injectTheme` puts that theme's CSS into a `<style>` tag. Even then, the CSS was generated at build time. The browser only inserts it.
 
-## Removing the runtime
+## How to remove the Panda CSS runtime
 
 In v2, you can remove the last two items as well. Turn on [source transforms](https://panda-css.com/docs/styling/source-transforms) with `transform: true` on the bundler plugin:
 
@@ -92,7 +92,7 @@ A few things stay:
 - **Joins with your own class names.** When a call site mixes Panda styles with a class from somewhere else, Panda rewrites what it can and joins the rest. Where the merge needs real conflict resolution, it imports `cx` from your `styled-system`.
 - **Turbopack.** It has no plugin API, so there's no Turbopack adapter yet. On Next.js 16, that means running `next dev --webpack` and `next build --webpack`, or keeping transforms off. There's also an unofficial workaround, below.
 
-## An unofficial Turbopack workaround
+## Panda CSS with Next.js Turbopack: a workaround
 
 Turbopack can't take a plugin, but it does run loaders, and a loader can rewrite JavaScript. The hard part of a Turbopack adapter is the CSS, and you can skip that entirely: let the Panda CLI write the stylesheet, import it, and leave the bundler only the JavaScript to rewrite.
 
@@ -174,7 +174,7 @@ The ternary is worth a look too. `color: active ? 'red.700' : 'gray.700'` didn't
 className: e ? `c_red.700 fs_xl fw_bold lh_tight` : `c_gray.700 fs_xl fw_bold lh_tight`
 ```
 
-## Should you turn it on?
+## Should you turn on source transforms?
 
 The win is real but fixed: a few kilobytes gzipped, and it doesn't grow much with your app. Your numbers will differ, so measure your own bundle before and after. If you're on Turbopack, or a lot of your `css()` calls depend on runtime values, leaving it off is fine. Your CSS is still generated at build time either way.
 
