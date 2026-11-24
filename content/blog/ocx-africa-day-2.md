@@ -7,7 +7,7 @@ series: OCX Africa
 part: 2
 ---
 
-[![The day 2 group photo: everyone at OCX Africa in front of the OCX Africa wall at The Zone, Lagos](https://live.staticflickr.com/65535/55629382621_fbe9d6ec3b_b.jpg){loading="eager" fetchpriority="high"}](https://www.flickr.com/photos/108559379@N08/55629382621/)
+[![The day 2 group photo: everyone at OCX Africa in front of the OCX Africa wall at The Zone, Lagos](https://live.staticflickr.com/65535/55629382621_fbe9d6ec3b_c.jpg){loading="eager" fetchpriority="high" width="800" height="450"}](https://www.flickr.com/photos/108559379@N08/55629382621/)
 
 I got there early this time. Thankfully, I ignored the voice telling me to leave my laptop at home, or I'd have missed a ton of good work. Good Lord, always bring your laptop to tech events, especially the small ones 🙏
 
