@@ -2,10 +2,9 @@
 title: The dumb code that's faster
 description: "Places where Panda CSS picked the simple option on purpose. A list instead of a hash map, a weaker hash, a string returned untouched, and a clever config loader that lost to the bundler it replaced."
 seoTitle: "The dumb code that's faster: simple choices inside Panda CSS"
-date: 2026-12-03
+date: 2026-11-24
 series: Panda internals
 part: 8
-draft: true
 ---
 
 ::subtitle
