@@ -223,6 +223,8 @@ And before you ask: no, I didn't forget my food this time 😂 After [day one](/
 
 That was day two: a quiz app built in a morning, a question that never loaded, a danfo on a chip, a book picked by crowd vote, and my food safely home with me 🍱 I came to OCX looking for a break from work, and I left with new friends, a badge I wrote myself, and a lot to think about. That night I [posted my last OCX tweet](https://x.com/I_am_Lope/status/2116634971263627507)
 
+[Thabang](https://www.linkedin.com/in/thabang-mash/) wrote about why OCX Africa mattered to the Eclipse Foundation: [Africa is shaping the future of open source](https://blogs.eclipse.org/post/thabang-mashologu/africa-shaping-future-open-source).
+
 See you at the next one, OCX 💙
 
 ::series-card{name="OCX Africa"}
