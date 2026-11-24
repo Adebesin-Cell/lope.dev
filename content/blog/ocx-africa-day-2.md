@@ -23,7 +23,7 @@ Getting there early meant a good seat and time to set up before Thomas started. 
 
 That's where I got stuck. Theia wanted a paid key for Claude, the AI model I wanted to use, and my account had $0 on it. I already pay for Claude every month, so I asked the obvious question: can't I just connect the Claude I already use, like I do in my usual editor?
 
-You can. It just took me five errors and about twenty minutes before it finally answered my "Hi" 😅 Small win, big relief 🎉 If you're curious what those five errors were, I've tucked them in here:
+You can. It just took me five errors and about twenty minutes before it finally answered my "Hi" 😅
 
 ::collapse{title='The five errors between me and that "Hi" 👀'}
 Theia has a Claude Code provider, but getting it running went like this:
@@ -41,7 +41,7 @@ There was a starter project we could build on, but I wanted to push myself. I wa
 
 Java does the real work, like marking your answers and running the timer, and the page you see just shows it. Your browser never gets the right answers before you submit, so nobody can cheat by peeking 👀
 
-And there I went. Things broke, as they do: Java couldn't be found, my own impatience broke my build, and dark mode made every card look like it was glowing 😂 Want to know how each of those happened? Open this:
+Things broke, as they do: Java couldn't be found, my own impatience broke my build, and dark mode made every card look like it was glowing 😂
 
 ::collapse{title="How Java went missing, my build broke and dark mode started glowing 🔧"}
 - **"Unable to locate a Java Runtime."** I had Java 21 from Homebrew, but it wasn't linked, so nothing could find it. Pointing `JAVA_HOME` at it directly fixed it.
@@ -115,9 +115,9 @@ I didn't follow every step, since I came in late, but she did great 👏
 
 [![The panel on stage, from left: Adeyinka Oresanya, Ruth Ikegah, Samson Goddy and Thabang Mashologu](https://live.staticflickr.com/65535/55629330421_a11cf88ee4_b.jpg)](https://www.flickr.com/photos/108559379@N08/55629330421/)
 
-The big one! [Thabang Mashologu](https://www.linkedin.com/in/thabang-mash/) from the Eclipse Foundation asked the questions, and [Adeyinka Oresanya](https://podcast.chaoss.community/guests/adeyinka-oresanya) from CHAOSS, [Ruth Ikegah](https://www.linkedin.com/in/ruth-ikegah) and [Samson Goddy](https://www.linkedin.com/in/samsongoddy) told us how they got into open source.
+[Thabang Mashologu](https://www.linkedin.com/in/thabang-mash/) from the Eclipse Foundation asked the questions, and [Adeyinka Oresanya](https://podcast.chaoss.community/guests/adeyinka-oresanya) from CHAOSS, [Ruth Ikegah](https://www.linkedin.com/in/ruth-ikegah) and [Samson Goddy](https://www.linkedin.com/in/samsongoddy) told us how they got into open source.
 
-It turned out to be a circle. Adeyinka said Ruth introduced her to open source. Ruth said it was Samson who introduced her. And they were sitting in exactly that order: Adeyinka, then Ruth, then Samson. Even the seat arrangement made sense 😂
+It turned out to be a circle. Adeyinka said Ruth introduced her to open source. Ruth said it was Samson who introduced her. And they were sitting in exactly that order: Adeyinka, then Ruth, then Samson 😂
 
 Then Samson told his. It started long before [Open Source Community Africa](https://www.linkedin.com/company/oscafrica) (OSCA), which he co-founded, and it started with games. He wanted to play what everyone else was playing, but his computer couldn't run the popular games. While trying to find a way around it, he worked out why: his machine ran Linux, not Windows. That was his way in. (He tells a longer version in [this interview](https://www.opensourcestories.org/stories/2021/samson-goddy/).)
 
@@ -210,7 +210,7 @@ The programme ended with a networking reception, which basically meant: have fun
 
 ![Two Juicers drinks in my hand, a red one and a yellow one](/images/blog/ocx-africa-day-2/juicers.webp)
 
-And before you ask: no, I didn't forget my food this time 😂 After [day one](/blog/ocx-africa-day-1), I packed it and carried it with me everywhere I went, from session to session. Lesson learned.
+And before you ask: no, I didn't forget my food this time 😂 After [day one](/blog/ocx-africa-day-1), I packed it and carried it with me everywhere I went, from session to session.
 
 That was day two: a quiz app built in a morning, a question that never loaded, a danfo on a chip, a book picked by crowd vote, and my food safely home with me 🍱 I came to OCX looking for a break from work, and I left with new friends, a badge I wrote myself, and a lot to think about. That night I [posted my last OCX tweet](https://x.com/I_am_Lope/status/2116634971263627507)
 
