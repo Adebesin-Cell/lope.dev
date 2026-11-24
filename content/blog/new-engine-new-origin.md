@@ -54,7 +54,7 @@ That's exactly what Chakra v4 needs.
 I talked through most of what changed in my SailsConf talk, [Rebuilding Panda's Engine](https://sailsconf.com/2026/talks/17347112-5f4c-4086-bd0d-013eb2d2ff77), and the [slides](/slides/rebuilding-pandas-engine.pdf) are up too. For the rest:
 
 - The [Panda 2.0 release post](https://panda-css.com/blog/panda-css-v2), from 29 September 2026, and the [upgrade guide](https://panda-css.com/docs/get-started/upgrading-to-v2) cover what shipped and what changed.
-- Sage, Esther and I talked about v2 on a [livestream](https://www.youtube.com/live/5VcTX2I6Xk8).
+- Sage, :mention{handle="estheragbaje" name="Esther"} and I talked about v2 on a [livestream](https://www.youtube.com/live/5VcTX2I6Xk8).
 - My [Panda internals](/blog/series/panda-internals) series goes into how the engine works, starting with [Build once, at build time](/blog/build-once-at-build-time).
 
 Thank you to Sage, and to everyone who tested the betas and sent repros.
