@@ -113,7 +113,7 @@ After that we [had some drinks](https://x.com/I_am_Lope/status/21162687515280511
 
 That night I [tweeted](https://x.com/I_am_Lope/status/2116238887593066970): "Conversations so good I forgot my food 😭"
 
-Day two had a quiz app, a quiz that broke my heart, and a danfo on a chip. [Read day two](/blog/ocx-africa-day-2).
+Day two had a quiz app, a quiz that broke my heart, and a danfo on a chip.
 
 ::series-card{name="OCX Africa"}
 ::
