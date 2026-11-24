@@ -11,7 +11,7 @@ part: 2
 
 I got there early this time. Thankfully, I ignored the voice telling me to leave my laptop at home, or I'd have missed a ton of good work. Good Lord, always bring your laptop to tech events, especially the small ones 🙏
 
-If you missed it, [day one is here](/blog/ocx-africa-day-1).
+If you missed it, [day one is here](/blog/ocx-africa-day-1). OCX Africa was the first [Open Community Experience](https://ocxconf.org/ocx-africa/) in Africa, run by the Eclipse Foundation with OSCA.
 
 ## Day 2
 
@@ -123,9 +123,9 @@ Then Samson told his. It started long before [Open Source Community Africa](http
 
 Ruth's start was a conversation. Someone explained it to her on a call: open source is like volunteering, just with software or hardware, and it isn't limited to code. Organising meetups counts too.
 
-Hearing those stories from the people who lived them, and how they turned OSCA into a community that keeps growing across Africa, is something I'm glad I saw with my own eyes. They talked about the good parts of open source and the hard parts too.
+I'm glad I got to hear those stories in person, from the people who lived them, and how they turned OSCA into a community that keeps growing across Africa. They talked about the good parts of open source and the hard parts too.
 
-Ruth was clear about one misconception: going into open source expecting to get paid. Not every project gets enough funding (we all know this), so it doesn't always pay. But that doesn't make open source less worth it. The world runs on open source and will keep running on it. Think of it like volunteering.
+Ruth was clear about one misconception: going into open source expecting to get paid. Not every project gets enough funding (we all know this), so it doesn't always pay. But that doesn't make open source less worth it. The world runs on open source and will keep running on it.
 
 That matches what I've seen. Most people's first contribution starts the same way: you're using something, you hit friction, and you put in the time to fix it.
 
@@ -133,7 +133,7 @@ That matches what I've seen. Most people's first contribution starts the same wa
 
 I don't know, man 😂 I had some of the worst luck here.
 
-After day one, I wanted this quiz badly, and I came prepared. Thomas ran it, and I was speedrunning: every answer went in the moment I tapped it. Each time the leaderboard came up, my name sat at the top. I was already picturing the prize 😂
+After day one, I wanted this quiz badly, and I came prepared. Thomas ran it, and I was speedrunning: every answer went in the moment I tapped it. Each time the leaderboard came up, my name sat at the top. I was already picturing the prize (the headset) 😂
 
 Then came question 13 of 20. Thomas had just shown the leaderboard, me in first with the fastest times, and the next question didn't load.
 
@@ -158,7 +158,7 @@ slides:
 
 When the next one finally came, I picked the right answer, then panicked, doubted myself, and switched to the wrong one. My village people were clearly at work 😭 (Nigerian for the unseen forces that show up exactly when you're winning.)
 
-I kept going, hoping to hang on to a spot in the top 8. On question 19, the power went out, and all I could think was: please, let it end here 😂 I was red, stressed, cold and hot at the same time. (And the prize I really wanted was a headset. I don't have one, and I like listening to music on my own, at the gym or when I don't want to use speakers 😖)
+I kept going, hoping to hang on to a spot in the top 8. On question 19, the power went out, and all I could think was: please, let it end here 😂 I was red, stressed, cold and hot at the same time. (I don't have a headset, and I like listening to music on my own, at the gym or when I don't want to use speakers 😖)
 
 The results came out: 8th 🫠 My friends still laugh about it.
 
@@ -224,6 +224,8 @@ And before you ask: no, I didn't forget my food this time 😂 After [day one](/
 That was day two: a quiz app built in a morning, a question that never loaded, a danfo on a chip, a book picked by crowd vote, and my food safely home with me 🍱 I came to OCX looking for a break from work, and I left with new friends, a badge I wrote myself, and a lot to think about. That night I [posted my last OCX tweet](https://x.com/I_am_Lope/status/2116634971263627507)
 
 [Thabang](https://www.linkedin.com/in/thabang-mash/) wrote about why OCX Africa mattered to the Eclipse Foundation: [Africa is shaping the future of open source](https://blogs.eclipse.org/post/thabang-mashologu/africa-shaping-future-open-source).
+
+Thank you to the Eclipse Foundation, OSCA and everyone who made OCX Africa happen.
 
 See you at the next one, OCX 💙
 
