@@ -187,17 +187,17 @@ While I was still cable-less, I got my laptop ready, so the moment the board was
 - **My own name didn't fit.** The screen is 128 pixels wide and only two fonts are built in. The bigger one fits 11 characters, and "Hi, I'm Lope" is 12, so the "e" got chopped off. "Wait for green" on the reaction screen had the same problem.
 ::
 
-By the end, the badge had nine screens. Button A flips between them, and button B does something different on each one:
+By the end, the badge had nine screens:
 
-- **Badge.** "OCX AFRICA" across the top and "Hi, I'm Lope" underneath, because a badge should say who you are. B makes the light flash like a party.
+- **Badge.** "OCX AFRICA" across the top and "Hi, I'm Lope" underneath, because a badge should say who you are.
 - **Climate.** Live temperature, humidity and air pressure from the board's sensors. It read 32.3 °C in the hall, which tells you everything about Lagos in October.
 - **E hot o!** It works out how hot it actually feels, the way weather apps do, then gives its verdict in Pidgin, from "E dey warm small" up to "Lagos heat no joke" and "Who off the AC?!". The LED turns from blue to red as it gets hotter. Breathe on the board and the humidity jumps by more than ten points in a second or two, so it catches you: "Who dey breathe?!" (It reads a few degrees high, because the chip warms the sensor next to it.)
 - **Spirit level.** A bubble that slides as you tilt the board, like a carpenter's level. Lay it flat and it says FLAT.
-- **Seismograph.** A wave of vibration scrolling across the screen. Tap the table, stomp, or drop a pen near it, and the wave spikes and the LED flashes red. It remembers the strongest shake until you press B.
-- **Step counter.** Put it in your pocket and walk. It counts your steps and works out how far you went. B resets it.
-- **Floor counter.** The air gets a tiny bit thinner with every floor you climb, and the board can feel it. Press B on the ground floor, take the stairs, and it counts the floors.
+- **Seismograph.** A wave of vibration scrolling across the screen. Tap the table, stomp, or drop a pen near it, and the wave spikes and the LED flashes red. It also keeps the strongest shake.
+- **Step counter.** Put it in your pocket and walk. It counts your steps and works out how far you went.
+- **Floor counter.** The air gets a tiny bit thinner with every floor you climb, and the board can feel it, so it counts the floors as you take the stairs.
 - **Danfo Dash.** A Lagos traffic game. You're the danfo at the bottom of the road, and you tilt the board like a steering wheel to dodge okadas (thin and fast) and kekes (wide and slow). Every vehicle you get past is a point, and the traffic speeds up the longer you last. Crash and the screen shouts "OSHODI! You don jam!"
-- **Reaction game.** Press B, wait for the LED to turn green, then press B again as fast as you can. Go too early and it tells you "Too soon!". It keeps your best time. Mine was 263 ms.
+- **Reaction game.** Wait for the LED to turn green, then press as fast as you can. Go too early and it tells you "Too soon!". It keeps your best time. Mine was 263 ms.
 
 ::clip{src="/videos/blog/ocx-africa-day-2/mxchip-badge.mp4" poster="/videos/blog/ocx-africa-day-2/mxchip-badge.poster.webp" alt="The MXChip badge in my hand, cycling through the spirit level, the reaction game, Danfo Dash and the E hot o! heat meter" width="640" height="640"}
 ::
