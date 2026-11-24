@@ -97,6 +97,7 @@ export default defineNuxtConfig({
       posthogPublicKey: process.env.NUXT_PUBLIC_POSTHOG_PUBLIC_KEY || '',
       posthogHost: process.env.NUXT_PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com',
       posthogOptoutToken: process.env.NUXT_PUBLIC_POSTHOG_OPTOUT_TOKEN || '',
+      vercelEnv: process.env.VERCEL_ENV || '',
     },
   },
   vite: {

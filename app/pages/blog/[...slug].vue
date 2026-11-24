@@ -2,6 +2,7 @@
 import { css } from 'styled-system/css'
 import { prose } from 'styled-system/recipes'
 import { ark } from '@ark-ui/vue/factory'
+import { isScheduled } from '~~/shared/utils/published'
 
 const route = useRoute()
 const { url } = useSiteConfig()
@@ -9,7 +10,9 @@ const host = url.replace(/^https?:\/\//, '').replace(/\/$/, '')
 
 const { data: post } = await useAsyncData(`blog-${route.path}`, () => queryCollection('blog').path(route.path).first())
 
-if (!post.value) throw createError({ statusCode: 404, statusMessage: 'Post not found', fatal: true })
+const hideScheduled = useRuntimeConfig().public.vercelEnv === 'production'
+if (!post.value || (hideScheduled && isScheduled(post.value)))
+  throw createError({ statusCode: 404, statusMessage: 'Post not found', fatal: true })
 
 const postUrl = computed(() => `https://${host}${route.path}`)
 const shareTitle = computed(() => post.value?.title ?? '')
