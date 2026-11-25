@@ -143,7 +143,7 @@ export default defineNuxtConfig({
     '/giving-talks': { prerender: true },
     '/blog/**': { prerender: true },
     '/feed.xml': { prerender: true },
-    '/releases': { isr: 60 * 60 },
+    '/releases': { isr: { expiration: 60 * 60, allowQuery: ['page'], passQuery: true } },
     '/api/releases/**': { swr: 60 * 60 },
     ...redirectRouteRules,
   },
