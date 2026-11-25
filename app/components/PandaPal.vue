@@ -171,8 +171,7 @@ let gapTimer: ReturnType<typeof setTimeout> | undefined
 const timers = new Set<ReturnType<typeof setTimeout>>()
 
 const isPhone = useMediaQuery('(max-width: 639px)')
-const { isScrolling } = useScroll(import.meta.client ? window : null, { idle: 500 })
-const tucked = computed(() => isPhone.value && isScrolling.value && !message.value && !reduceMotion.value)
+const tucked = computed(() => isPhone.value && !message.value)
 
 const spot = computed<Spot>(() => {
   const path = route.path.replace(/\/$/, '') || '/'
@@ -420,7 +419,7 @@ const root = css({
   h: { base: '10', sm: '[60px]' },
   transition: '[transform 0.35s cubic-bezier(0.3, 1.6, 0.5, 1)]',
   _motionReduce: { transition: '[none]' },
-  '&[data-tucked]': { transform: '[translateY(calc(100% + 12px))]' },
+  '&[data-tucked]:not(:has(:focus-visible))': { transform: '[translateY(calc(40% + 12px))]' },
 })
 const sprite = css({
   display: 'block',
