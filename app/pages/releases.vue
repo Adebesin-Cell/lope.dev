@@ -35,13 +35,20 @@ const page = computed(() => {
   return Number.isFinite(n) && n > 0 ? n : 1
 })
 
-const { data, status } = useLazyFetch<ReleasesResponse>(() => `/api/releases/${page.value}`, { server: false })
+const { data, status } = useLazyFetch<ReleasesResponse>(() => `/api/releases/${page.value}`)
 const loading = computed(() => status.value === 'idle' || status.value === 'pending')
 const pagedPrs = computed(() => data.value?.prs ?? [])
-const totalPages = ref(1)
-watch(data, (d) => {
-  if (d) totalPages.value = Math.max(1, Math.ceil(d.total / d.perPage))
-})
+const lastTotal = ref(1)
+const totalPages = computed(() =>
+  data.value ? Math.max(1, Math.ceil(data.value.total / data.value.perPage)) : lastTotal.value,
+)
+watch(
+  totalPages,
+  (n) => {
+    lastTotal.value = n
+  },
+  { immediate: true },
+)
 const pageItems = computed(() => {
   const keep = (p: number) => p === 1 || p === totalPages.value || Math.abs(p - page.value) <= 1
   const pages = Array.from({ length: totalPages.value }, (_, i) => i + 1).filter(keep)
@@ -58,9 +65,11 @@ const MS_PER_DAY = 86_400_000
 const DAYS_PER_MONTH = 30
 const MONTHS_PER_YEAR = 12
 
+const renderedAt = useState('releases-rendered-at', () => Date.now())
+
 function relTime(iso: string) {
   if (!iso) return ''
-  const days = Math.floor((Date.now() - new Date(iso).getTime()) / MS_PER_DAY)
+  const days = Math.floor((renderedAt.value - new Date(iso).getTime()) / MS_PER_DAY)
   if (days < 1) return 'today'
   if (days < DAYS_PER_MONTH) return `${days}d ago`
   const months = Math.floor(days / DAYS_PER_MONTH)
