@@ -103,7 +103,7 @@ That second step is where I got stuck. The next morning, on my way back for day 
 
 [![Babáṣílé at the podium with the quiz screen full of player names behind him](https://live.staticflickr.com/65535/55623123894_375ec4393f_b.jpg)](https://www.flickr.com/photos/108559379@N08/55623123894/)
 
-😭 You know when you walk into a room full of confidence and trip on your face? Yeah, that was me with the quiz. I did pretty well early on, but I was too slow on some questions, partly the network and partly me overthinking my answers. The quiz itself was truly amazing, though. Wait till you hear what happened on day two.
+😭 You know when you walk into a room full of confidence and trip on your face? Yeah, that was me with the quiz. I did pretty well early on, but I was too slow on some questions, partly the network and partly me overthinking my answers. The quiz itself was truly amazing, though. Wait till you hear what happened on [day two](/blog/ocx-africa-day-2).
 
 ### Networking reception
 
@@ -115,7 +115,7 @@ That night I [tweeted](https://x.com/I_am_Lope/status/2116238887593066970): "Con
 
 [Thabang Mashologu](https://www.linkedin.com/in/thabang-mash/) wrote about why OCX Africa mattered to the Eclipse Foundation: [Africa is shaping the future of open source](https://blogs.eclipse.org/post/thabang-mashologu/africa-shaping-future-open-source).
 
-Day two had a quiz app, a quiz that broke my heart, and a danfo on a chip. Coming soon.
+Day two had a quiz app, a quiz that broke my heart, and a danfo on a chip. [Read day two](/blog/ocx-africa-day-2).
 
 ::series-card{name="OCX Africa"}
 ::
