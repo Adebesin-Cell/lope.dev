@@ -156,9 +156,9 @@ slides:
 ---
 ::
 
-When the next one finally came, I picked the right answer, then panicked, doubted myself, and switched to the wrong one. My village people were clearly at work 😭 (Nigerian for the unseen forces that show up exactly when you're winning.)
+When the next one finally came, I picked the right answer, then panicked, doubted myself, and switched to the wrong one. The universe had other plans 😭
 
-I kept going, hoping to hang on to a spot in the top 8. On question 19, the power went out, and all I could think was: please, let it end here 😂 I was red, stressed, cold and hot at the same time. (I don't have a headset, and I like listening to music on my own, at the gym or when I don't want to use speakers 😖)
+I kept going, hoping to hang on to a spot in the top 8. On question 19, the power went out, and all I could think was: please, let it end here 😂 I was red, stressed, cold and hot at the same time.
 
 The results came out: 8th 🫠 My friends still laugh about it.
 
