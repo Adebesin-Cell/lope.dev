@@ -7,7 +7,7 @@ series: OCX Africa
 part: 1
 ---
 
-[![The OCX Africa stage and rows of empty chairs at The Zone, Lagos, before the first session](https://live.staticflickr.com/65535/55623356955_7c46e87c04_b.jpg){loading="eager" fetchpriority="high"}](https://www.flickr.com/photos/108559379@N08/55623356955/)
+[![The OCX Africa stage and rows of empty chairs at The Zone, Lagos, before the first session](https://live.staticflickr.com/65535/55623356955_7c46e87c04_b.jpg){loading="eager" fetchpriority="high" width="1024" height="683"}](https://www.flickr.com/photos/108559379@N08/55623356955/)
 
 I wouldn't have forgiven myself if I didn't write about this experience.
 
@@ -31,11 +31,11 @@ I arrived a bit late on day one, because I had to put some things in place at ho
 
 I missed most of "One foundation, five frontiers: Inside Eclipse's open source ecosystem", but I was early for [Moses Adebayo](https://www.linkedin.com/in/adebayomos)'s talk. A couple of faces felt familiar from X, and an old friend, Nosa Osas, was there too. I was quite nervous tbf, but I tried to blend in as much as I could.
 
-[![The opening Eclipse session, One foundation, five frontiers, which I mostly missed](https://live.staticflickr.com/65535/55623072428_27142a19f7_b.jpg)](https://www.flickr.com/photos/108559379@N08/55623072428/)
+[![The opening Eclipse session, One foundation, five frontiers, which I mostly missed](https://live.staticflickr.com/65535/55623072428_27142a19f7_b.jpg){width="1024" height="683"}](https://www.flickr.com/photos/108559379@N08/55623072428/)
 
 ### Empowering African makers: Open source IoT and fabrication for the next generation
 
-[![Moses Adebayo on stage beside a slide about defining the problem, moving fast and building an MVP](https://live.staticflickr.com/65535/55622925131_d731497417_b.jpg)](https://www.flickr.com/photos/108559379@N08/55622925131/)
+[![Moses Adebayo on stage beside a slide about defining the problem, moving fast and building an MVP](https://live.staticflickr.com/65535/55622925131_d731497417_b.jpg){width="1024" height="683"}](https://www.flickr.com/photos/108559379@N08/55622925131/)
 
 Moses took us through his journey building with GreenLab and how tough it was to start building hardware. He gave some amazing takeaways:
 
@@ -55,7 +55,7 @@ I connected with Samson here, and with [Ruth Ikegah](https://www.linkedin.com/in
 
 ### Full autonomy, zero panic: Running AI coding agents safely with Eclipse Enclave
 
-[![Victor Olamide Akande presenting the four things Eclipse Enclave controls](https://live.staticflickr.com/65535/55623347840_2ab5fdc367_b.jpg)](https://www.flickr.com/photos/108559379@N08/55623347840/)
+[![Victor Olamide Akande presenting the four things Eclipse Enclave controls](https://live.staticflickr.com/65535/55623347840_2ab5fdc367_b.jpg){width="1024" height="683"}](https://www.flickr.com/photos/108559379@N08/55623347840/)
 
 We've all used agents, and sometimes we need them to do pretty big things for us. Victor Olamide Akande walked us through [Eclipse Enclave](https://enclave.eclipse.dev) and why we should run agents in sandboxes instead of leaving them running wild. An agent roaming freely with wide disk permissions can mess up your workspace, or even your team's, and do things that can't be reversed. So you give agents a box, and they can only reach what you allowed.
 
@@ -63,7 +63,7 @@ We've all used agents, and sometimes we need them to do pretty big things for us
 
 This session was charming. I even [said so on X](https://x.com/I_am_Lope/status/2116159459735069087).
 
-[![Rasheedat Atinuke Jamiu on stage, with the Transformer Explainer on the screen behind her](https://live.staticflickr.com/65535/55622922616_22b0b7c974_b.jpg)](https://www.flickr.com/photos/108559379@N08/55622922616/)
+[![Rasheedat Atinuke Jamiu on stage, with the Transformer Explainer on the screen behind her](https://live.staticflickr.com/65535/55622922616_22b0b7c974_b.jpg){width="1024" height="683"}](https://www.flickr.com/photos/108559379@N08/55622922616/)
 
 [Rasheedat Atinuke Jamiu](https://www.linkedin.com/in/rasheedat-atinuke-jamiu) took us through everything that happens under the hood when you type a single question like "What is the capital of Nigeria?". I already had an idea of how LLMs work, so it was fun, and I still learned a lot more about the selection and probability that happen inside. It's funny how LLMs are just matching words to give us something that feels good. They don't have a deep understanding of us, just a bunch of probabilities that turn into a response. She shared two resources for us to play with. The one I remember is the [Transformer Explainer](https://poloclub.github.io/transformer-explainer/), where you can go into the deep parts yourself and even tune the temperature.
 
@@ -71,7 +71,7 @@ In short: your sentence is split into tokens, each token becomes a list of numbe
 
 ### 10 years building open source: Lessons from Nigeria, North & West Africa
 
-[![Babáṣílé on stage pointing at a slide about the Fab Charter](https://live.staticflickr.com/65535/55622920096_0062c96eb1_b.jpg)](https://www.flickr.com/photos/108559379@N08/55622920096/)
+[![Babáṣílé on stage pointing at a slide about the Fab Charter](https://live.staticflickr.com/65535/55622920096_0062c96eb1_b.jpg){width="1024" height="683"}](https://www.flickr.com/photos/108559379@N08/55622920096/)
 
 Dr. [Babáṣílé Daniel Ọládélé-Emmanuel](https://www.linkedin.com/in/babasile-daniel) walked us through his experience of building in the open in West Africa. He worked with schools to build curriculum around hardware, and for odd reasons some of them never gave back the data they were asked for. His lesson was that trust is necessary in open source, and that people play a big part in making it last.
 
@@ -89,7 +89,7 @@ Oh yeah, I met [Oliver Ikegah](https://www.linkedin.com/in/ikegah-oliver-11a1122
 
 ### From user to contributor: Your first pull request to open source
 
-[![Thomas Froment and Frédéric Desbiens in front of a slide: read the documentation, create your Eclipse Foundation account, complete the ECA, prepare your environment](https://live.staticflickr.com/65535/55621917527_6baa6a5a01_b.jpg)](https://www.flickr.com/photos/108559379@N08/55621917527/)
+[![Thomas Froment and Frédéric Desbiens in front of a slide: read the documentation, create your Eclipse Foundation account, complete the ECA, prepare your environment](https://live.staticflickr.com/65535/55621917527_6baa6a5a01_b.jpg){width="1024" height="683"}](https://www.flickr.com/photos/108559379@N08/55621917527/)
 
 After lunch came a kind of session I always love. Like many people, my own start in open source was "how do I contribute?", and then you're hit with "is open source really for me?"
 
@@ -101,7 +101,7 @@ That second step is where I got stuck. The next morning, on my way back for day 
 
 ### Quiz: How well do you know open source?
 
-[![Babáṣílé at the podium with the quiz screen full of player names behind him](https://live.staticflickr.com/65535/55623123894_375ec4393f_b.jpg)](https://www.flickr.com/photos/108559379@N08/55623123894/)
+[![Babáṣílé at the podium with the quiz screen full of player names behind him](https://live.staticflickr.com/65535/55623123894_375ec4393f_b.jpg){width="1024" height="576"}](https://www.flickr.com/photos/108559379@N08/55623123894/)
 
 😭 You know when you walk into a room full of confidence and trip on your face? Yeah, that was me with the quiz. I did pretty well early on, but I was too slow on some questions, partly the network and partly me overthinking my answers. The quiz itself was truly amazing, though. Wait till you hear what happened on [day two](/blog/ocx-africa-day-2).
 
