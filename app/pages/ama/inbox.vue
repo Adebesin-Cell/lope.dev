@@ -151,7 +151,7 @@ const spacer = css({ flex: '1' })
 </script>
 
 <template>
-  <ark.article class="slide-enter-content">
+  <ark.article class="slide-enter-content ph-no-capture">
     <ark.header :class="header">
       <ark.h1 :class="pageTitle">
         Inbox<template v-if="questions"> · {{ questions.length }}</template>

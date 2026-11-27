@@ -13,9 +13,9 @@ I got there early this time. Thankfully, I ignored the voice telling me to leave
 
 If you missed it, [day one is here](/blog/ocx-africa-day-1). OCX Africa was the first [Open Community Experience](https://ocxconf.org/ocx-africa/) in Africa, run by the Eclipse Foundation with OSCA.
 
-## Day 2
+On day two, I [wired Claude Code into Eclipse Theia and built a quiz app](#from-llms-to-agents-build-and-understand-your-own-ai-coding-environment), [heard how OSCA began](#panel-discussion-african-talent-global-impact-open-source-in-the-age-of-ai), [lost a quiz I was winning](#the-open-source-ai-developer-stack-quiz), and [turned an MXChip into a Lagos badge](#workshop-real-time-in-your-hands-getting-started-with-eclipse-threadx-on-the-mxchip-az3166) 👇
 
-### From LLMs to Agents: Build and understand your own AI coding environment
+## From LLMs to Agents: Build and understand your own AI coding environment
 
 Getting there early meant a good seat and time to set up before Thomas started. I was in my black jacket, "Jensen style", as [Moses](https://www.linkedin.com/in/adebayomos) from day one's GreenLab talk called it 😅. I love jackets (I should seriously own more).
 
@@ -99,7 +99,7 @@ slides:
 
 Looking back, the Theia errors weren't about the model at all. They were about the setup around it: which agent answers, what folder it can see, and where its tools live. It's the same lesson I wrote about in [context is everything](/blog/context-is-everything): the model is only as good as what you put around it. Thomas's title said "understand your own AI coding environment", and tbh, I left understanding mine a lot better.
 
-### Beyond local setup: Building a secure, AI-powered cloud IDE with Eclipse Theia and Google Cloud
+## Beyond local setup: Building a secure, AI-powered cloud IDE with Eclipse Theia and Google Cloud
 
 [![Mary Mbaoma at the podium, beside a slide that reads "Think beyond a generic code editor"](https://live.staticflickr.com/65535/55629519549_edc0dee233_b.jpg)](https://www.flickr.com/photos/108559379@N08/55629519549/)
 
@@ -111,7 +111,7 @@ Her answer was to build it on Theia and run it on Google Cloud Workstations, whi
 
 I didn't follow every step, since I came in late, but she did great 👏
 
-### Panel discussion: African talent, global impact: Open source in the age of AI
+## Panel discussion: African talent, global impact: Open source in the age of AI
 
 [![The panel on stage, from left: Adeyinka Oresanya, Ruth Ikegah, Samson Goddy and Thabang Mashologu](https://live.staticflickr.com/65535/55629330421_a11cf88ee4_b.jpg)](https://www.flickr.com/photos/108559379@N08/55629330421/)
 
@@ -129,7 +129,7 @@ Ruth was clear about one misconception: going into open source expecting to get 
 
 That matches what I've seen. Most people's first contribution starts the same way: you're using something, you hit friction, and you put in the time to fix it.
 
-### The open source AI developer stack quiz
+## The open source AI developer stack quiz
 
 I don't know, man 😂 I had some of the worst luck here.
 
@@ -164,7 +164,7 @@ The results came out: 8th 🫠 My friends still laugh about it.
 
 There were two prizes to pick from, an OCX bag or a book. I wanted to see what was in the bag, but I was standing in front of the stage, so I went with what everyone shouted for. I left with [*The Cathedral and the Bazaar*](http://www.catb.org/~esr/writings/cathedral-bazaar/) by Eric S. Raymond. I still don't know what was in the bag 😔
 
-### Lunch & community networking
+## Lunch & community networking
 
 I met more people that day. My friend and our class rep from school were at a game event nearby, so I slipped out to catch up with them. It's been a month since I left school, and I've missed them.
 
@@ -172,7 +172,7 @@ Back at the venue, I met [Olabode Lawal-Shittabey](https://github.com/babblebey)
 
 We took more pictures, though not nearly enough. I really need to take more pictures, but I was shy, man 😂
 
-### Workshop: Real-time in your hands: Getting started with Eclipse ThreadX on the MXChip AZ3166
+## Workshop: Real-time in your hands: Getting started with Eclipse ThreadX on the MXChip AZ3166
 
 Every hardware project I did in school ran into the same wall, and this one was no different: the board has a micro-USB port, my MacBook only has USB-C, and I hadn't brought an adapter. I had the power in my hands and nowhere to plug it in.
 
@@ -204,7 +204,7 @@ By the end, the badge had nine screens:
 
 All nine screens together use only a tiny slice of the board's memory, so there's plenty of room left. It took me back to [Elvon](/blog/hey-elvon), except this time nothing caught fire 😅
 
-### Want to get into the Eclipse Foundation?
+## Want to get into the Eclipse Foundation?
 
 If OCX made you curious, here's where I'd start:
 
@@ -213,7 +213,7 @@ If OCX made you curious, here's where I'd start:
 - **[Create an Eclipse account](https://accounts.eclipse.org/user/register) and sign the [Eclipse Contributor Agreement](https://www.eclipse.org/legal/eca/).** You need both before your first pull request can be merged. (That's the sign-up form from [day one](/blog/ocx-africa-day-1).)
 - **[Come to the next OCX.](https://ocxconf.org/)**
 
-### Networking reception
+## Networking reception
 
 The programme ended with a networking reception, which basically meant: have fun. So I did. Juicers was back, and I loved their drinks so much I wanted to try everything. I lost count of how many flavours I went through 😅
 
