@@ -101,7 +101,7 @@ Looking back, the Theia errors weren't about the model at all. They were about t
 
 ## Beyond local setup: Building a secure, AI-powered cloud IDE with Eclipse Theia and Google Cloud
 
-[![Mary Mbaoma at the podium, beside a slide that reads "Think beyond a generic code editor"](https://live.staticflickr.com/65535/55629519549_edc0dee233_b.jpg)](https://www.flickr.com/photos/108559379@N08/55629519549/)
+[![Mary Mbaoma at the podium, beside a slide that reads "Think beyond a generic code editor"](https://live.staticflickr.com/65535/55629519549_edc0dee233_b.jpg){width="1024" height="683"}](https://www.flickr.com/photos/108559379@N08/55629519549/)
 
 Mary, I'm so sorry I walked in after you'd started 🙈 I felt cold, the stress of the morning had caught up with me, and my nose wouldn't stop running, so I spent longer outside than I planned.
 
@@ -113,7 +113,7 @@ I didn't follow every step, since I came in late, but she did great 👏
 
 ## Panel discussion: African talent, global impact: Open source in the age of AI
 
-[![The panel on stage, from left: Adeyinka Oresanya, Ruth Ikegah, Samson Goddy and Thabang Mashologu](https://live.staticflickr.com/65535/55629330421_a11cf88ee4_b.jpg)](https://www.flickr.com/photos/108559379@N08/55629330421/)
+[![The panel on stage, from left: Adeyinka Oresanya, Ruth Ikegah, Samson Goddy and Thabang Mashologu](https://live.staticflickr.com/65535/55629330421_a11cf88ee4_b.jpg){width="1024" height="683"}](https://www.flickr.com/photos/108559379@N08/55629330421/)
 
 [Thabang Mashologu](https://www.linkedin.com/in/thabang-mash/) from the Eclipse Foundation asked the questions, and [Adeyinka Oresanya](https://podcast.chaoss.community/guests/adeyinka-oresanya) from CHAOSS, [Ruth Ikegah](https://www.linkedin.com/in/ruth-ikegah) and [Samson Goddy](https://www.linkedin.com/in/samsongoddy) told us how they got into open source.
 
