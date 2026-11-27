@@ -515,6 +515,7 @@ const hideButton = css({
       v-if="ready && !hidden"
       :class="[root, 'group']"
       data-panda="bottom-start"
+      data-nosnippet
       :data-tucked="tucked || undefined"
       :data-talking="message ? '' : undefined"
       @pointerenter="pause"

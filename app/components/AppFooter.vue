@@ -18,11 +18,13 @@ const link = css({ textDecoration: 'underline', transition: 'colors', _hover: { 
 
 <template>
   <ark.footer :class="footer">
-    © {{ year }} Adebesin Tolulope ·
-    <ark.a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener" :class="link">
-      CC BY-NC-SA 4.0
-    </ark.a>
-    · Inspired by
-    <ark.a href="https://antfu.me" target="_blank" rel="noopener" :class="link"> antfu </ark.a>
+    <ark.div data-nosnippet>
+      © {{ year }} Adebesin Tolulope ·
+      <ark.a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener" :class="link">
+        CC BY-NC-SA 4.0
+      </ark.a>
+      · Inspired by
+      <ark.a href="https://antfu.me" target="_blank" rel="noopener" :class="link"> antfu </ark.a>
+    </ark.div>
   </ark.footer>
 </template>
