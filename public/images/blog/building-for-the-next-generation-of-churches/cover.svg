@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-label="Building for the next generation of churches. The BethelFlow mark above a winding, dashed route with a couple of wrong turns, passing a small house, a hall, a church, and finally a cluster of churches.">
+  <style>
+    :root { color-scheme: light dark; }
+    .bg    { fill: #faf9f5; }
+    .word  { fill: #17171b; font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; font-size: 54px; font-weight: 800; letter-spacing: -2px; }
+    .lead  { fill: #63636f; font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; font-size: 22px; font-weight: 500; }
+    .chip  { fill: #ffffff; stroke: #e7e5db; stroke-width: 1.5; }
+    .route { fill: none; stroke: #2463eb; stroke-width: 3; stroke-linecap: round; stroke-dasharray: 2 10; }
+    .wrong { fill: none; stroke: #17171b; stroke-opacity: 0.25; stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 2 9; }
+    .x     { fill: none; stroke: #17171b; stroke-opacity: 0.3; stroke-width: 2.5; stroke-linecap: round; }
+    .bld   { fill: #ffffff; stroke: #17171b; stroke-width: 2.5; stroke-linejoin: round; }
+    .ink   { fill: none; stroke: #17171b; stroke-width: 2.5; stroke-linecap: round; }
+    .pin   { fill: #2463eb; }
+    .dot   { fill: #17171b; opacity: 0.05; }
+    @media (prefers-color-scheme: dark) {
+      .bg    { fill: #100f0d; }
+      .word  { fill: #f4f3ee; }
+      .lead  { fill: #a3a29a; }
+      .chip  { fill: #f7f6f2; stroke: #ffffff; stroke-opacity: 0.14; }
+      .wrong { stroke: #f4f3ee; stroke-opacity: 0.3; }
+      .x     { stroke: #f4f3ee; stroke-opacity: 0.35; }
+      .bld   { fill: #1a1a1d; stroke: #f4f3ee; }
+      .ink   { stroke: #f4f3ee; }
+      .dot   { fill: #f4f3ee; opacity: 0.06; }
+    }
+  </style>
+
+  <defs>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle class="dot" cx="2" cy="2" r="1.6" />
+    </pattern>
+    <radialGradient id="blob" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2463eb" stop-opacity="0.14" />
+      <stop offset="100%" stop-color="#2463eb" stop-opacity="0" />
+    </radialGradient>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#17171b" flood-opacity="0.12" />
+    </filter>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1200" height="520" />
+  <rect x="0" y="0" width="1200" height="520" fill="url(#dots)" />
+  <circle cx="1100" cy="60" r="320" fill="url(#blob)" />
+
+  <!-- BethelFlow mark -->
+  <g filter="url(#soft)">
+    <rect class="chip" x="554" y="40" width="92" height="92" rx="24" />
+  </g>
+  <g transform="translate(574,58) scale(0.4)">
+    <path fill="#2463eb" d="M11.92,114.59c-.44-29.24,34.45-52.1,58.15-42.51,14.66,5.93,10.47,28.02-5.15,27.08-2.7-.16-7.71-2.24-11.29-2.96-12.73-2.56-30.45.88-36.47,7.95-4.95,5.82-4.73,9.89-5.24,10.44Z"/>
+    <path fill="#2463eb" d="M100.66,23.19c16.26,2.45,15.47,18.4,11.01,25.4-14.65,22.92-76.86,18.57-85.96-13.24,14.44,8.14,32.75,9.36,45.76.22,9.96-7,19.24-13.88,29.19-12.38Z"/>
+  </g>
+
+  <text class="word" x="600" y="222" text-anchor="middle">Building for the next generation of churches</text>
+  <text class="lead" x="600" y="262" text-anchor="middle">From the home cell to the churches we have today.</text>
+
+  <!-- wrong turns -->
+  <path class="wrong" d="M300 455 C 305 430, 325 415, 340 398" />
+  <path class="x" d="M334 386 l12 12 M346 386 l-12 12" />
+  <path class="wrong" d="M612 470 C 600 490, 585 500, 570 506" />
+  <path class="x" d="M558 500 l12 12 M570 500 l-12 12" />
+  <path class="wrong" d="M935 448 C 945 420, 960 405, 985 392" />
+  <path class="x" d="M982 380 l12 12 M994 380 l-12 12" />
+
+  <!-- route -->
+  <path class="route" d="M40 480 C 90 505, 130 452, 170 460 C 260 478, 330 430, 440 472 C 560 516, 660 430, 770 462 C 880 494, 990 420, 1100 448 C 1130 455, 1150 450, 1170 440" />
+
+  <!-- home cell -->
+  <g transform="translate(170,448)">
+    <path class="bld" d="M-20 0 V-26 L0 -44 L20 -26 V0 Z" />
+    <rect class="bld" x="-5" y="-14" width="10" height="14" />
+  </g>
+  <circle class="pin" cx="170" cy="460" r="5" />
+
+  <!-- hall -->
+  <g transform="translate(440,460)">
+    <path class="bld" d="M-38 0 V-34 L0 -52 L38 -34 V0 Z" />
+    <rect class="bld" x="-8" y="-20" width="16" height="20" />
+    <rect class="bld" x="-28" y="-26" width="10" height="10" />
+    <rect class="bld" x="18" y="-26" width="10" height="10" />
+  </g>
+  <circle class="pin" cx="440" cy="472" r="5" />
+
+  <!-- church -->
+  <g transform="translate(770,450)">
+    <path class="bld" d="M-34 0 V-40 L0 -62 L34 -40 V0 Z" />
+    <path class="bld" d="M-10 -52 V-86 L0 -96 L10 -86 V-58" />
+    <path class="ink" d="M0 -118 V-100 M-7 -111 H7" />
+    <path class="bld" d="M-9 0 V-18 A9 9 0 0 1 9 -18 V0 Z" />
+  </g>
+  <circle class="pin" cx="770" cy="462" r="5" />
+
+  <!-- branches -->
+  <g transform="translate(1060,436) scale(0.62)">
+    <path class="bld" d="M-34 0 V-40 L0 -62 L34 -40 V0 Z" />
+    <path class="bld" d="M-10 -52 V-86 L0 -96 L10 -86 V-58" />
+    <path class="ink" d="M0 -118 V-100 M-7 -111 H7" />
+  </g>
+  <g transform="translate(1142,428) scale(0.62)">
+    <path class="bld" d="M-34 0 V-40 L0 -62 L34 -40 V0 Z" />
+    <path class="bld" d="M-10 -52 V-86 L0 -96 L10 -86 V-58" />
+    <path class="ink" d="M0 -118 V-100 M-7 -111 H7" />
+  </g>
+  <g transform="translate(1100,440) scale(0.8)">
+    <path class="bld" d="M-34 0 V-40 L0 -62 L34 -40 V0 Z" />
+    <path class="bld" d="M-10 -52 V-86 L0 -96 L10 -86 V-58" />
+    <path class="ink" d="M0 -118 V-100 M-7 -111 H7" />
+    <path class="bld" d="M-9 0 V-18 A9 9 0 0 1 9 -18 V0 Z" />
+  </g>
+  <circle class="pin" cx="1100" cy="448" r="5" />
+</svg>
