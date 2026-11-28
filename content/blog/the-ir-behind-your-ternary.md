@@ -221,4 +221,4 @@ None of these are required. A call that can't be rewritten still works, it just 
 
 Both outputs come from one model of your style, so they always agree.
 
-*Next in the series: how Panda makes variants fast, and what `cva` and `sva` do with the same combination logic. If you missed the earlier parts: [Build once, at build time](/blog/build-once-at-build-time), [Every style is an atom](/blog/every-style-is-an-atom), [Look it up once](/blog/look-it-up-once), [Panda never runs your code](/blog/panda-never-runs-your-code), [What runtime means in Panda](/blog/what-runtime-means-in-panda).*
+*Next in the series: [how Panda makes variants fast](/blog/how-panda-makes-cva-fast), and what `cva` and `sva` do with the same combination logic. If you missed the earlier parts: [Build once, at build time](/blog/build-once-at-build-time), [Every style is an atom](/blog/every-style-is-an-atom), [Look it up once](/blog/look-it-up-once), [Panda never runs your code](/blog/panda-never-runs-your-code), [What runtime means in Panda](/blog/what-runtime-means-in-panda).*
