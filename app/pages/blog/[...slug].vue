@@ -237,6 +237,8 @@ const discuss = css({ color: 'ink', textDecoration: 'underline', _hover: { color
     <ContentRenderer :value="post" :class="['prose-content', proseClass]" />
     <span ref="endEl" aria-hidden="true" />
 
+    <SeriesCard v-if="post.series" :name="post.series" />
+
     <HighlightShare :title="shareTitle" :url="postUrl" :date="post.date" />
 
     <ark.div :class="share">

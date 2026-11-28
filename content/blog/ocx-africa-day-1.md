@@ -117,7 +117,4 @@ That night I [tweeted](https://x.com/I_am_Lope/status/2116238887593066970): "Con
 
 Day two had a quiz app, a quiz that broke my heart, and a danfo on a chip. [Read day two](/blog/ocx-africa-day-2).
 
-::series-card{name="OCX Africa"}
-::
-
 *Event photos link to the Eclipse Foundation's [OCX Africa 2026 album](https://www.flickr.com/photos/108559379@N08/albums/72177720336439234/) on Flickr. The drink is mine.*

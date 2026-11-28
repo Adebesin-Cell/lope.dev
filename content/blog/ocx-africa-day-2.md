@@ -229,7 +229,4 @@ Thank you to the Eclipse Foundation, OSCA and everyone who made OCX Africa happe
 
 See you at the next one, OCX 💙
 
-::series-card{name="OCX Africa"}
-::
-
 *Event photos link to the Eclipse Foundation's [OCX Africa 2026 album](https://www.flickr.com/photos/108559379@N08/albums/72177720336439234/) on Flickr. The Kwizi screens, the badge video and the drinks are mine. The Haikyuu frames are from the anime.*
